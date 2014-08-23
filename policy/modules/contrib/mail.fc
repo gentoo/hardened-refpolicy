@@ -1,0 +1,7 @@
+HOME_DIR/Maildir(/.*)?		gen_context(system_u:object_r:mail_home_rw_t,s0)
+HOME_DIR/\.maildir(/.*)?		gen_context(system_u:object_r:mail_home_rw_t,s0)
+
+/etc/mail(/.*)?		gen_context(system_u:object_r:mail_etc_t,s0)
+
+# Only effective files are labeled as sendmail_exec_t, esp. symlinks should remain bin_t
+/usr/sbin/sendmail	--	gen_context(system_u:object_r:sendmail_exec_t,s0)

@@ -1,0 +1,91 @@
+policy_module(mailinfra, 1.0)
+
+# This will become the new mta when finished. For now, use a different name
+
+#########################################
+#
+# Declarations
+#
+
+# Domain attributes, see http://en.wikipedia.org/wiki/Email_agent_%28infrastructure%29
+attribute mail_user_agent;
+attribute mail_submission_agent;
+attribute mail_transfer_agent;
+attribute mail_delivery_agent;
+attribute mail_retrieval_agent;
+
+# Resource attributes
+attribute mail_content;
+
+# Access to user-based sendmail
+attribute_role user_sendmail_roles;
+
+# TODO deleteme
+attribute mta_exec_type;
+type system_mail_t;
+application_type(system_mail_t)
+attribute mta_user_agent;
+attribute user_mail_domain;
+attribute mailserver_domain;
+attribute mailserver_sender;
+attribute mailserver_delivery;
+
+# Generic domain types
+type sendmail_exec_t;
+
+type user_sendmail_t;
+userdom_user_application_domain(user_sendmail_t, sendmail_exec_t)
+role user_sendmail_roles types user_sendmail_t;
+
+type system_sendmail_t;
+application_domain(system_sendmail_t, sendmail_exec_t)
+
+# Generic types
+type mail_aliases_t alias etc_aliases_t;
+files_type(mail_aliases_t)
+
+type mail_etc_t alias etc_mail_t;
+files_config_file(mail_etc_t)
+
+# Files manageable by end user but read-only for the mail_*_agent domains
+type mail_home_t;
+userdom_user_home_content(mail_home_t)
+
+type mail_home_rw_t;
+userdom_user_home_content(mail_home_rw_t)
+
+type mail_queue_t;
+files_mountpoint(mail_queue_t)
+
+#########################################
+#
+# Mail Delivery Agent policy
+#
+
+mail_delivery_agent_privs(mail_delivery_agent)
+
+#########################################
+#
+# Mail Transfer Agent policy
+#
+
+mail_transfer_agent_privs(mail_transfer_agent)
+
+#########################################
+#
+# Mail User Agent policy
+#
+
+mail_user_agent_privs(mail_user_agent)
+
+#########################################
+#
+# User-based sendmail domain
+#
+
+allow user_sendmail_t mail_content:file { read_file_perms append_file_perms };
+
+# Postfix implementation specifics
+ifdef(`use_postfix',`
+	postfix_user_sendmail_privs(user_sendmail_t)
+')
