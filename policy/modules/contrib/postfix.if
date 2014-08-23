@@ -756,3 +756,52 @@ interface(`postfix_admin',`
 		can_exec($1, postfix_showq_exec_t)
 	')
 ')
+
+# ifdef distro_gentoo
+
+#########################################
+## <summary>
+##	Assign privileges for Postfix sendmail
+## </summary>
+## <desc>
+##	<p>
+##	The privileges are extensive as many postfix commands are symbolic
+##	links to the sendmail application. Example is the mailq command.
+##	</p>
+## </desc>
+## <param name="domain">
+##	<summary>
+##	Domain to assign privileges to
+##	</summary>
+## </param>
+#
+interface(`postfix_user_sendmail_privs',`
+	gen_require(`
+		type postfix_postdrop_t;
+	')
+	allow $1 self:process { setrlimit };
+	allow $1 self:tcp_socket create_socket_perms;
+	allow $1 self:unix_dgram_socket create_socket_perms;
+
+	allow postfix_postdrop_t $1:unix_stream_socket rw_socket_perms;
+
+	kernel_read_network_state($1)
+
+	domain_use_interactive_fds($1)
+
+	logging_send_syslog_msg($1)
+
+	auth_use_nsswitch($1)
+
+	miscfiles_read_localization($1)
+
+	userdom_use_user_terminals($1)
+
+	optional_policy(`
+		postfix_exec_postqueue($1)
+		postfix_domtrans_postdrop($1)
+		postfix_read_config($1)
+		postfix_read_spool_files($1)
+		postfix_stream_connect_master($1)
+	')
+')
