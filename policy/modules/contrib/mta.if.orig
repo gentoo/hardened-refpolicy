@@ -1,7 +1,20 @@
-## <summary>Wrapper for common e-mail transfer agent policy.</summary>
+## <summary>Common e-mail transfer agent policy.</summary>
+
+########################################
+## <summary>
+##	MTA stub interface.  No access allowed.
+## </summary>
+## <param name="domain" unused="true">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
 #
-# The mta policy is no longer supported in Gentoo and has been deprecated
-# in favor of the mail policy.
+interface(`mta_stub',`
+	gen_require(`
+		type sendmail_exec_t;
+	')
+')
 
 #######################################
 ## <summary>
@@ -14,12 +27,41 @@
 ## </param>
 #
 template(`mta_base_mail_template',`
-	refpolicywarn(`$0($*) has been deprecated.')
+	gen_require(`
+		attribute user_mail_domain;
+		type sendmail_exec_t;
+	')
+
+	########################################
+	#
+	# Declarations
+	#
+
+	type $1_mail_t, user_mail_domain;
+	application_domain($1_mail_t, sendmail_exec_t)
+
+	type $1_mail_tmp_t;
+	files_tmp_file($1_mail_tmp_t)
+
+	########################################
+	#
+	# Declarations
+	#
+
+	manage_dirs_pattern($1_mail_t, $1_mail_tmp_t, $1_mail_tmp_t)
+	manage_files_pattern($1_mail_t, $1_mail_tmp_t, $1_mail_tmp_t)
+	files_tmp_filetrans($1_mail_t, $1_mail_tmp_t, { file dir })
+
+	auth_use_nsswitch($1_mail_t)
+
+	optional_policy(`
+		postfix_domtrans_user_mail_handler($1_mail_t)
+	')
 ')
 
 ########################################
 ## <summary>
-##	Role access for mta (deprecated, use mail_role instead).
+##	Role access for mta.
 ## </summary>
 ## <param name="role">
 ##	<summary>
@@ -40,14 +82,46 @@ interface(`mta_role',`
 		type user_mail_tmp_t, mail_home_rw_t;
 	')
 
-	refpolicywarn(`$0($*) has been deprecated. Please use mail_role instead.')
+	roleattribute $1 user_mail_roles;
 
-	mail_role($1, $2)
+	# this is something i need to fix
+	# i dont know if and why it is needed
+	# will role attribute work?
+	role $1 types mta_user_agent;
+
+	domtrans_pattern($2, sendmail_exec_t, user_mail_t)
+	allow $2 sendmail_exec_t:lnk_file read_lnk_file_perms;
+
+	allow $2 { user_mail_t mta_user_agent }:process { ptrace signal_perms };
+	ps_process_pattern($2, { user_mail_t mta_user_agent })
+
+	allow $2 mail_home_t:file { manage_file_perms relabel_file_perms };
+	userdom_user_home_dir_filetrans($2, mail_home_t, file, ".esmtp_queue")
+	userdom_user_home_dir_filetrans($2, mail_home_t, file, ".forward")
+	userdom_user_home_dir_filetrans($2, mail_home_t, file, ".mailrc")
+	userdom_user_home_dir_filetrans($2, mail_home_t, file, "dead.letter")
+
+	allow $2 mail_home_rw_t:dir { manage_dir_perms relabel_dir_perms };
+	allow $2 mail_home_rw_t:file { manage_file_perms relabel_file_perms };
+	allow $2 mail_home_rw_t:lnk_file { manage_lnk_file_perms relabel_lnk_file_perms };
+	userdom_user_home_dir_filetrans($2, mail_home_rw_t, dir, "Maildir")
+	userdom_user_home_dir_filetrans($2, mail_home_rw_t, dir, ".maildir")
+
+	allow $2 user_mail_tmp_t:dir { manage_dir_perms relabel_dir_perms };
+	allow $2 user_mail_tmp_t:file { manage_file_perms relabel_file_perms };
+
+	optional_policy(`
+		exim_run($2, $1)
+	')
+
+	optional_policy(`
+		mailman_run($2, $1)
+	')
 ')
 
 ########################################
 ## <summary>
-##	Make the specified domain usable for a mail server (deprecated, use mail_*_agent_type instead).
+##	Make the specified domain usable for a mail server.
 ## </summary>
 ## <param name="type">
 ##	<summary>
@@ -65,13 +139,13 @@ interface(`mta_mailserver',`
 		attribute mailserver_domain;
 	')
 
-	refpolicywarn(`$0($*) is deprecated, use mail_*_agent_type instead. Defaulting to mail_transfer_agent_type.')
-	mail_transfer_agent_type($1)
+	init_daemon_domain($1, $2)
+	typeattribute $1 mailserver_domain;
 ')
 
 ########################################
 ## <summary>
-##	Make the specified type a MTA executable file (deprecated).
+##	Make the specified type a MTA executable file.
 ## </summary>
 ## <param name="type">
 ##	<summary>
@@ -80,13 +154,18 @@ interface(`mta_mailserver',`
 ## </param>
 #
 interface(`mta_agent_executable',`
-	refpolicywarn(`$0($*) is deprecated.')
+	gen_require(`
+		attribute mta_exec_type;
+	')
+
+	typeattribute $1 mta_exec_type;
+
 	application_executable_file($1)
 ')
 
 #######################################
 ## <summary>
-##	Read mta mail home files (deprecated, use mail_read_home_files instead).
+##	Read mta mail home files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -95,14 +174,18 @@ interface(`mta_agent_executable',`
 ## </param>
 #
 interface(`mta_read_mail_home_files',`
-	refpolicywarn(`$0($*) is deprecated, use mail_read_home_files instead.')
-	mail_read_home_files($1)
+	gen_require(`
+		type mail_home_t;
+	')
+
+	userdom_search_user_home_dirs($1)
+	allow $1 mail_home_t:file read_file_perms;
 ')
 
 #######################################
 ## <summary>
 ##	Create, read, write, and delete
-##	mta mail home files (deprecated, use mail_manage_home_files instead).
+##	mta mail home files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -111,15 +194,19 @@ interface(`mta_read_mail_home_files',`
 ## </param>
 #
 interface(`mta_manage_mail_home_files',`
-	refpolicywarn(`$0($*) is deprecated, use mail_manage_home_files instead.')
-	mail_manage_home_files($1)
+	gen_require(`
+		type mail_home_t;
+	')
+
+	userdom_search_user_home_dirs($1)
+	allow $1 mail_home_t:file manage_file_perms;
 ')
 
 ########################################
 ## <summary>
 ##	Create specified objects in user home
 ##	directories with the generic mail
-##	home type (deprecated).
+##	home type.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -138,14 +225,17 @@ interface(`mta_manage_mail_home_files',`
 ## </param>
 #
 interface(`mta_home_filetrans_mail_home',`
-	refpolicywarn(`$0($*) is deprecated, use the proper mail * agent type declarations. Defaulting to delivery agent.')
-	mail_delivery_agent_privs($1)
+	gen_require(`
+		type mail_home_t;
+	')
+
+	userdom_user_home_dir_filetrans($1, mail_home_t, $2, $3)
 ')
 
 #######################################
 ## <summary>
 ##	Create, read, write, and delete
-##	mta mail home rw content (deprecated, use mail_manage_home_rw).
+##	mta mail home rw content.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -154,15 +244,21 @@ interface(`mta_home_filetrans_mail_home',`
 ## </param>
 #
 interface(`mta_manage_mail_home_rw_content',`
-	refpolicywarn(`$0($*) is deprecated, use mail_manage_home_rw instead')
-	mail_manage_home_rw($1)
+	gen_require(`
+		type mail_home_rw_t;
+	')
+
+	userdom_search_user_home_dirs($1)
+	manage_dirs_pattern($1, mail_home_rw_t, mail_home_rw_t)
+	manage_files_pattern($1, mail_home_rw_t, mail_home_rw_t)
+	manage_lnk_files_pattern($1, mail_home_rw_t, mail_home_rw_t)
 ')
 
 ########################################
 ## <summary>
 ##	Create specified objects in user home
 ##	directories with the generic mail
-##	home rw type (deprecated).
+##	home rw type.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -181,13 +277,16 @@ interface(`mta_manage_mail_home_rw_content',`
 ## </param>
 #
 interface(`mta_home_filetrans_mail_home_rw',`
-	refpolicywarn(`$0($*) is deprecated, use the proper mail * agent type declarations. Defaulting to delivery agent.')
-	mail_delivery_agent_privs($1)
+	gen_require(`
+		type mail_home_rw_t;
+	')
+
+	userdom_user_home_dir_filetrans($1, mail_home_rw_t, $2, $3)
 ')
 
 ########################################
 ## <summary>
-##	Make the specified type by a system MTA (deprecated, use mail_content_type instead).
+##	Make the specified type by a system MTA.
 ## </summary>
 ## <param name="type">
 ##	<summary>
@@ -196,14 +295,17 @@ interface(`mta_home_filetrans_mail_home_rw',`
 ## </param>
 #
 interface(`mta_system_content',`
-	refpolicywarn(`$0($*) is deprecated, use mail_content_type instead.')
-	mail_content_type($1)
+	gen_require(`
+		attribute mailcontent_type;
+	')
+
+	typeattribute $1 mailcontent_type;
 ')
 
 ########################################
 ## <summary>
 ##	Modified mailserver interface for
-##	sendmail daemon use (deprecated).
+##	sendmail daemon use.
 ## </summary>
 ## <desc>
 ##	<p>
@@ -226,15 +328,20 @@ interface(`mta_system_content',`
 ## </param>
 #
 interface(`mta_sendmail_mailserver',`
-	refpolicywarn(`$0($*) is deprecated, use the proper mail * agent type declarations. Defaulting to transfer agent.')
-	mail_transfer_agent_type($1)
+	gen_require(`
+		attribute mailserver_domain;
+		type sendmail_exec_t;
+	')
 
+	init_system_domain($1, sendmail_exec_t)
+
+	typeattribute $1 mailserver_domain;
 ')
 
 #######################################
 ## <summary>
 ##	Make a type a mailserver type used
-##	for sending mail (deprecated).
+##	for sending mail.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -243,14 +350,17 @@ interface(`mta_sendmail_mailserver',`
 ## </param>
 #
 interface(`mta_mailserver_sender',`
-	refpolicywarn(`$0($*) is deprecated, use the proper mail * agent type declarations. Defaulting to submission agent.')
-	mail_submission_agent_type($1)
+	gen_require(`
+		attribute mailserver_sender;
+	')
+
+	typeattribute $1 mailserver_sender;
 ')
 
 #######################################
 ## <summary>
 ##	Make a type a mailserver type used
-##	for delivering mail to local users (deprecated).
+##	for delivering mail to local users.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -259,15 +369,18 @@ interface(`mta_mailserver_sender',`
 ## </param>
 #
 interface(`mta_mailserver_delivery',`
-	refpolicywarn(`$0($*) is deprecated, use mail_delivery_agent_type instead')
-	mail_delivery_agent_type($1)
+	gen_require(`
+		attribute mailserver_delivery;
+	')
+
+	typeattribute $1 mailserver_delivery;
 ')
 
 #######################################
 ## <summary>
 ##	Make a type a mailserver type used
 ##	for sending mail on behalf of local
-##	users to the local mail spool (deprecated).
+##	users to the local mail spool.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -276,13 +389,16 @@ interface(`mta_mailserver_delivery',`
 ## </param>
 #
 interface(`mta_mailserver_user_agent',`
-	refpolicywarn(`$0($*) is deprecated, use mail_delivery_agent_type instead')
-	mail_delivery_agent_type($1)
+	gen_require(`
+		attribute mta_user_agent;
+	')
+
+	typeattribute $1 mta_user_agent;
 ')
 
 ########################################
 ## <summary>
-##	Send mail from the system (deprecated).
+##	Send mail from the system.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -291,8 +407,23 @@ interface(`mta_mailserver_user_agent',`
 ## </param>
 #
 interface(`mta_send_mail',`
-	refpolicywarn(`$0($*) is deprecated, use mail_domtrans_sendmail instead')
-	mail_domtrans_sendmail($1)
+	gen_require(`
+		type system_mail_t;
+		attribute mta_exec_type;
+	')
+
+	corecmd_search_bin($1)
+	domtrans_pattern($1, mta_exec_type, system_mail_t)
+
+	allow $1 mta_exec_type:lnk_file read_lnk_file_perms;
+
+	ifdef(`distro_gentoo',`
+		gen_require(`
+			attribute mta_user_agent;
+		')
+
+		dontaudit mta_user_agent $1:fd use;
+	')
 ')
 
 ########################################
@@ -321,12 +452,19 @@ interface(`mta_send_mail',`
 ## </param>
 #
 interface(`mta_sendmail_domtrans',`
-	refpolicywarn(`$0($*) is deprecated.')
+	gen_require(`
+		type sendmail_exec_t;
+	')
+
+	corecmd_search_bin($1)
+	domain_auto_trans($1, sendmail_exec_t, $2)
+
+	allow $1 sendmail_exec_t:lnk_file read_lnk_file_perms;
 ')
 
 ########################################
 ## <summary>
-##	Send signals to system mail (deprecated).
+##	Send signals to system mail.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -336,8 +474,11 @@ interface(`mta_sendmail_domtrans',`
 #
 #
 interface(`mta_signal_system_mail',`
-	refpolicywarn(`$0($*) is deprecated, mail_run_sendmail instead')
-	mail_run_sendmail($1)
+	gen_require(`
+		type system_mail_t;
+	')
+
+	allow $1 system_mail_t:process signal;
 ')
 
 ########################################
@@ -351,7 +492,11 @@ interface(`mta_signal_system_mail',`
 ## </param>
 #
 interface(`mta_kill_system_mail',`
-	refpolicywarn(`$0($*) is deprecated.')
+	gen_require(`
+		type system_mail_t;
+	')
+
+	allow $1 system_mail_t:process sigkill;
 ')
 
 ########################################
@@ -365,13 +510,17 @@ interface(`mta_kill_system_mail',`
 ## </param>
 #
 interface(`mta_sendmail_exec',`
-	refpolicywarn(`$0($*) is deprecated, use mail_exec_sendmail instead.')
-	mail_exec_sendmail($1)
+	gen_require(`
+		type sendmail_exec_t;
+	')
+
+	corecmd_search_bin($1)
+	can_exec($1, sendmail_exec_t)
 ')
 
 ########################################
 ## <summary>
-##	Read mail server configuration content (deprecated).
+##	Read mail server configuration content.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -381,13 +530,19 @@ interface(`mta_sendmail_exec',`
 ## <rolecap/>
 #
 interface(`mta_read_config',`
-	refpolicywarn(`$0($*) is deprecated, use mail_read_etc instead.')
-	mail_read_etc($1)
+	gen_require(`
+		type etc_mail_t;
+	')
+
+	files_search_etc($1)
+	allow $1 etc_mail_t:dir list_dir_perms;
+	allow $1 etc_mail_t:file read_file_perms;
+	allow $1 etc_mail_t:lnk_file read_lnk_file_perms;
 ')
 
 ########################################
 ## <summary>
-##	Write mail server configuration files (deprecated).
+##	Write mail server configuration files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -397,13 +552,17 @@ interface(`mta_read_config',`
 ## <rolecap/>
 #
 interface(`mta_write_config',`
-	refpolicywarn(`$0($*) is deprecated, use mail_rw_etc instead.')
-	mail_rw_etc($1)
+	gen_require(`
+		type etc_mail_t;
+	')
+
+	files_search_etc($1)
+	write_files_pattern($1, etc_mail_t, etc_mail_t)
 ')
 
 ########################################
 ## <summary>
-##	Read mail address alias files (deprecated).
+##	Read mail address alias files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -412,8 +571,21 @@ interface(`mta_write_config',`
 ## </param>
 #
 interface(`mta_read_aliases',`
-	refpolicywarn(`$0($*) is deprecated, use mail_read_aliases instead.')
-	mail_read_aliases($1)
+	gen_require(`
+		type etc_aliases_t;
+	')
+
+	files_search_etc($1)
+	allow $1 etc_aliases_t:file read_file_perms;
+
+	ifdef(`distro_gentoo',`
+		gen_require(`
+			type etc_mail_t;
+		')
+
+		search_dirs_pattern($1, etc_mail_t, etc_aliases_t)
+		read_files_pattern($1, etc_mail_t, etc_aliases_t)
+	')
 ')
 
 ########################################
@@ -428,15 +600,30 @@ interface(`mta_read_aliases',`
 ## </param>
 #
 interface(`mta_manage_aliases',`
-	refpolicywarn(`$0($*) is deprecated, use mail_manage_aliases instead.')
-	mail_manage_aliases($1)
+	gen_require(`
+		type etc_aliases_t;
+	')
+
+	files_search_etc($1)
+	manage_files_pattern($1, etc_aliases_t, etc_aliases_t)
+	manage_lnk_files_pattern($1, etc_aliases_t, etc_aliases_t)
+	
+	ifdef(`distro_gentoo',`
+		gen_require(`
+			type etc_mail_t;
+		')
+
+		search_dirs_pattern($1, etc_mail_t, etc_aliases_t)
+		manage_files_pattern($1, etc_mail_t, etc_aliases_t)
+		manage_lnk_files_pattern($1, etc_mail_t, etc_aliases_t)
+	')
 ')
 
 ########################################
 ## <summary>
 ##	Create specified object in generic
 ##	etc directories with the mail address
-##	alias type (deprecated).
+##	alias type.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -455,15 +642,18 @@ interface(`mta_manage_aliases',`
 ## </param>
 #
 interface(`mta_etc_filetrans_aliases',`
-	refpolicywarn(`$0($*) is deprecated, use mail_generic_etc_filetrans_aliases instead.')
-	mail_generic_etc_filetrans_aliases($1, $2, $3)
+	gen_require(`
+		type etc_aliases_t;
+	')
+
+	files_etc_filetrans($1, etc_aliases_t, $2, $3)
 ')
 
 ########################################
 ## <summary>
 ##	Create specified objects in specified
 ##	directories with a type transition to
-##	the mail address alias type (deprecated).
+##	the mail address alias type.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -487,15 +677,47 @@ interface(`mta_etc_filetrans_aliases',`
 ## </param>
 #
 interface(`mta_spec_filetrans_aliases',`
-	refpolicywarn(`$0($*) is deprecated, use mail_spec_filetrans_aliases instead.')
-	mail_spec_filetrans_aliases($1, $2, $3, $4)
+	gen_require(`
+		type etc_aliases_t;
+	')
+
+	filetrans_pattern($1, $2, etc_aliases_t, $3, $4)
+')
+
+########################################
+## <summary>
+##	Read and write mail alias files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <rolecap/>
+#
+interface(`mta_rw_aliases',`
+	gen_require(`
+		type etc_aliases_t;
+	')
+
+	files_search_etc($1)
+	allow $1 etc_aliases_t:file rw_file_perms;
+
+	ifdef(`distro_gentoo',`
+		gen_require(`
+			type etc_mail_t;
+		')
+
+		search_dirs_pattern($1, etc_mail_t, etc_aliases_t)
+		rw_files_pattern($1, etc_mail_t, etc_aliases_t)
+	')
 ')
 
 #######################################
 ## <summary>
 ##	Do not audit attempts to read
 ##	and write TCP sockets of mail
-##	delivery domains (deprecated).
+##	delivery domains.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -504,8 +726,11 @@ interface(`mta_spec_filetrans_aliases',`
 ## </param>
 #
 interface(`mta_dontaudit_rw_delivery_tcp_sockets',`
-	refpolicywarn(`$0($*) is deprecated, use mail_dontaudit_rw_delivery_agent_tcp_sockets instead.')
-	mail_dontaudit_rw_delivery_agent_tcp_sockets($1)
+	gen_require(`
+		attribute mailserver_delivery;
+	')
+
+	dontaudit $1 mailserver_delivery:tcp_socket { read write };
 ')
 
 #######################################
@@ -525,7 +750,7 @@ interface(`mta_tcp_connect_all_mailservers',`
 #######################################
 ## <summary>
 ##	Do not audit attempts to read
-##	mail spool symlinks (deprecated).
+##	mail spool symlinks.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -534,13 +759,16 @@ interface(`mta_tcp_connect_all_mailservers',`
 ## </param>
 #
 interface(`mta_dontaudit_read_spool_symlinks',`
-	refpolicywarn(`$0($*) is deprecated, use mail_dontaudit_read_queue_symlinks instead.')
-	mail_dontaudit_read_queue_symlinks($1)
+	gen_require(`
+		type mail_spool_t;
+	')
+
+	dontaudit $1 mail_spool_t:lnk_file read;
 ')
 
 ########################################
 ## <summary>
-##	Get attributes of mail spool content (deprecated).
+##	Get attributes of mail spool content.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -549,14 +777,20 @@ interface(`mta_dontaudit_read_spool_symlinks',`
 ## </param>
 #
 interface(`mta_getattr_spool',`
-	refpolicywarn(`$0($*) is deprecated, use mail_getattr_queue instead.')
-	mail_getattr_queue($1)
+	gen_require(`
+		type mail_spool_t;
+	')
+
+	files_search_spool($1)
+	allow $1 mail_spool_t:dir list_dir_perms;
+	getattr_files_pattern($1, mail_spool_t, mail_spool_t)
+	read_lnk_files_pattern($1, mail_spool_t, mail_spool_t)
 ')
 
 ########################################
 ## <summary>
 ##	Do not audit attempts to get
-##	attributes of mail spool files (deprecated).
+##	attributes of mail spool files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -565,8 +799,14 @@ interface(`mta_getattr_spool',`
 ## </param>
 #
 interface(`mta_dontaudit_getattr_spool_files',`
-	refpolicywarn(`$0($*) is deprecated, use mail_dontaudit_getattr_queue instead.')
-	mail_dontaudit_getattr_queue($1)
+	gen_require(`
+		type mail_spool_t;
+	')
+
+	files_dontaudit_search_spool($1)
+	dontaudit $1 mail_spool_t:dir search_dir_perms;
+	dontaudit $1 mail_spool_t:lnk_file read_lnk_file_perms;
+	dontaudit $1 mail_spool_t:file getattr_file_perms;
 ')
 
 #######################################
@@ -597,13 +837,17 @@ interface(`mta_dontaudit_getattr_spool_files',`
 ## </param>
 #
 interface(`mta_spool_filetrans',`
-	refpolicywarn(`$0($*) is deprecated, use mail_queue_filetrans instead.')
-	mail_queue_filetrans($1, $2, $3, $4)
+	gen_require(`
+		type mail_spool_t;
+	')
+
+	files_search_spool($1)
+	filetrans_pattern($1, mail_spool_t, $2, $3, $4)
 ')
 
 #######################################
 ## <summary>
-##  Read mail spool files (deprecated).
+##  Read mail spool files.
 ## </summary>
 ## <param name="domain">
 ##  <summary>
@@ -612,13 +856,17 @@ interface(`mta_spool_filetrans',`
 ## </param>
 #
 interface(`mta_read_spool_files',`
-	refpolicywarn(`$0($*) is deprecated, use mail_read_queue_files instead.')
-	mail_read_queue_files($1)
+	gen_require(`
+		type mail_spool_t;
+	')
+
+	files_search_spool($1)
+	read_files_pattern($1, mail_spool_t, mail_spool_t)
 ')
 
 ########################################
 ## <summary>
-##	Read and write mail spool files (deprecated).
+##	Read and write mail spool files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -627,13 +875,19 @@ interface(`mta_read_spool_files',`
 ## </param>
 #
 interface(`mta_rw_spool',`
-	refpolicywarn(`$0($*) is deprecated, use mail_rw_queue_files instead.')
-	mail_rw_queue_files($1)
+	gen_require(`
+		type mail_spool_t;
+	')
+
+	files_search_spool($1)
+	allow $1 mail_spool_t:dir list_dir_perms;
+	allow $1 mail_spool_t:file rw_file_perms;
+	allow $1 mail_spool_t:lnk_file read_lnk_file_perms;
 ')
 
 #######################################
 ## <summary>
-##	Create, read, and write mail spool files (deprecated)
+##	Create, read, and write mail spool files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -642,13 +896,19 @@ interface(`mta_rw_spool',`
 ## </param>
 #
 interface(`mta_append_spool',`
-	refpolicywarn(`$0($*) is deprecated, use mail_manage_queue_files instead.')
-	mail_manage_queue_files($1)
+	gen_require(`
+		type mail_spool_t;
+	')
+
+	files_search_spool($1)
+	allow $1 mail_spool_t:dir list_dir_perms;
+	manage_files_pattern($1, mail_spool_t, mail_spool_t)
+	allow $1 mail_spool_t:lnk_file read_lnk_file_perms;
 ')
 
 #######################################
 ## <summary>
-##	Delete mail spool files (deprecated).
+##	Delete mail spool files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -657,14 +917,18 @@ interface(`mta_append_spool',`
 ## </param>
 #
 interface(`mta_delete_spool',`
-	refpolicywarn(`$0($*) is deprecated, use mail_delete_queue_files instead.')
-	mail_delete_queue_files($1)
+	gen_require(`
+		type mail_spool_t;
+	')
+
+	files_search_spool($1)
+	delete_files_pattern($1, mail_spool_t, mail_spool_t)
 ')
 
 ########################################
 ## <summary>
 ##	Create, read, write, and delete
-##	mail spool content (deprecated).
+##	mail spool content.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -673,15 +937,21 @@ interface(`mta_delete_spool',`
 ## </param>
 #
 interface(`mta_manage_spool',`
-	refpolicywarn(`$0($*) is deprecated, use mail_manage_queue instead.')
-	mail_manage_queue($1)
+	gen_require(`
+		type mail_spool_t;
+	')
+
+	files_search_spool($1)
+	manage_dirs_pattern($1, mail_spool_t, mail_spool_t)
+	manage_files_pattern($1, mail_spool_t, mail_spool_t)
+	manage_lnk_files_pattern($1, mail_spool_t, mail_spool_t)
 ')
 
 #######################################
 ## <summary>
 ##	Create specified objects in the
 ##	mail queue spool directory with a
-##	private type (deprecated).
+##	private type.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -705,13 +975,17 @@ interface(`mta_manage_spool',`
 ## </param>
 #
 interface(`mta_queue_filetrans',`
-	refpolicywarn(`$0($*) is deprecated, use mail_queue_filetrans instead.')
-	mail_queue_filetrans($1, $2, $3, $4)
+	gen_require(`
+		type mqueue_spool_t;
+	')
+
+	files_search_spool($1)
+	filetrans_pattern($1, mqueue_spool_t, $2, $3, $4)
 ')
 
 ########################################
 ## <summary>
-##	Search mail queue directories (deprecated).
+##	Search mail queue directories.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -720,13 +994,17 @@ interface(`mta_queue_filetrans',`
 ## </param>
 #
 interface(`mta_search_queue',`
-	refpolicywarn(`$0($*) is deprecated, use mail_search_queue instead.')
-	mail_search_queue($1)
+	gen_require(`
+		type mqueue_spool_t;
+	')
+
+	files_search_spool($1)
+	allow $1 mqueue_spool_t:dir search_dir_perms;
 ')
 
 #######################################
 ## <summary>
-##	List mail queue directories (deprecated)
+##	List mail queue directories.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -735,13 +1013,17 @@ interface(`mta_search_queue',`
 ## </param>
 #
 interface(`mta_list_queue',`
-	refpolicywarn(`$0($*) is deprecated, use mail_list_queue instead.')
-	mail_list_queue($1)
+	gen_require(`
+		type mqueue_spool_t;
+	')
+
+	files_search_spool($1)
+	allow $1 mqueue_spool_t:dir list_dir_perms;
 ')
 
 #######################################
 ## <summary>
-##	Read mail queue files (deprecated).
+##	Read mail queue files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -750,14 +1032,18 @@ interface(`mta_list_queue',`
 ## </param>
 #
 interface(`mta_read_queue',`
-	refpolicywarn(`$0($*) is deprecated, use mail_read_queue_files instead.')
-	mail_read_queue_files($1)
+	gen_require(`
+		type mqueue_spool_t;
+	')
+
+	files_search_spool($1)
+	read_files_pattern($1, mqueue_spool_t, mqueue_spool_t)
 ')
 
 #######################################
 ## <summary>
 ##	Do not audit attempts to read and
-##	write mail queue content (deprecated)
+##	write mail queue content.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -766,14 +1052,18 @@ interface(`mta_read_queue',`
 ## </param>
 #
 interface(`mta_dontaudit_rw_queue',`
-	refpolicywarn(`$0($*) is deprecated, use mail_dontaudit_rw_queue_files instead.')
-	mail_dontaudit_rw_queue_files($1)
+	gen_require(`
+		type mqueue_spool_t;
+	')
+
+	dontaudit $1 mqueue_spool_t:dir search_dir_perms;
+	dontaudit $1 mqueue_spool_t:file rw_file_perms;
 ')
 
 ########################################
 ## <summary>
 ##	Create, read, write, and delete
-##	mail queue content (deprecated).
+##	mail queue content.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -782,13 +1072,18 @@ interface(`mta_dontaudit_rw_queue',`
 ## </param>
 #
 interface(`mta_manage_queue',`
-	refpolicywarn(`$0($*) is deprecated, use mail_manage_queue instead.')
-	mail_manage_queue($1)
+	gen_require(`
+		type mqueue_spool_t;
+	')
+
+	files_search_spool($1)
+	manage_dirs_pattern($1, mqueue_spool_t, mqueue_spool_t)
+	manage_files_pattern($1, mqueue_spool_t, mqueue_spool_t)
 ')
 
 #######################################
 ## <summary>
-##	Read sendmail binary (deprecated).
+##	Read sendmail binary.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -797,14 +1092,17 @@ interface(`mta_manage_queue',`
 ## </param>
 #
 interface(`mta_read_sendmail_bin',`
-	refpolicywarn(`$0($*) is deprecated, use mail_read_sendmail_executable instead.')
-	mail_read_sendmail_executable($1)
+	gen_require(`
+		type sendmail_exec_t;
+	')
+
+	allow $1 sendmail_exec_t:file read_file_perms;
 ')
 
 #######################################
 ## <summary>
 ##	Read and write unix domain stream
-##	sockets of all base mail domains (deprecated).
+##	sockets of all base mail domains.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -813,5 +1111,9 @@ interface(`mta_read_sendmail_bin',`
 ## </param>
 #
 interface(`mta_rw_user_mail_stream_sockets',`
-	refpolicywarn(`$0($*) is deprecated.')
+	gen_require(`
+		attribute user_mail_domain;
+	')
+
+	allow $1 user_mail_domain:unix_stream_socket rw_socket_perms;
 ')
