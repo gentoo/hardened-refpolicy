@@ -40,7 +40,7 @@ type postfix_keytab_t;
 files_type(postfix_keytab_t)
 
 postfix_server_domain_template(local)
-mta_mailserver_delivery(postfix_local_t)
+#mta_mailserver_delivery(postfix_local_t)
 
 type postfix_map_t;
 type postfix_map_exec_t;
@@ -52,7 +52,7 @@ files_tmp_file(postfix_map_tmp_t)
 
 postfix_domain_template(master)
 typealias postfix_master_t alias postfix_t;
-mta_mailserver(postfix_t, postfix_master_exec_t)
+#mta_mailserver(postfix_t, postfix_master_exec_t)
 
 type postfix_initrc_exec_t;
 init_script_file(postfix_initrc_exec_t)
@@ -62,10 +62,10 @@ postfix_server_domain_template(pickup)
 postfix_server_domain_template(pipe)
 
 postfix_user_domain_template(postdrop)
-mta_mailserver_user_agent(postfix_postdrop_t)
+#mta_mailserver_user_agent(postfix_postdrop_t)
 
 postfix_user_domain_template(postqueue)
-mta_mailserver_user_agent(postfix_postqueue_t)
+#mta_mailserver_user_agent(postfix_postqueue_t)
 
 type postfix_private_t;
 files_type(postfix_private_t)
@@ -78,7 +78,7 @@ postfix_server_domain_template(qmgr)
 postfix_user_domain_template(showq)
 
 postfix_server_domain_template(smtp)
-mta_mailserver_sender(postfix_smtp_t)
+#mta_mailserver_sender(postfix_smtp_t)
 
 postfix_server_domain_template(smtpd)
 
@@ -101,7 +101,7 @@ type postfix_data_t;
 files_type(postfix_data_t)
 
 postfix_server_domain_template(virtual)
-mta_mailserver_delivery(postfix_virtual_t)
+#mta_mailserver_delivery(postfix_virtual_t)
 
 ########################################
 #
@@ -307,13 +307,13 @@ miscfiles_read_man_pages(postfix_master_t)
 seutil_sigchld_newrole(postfix_master_t)
 seutil_dontaudit_search_config(postfix_master_t)
 
-mta_manage_aliases(postfix_master_t)
-mta_etc_filetrans_aliases(postfix_master_t, file, "aliases")
-mta_etc_filetrans_aliases(postfix_master_t, file, "aliases.db")
-mta_etc_filetrans_aliases(postfix_master_t, file, "aliasesdb-stamp")
-mta_spec_filetrans_aliases(postfix_master_t, postfix_etc_t, file)
-mta_read_sendmail_bin(postfix_master_t)
-mta_getattr_spool(postfix_master_t)
+#mta_manage_aliases(postfix_master_t)
+#mta_etc_filetrans_aliases(postfix_master_t, file, "aliases")
+#mta_etc_filetrans_aliases(postfix_master_t, file, "aliases.db")
+#mta_etc_filetrans_aliases(postfix_master_t, file, "aliasesdb-stamp")
+#mta_spec_filetrans_aliases(postfix_master_t, postfix_etc_t, file)
+#mta_read_sendmail_bin(postfix_master_t)
+#mta_getattr_spool(postfix_master_t)
 
 optional_policy(`
 	cyrus_stream_connect(postfix_master_t)
@@ -394,7 +394,7 @@ corenet_sendrecv_kismet_client_packets(postfix_cleanup_t)
 corenet_tcp_connect_kismet_port(postfix_cleanup_t)
 corenet_tcp_sendrecv_kismet_port(postfix_cleanup_t)
 
-mta_read_aliases(postfix_cleanup_t)
+#mta_read_aliases(postfix_cleanup_t)
 
 optional_policy(`
 	mailman_read_data_files(postfix_cleanup_t)
@@ -420,13 +420,13 @@ corecmd_exec_bin(postfix_local_t)
 
 logging_dontaudit_search_logs(postfix_local_t)
 
-mta_delete_spool(postfix_local_t)
-mta_read_aliases(postfix_local_t)
-mta_read_config(postfix_local_t)
-mta_send_mail(postfix_local_t)
+#mta_delete_spool(postfix_local_t)
+#mta_read_aliases(postfix_local_t)
+#mta_read_config(postfix_local_t)
+#mta_send_mail(postfix_local_t)
 
 tunable_policy(`postfix_local_write_mail_spool',`
-	mta_manage_spool(postfix_local_t)
+	#mta_manage_spool(postfix_local_t)
 ')
 
 optional_policy(`
@@ -569,10 +569,10 @@ optional_policy(`
 	mailman_domtrans_queue(postfix_pipe_t)
 ')
 
-optional_policy(`
-	mta_manage_spool(postfix_pipe_t)
-	mta_send_mail(postfix_pipe_t)
-')
+#optional_policy(`
+	#mta_manage_spool(postfix_pipe_t)
+	#mta_send_mail(postfix_pipe_t)
+#')
 
 optional_policy(`
 	spamassassin_domtrans_client(postfix_pipe_t)
@@ -602,7 +602,7 @@ mcs_file_write_all(postfix_postdrop_t)
 term_dontaudit_use_all_ptys(postfix_postdrop_t)
 term_dontaudit_use_all_ttys(postfix_postdrop_t)
 
-mta_rw_user_mail_stream_sockets(postfix_postdrop_t)
+#mta_rw_user_mail_stream_sockets(postfix_postdrop_t)
 
 optional_policy(`
 	apache_dontaudit_rw_fifo_file(postfix_postdrop_t)
@@ -752,7 +752,7 @@ corecmd_exec_bin(postfix_smtpd_t)
 fs_getattr_all_dirs(postfix_smtpd_t)
 fs_getattr_all_fs(postfix_smtpd_t)
 
-mta_read_aliases(postfix_smtpd_t)
+#mta_read_aliases(postfix_smtpd_t)
 
 optional_policy(`
 	dovecot_stream_connect_auth(postfix_smtpd_t)
@@ -793,10 +793,10 @@ stream_connect_pattern(postfix_virtual_t, { postfix_private_t postfix_public_t }
 
 corecmd_exec_bin(postfix_virtual_t)
 
-mta_read_aliases(postfix_virtual_t)
-mta_delete_spool(postfix_virtual_t)
-mta_read_config(postfix_virtual_t)
-mta_manage_spool(postfix_virtual_t)
+#mta_read_aliases(postfix_virtual_t)
+#mta_delete_spool(postfix_virtual_t)
+#mta_read_config(postfix_virtual_t)
+#mta_manage_spool(postfix_virtual_t)
 
 userdom_manage_user_home_dirs(postfix_virtual_t)
 userdom_manage_user_home_content_dirs(postfix_virtual_t)
@@ -828,4 +828,11 @@ ifdef(`distro_gentoo',`
 	#
 
 	rw_sock_files_pattern(postfix_postdrop_t, postfix_public_t, postfix_public_t)
+
+	#####################################
+	#
+	# Integrate with mailinfra
+	#
+	mail_delivery_agent_type(postfix_local_t)
+	mail_submission_agent_type(postfix_postdrop_t)
 ')
