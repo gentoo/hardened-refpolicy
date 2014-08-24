@@ -233,9 +233,9 @@ optional_policy(`
 	mplayer_role(sysadm_r, sysadm_t)
 ')
 
-optional_policy(`
-	mta_role(sysadm_r, sysadm_t)
-')
+#optional_policy(`
+#	mta_role(sysadm_r, sysadm_t)
+#')
 
 optional_policy(`
 	munin_stream_connect(sysadm_t)
@@ -547,6 +547,10 @@ ifdef(`distro_gentoo',`
 
 	optional_policy(`
 		fail2ban_run_client(sysadm_t, sysadm_r)
+	')
+
+	optional_policy(`
+		mail_role(sysadm_r, sysadm_t)
 	')
 
 	optional_policy(`
