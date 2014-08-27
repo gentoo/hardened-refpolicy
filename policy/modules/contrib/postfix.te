@@ -805,6 +805,9 @@ userdom_home_filetrans_user_home_dir(postfix_virtual_t)
 userdom_user_home_dir_filetrans_user_home_content(postfix_virtual_t, { file dir })
 
 ifdef(`distro_gentoo',`
+	# Not made part of mail infra anymore (previously mta_mailserver_domain)
+	init_daemon_domain(postfix_t, postfix_master_exec_t)
+
 	#####################################
 	#
 	# Local postfix postdrop policy
