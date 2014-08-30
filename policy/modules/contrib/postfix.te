@@ -835,4 +835,5 @@ ifdef(`distro_gentoo',`
 	#
 	mail_delivery_agent_type(postfix_local_t)
 	mail_submission_agent_type(postfix_postdrop_t)
+	mail_transfer_agent_type(postfix_smtpd_t)
 ')
