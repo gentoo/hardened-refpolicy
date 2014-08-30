@@ -8,6 +8,7 @@ policy_module(mutt, 1.0.0)
 type mutt_t;
 type mutt_exec_t;
 application_domain(mutt_t, mutt_exec_t)
+mail_user_agent_type(mutt_t)
 ubac_constrained(mutt_t)
 
 type mutt_conf_t;
@@ -21,6 +22,7 @@ userdom_user_home_content(mutt_home_t)
 
 type mutt_tmp_t;
 files_tmp_file(mutt_tmp_t)
+mail_content_type(mutt_tmp_t)
 ubac_constrained(mutt_tmp_t)
 
 ############################
