@@ -311,6 +311,10 @@ optional_policy(`
 ')
 
 optional_policy(`
+	seutil_read_config(salt_minion_t)
+')
+
+optional_policy(`
 	shutdown_domtrans(salt_minion_t)
 ')
 
