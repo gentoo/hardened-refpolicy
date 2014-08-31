@@ -294,6 +294,10 @@ optional_policy(`
 ')
 
 optional_policy(`
+	bootloader_domtrans(salt_minion_t)
+')
+
+optional_policy(`
 	mount_domtrans(salt_minion_t)
 ')
 
