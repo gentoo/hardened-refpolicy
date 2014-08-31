@@ -319,6 +319,10 @@ optional_policy(`
 ')
 
 optional_policy(`
+	seutil_read_config(salt_minion_t)
+')
+
+optional_policy(`
 	usermanage_run_groupadd(salt_minion_t, salt_minion_roles)
 	usermanage_run_passwd(salt_minion_t, salt_minion_roles)
 	usermanage_run_useradd(salt_minion_t, salt_minion_roles)
