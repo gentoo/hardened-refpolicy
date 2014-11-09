@@ -1,4 +1,5 @@
 /etc/init.d /etc/rc.d/init.d
+/lib/systemd /usr/lib/systemd
 /lib32 /lib
 /lib64 /lib
 /run /var/run
