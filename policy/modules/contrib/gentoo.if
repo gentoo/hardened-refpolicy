@@ -1,0 +1,797 @@
+## <summary>Gentoo specific interfaces for improving SELinux management</summary>
+
+#########################################
+## <summary>
+## 	Monitor the system
+## </summary>
+## <desc>
+##	<p>
+##	The system monitor privilege set allows for a system domain to read various
+##	file types, system state (like sysctl values), process states, etc. It is 
+##	a read-only set of privileges.
+##	</p>
+## </desc>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	Role allowed access
+##	</summary>
+## </param>
+#
+interface(`gentoo_secmodel_monitor_system',`
+
+')
+
+#########################################
+## <summary>
+## 	Administer services
+## </summary>
+## <desc>
+##	<p>
+##	The service administrator privilege set allows for a system domain to manage
+##	the state of services as well as perform administrative commands against
+##	those services (in other words, grant the _admin() interfaces of various
+##	services).
+##	</p>
+## </desc>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	Role allowed access
+##	</summary>
+## </param>
+#
+interface(`gentoo_secmodel_manage_services',`
+	# These are all admin interfaces where a labeled init script is provided for
+	optional_policy(`
+		abrt_admin($1, $2)
+	')
+
+	optional_policy(`
+		acct_admin($1, $2)
+	')
+
+	optional_policy(`
+		afs_admin($1, $2)
+	')
+
+	optional_policy(`
+		aiccu_admin($1, $2)
+	')
+
+	optional_policy(`
+		aisexecd_admin($1, $2)
+	')
+
+	optional_policy(`
+		amavis_admin($1, $2)
+	')
+
+	optional_policy(`
+		amtu_admin($1, $2)
+	')
+
+	optional_policy(`
+		apache_admin($1, $2)
+	')
+
+	optional_policy(`
+		apcupsd_admin($1, $2)
+	')
+
+	optional_policy(`
+		apm_admin($1, $2)
+	')
+
+	optional_policy(`
+		arpwatch_admin($1, $2)
+	')
+
+	optional_policy(`
+		asterisk_admin($1, $2)
+	')
+
+	optional_policy(`
+		automount_admin($1, $2)
+	')
+
+	optional_policy(`
+		avahi_admin($1, $2)
+	')
+
+	optional_policy(`
+		bacula_admin($1, $2)
+	')
+
+	optional_policy(`
+		bcfg2_admin($1, $2)
+	')
+
+	optional_policy(`
+		bind_admin($1, $2)
+	')
+
+	optional_policy(`
+		bird_admin($1, $2)
+	')
+
+	optional_policy(`
+		bitcoin_admin($1, $2)
+	')
+
+	optional_policy(`
+		bitlbee_admin($1, $2)
+	')
+
+	optional_policy(`
+		bluetooth_admin($1, $2)
+	')
+
+	optional_policy(`
+		boinc_admin($1, $2)
+	')
+
+	optional_policy(`
+		cachefilesd_admin($1, $2)
+	')
+
+	optional_policy(`
+		callweaver_admin($1, $2)
+	')
+
+	optional_policy(`
+		canna_admin($1, $2)
+	')
+
+	optional_policy(`
+		ccs_admin($1, $2)
+	')
+
+	optional_policy(`
+		certmaster_admin($1, $2)
+	')
+
+	optional_policy(`
+		certmonger_admin($1, $2)
+	')
+
+	optional_policy(`
+		cfengine_admin($1, $2)
+	')
+
+	optional_policy(`
+		cgroup_admin($1, $2)
+	')
+
+	optional_policy(`
+		chronyd_admin($1, $2)
+	')
+
+	optional_policy(`
+		cipe_admin($1, $2)
+	')
+
+	optional_policy(`
+		clamav_admin($1, $2)
+	')
+
+	optional_policy(`
+		cmirrord_admin($1, $2)
+	')
+
+	optional_policy(`
+		cobbler_admin($1, $2)
+	')
+
+	optional_policy(`
+		collectd_admin($1, $2)
+	')
+
+	optional_policy(`
+		condor_admin($1, $2)
+	')
+
+	optional_policy(`
+		corosync_admin($1, $2)
+	')
+
+	optional_policy(`
+		couchdb_admin($1, $2)
+	')
+
+	optional_policy(`
+		# No admin interface
+		cron_initrc_domtrans($1)
+	')
+
+	optional_policy(`
+		ctdb_admin($1, $2)
+	')
+
+	optional_policy(`
+		cups_admin($1, $2)
+	')
+
+	optional_policy(`
+		cvs_admin($1, $2)
+	')
+
+	optional_policy(`
+		cyphesis_admin($1, $2)
+	')
+
+	optional_policy(`
+		cyrus_admin($1, $2)
+	')
+
+	optional_policy(`
+		dante_admin($1, $2)
+	')
+
+	optional_policy(`
+		ddclient_admin($1, $2)
+	')
+
+	optional_policy(`
+		denyhosts_admin($1, $2)
+	')
+
+	optional_policy(`
+		dhcpd_admin($1, $2)
+	')
+
+	optional_policy(`
+		dictd_admin($1, $2)
+	')
+
+	optional_policy(`
+		dirmngr_admin($1, $2)
+	')
+
+	optional_policy(`
+		distcc_admin($1, $2)
+	')
+
+	optional_policy(`
+		dkim_admin($1, $2)
+	')
+
+	optional_policy(`
+		dnsmasq_admin($1, $2)
+	')
+
+	optional_policy(`
+		dnssectrigger_admin($1, $2)
+	')
+
+	optional_policy(`
+		dovecot_admin($1, $2)
+	')
+
+	optional_policy(`
+		drbd_admin($1, $2)
+	')
+
+	optional_policy(`
+		dspam_admin($1, $2)
+	')
+
+	optional_policy(`
+		entropyd_admin($1, $2)
+	')
+
+	optional_policy(`
+		exim_admin($1, $2)
+	')
+
+	optional_policy(`
+		fail2ban_admin($1, $2)
+	')
+
+	optional_policy(`
+		fcoe_admin($1, $2)
+	')
+
+	optional_policy(`
+		fetchmail_admin($1, $2)
+	')
+
+	optional_policy(`
+		firewalld_admin($1, $2)
+	')
+
+	optional_policy(`
+		ftp_admin($1, $2)
+	')
+
+	optional_policy(`
+		gatekeeper_admin($1, $2)
+	')
+
+	optional_policy(`
+		gdomap_admin($1, $2)
+	')
+
+	optional_policy(`
+		glance_admin($1, $2)
+	')
+
+	optional_policy(`
+		glusterfs_admin($1, $2)
+	')
+
+	optional_policy(`
+		gpm_admin($1, $2)
+	')
+
+	optional_policy(`
+		gpsd_admin($1, $2)
+	')
+
+	optional_policy(`
+		hadoop_admin($1, $2)
+	')
+
+	optional_policy(`
+		hddtemp_admin($1, $2)
+	')
+
+	optional_policy(`
+		howl_admin($1, $2)
+	')
+
+	optional_policy(`
+		hypervkvp_admin($1, $2)
+	')
+
+	optional_policy(`
+		i18n_input_admin($1, $2)
+	')
+
+	optional_policy(`
+		icecast_admin($1, $2)
+	')
+
+	optional_policy(`
+		ifplugd_admin($1, $2)
+	')
+
+	optional_policy(`
+		inn_admin($1, $2)
+	')
+
+	optional_policy(`
+		iodine_admin($1, $2)
+	')
+
+	optional_policy(`
+		ircd_admin($1, $2)
+	')
+
+	optional_policy(`
+		irqbalance_admin($1, $2)
+	')
+
+	optional_policy(`
+		iscsi_admin($1, $2)
+	')
+
+	optional_policy(`
+		isnsd_admin($1, $2)
+	')
+
+	optional_policy(`
+		jabber_admin($1, $2)
+	')
+
+	optional_policy(`
+		kdump_admin($1, $2)
+	')
+
+	optional_policy(`
+		kerberos_admin($1, $2)
+	')
+
+	optional_policy(`
+		kerneloops_admin($1, $2)
+	')
+
+	optional_policy(`
+		keystone_admin($1, $2)
+	')
+
+	optional_policy(`
+		kismet_admin($1, $2)
+	')
+
+	optional_policy(`
+		ksmtuned_admin($1, $2)
+	')
+
+	optional_policy(`
+		kudzu_admin($1, $2)
+	')
+
+	optional_policy(`
+		l2tp_admin($1, $2)
+	')
+
+	optional_policy(`
+		ldap_admin($1, $2)
+	')
+
+	optional_policy(`
+		likewise_admin($1, $2)
+	')
+
+	optional_policy(`
+		lircd_admin($1, $2)
+	')
+
+	optional_policy(`
+		lldpad_admin($1, $2)
+	')
+
+	optional_policy(`
+		mscan_admin($1, $2)
+	')
+
+	optional_policy(`
+		mcelog_admin($1, $2)
+	')
+
+	optional_policy(`
+		memcached_admin($1, $2)
+	')
+
+	optional_policy(`
+		minidlna_admin($1, $2)
+	')
+
+	optional_policy(`
+		minissdpd_admin($1, $2)
+	')
+
+	optional_policy(`
+		mongodb_admin($1, $2)
+	')
+
+	optional_policy(`
+		monop_admin($1, $2)
+	')
+
+	optional_policy(`
+		mpd_admin($1, $2)
+	')
+
+	optional_policy(`
+		mrtg_admin($1, $2)
+	')
+
+	optional_policy(`
+		munin_admin($1, $2)
+	')
+
+	optional_policy(`
+		mysql_admin($1, $2)
+	')
+
+	optional_policy(`
+		nagios_admin($1, $2)
+	')
+
+	optional_policy(`
+		nessus_admin($1, $2)
+	')
+
+	optional_policy(`
+		networkmanager_admin($1, $2)
+	')
+
+	optional_policy(`
+		nis_admin($1, $2)
+	')
+
+	optional_policy(`
+		nscd_admin($1, $2)
+	')
+
+	optional_policy(`
+		nsd_admin($1, $2)
+	')
+
+	optional_policy(`
+		nslcd_admin($1, $2)
+	')
+
+	optional_policy(`
+		ntop_admin($1, $2)
+	')
+
+	optional_policy(`
+		ntp_admin($1, $2)
+	')
+
+	optional_policy(`
+		numad_admin($1, $2)
+	')
+
+	optional_policy(`
+		nut_admin($1, $2)
+	')
+
+	optional_policy(`
+		oident_admin($1, $2)
+	')
+
+	optional_policy(`
+		openct_admin($1, $2)
+	')
+
+	optional_policy(`
+		openhpi_admin($1, $2)
+	')
+
+	optional_policy(`
+		openvpn_admin($1, $2)
+	')
+
+	optional_policy(`
+		openvswitch_admin($1, $2)
+	')
+
+	optional_policy(`
+		pacemaker_admin($1, $2)
+	')
+
+	optional_policy(`
+		pcscd_admin($1, $2)
+	')
+
+	optional_policy(`
+		pegasus_admin($1, $2)
+	')
+
+	optional_policy(`
+		perdition_admin($1, $2)
+	')
+
+	optional_policy(`
+		pingd_admin($1, $2)
+	')
+
+	optional_policy(`
+		pkcs_admin_slotd($1, $2)
+	')
+
+	optional_policy(`
+		polipo_admin($1, $2)
+	')
+
+	optional_policy(`
+		portmap_admin($1, $2)
+	')
+
+	optional_policy(`
+		portreserve_admin($1, $2)
+	')
+
+	optional_policy(`
+		postfix_admin($1, $2)
+	')
+
+	optional_policy(`
+		postfixpolicyd_admin($1, $2)
+	')
+
+	optional_policy(`
+		postgrey_admin($1, $2)
+	')
+
+	optional_policy(`
+		ppp_admin($1, $2)
+	')
+
+	optional_policy(`
+		prelude_admin($1, $2)
+	')
+
+	optional_policy(`
+		privoxy_admin($1, $2)
+	')
+
+	optional_policy(`
+		psad_admin($1, $2)
+	')
+
+	optional_policy(`
+		puppet_admin($1, $2)
+	')
+
+	optional_policy(`
+		pxe_admin($1, $2)
+	')
+
+	optional_policy(`
+		pyicqt_admin($1, $2)
+	')
+
+	optional_policy(`
+		pyzor_admin($1, $2)
+	')
+
+	optional_policy(`
+		qpidd_admin($1, $2)
+	')
+
+	optional_policy(`
+		quantum_admin($1, $2)
+	')
+
+	optional_policy(`
+		quota_admin($1, $2)
+	')
+
+	optional_policy(`
+		rabbitmq_admin($1, $2)
+	')
+
+	optional_policy(`
+		radius_admin($1, $2)
+	')
+
+	optional_policy(`
+		radvd_admin($1, $2)
+	')
+
+	optional_policy(`
+		raid_admin_mdadm($1, $2)
+	')
+
+	optional_policy(`
+		redis_admin($1, $2)
+	')
+
+	optional_policy(`
+		resmgr_admin($1, $2)
+	')
+
+	optional_policy(`
+		rgmanager_admin($1, $2)
+	')
+
+	optional_policy(`
+		rhcs_admin($1, $2)
+	')
+
+	optional_policy(`
+		rhsmcertd_admin($1, $2)
+	')
+
+	optional_policy(`
+		ricci_admin($1, $2)
+	')
+
+	optional_policy(`
+		rngd_admin($1, $2)
+	')
+
+	optional_policy(`
+		roundup_admin($1, $2)
+	')
+
+	optional_policy(`
+		rpcbind_admin($1, $2)
+	')
+
+	optional_policy(`
+		rpm_admin($1, $2)
+	')
+
+	optional_policy(`
+		rtkit_admin($1, $2)
+	')
+
+	optional_policy(`
+		rwho_admin($1, $2)
+	')
+
+	optional_policy(`
+		salt_admin_master($1, $2)
+	')
+
+	optional_policy(`
+		salt_minion_master($1, $2)
+	')
+')
+
+#########################################
+## <summary>
+## 	Administer software
+## </summary>
+## <desc>
+##	<p>
+##	The software administrator privilege set allows for a system domain to manage
+##	various file types (but not, or only in a very controlled manner, security
+##	sensitive files).
+##	</p>
+##	<p>
+##	The software administrator can transition to package management tools and
+##	invoke administrative commands needed to finalize software installation.
+##	</p>
+## </desc>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	Role allowed access
+##	</summary>
+## </param>
+#
+interface(`gentoo_secmodel_manage_software',`
+	optional_policy(`
+		bootloader_run($1, $2)
+	')
+')
+
+#########################################
+## <summary>
+## 	Administer system state
+## </summary>
+## <desc>
+##	<p>
+##	The system state administrator privilege set allows for system state
+##	handling, including sysctl values, network configuration settings, etc.
+##	</p>
+## </desc>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	Role allowed access
+##	</summary>
+## </param>
+#
+interface(`gentoo_secmodel_manage_system_state',`
+
+')
+
+#########################################
+## <summary>
+## 	Administer system security
+## </summary>
+## <desc>
+##	<p>
+##	The security administrator privilege set allows for security-sensitive types
+##	to be managed, including SELinux policy.
+##	</p>
+## </desc>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	Role allowed access
+##	</summary>
+## </param>
+#
+interface(`gentoo_secmodel_manage_system_security',`
+
+')
+
