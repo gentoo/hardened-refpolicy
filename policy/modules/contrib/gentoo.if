@@ -51,6 +51,11 @@ interface(`gentoo_secmodel_monitor_system',`
 #
 interface(`gentoo_secmodel_manage_services',`
 	# These are all admin interfaces where a labeled init script is provided for
+	#
+	# If we would reduce the impact of manage_services to only manipulating the labeled init scripts,
+	# we can "just" use init_all_labeled_script_domtrans( 1 ). This could be called "operate_services" but
+	# does not need a separate interface
+
 	optional_policy(`
 		abrt_admin($1, $2)
 	')
@@ -709,7 +714,201 @@ interface(`gentoo_secmodel_manage_services',`
 	')
 
 	optional_policy(`
-		salt_minion_master($1, $2)
+		salt_admin_minion($1, $2)
+	')
+
+	optional_policy(`
+		salt_admin_master($1, $2)
+	')
+
+	optional_policy(`
+		samba_admin($1, $2)
+	')
+
+	optional_policy(`
+		samhain_admin($1, $2)
+	')
+
+	optional_policy(`
+		sanlock_admin($1, $2)
+	')
+
+	optional_policy(`
+		sasl_admin($1, $2)
+	')
+
+	optional_policy(`
+		sblim_admin($1, $2)
+	')
+
+	optional_policy(`
+		sendmail_admin($1, $2)
+	')
+
+	optional_policy(`
+		sensord_admin($1, $2)
+	')
+
+	optional_policy(`
+		shorewall_admin($1, $2)
+	')
+
+	optional_policy(`
+		slpd_admin($1, $2)
+	')
+
+	optional_policy(`
+		smartmon_admin($1, $2)
+	')
+
+	optional_policy(`
+		smokeping_admin($1, $2)
+	')
+
+	optional_policy(`
+		smstools_admin($1, $2)
+	')
+
+	optional_policy(`
+		snmp_admin($1, $2)
+	')
+
+	optional_policy(`
+		snort_admin($1, $2)
+	')
+
+	optional_policy(`
+		soundserver_admin($1, $2)
+	')
+
+	optional_policy(`
+		spamassassin_admin($1, $2)
+	')
+
+	optional_policy(`
+		squid_admin($1, $2)
+	')
+
+	optional_policy(`
+		sssd_admin($1, $2)
+	')
+
+	optional_policy(`
+		svnserve_admin($1, $2)
+	')
+
+	optional_policy(`
+		sysstat_admin($1, $2)
+	')
+
+	optional_policy(`
+		stapserver_admin($1, $2)
+	')
+
+	optional_policy(`
+		tcsd_admin($1, $2)
+	')
+
+	optional_policy(`
+		tgtd_admin($1, $2)
+	')
+
+	optional_policy(`
+		tor_admin($1, $2)
+	')
+
+	optional_policy(`
+		transproxy_admin($1, $2)
+	')
+
+	optional_policy(`
+		tuned_admin($1, $2)
+	')
+
+	optional_policy(`
+		ulogd_admin($1, $2)
+	')
+
+	optional_policy(`
+		uptime_admin($1, $2)
+	')
+
+	optional_policy(`
+		uucp_admin($1, $2)
+	')
+
+	optional_policy(`
+		uuidd_admin($1, $2)
+	')
+
+	optional_policy(`
+		varnishd_admin($1, $2)
+	')
+
+	optional_policy(`
+		varnishd_admin_varnishlog($1, $2)
+	')
+
+	optional_policy(`
+		vdagent_admin($1, $2)
+	')
+
+	optional_policy(`
+		vhostmd_admin($1, $2)
+	')
+
+	optional_policy(`
+		virt_admin($1, $2)
+	')
+
+	optional_policy(`
+		vnstatd_admin($1, $2)
+	')
+
+	optional_policy(`
+		watchdog_admin($1, $2)
+	')
+
+	optional_policy(`
+		wdmd_admin($1, $2)
+	')
+
+	optional_policy(`
+		xfs_admin($1, $2)
+	')
+
+	optional_policy(`
+		zabbix_admin($1, $2)
+	')
+
+	optional_policy(`
+		zarafa_admin($1, $2)
+	')
+
+	optional_policy(`
+		zebra_admin($1, $2)
+	')
+
+	optional_policy(`
+		postgresql_admin($1, $2)
+	')
+
+	optional_policy(`
+		# No admin interface
+		iptables_initrc_domtrans($1)
+	')
+
+	optional_policy(`
+		logging_admin_audit($1, $2)
+	')
+
+	optional_policy(`
+		logging_admin_syslog($1, $2)
+	')
+
+	optional_policy(`
+		# No admin interface
+		setrans_initrc_domtrans($1)
 	')
 ')
 
