@@ -1270,20 +1270,8 @@ ifdef(`distro_gentoo',`
 	')
 
 	optional_policy(`
-		bind_admin(sysadm_t, sysadm_r)
-	')
-
-	optional_policy(`
 		# Bug 529208
 		dmesg_run(sysadm_t, sysadm_r)
-	')
-
-	optional_policy(`
-		dnsmasq_admin(sysadm_t, sysadm_r)
-	')
-
-	optional_policy(`
-		dovecot_admin(sysadm_t, sysadm_r)
 	')
 
 	optional_policy(`
@@ -1311,24 +1299,8 @@ ifdef(`distro_gentoo',`
 	')
 
 	optional_policy(`
-		ntp_admin(sysadm_t, sysadm_r)
-	')
-
-	optional_policy(`
-		openvpn_admin(sysadm_t, sysadm_r)
-	')
-
-	optional_policy(`
-		postfix_admin(sysadm_t, sysadm_r)
-	')
-
-	optional_policy(`
 		postgresql_admin(sysadm_t, sysadm_r)
 		postgresql_exec(sysadm_t)
-	')
-
-	optional_policy(`
-		puppet_admin(sysadm_t, sysadm_r)
 	')
 
 	optional_policy(`
@@ -1337,10 +1309,6 @@ ifdef(`distro_gentoo',`
 		qemu_kill(sysadm_t)
 		qemu_setsched(sysadm_t)
 		qemu_run(sysadm_t, sysadm_r)
-	')
-
-	optional_policy(`
-		rpc_admin(sysadm_t, sysadm_r)
 	')
 
 	optional_policy(`
@@ -1359,10 +1327,6 @@ ifdef(`distro_gentoo',`
 	optional_policy(`
 		# Support audit2allow, sepolgen and so on
 		selinux_read_policy(sysadm_t)
-	')
-
-	optional_policy(`
-		shorewall_admin(sysadm_t, sysadm_r)
 	')
 
 	optional_policy(`
