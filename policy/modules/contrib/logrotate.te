@@ -251,3 +251,8 @@ allow logrotate_mail_t logrotate_t:process sigchld;
 manage_files_pattern(logrotate_mail_t, logrotate_tmp_t, logrotate_tmp_t)
 
 logging_read_all_logs(logrotate_mail_t)
+
+ifdef(`distro_gentoo',`
+	# Fix bug 534256 - fail2ban installs a logrotate file that calls fail2ban-client so allow transition
+	fail2ban_domtrans_client(logrotate_t)
+')
