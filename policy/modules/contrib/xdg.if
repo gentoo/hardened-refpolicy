@@ -1141,6 +1141,63 @@ interface(`xdg_relabel_all_runtime_home',`
 
 #########################################
 ## <summary>
+##	Manage documents content
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access
+##	</summary>
+## </param>
+#
+interface(`xdg_manage_documents_home',`
+	gen_require(`
+		type xdg_documents_home_t;
+	')
+
+	manage_dirs_pattern($1, xdg_documents_home_t, xdg_documents_home_t)
+	manage_files_pattern($1, xdg_documents_home_t, xdg_documents_home_t)
+')
+
+#########################################
+## <summary>
+##	Manage music content
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access
+##	</summary>
+## </param>
+#
+interface(`xdg_manage_music_home',`
+	gen_require(`
+		type xdg_music_home_t;
+	')
+
+	manage_dirs_pattern($1, xdg_music_home_t, xdg_music_home_t)
+	manage_files_pattern($1, xdg_music_home_t, xdg_music_home_t)
+')
+
+#########################################
+## <summary>
+##	Manage pictures content
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access
+##	</summary>
+## </param>
+#
+interface(`xdg_manage_pictures_home',`
+	gen_require(`
+		type xdg_pictures_home_t;
+	')
+
+	manage_dirs_pattern($1, xdg_pictures_home_t, xdg_pictures_home_t)
+	manage_files_pattern($1, xdg_pictures_home_t, xdg_pictures_home_t)
+')
+
+#########################################
+## <summary>
 ##	Manage video content
 ## </summary>
 ## <param name="domain">
