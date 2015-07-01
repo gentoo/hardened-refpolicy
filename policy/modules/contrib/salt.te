@@ -207,9 +207,9 @@ tunable_policy(`salt_master_read_nfs',`
 # salt_minion_t policy
 #
 
-allow salt_minion_t self:capability { fsetid chown dac_override dac_read_search net_admin setgid setuid sys_admin sys_tty_config };
+allow salt_minion_t self:capability { fsetid chown dac_override dac_read_search net_admin setgid setuid sys_admin sys_nice sys_tty_config };
 allow salt_minion_t self:capability2 block_suspend;
-allow salt_minion_t self:process { signal signull };
+allow salt_minion_t self:process { getsched setsched signal signull };
 allow salt_minion_t self:tcp_socket create_stream_socket_perms;
 allow salt_minion_t self:udp_socket create_socket_perms;
 allow salt_minion_t self:unix_dgram_socket create_socket_perms;
