@@ -4,3 +4,12 @@
 /usr/bin/kvm		--	gen_context(system_u:object_r:qemu_exec_t,s0)
 
 /usr/libexec/qemu.*	--	gen_context(system_u:object_r:qemu_exec_t,s0)
+
+ifdef(`distro_gentoo',`
+/usr/bin/qemu-ga	--	gen_context(system_u:object_r:qemu_ga_exec_t,s0)
+
+/var/log/qemu-ga.log	--	gen_context(system_u:object_r:qemu_ga_log_t,s0)
+/var/log/qemu-ga(/.*)?	--	gen_context(system_u:object_r:qemu_ga_log_t,s0)
+
+/var/run/qemu-ga.pid	--	gen_context(system_u:object_r:qemu_ga_run_t,s0)
+')
