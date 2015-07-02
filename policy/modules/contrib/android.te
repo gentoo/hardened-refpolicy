@@ -91,6 +91,8 @@ corenet_tcp_connect_adb_port(android_tools_t)
 corenet_tcp_connect_http_port(android_tools_t)
 corenet_udp_bind_generic_node(android_java_t)
 
+domain_dontaudit_getattr_all_domains(android_java_t)
+
 miscfiles_read_fonts(android_java_t)
 miscfiles_read_localization(android_java_t)
 
