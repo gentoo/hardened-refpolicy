@@ -284,6 +284,8 @@ files_manage_all_non_security_file_types(salt_minion_t)
 
 fs_getattr_all_fs(salt_minion_t)
 
+fstools_domtrans(salt_minion_t)
+
 getty_use_fds(salt_minion_t)
 
 init_exec_rc(salt_minion_t)
