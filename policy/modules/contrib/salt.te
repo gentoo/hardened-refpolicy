@@ -101,7 +101,7 @@ files_pid_file(salt_var_run_t)
 
 allow salt_master_t self:capability { net_admin sys_admin sys_tty_config };
 allow salt_master_t self:capability2 block_suspend;
-allow salt_master_t self:process signal;
+allow salt_master_t self:process { getsched setschd signal };
 allow salt_master_t self:tcp_socket create_stream_socket_perms;
 allow salt_master_t self:udp_socket create_socket_perms;
 allow salt_master_t self:fifo_file rw_fifo_file_perms;
