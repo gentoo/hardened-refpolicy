@@ -84,3 +84,8 @@ miscfiles_read_localization(vnstat_t)
 optional_policy(`
 	cron_system_entry(vnstat_t, vnstat_exec_t)
 ')
+
+ifdef(`distro_gentoo',`
+	dev_read_sysfs(vnstat_t)
+	userdom_use_user_terminals(vnstat_t)
+')
