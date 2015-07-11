@@ -1,0 +1,48 @@
+policy_module(subsonic, 0.1.0)
+
+########################################
+#
+# Declarations
+#
+
+type subsonic_t;
+type subsonic_exec_t;
+init_daemon_domain(subsonic_t, subsonic_exec_t)
+
+type subsonic_var_lib_t;
+files_type(subsonic_var_lib_t)
+
+type subsonic_run_t;
+files_pid_file(subsonic_run_t)
+
+##############################
+#
+# Subsonic local policy
+#
+
+allow subsonic_t self:tcp_socket listen;
+
+java_domain_type(subsonic_t)
+
+kernel_dontaudit_list_all_proc(subsonic_t)
+
+manage_dirs_pattern(subsonic_t, subsonic_run_t, subsonic_run_t)
+manage_files_pattern(subsonic_t, subsonic_run_t, subsonic_run_t)
+files_pid_filetrans(subsonic_t, subsonic_run_t, dir)
+
+manage_dirs_pattern(subsonic_t, subsonic_var_lib_t, subsonic_var_lib_t)
+manage_files_pattern(subsonic_t, subsonic_var_lib_t, subsonic_var_lib_t)
+files_var_lib_filetrans(subsonic_t, subsonic_var_lib_t, dir)
+
+corecmd_exec_bin(subsonic_t)
+corecmd_exec_shell(subsonic_t)
+
+corenet_tcp_bind_all_unreserved_ports(subsonic_t)
+corenet_tcp_bind_generic_node(subsonic_t)
+corenet_tcp_connect_http_port(subsonic_t)
+
+domain_use_interactive_fds(subsonic_t)
+
+optional_policy(`
+	miscfiles_read_public_files(subsonic_t)
+')
