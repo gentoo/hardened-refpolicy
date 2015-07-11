@@ -418,6 +418,8 @@ userdom_use_user_terminals(run_init_t)
 ifndef(`direct_sysadm_daemon',`
 	ifdef(`distro_gentoo',`
 		# Gentoo integrated run_init:
+		# Bug 554514
+		init_read_all_script_files(run_init_t)	
 		init_script_file_entry_type(run_init_t)
 
 		init_exec_rc(run_init_t)
