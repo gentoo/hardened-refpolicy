@@ -1274,6 +1274,10 @@ ifdef(`distro_gentoo',`
 	')
 
 	optional_policy(`
+		ceph_admin(sysadm_t, sysadm_r)
+	')
+
+	optional_policy(`
 		# Bug 529208
 		dmesg_run(sysadm_t, sysadm_r)
 	')
