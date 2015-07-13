@@ -375,6 +375,13 @@ ifdef(`distro_gentoo',`
 ## </desc>
 gen_tunable(portage_mount_fs, false)
 
+## <desc>
+##	<p>
+##	Extra rules which are sometimes needed when FEATURES=test is enabled
+##	</p>
+## </desc>
+gen_tunable(portage_enable_test, false)
+
 
 	##########################################
 	#
@@ -388,7 +395,7 @@ gen_tunable(portage_mount_fs, false)
 	attribute portage_eselect_domain;
 
 	##########################################
-	# 
+	#
 	# Portage fetch local policy
 	#
 
@@ -475,6 +482,13 @@ gen_tunable(portage_mount_fs, false)
 
 	# install-xattr does listxattr() which throws a lot of this
 	dontaudit portage_sandbox_t self:capability sys_admin;
+
+	tunable_policy(`portage_enable_test',`
+		# lots of tests connect over loopback
+		corenet_tcp_bind_generic_node(portage_sandbox_t)
+		corenet_tcp_bind_all_unreserved_ports(portage_sandbox_t)
+		corenet_tcp_connect_all_unreserved_ports(portage_sandbox_t)
+	')
 
 	##########################################
 	#
