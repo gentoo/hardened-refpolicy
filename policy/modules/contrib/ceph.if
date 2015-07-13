@@ -64,9 +64,9 @@ template(`ceph_domain_template',`
 #
 interface(`ceph_admin',`
 	gen_require(`
-		attribute cephdomain;
-		attribute cephdata;
-		type ceph_initrc_exec_t;
+		attribute cephdomain, cephdata;
+		type ceph_initrc_exec_t, ceph_log_t;
+		type ceph_conf_t, ceph_key_t;
 	')
 
 	allow $1 cephdomain:process { ptrace signal_perms };
