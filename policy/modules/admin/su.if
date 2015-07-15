@@ -119,6 +119,8 @@ template(`su_restricted_domain_template', `
 	')
 
 	ifdef(`distro_gentoo',`
+		# Fix bug 554080 - Allow su to query SELinux subsystem (netlink_selinux_socket)
+		allow $1_su_t self:netlink_selinux_socket { create bind read };
 		selinux_get_fs_mount($1_su_t)
 	')
 ')
