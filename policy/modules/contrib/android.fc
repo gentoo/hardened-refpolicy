@@ -4,3 +4,7 @@ HOME_DIR/\.gradle(/.*)?				gen_context(system_u:object_r:android_home_t,s0)
 
 /opt/android-studio/bin/studio.sh		gen_context(system_u:object_r:android_java_exec_t,s0)
 
+/opt/android-sdk-update-manager/platform-tools/adb	--	gen_context(system_u:object_r:android_tools_exec_t,s0)
+/opt/android-sdk-update-manager/platform-tools/fastboot	--	gen_context(system_u:object_r:android_tools_exec_t,s0)
+/opt/android-sdk-update-manager/tools/android		--	gen_context(system_u:object_r:android_java_exec_t,s0)
+/opt/android-sdk-update-manager(/.*)?				gen_context(system_u:object_r:android_sdk_t,s0)

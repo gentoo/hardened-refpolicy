@@ -23,6 +23,7 @@ interface(`android_role',`
 		type android_tmp_t;
 		type android_java_t;
 		type android_java_exec_t;
+		type android_sdk_t;
 	')
 
 	role $1 types android_tools_t;
@@ -37,6 +38,10 @@ interface(`android_role',`
 	manage_dirs_pattern($2, android_home_t, android_home_t)
 	manage_files_pattern($2, android_home_t, android_home_t)
 	manage_lnk_files_pattern($2, android_home_t, android_home_t)
+
+	list_dirs_pattern($2, android_sdk_t, android_sdk_t)
+	read_files_pattern($2, android_sdk_t, android_sdk_t)
+	read_lnk_files_pattern($2, android_sdk_t, android_sdk_t)
 
 	userdom_user_home_dir_filetrans($2, android_home_t, dir, ".android")
 	userdom_user_home_dir_filetrans($2, android_home_t, dir, ".AndroidStudioBeta")

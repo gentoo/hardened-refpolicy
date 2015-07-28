@@ -28,6 +28,8 @@ type android_home_t; # customizable
 userdom_user_home_content(android_home_t)
 userdom_user_home_dir_filetrans(android_tools_t, android_home_t, { dir file })
 
+type android_sdk_t;
+files_type(android_sdk_t)
 
 ############################
 #
@@ -55,6 +57,7 @@ corenet_tcp_bind_adb_port(android_tools_t)
 corenet_tcp_bind_generic_node(android_tools_t)
 corenet_tcp_connect_adb_port(android_tools_t)
 
+dev_read_sysfs(android_tools_t)
 dev_rw_generic_usb_dev(android_tools_t)
 
 userdom_manage_user_home_content_dirs(android_tools_t)
@@ -75,9 +78,13 @@ allow android_java_t self:tcp_socket { accept listen };
 
 can_exec(android_java_t, android_home_t)
 can_exec(android_java_t, android_java_exec_t)
+can_exec(android_java_t, android_sdk_t)
 
 manage_dirs_pattern(android_java_t, android_home_t, android_home_t)
 manage_files_pattern(android_java_t, android_home_t, android_home_t)
+
+manage_dirs_pattern(android_java_t, android_sdk_t, android_sdk_t)
+manage_files_pattern(android_java_t, android_sdk_t, android_sdk_t)
 
 manage_dirs_pattern(android_java_t, android_tmp_t, android_tmp_t)
 manage_files_pattern(android_java_t, android_tmp_t, android_tmp_t)
@@ -87,8 +94,8 @@ corecmd_exec_shell(android_java_t)
 
 corenet_tcp_bind_all_unreserved_ports(android_java_t)
 corenet_tcp_bind_generic_node(android_java_t)
-corenet_tcp_connect_adb_port(android_tools_t)
-corenet_tcp_connect_http_port(android_tools_t)
+corenet_tcp_connect_adb_port(android_java_t)
+corenet_tcp_connect_http_port(android_java_t)
 corenet_udp_bind_generic_node(android_java_t)
 
 domain_dontaudit_getattr_all_domains(android_java_t)
