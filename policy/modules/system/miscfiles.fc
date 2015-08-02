@@ -103,7 +103,7 @@ ifdef(`distro_redhat',`
 /var/spool/postfix/etc/localtime -- gen_context(system_u:object_r:locale_t,s0)
 ')
 
-HOME_DIR/.pki(/.*)?		gen_context(system_u:object_r:cert_home_t)
+HOME_DIR/.pki(/.*)?		gen_context(system_u:object_r:cert_home_t,s0)
 
 ifdef(`distro_gentoo',`
 /etc/fonts(/.*)?	gen_context(system_u:object_r:fonts_t,s0)
