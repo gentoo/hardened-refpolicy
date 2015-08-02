@@ -288,6 +288,7 @@ fstools_domtrans(salt_minion_t)
 
 getty_use_fds(salt_minion_t)
 
+init_exec(salt_minion_t)
 init_exec_rc(salt_minion_t)
 
 miscfiles_read_localization(salt_minion_t)
