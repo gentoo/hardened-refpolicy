@@ -20,7 +20,7 @@ files_pid_file(subsonic_run_t)
 # Subsonic local policy
 #
 
-allow subsonic_t self:tcp_socket listen;
+allow subsonic_t self:tcp_socket { listen accept };
 
 java_domain_type(subsonic_t)
 
