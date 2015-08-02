@@ -99,7 +99,7 @@ files_pid_file(salt_var_run_t)
 # salt_master_t policy
 #
 
-allow salt_master_t self:capability { net_admin sys_admin sys_tty_config };
+allow salt_master_t self:capability { net_admin sys_admin sys_nice sys_tty_config };
 allow salt_master_t self:capability2 block_suspend;
 allow salt_master_t self:process { getsched setsched signal };
 allow salt_master_t self:tcp_socket create_stream_socket_perms;
@@ -167,6 +167,7 @@ files_pid_filetrans(salt_master_t, salt_var_run_t, dir)
 files_pid_filetrans(salt_master_t, salt_master_var_run_t, file, "salt-master.pid")
 
 kernel_read_network_state(salt_master_t)
+kernel_read_software_raid_state(salt_master_t)
 kernel_read_system_state(salt_master_t)
 
 corecmd_exec_bin(salt_master_t)
@@ -189,7 +190,16 @@ fs_getattr_tmpfs(salt_master_t)
 
 getty_use_fds(salt_master_t)
 
+init_exec(salt_master_t)
+init_read_state(salt_master_t)
+
+libs_exec_ldconfig(salt_master_t)
+
 miscfiles_read_localization(salt_master_t)
+miscfiles_read_generic_certs(salt_master_t)
+
+selinux_get_enforce_mode(salt_master_t)
+selinux_getattr_fs(salt_master_t)
 
 sysnet_exec_ifconfig(salt_master_t)
 sysnet_read_config(salt_master_t)
