@@ -277,6 +277,7 @@ files_pid_filetrans(salt_minion_t, salt_var_run_t, dir)
 files_pid_filetrans(salt_minion_t, salt_minion_var_run_t, file, "salt-minion.pid")
 
 kernel_read_network_state(salt_minion_t)
+kernel_read_software_raid_state(salt_minion_t)
 kernel_read_system_state(salt_minion_t)
 kernel_rw_all_sysctls(salt_minion_t)
 
