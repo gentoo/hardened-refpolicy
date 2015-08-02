@@ -190,6 +190,7 @@ fs_getattr_tmpfs(salt_master_t)
 
 getty_use_fds(salt_master_t)
 
+# Actually seems to require getattr read execute on init_exec_t
 init_exec(salt_master_t)
 init_read_state(salt_master_t)
 
