@@ -267,9 +267,13 @@ optional_policy(`
 
 ifdef(`distro_gentoo',`
 
-# Enable polyinstantiation of directories
-tunable_policy(`allow_polyinstantiation',`
-	# Execute /etc/security/namespace.init
-	corecmd_exec_bin(local_login_t)
-')
+	# Enable polyinstantiation of directories
+	tunable_policy(`allow_polyinstantiation',`
+		# Execute /etc/security/namespace.init
+		corecmd_exec_bin(local_login_t)
+	')
+
+	optional_policy(`
+		cgmanager_stream_connect(local_login_t)
+	')
 ')

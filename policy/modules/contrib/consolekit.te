@@ -161,4 +161,8 @@ ifdef(`distro_gentoo',`
 	optional_policy(`
 		devicekit_manage_log_files(consolekit_t)
 	')
+
+	optional_policy(`
+		cgmanager_stream_connect(consolekit_t)
+	')
 ')

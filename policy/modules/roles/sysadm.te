@@ -1281,6 +1281,10 @@ ifdef(`distro_gentoo',`
 	')
 
 	optional_policy(`
+		cgmanager_stream_connect(sysadm_t)
+	')
+
+	optional_policy(`
 		# Bug 529208
 		dmesg_run(sysadm_t, sysadm_r)
 	')

@@ -1027,4 +1027,13 @@ ifdef(`distro_gentoo',`
 	xdg_data_home_filetrans(xserver_t, xserver_xdg_data_home_t, dir)
 
 	userdom_read_user_tmp_files(xserver_t)
+
+	########################################
+	#
+	# xdm_t policy
+	#
+
+	optional_policy(`
+		cgmanager_stream_connect(xdm_t)
+	')
 ')
