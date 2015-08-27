@@ -98,8 +98,7 @@ createEbuilds() {
 tagRelease() {
   printf "Creating tag ${NEWVERSION} in our repository... ";
   cd ${HARDENEDREFPOL};
-  git tag -a ${NEWVERSION} -m "Release set of ${NEWVERSION}" > /dev/null 2>&1 || die "Failed to create tag";
-  git push origin ${NEWVERSION} > /dev/null 2>&1 || die "Failed to push tag to origin repository";
+  git tag -a ${NEWVERSION} -m "Release set of ${NEWVERSION}" --sign > /dev/null 2>&1 || die "Failed to create tag";
   printf "done\n";
 };
 
@@ -128,14 +127,21 @@ cat << EOF
 The release has now been prepared.
 
 Please go do the following to finish up:
-- In ${GENTOOX86}/sec-policy go "cvs add" all the new ebuilds
-- In ${GENTOOX86}/sec-policy run "repoman manifest" and "repoman full"
+
+In ${GENTOOX86}/sec-policy:
+git add .
+repoman --digest=y full
 
 Then, before finally committing - do a run yourself, ensuring that the right
 version is deployed of course:
 - "emerge -1 \$(qlist -IC sec-policy)"
 
-Only then do a 'repoman commit -m 'Release of ${NEWVERSION}''.
+Only then do:
+repoman commit -m 'sec-policy: Release of SELinux policies ${NEWVERSION}'
+git push --sign
+
+In ${HARDENEDREFPOL} do:
+git push origin --tags
 EOF
 
 cleanTmp;
