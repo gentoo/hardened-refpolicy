@@ -11,5 +11,5 @@
 ifdef(`distro_gentoo',`
 # Fix bug 528602 - name is vnstatd in Gentoo
 /etc/rc\.d/init\.d/vnstatd	--	gen_context(system_u:object_r:vnstatd_initrc_exec_t,s0)
-/usr/bin/vnstatd	--	gen_context(system_u:object_r:vnstat_exec_t,s0)
+/usr/bin/vnstatd	--	gen_context(system_u:object_r:vnstatd_exec_t,s0)
 ')
