@@ -1300,6 +1300,9 @@ template(`userdom_admin_user_template',`
 		seutil_relabelto_bin_policy($1_t)
 		# allow to manage chr_files in user_tmp (for initrd's)
 		userdom_manage_user_tmp_chr_files($1_t)
+		# allow managing tun/tap interfaces (labeling)
+		# without this operations such as tunctl -d tap0 result in a TUNSETIFF: Device or resource busy
+		allow $1_t self:tun_socket { relabelfrom relabelto };
 	')
 ')
 
