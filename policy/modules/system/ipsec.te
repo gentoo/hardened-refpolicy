@@ -514,4 +514,13 @@ ifdef(`distro_gentoo',`
 	#
 
 	domain_use_interactive_fds(setkey_t)
+
+	########################################
+	#
+	# ipsec_mgmt Local policy
+	#
+
+	optional_policy(`
+		resolvconf_client_domain(ipsec_mgmt_t)
+	')
 ')
