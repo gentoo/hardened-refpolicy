@@ -410,6 +410,8 @@ interface(`portage_ro_role',`
 	portage_read_config($1)
 	portage_read_db($1)
 	portage_read_ebuild($1)
+	portage_read_log($1)
+	portage_read_srcrepo($1)
 	portage_dontaudit_write_cache($1)
 ')
 
