@@ -511,6 +511,6 @@ interface(`portage_dontaudit_write_cache',`
 		type portage_cache_t;
 	')
 
-	dontaudit $1 portage_cache_t:dir { write };
+	dontaudit $1 portage_cache_t:dir { setattr write };
 ')
 
