@@ -498,6 +498,46 @@ interface(`portage_read_ebuild',`
 
 ########################################
 ## <summary>
+##	Read portage log files
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access
+##	</summary>
+## </param>
+#
+interface(`portage_read_log',`
+	gen_require(`
+		type portage_log_t;
+	')
+
+	logging_search_logs($1)
+	read_files_pattern($1, portage_log_t, portage_log_t)
+')
+
+########################################
+## <summary>
+##	Read portage src repository files
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access
+##	</summary>
+## </param>
+#
+interface(`portage_read_srcrepo',`
+	gen_require(`
+		type portage_ebuild_t, portage_srcrepo_t;
+	')
+
+	files_search_usr($1)
+	list_dirs_pattern($1, portage_ebuild_t, portage_srcrepo_t)
+	read_files_pattern($1, portage_srcrepo_t, portage_srcrepo_t)
+	read_lnk_files_pattern($1, portage_srcrepo_t, portage_srcrepo_t)
+')
+
+########################################
+## <summary>
 ##	Do not audit writing portage cache files
 ## </summary>
 ## <param name="domain">
