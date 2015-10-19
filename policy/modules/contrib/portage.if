@@ -406,13 +406,13 @@ interface(`portage_eselect_module',`
 ## </param>
 #
 interface(`portage_ro_role',`
-	portage_read_cache($1)
-	portage_read_config($1)
-	portage_read_db($1)
-	portage_read_ebuild($1)
-	portage_read_log($1)
-	portage_read_srcrepo($1)
-	portage_dontaudit_write_cache($1)
+	portage_read_cache($2)
+	portage_read_config($2)
+	portage_read_db($2)
+	portage_read_ebuild($2)
+	portage_read_log($2)
+	portage_read_srcrepo($2)
+	portage_dontaudit_write_cache($2)
 ')
 
 ########################################
