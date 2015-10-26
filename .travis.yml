@@ -4,15 +4,33 @@ language: python
 python:
  - "2.7"
 
-# for T in standard mls mcs ; do for D in arch debian gentoo ; do for I in n y ; do for M in y n ; do
-# echo "  - TYPE=$T DISTRO=$D DIRECT_INITRC=$I MONOLITHIC=$M" ; done ; done ; done ; done
+# for T in standard mls mcs ; do for D in arch debian gentoo ; do for I in n y ; do for M in y n ; do for S in n y ; do
+# echo "  - TYPE=$T DISTRO=$D DIRECT_INITRC=$I MONOLITHIC=$M SYSTEMD=$S" ; done ; done ; done ; done ; done
 env:
-  - TYPE=standard DISTRO=gentoo DIRECT_INITRC=n MONOLITHIC=n
-  - TYPE=mcs DISTRO=gentoo DIRECT_INITRC=n MONOLITHIC=n
-  - TYPE=mls DISTRO=gentoo DIRECT_INITRC=n MONOLITHIC=n
-  - TYPE=standard DISTRO=gentoo DIRECT_INITRC=y MONOLITHIC=n
-  - TYPE=mcs DISTRO=gentoo DIRECT_INITRC=y MONOLITHIC=n
-  - TYPE=mls DISTRO=gentoo DIRECT_INITRC=y MONOLITHIC=n
+  - TYPE=standard DISTRO=gentoo DIRECT_INITRC=n MONOLITHIC=y SYSTEMD=n
+  - TYPE=standard DISTRO=gentoo DIRECT_INITRC=n MONOLITHIC=y SYSTEMD=y
+  - TYPE=standard DISTRO=gentoo DIRECT_INITRC=n MONOLITHIC=n SYSTEMD=n
+  - TYPE=standard DISTRO=gentoo DIRECT_INITRC=n MONOLITHIC=n SYSTEMD=y
+  - TYPE=standard DISTRO=gentoo DIRECT_INITRC=y MONOLITHIC=y SYSTEMD=n
+  - TYPE=standard DISTRO=gentoo DIRECT_INITRC=y MONOLITHIC=y SYSTEMD=y
+  - TYPE=standard DISTRO=gentoo DIRECT_INITRC=y MONOLITHIC=n SYSTEMD=n
+  - TYPE=standard DISTRO=gentoo DIRECT_INITRC=y MONOLITHIC=n SYSTEMD=y
+  - TYPE=mcs DISTRO=gentoo DIRECT_INITRC=n MONOLITHIC=y SYSTEMD=n
+  - TYPE=mcs DISTRO=gentoo DIRECT_INITRC=n MONOLITHIC=y SYSTEMD=y
+  - TYPE=mcs DISTRO=gentoo DIRECT_INITRC=n MONOLITHIC=n SYSTEMD=n
+  - TYPE=mcs DISTRO=gentoo DIRECT_INITRC=n MONOLITHIC=n SYSTEMD=y
+  - TYPE=mcs DISTRO=gentoo DIRECT_INITRC=y MONOLITHIC=y SYSTEMD=n
+  - TYPE=mcs DISTRO=gentoo DIRECT_INITRC=y MONOLITHIC=y SYSTEMD=y
+  - TYPE=mcs DISTRO=gentoo DIRECT_INITRC=y MONOLITHIC=n SYSTEMD=n
+  - TYPE=mcs DISTRO=gentoo DIRECT_INITRC=y MONOLITHIC=n SYSTEMD=y
+  - TYPE=mls DISTRO=gentoo DIRECT_INITRC=n MONOLITHIC=y SYSTEMD=n
+  - TYPE=mls DISTRO=gentoo DIRECT_INITRC=n MONOLITHIC=y SYSTEMD=y
+  - TYPE=mls DISTRO=gentoo DIRECT_INITRC=n MONOLITHIC=n SYSTEMD=n
+  - TYPE=mls DISTRO=gentoo DIRECT_INITRC=n MONOLITHIC=n SYSTEMD=y
+  - TYPE=mls DISTRO=gentoo DIRECT_INITRC=y MONOLITHIC=y SYSTEMD=n
+  - TYPE=mls DISTRO=gentoo DIRECT_INITRC=y MONOLITHIC=y SYSTEMD=y
+  - TYPE=mls DISTRO=gentoo DIRECT_INITRC=y MONOLITHIC=n SYSTEMD=n
+  - TYPE=mls DISTRO=gentoo DIRECT_INITRC=y MONOLITHIC=n SYSTEMD=y
 
 before_install:
   - lsb_release -a
@@ -41,10 +59,10 @@ install:
   - sudo make CFLAGS="-O2 -pipe -fPIC -Wall" -C selinux-src install
 
   # Drop build.conf settings to listen to env vars
-  - sed -r -i -e '/(DIRECT_INITRC|MONOLITHIC|TYPE|DISTRO)/d' build.conf
+  - sed -r -i -e '/(DIRECT_INITRC|MONOLITHIC|TYPE|DISTRO|SYSTEMD)/d' build.conf
 
 script:
-  - echo $TYPE $DISTRO $DIRECT_INITRC $MONOLITHIC
+  - echo $TYPE $DISTRO $DIRECT_INITRC $MONOLITHIC $SYSTEMD
   - make bare
   - make conf
   - make
@@ -53,6 +71,7 @@ script:
 branches:
   only:
     - /^travis-.*/
+    - next
     - master
 
 notifications:
