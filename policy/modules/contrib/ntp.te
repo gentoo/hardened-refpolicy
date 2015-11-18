@@ -78,7 +78,8 @@ manage_files_pattern(ntpd_t, ntpd_tmpfs_t, ntpd_tmpfs_t)
 fs_tmpfs_filetrans(ntpd_t, ntpd_tmpfs_t, { dir file })
 
 manage_files_pattern(ntpd_t, ntpd_var_run_t, ntpd_var_run_t)
-files_pid_filetrans(ntpd_t, ntpd_var_run_t, file)
+manage_sock_files_pattern(ntpd_t, ntpd_var_run_t, ntpd_var_run_t)
+files_pid_filetrans(ntpd_t, ntpd_var_run_t, { file sock_file })
 
 can_exec(ntpd_t, ntpd_exec_t)
 
