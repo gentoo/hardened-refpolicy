@@ -277,4 +277,8 @@ ifdef(`distro_gentoo',`
 
 	# /tmp/pulse-* gets created by the clients usually as user_tmp_t, bug 556526
 	userdom_list_user_tmp(pulseaudio_client)
+
+	# pulse 7 uses fd's
+	allow pulseaudio_client pulseaudio_t:fd use;
+	allow pulseaudio_client pulseaudio_tmpfs_t:file rw_file_perms;
 ')
