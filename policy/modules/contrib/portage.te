@@ -449,6 +449,11 @@ gen_tunable(portage_enable_test, false)
 	corecmd_relabel_bin_files(portage_t)
 	corecmd_relabel_bin_lnk_files(portage_t)
 
+	mls_file_read_all_levels(portage_t)
+	mls_file_write_all_levels(portage_t)
+	mls_file_upgrade(portage_t)
+	mls_file_downgrade(portage_t)
+
 	auth_use_nsswitch(portage_t)
 
 	# Support cgroup FEATURES
