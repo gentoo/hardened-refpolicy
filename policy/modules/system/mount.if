@@ -209,3 +209,23 @@ interface(`mount_rw_loopback_files',`
 
 	allow $1 mount_loopback_t:file rw_file_perms;
 ')
+
+# gentoo specific under here
+
+########################################
+## <summary>
+##	Read and write mount unnamed pipes
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`mount_rw_pipes',`
+	gen_require(`
+		type mount_t;
+	')
+
+	allow $1 mount_t:fifo_file rw_fifo_file_perms;
+')
