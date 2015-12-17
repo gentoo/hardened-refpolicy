@@ -42,6 +42,9 @@ application_domain(unconfined_mount_t, mount_exec_t)
 
 # setuid/setgid needed to mount cifs
 allow mount_t self:capability { ipc_lock sys_rawio sys_admin dac_override chown sys_tty_config setuid setgid };
+allow mount_t self:process signal;
+# zfs list uses pipes
+allow mount_t self:fifo_file rw_fifo_file_perms;
 
 mount_read_loopback_files(mount_t)
 

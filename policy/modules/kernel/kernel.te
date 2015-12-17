@@ -461,4 +461,13 @@ ifdef(`distro_gentoo',`
 	# See also bug 535992
 	#dev_manage_all_dev_nodes(kernel_t)
 	dev_setattr_generic_chr_files(kernel_t)
+
+	# ZFS send/recv writes to an fd
+	optional_policy(`
+		sysadm_use_fds(kernel_t)
+	')
+	# zfs list writes to a pipe
+	optional_policy(`
+		mount_rw_pipes(kernel_t)
+	')
 ')
