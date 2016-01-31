@@ -941,6 +941,12 @@ interface(`seutil_read_bin_policy',`
 	files_search_etc($1)
 	allow $1 selinux_config_t:dir search_dir_perms;
 	read_files_pattern($1, policy_config_t, policy_config_t)
+
+	ifdef(`distro_gentoo',`
+		# Allow sesearch to read /etc/selinux/.../policy
+		# Otherwise it returns "No default policy found"
+		allow $1 policy_config_t:dir list_dir_perms;
+	')
 ')
 
 ########################################
