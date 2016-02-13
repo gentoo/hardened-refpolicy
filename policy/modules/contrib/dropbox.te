@@ -38,7 +38,7 @@ userdom_user_tmpfs_file(dropbox_tmpfs_t)
 # Local Policy Rules
 #
 
-allow dropbox_t self:process signal_perms;
+allow dropbox_t self:process { execmem signal_perms };
 allow dropbox_t self:fifo_file rw_fifo_file_perms;
 allow dropbox_t dropbox_home_t:file mmap_file_perms;
 
@@ -71,6 +71,7 @@ fs_tmpfs_filetrans(dropbox_t, dropbox_tmpfs_t, { file dir })
 
 fs_getattr_xattr_fs(dropbox_t)
 fs_getattr_tmpfs(dropbox_t)
+kernel_read_system_state(dropbox_t)
 kernel_read_vm_sysctls(dropbox_t)
 
 kernel_dontaudit_read_system_state(dropbox_t)
@@ -79,8 +80,13 @@ kernel_dontaudit_list_proc(dropbox_t)
 corecmd_exec_bin(dropbox_t)
 corecmd_exec_shell(dropbox_t)
 
+domain_dontaudit_getattr_all_domains(dropbox_t)
+domain_dontaudit_search_all_domains_state(dropbox_t)
+
 dev_read_rand(dropbox_t)
 dev_read_urand(dropbox_t)
+
+libs_exec_ldconfig(dropbox_t)
 
 files_read_usr_files(dropbox_t)
 auth_use_nsswitch(dropbox_t)
