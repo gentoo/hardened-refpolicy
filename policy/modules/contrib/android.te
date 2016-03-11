@@ -101,11 +101,17 @@ corenet_tcp_connect_adb_port(android_java_t)
 corenet_tcp_connect_http_port(android_java_t)
 corenet_udp_bind_generic_node(android_java_t)
 
+dev_rw_kvm(android_java_t)
+dev_rw_dri(android_java_t)
+dev_read_sysfs(android_java_t)
+
 domain_dontaudit_getattr_all_domains(android_java_t)
 domain_dontaudit_search_all_domains_state(android_java_t)
 
 miscfiles_read_fonts(android_java_t)
 miscfiles_read_localization(android_java_t)
+
+udev_read_db(android_java_t)
 
 userdom_use_user_terminals(android_java_t)
 userdom_user_home_dir_filetrans(android_java_t, android_home_t, dir, ".android")
