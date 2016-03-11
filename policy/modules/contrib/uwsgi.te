@@ -71,11 +71,14 @@ corecmd_exec_bin(uwsgi_t)
 corecmd_exec_shell(uwsgi_t)
 
 kernel_read_system_state(uwsgi_t)
+kernel_read_net_sysctls(uwsgi_t)
+
+libs_exec_ldconfig(uwsgi_t)
 
 miscfiles_read_localization(uwsgi_t)
 
 optional_policy(`
-	apache_search_sys_content(uwsgi_t)
+	apache_read_all_content(uwsgi_t)
 	apache_manage_all_rw_content(uwsgi_t)
 ')
 
