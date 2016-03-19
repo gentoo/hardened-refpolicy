@@ -327,6 +327,7 @@ ifdef(`distro_gentoo',`
 /usr/share/smolt/client(/.*)?		gen_context(system_u:object_r:bin_t,s0)
 /usr/share/spamassassin/sa-update\.cron gen_context(system_u:object_r:bin_t,s0)
 /usr/share/texmf/web2c/mktexdir	--	gen_context(system_u:object_r:bin_t,s0)
+/usr/share/texmf-dist/scripts(/.*)?	gen_context(system_u:object_r:bin_t,s0)
 /usr/share/turboprint/lib(/.*)?	--	gen_context(system_u:object_r:bin_t,s0)
 /usr/share/vhostmd/scripts(/.*)?	gen_context(system_u:object_r:bin_t,s0)
 
