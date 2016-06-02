@@ -3916,5 +3916,6 @@ interface(`userdom_manage_user_tmp_chr_files',`
 	')
 
 	manage_chr_files_pattern($1, user_tmp_t, user_tmp_t)
+	userdom_search_user_runtime($1)
 	files_search_tmp($1)
 ')
