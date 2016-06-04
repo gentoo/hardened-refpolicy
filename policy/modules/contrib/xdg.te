@@ -11,6 +11,13 @@ attribute xdg_config_home_type;
 
 attribute xdg_cache_home_type;
 
+# Not used but keep this at least two releases
+# We have noticed that the userdom_manage_home_role call to the xdg functions
+# seems to fail due to this attribute type not existing anymore while the
+# build seems to still require it. By waiting a couple of releases we can be more
+# confident that no calls to xdg_runtime_* are used anymore.
+attribute xdg_runtime_home_type;
+
 type xdg_data_home_t;
 xdg_data_home_content(xdg_data_home_t)
 
