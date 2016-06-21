@@ -347,8 +347,10 @@ ifdef(`distro_debian',`
 ')
 
 ifdef(`distro_gentoo', `
-/usr/.*-.*-linux-gnu/gcc-bin/.*(/.*)?	gen_context(system_u:object_r:bin_t,s0)
-/usr/.*-.*-linux-gnu/binutils-bin(/.*)?	gen_context(system_u:object_r:bin_t,s0)
+/usr/[^/]+-[^/]+-linux-gnu/gcc-bin/.*(/.*)?	gen_context(system_u:object_r:bin_t,s0)
+/usr/[^/]+-[^/]+-linux-gnu/binutils-bin(/.*)?	gen_context(system_u:object_r:bin_t,s0)
+/usr/[^/]+-[^/]+-linux-gnu/[^/]+/gcc-bin/.*(/.*)?	gen_context(system_u:object_r:bin_t,s0)
+/usr/[^/]+-[^/]+-linux-gnu/[^/]+/binutils-bin(/.*)?	gen_context(system_u:object_r:bin_t,s0)
 ')
 
 ifdef(`distro_redhat', `
