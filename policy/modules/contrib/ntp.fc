@@ -33,4 +33,7 @@
 ifdef(`distro_gentoo',`
 /usr/bin/sntp	--	gen_context(system_u:object_r:ntpdate_exec_t,s0)
 /var/lib/openntpd/ntpd.drift	--	gen_context(system_u:object_r:ntp_drift_t,s0)
+
+# hardlinked to ntpd
+/usr/sbin/ntpctl		--	gen_context(system_u:object_r:ntpd_exec_t,s0)
 ')
