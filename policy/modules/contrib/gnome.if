@@ -610,6 +610,66 @@ interface(`gnome_gconf_home_filetrans',`
 
 ########################################
 ## <summary>
+##	Create objects in user home
+##	directories with the gstreamer
+##	orcexec type.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <param name="object_class">
+##	<summary>
+##	Class of the object being created.
+##	</summary>
+## </param>
+## <param name="name" optional="true">
+##	<summary>
+##	The name of the object being created.
+##	</summary>
+## </param>
+#
+interface(`gnome_user_home_dir_filetrans_gstreamer_orcexec',`
+	gen_require(`
+		type gstreamer_orcexec_t;
+	')
+
+	userdom_user_home_dir_filetrans($1, gstreamer_orcexec_t, $2, $3)
+')
+
+########################################
+## <summary>
+##	Create objects in the user
+##	runtime directories with the
+##	gstreamer orcexec type.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <param name="object_class">
+##	<summary>
+##	Class of the object being created.
+##	</summary>
+## </param>
+## <param name="name" optional="true">
+##	<summary>
+##	The name of the object being created.
+##	</summary>
+## </param>
+#
+interface(`gnome_user_runtime_filetrans_gstreamer_orcexec',`
+	gen_require(`
+		type gstreamer_orcexec_t;
+	')
+
+	userdom_user_runtime_filetrans($1, gstreamer_orcexec_t, $2, $3)
+')
+
+########################################
+## <summary>
 ##	Read generic gnome keyring home files.
 ## </summary>
 ## <param name="domain">
@@ -763,4 +823,42 @@ interface(`gnome_dbus_chat_gconfd',`
 
 	allow $1 gconfd_t:dbus send_msg;
 	allow gconfd_t $1:dbus send_msg;
+')
+
+########################################
+## <summary>
+##	Manage gstreamer ORC optimized
+##	code.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`gnome_manage_gstreamer_orcexec',`
+	gen_require(`
+		type gstreamer_orcexec_t;
+	')
+
+	allow $1 gstreamer_orcexec_t:file manage_file_perms;
+')
+
+########################################
+## <summary>
+##	Mmap gstreamer ORC optimized
+##	code.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`gnome_mmap_gstreamer_orcexec',`
+	gen_require(`
+		type gstreamer_orcexec_t;
+	')
+
+	allow $1 gstreamer_orcexec_t:file mmap_file_perms;
 ')
