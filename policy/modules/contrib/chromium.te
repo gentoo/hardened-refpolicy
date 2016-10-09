@@ -88,7 +88,8 @@ xdg_cache_home_content(chromium_xdg_cache_t)
 # chromium local policy
 #
 
-allow chromium_t self:process { getsched setcap setrlimit setsched sigkill signal };
+# execmem for load in plugins
+allow chromium_t self:process { execmem getsched setcap setrlimit setsched sigkill signal };
 allow chromium_t self:fifo_file rw_fifo_file_perms;;
 allow chromium_t self:sem create_sem_perms;
 allow chromium_t self:netlink_kobject_uevent_socket client_stream_socket_perms;
@@ -107,8 +108,6 @@ allow chromium_t chromium_sandbox_t:unix_dgram_socket { read write };
 allow chromium_t chromium_sandbox_t:unix_stream_socket { read write };
 
 allow chromium_t chromium_naclhelper_t:process { share };
-
-allow chromium_t self:process execmem;	# Load in plugins
 
 # tmp has a wide class access (used for plugins)
 manage_files_pattern(chromium_t, chromium_tmp_t, chromium_tmp_t)
@@ -164,18 +163,17 @@ fs_dontaudit_getattr_xattr_fs(chromium_t)
 
 getty_dontaudit_use_fds(chromium_t)
 
-miscfiles_manage_user_certs(chromium_t)
 miscfiles_read_all_certs(chromium_t)
 miscfiles_read_localization(chromium_t)
-miscfiles_user_home_dir_filetrans_cert_home(chromium_t, dir, ".nss")
-miscfiles_user_home_dir_filetrans_cert_home(chromium_t, dir, ".pki")
 
-sysnet_dns_name_resolve(chromium_t) 
+sysnet_dns_name_resolve(chromium_t)
 
 userdom_user_content_access_template(chromium, chromium_t)
 userdom_dontaudit_list_user_home_dirs(chromium_t)
 # Debugging. Also on user_tty_device_t if X is started through "startx" for instance
 userdom_use_user_terminals(chromium_t)
+userdom_manage_user_certs(chromium_t)
+userdom_user_home_dir_filetrans_user_cert(chromium_t, dir, ".pki")
 
 xdg_create_cache_home_dirs(chromium_t)
 xdg_create_config_home_dirs(chromium_t)
@@ -194,6 +192,7 @@ tunable_policy(`chromium_bind_tcp_unreserved_ports',`
 
 tunable_policy(`chromium_rw_usb_dev',`
 	dev_rw_generic_usb_dev(chromium_t)
+	udev_read_db(chromium_t)
 ')
 
 tunable_policy(`chromium_read_system_info',`
