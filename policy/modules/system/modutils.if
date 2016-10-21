@@ -229,7 +229,7 @@ interface(`modutils_domtrans_depmod',`
 
 ########################################
 ## <summary>
-##	Execute update_modules in the update_modules domain.
+##	Execute depmod in the depmod domain.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -273,7 +273,7 @@ interface(`modutils_exec_depmod',`
 
 ########################################
 ## <summary>
-##	Execute depmod in the depmod domain.
+##	Execute update_modules in the update_modules domain.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
