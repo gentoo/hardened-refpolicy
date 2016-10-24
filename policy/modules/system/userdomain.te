@@ -133,5 +133,5 @@ ifdef(`distro_gentoo',`
 	# We used to use cert_home_t but an upstream commit introduced the same
 	# concept as user_cert_t. Enabling an alias to keep custom modules from
 	# users running.
-	type user_cert_t alias cert_home_t;
+	typealias user_cert_t alias cert_home_t;
 ')
