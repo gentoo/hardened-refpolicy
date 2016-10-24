@@ -787,8 +787,7 @@ interface(`miscfiles_read_test_files',`
 
 ########################################
 ## <summary>
-##	Create files in etc directories
-##	with localization file type.
+##	Execute test files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -807,7 +806,8 @@ interface(`miscfiles_exec_test_files',`
 
 ########################################
 ## <summary>
-##	Execute test files.
+##	Create files in etc directories
+##	with localization file type.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
