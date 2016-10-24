@@ -4027,7 +4027,7 @@ interface(`userdom_manage_user_tmp_chr_files',`
 
 ########################################
 ## <summary>
-##	Automatically use the cert_home_t label for selected resources
+##	Automatically use the user_cert_t label for selected resources
 ##	created in a users home directory
 ## </summary>
 ## <param name="domain">
