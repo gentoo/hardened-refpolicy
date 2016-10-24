@@ -14,13 +14,6 @@ type cert_t;
 miscfiles_cert_type(cert_t)
 
 #
-# cert_home_t is the type of files in the users' home directories.
-#
-type cert_home_t;
-miscfiles_cert_type(cert_home_t)
-userdom_user_home_content(cert_home_t)
-
-#
 # fonts_t is the type of various font
 # files in /usr
 #

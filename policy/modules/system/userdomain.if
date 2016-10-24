@@ -272,8 +272,6 @@ interface(`userdom_manage_home_role',`
 	')
 
 	ifdef(`distro_gentoo',`
-		miscfiles_manage_user_certs($2)
-		miscfiles_relabel_user_certs($2)
 
 		optional_policy(`
 			flash_manage_home($2)
