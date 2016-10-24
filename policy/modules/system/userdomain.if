@@ -4026,3 +4026,32 @@ interface(`userdom_manage_user_tmp_chr_files',`
 	userdom_search_user_runtime($1)
 	files_search_tmp($1)
 ')
+
+########################################
+## <summary>
+##	Automatically use the cert_home_t label for selected resources
+##	created in a users home directory
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access
+##	</summary>
+## </param>
+## <param name="class">
+##	<summary>
+##	Resource type(s) for which the label should be used
+##	</summary>
+## </param>
+## <param name="filename" optional="true">
+##	<summary>
+##	Name of the resource that is being created
+##	</summary>
+## </param>
+#
+interface(`userdom_user_home_dir_filetrans_user_cert',`
+	gen_require(`
+		type user_cert_t;
+	')
+
+	userdom_user_home_dir_filetrans($1, user_cert_t, $2, $3)
+')
