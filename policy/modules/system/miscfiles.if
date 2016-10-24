@@ -103,7 +103,7 @@ interface(`miscfiles_manage_user_certs',`
 
 ########################################
 ## <summary>
-##	Relabel from/to cert_home_t (user-managed SSL certificates)
+##	Relabel from/to user_cert_t (user-managed SSL certificates)
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -112,13 +112,8 @@ interface(`miscfiles_manage_user_certs',`
 ## </param>
 #
 interface(`miscfiles_relabel_user_certs',`
-	gen_require(`
-		type cert_home_t;
-	')
-
-	relabel_dirs_pattern($1, cert_home_t, cert_home_t)
-	relabel_files_pattern($1, cert_home_t, cert_home_t)
-	relabel_lnk_files_pattern($1, cert_home_t, cert_home_t)
+	userdom_relabel_user_certs($1)
+	refpolicywarn(`$0() has been deprecated, please use userdom_relabel_user_certs() instead.')
 ')
 
 ########################################

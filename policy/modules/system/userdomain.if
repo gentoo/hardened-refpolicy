@@ -4053,3 +4053,26 @@ interface(`userdom_user_home_dir_filetrans_user_cert',`
 
 	userdom_user_home_dir_filetrans($1, user_cert_t, $2, $3)
 ')
+
+########################################
+## <summary>
+##	Allow relabeling resources to user_cert_t
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access
+##	</summary>
+## </param>
+#
+
+interface(`userdom_relabel_user_certs',`
+	gen_require(`
+		type user_cert_t;
+	')
+
+	relabel_dirs_pattern($1, user_cert_t, user_cert_t)
+	relabel_files_pattern($1, user_cert_t, user_cert_t)
+	relabel_lnk_files_pattern($1, user_cert_t, user_cert_t)
+	relabel_sock_files_pattern($1, user_cert_t, user_cert_t)
+	relabel_fifo_files_pattern($1, user_cert_t, user_cert_t)
+')
