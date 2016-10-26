@@ -149,6 +149,7 @@ corenet_udp_bind_all_unreserved_ports(chromium_t)
 dev_read_sound(chromium_t)
 dev_write_sound(chromium_t)
 dev_read_urand(chromium_t)
+dev_read_rand(chromium_t)
 
 domain_dontaudit_search_all_domains_state(chromium_t)
 
