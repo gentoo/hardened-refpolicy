@@ -26,4 +26,5 @@ ifdef(`distro_gentoo',`
 HOME_DIR/\.config/dconf(/.*)?	gen_context(system_u:object_r:gnome_xdg_config_home_t,s0)
 HOME_DIR/\.cache/dconf(/.*)?	gen_context(system_u:object_r:gnome_xdg_cache_home_t,s0)
 HOME_DIR/\.cache/keyring-.*	gen_context(system_u:object_r:gnome_xdg_cache_home_t,s0)
+HOME_DIR/\.local/share/keyrings(/.*)?	gen_context(system_u:object_r:gnome_xdg_data_home_t,s0)
 ')
