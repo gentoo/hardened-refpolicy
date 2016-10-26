@@ -230,6 +230,12 @@ optional_policy(`
 	optional_policy(`
 		unconfined_dbus_chat(chromium_t)
 	')
+	optional_policy(`
+		gnome_dbus_chat_all_gkeyringd(chromium_t)
+	')
+	optional_policy(`
+		devicekit_dbus_chat_power(chromium_t)
+	')
 ')
 
 optional_policy(`
