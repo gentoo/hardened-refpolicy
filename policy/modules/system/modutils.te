@@ -180,3 +180,22 @@ optional_policy(`
 	xserver_getattr_log(kmod_t)
 ')
 
+optional_policy(`
+	dracut_rw_tmp_files(kmod_t)
+')
+
+ifdef(`distro_gentoo',`
+	############################
+	#
+	# insmod_t
+	#
+
+	# During "make modules_install" temp files created by admin
+	# that invoked the command are later used by kmod.
+	userdom_manage_user_tmp_files(kmod_t)
+	userdom_manage_user_tmp_dirs(kmod_t)
+
+	files_list_src(kmod_t)
+	files_manage_src_files(kmod_t)
+	files_manage_kernel_modules(kmod_t)
+')
