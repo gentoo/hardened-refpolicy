@@ -89,10 +89,6 @@ tunable_policy(`use_samba_home_dirs',`
 ')
 
 optional_policy(`
-	dracut_rw_tmp_files(depmod_t)
-')
-
-optional_policy(`
 	rpm_rw_pipes(depmod_t)
 	rpm_manage_script_tmp_files(depmod_t)
 ')
@@ -337,25 +333,4 @@ ifdef(`distro_ubuntu',`
 	optional_policy(`
 		unconfined_domain(update_modules_t)
 	')
-')
-
-ifdef(`distro_gentoo',`
-	############################
-	#
-	# insmod_t 
-	#
-
-	# During "make modules_install" insmod removes old/previous deps
-	delete_files_pattern(insmod_t, modules_object_t, modules_dep_t)
-	# During "make modules_install" temp files created by admin
-	# that invoked the command are later used by kmod.
-	userdom_manage_user_tmp_files(insmod_t)
-	userdom_manage_user_tmp_dirs(insmod_t)
-
-	# Needed to support signed kernel modules (to find key in modsign_keyring)
-	kernel_search_key(insmod_t)
-
-	files_list_src(insmod_t)
-	files_manage_src_files(insmod_t)
-	files_manage_kernel_modules(insmod_t)
 ')
