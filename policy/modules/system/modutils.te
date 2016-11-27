@@ -198,4 +198,8 @@ ifdef(`distro_gentoo',`
 	files_list_src(kmod_t)
 	files_manage_src_files(kmod_t)
 	files_manage_kernel_modules(kmod_t)
+
+	# for /run/tmpfiles.d/kmod.conf
+	tmpfiles_create_var_run_files(kmod_t)
+	filetrans_add_pattern(kmod_t, tmpfiles_var_run_t, kmod_var_run_t, file)
 ')
