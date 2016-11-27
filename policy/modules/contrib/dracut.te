@@ -52,7 +52,6 @@ libs_exec_lib_files(dracut_t)
 
 miscfiles_read_localization(dracut_t)
 
-modutils_list_module_config(dracut_t) #find /etc/modprobe.d
 modutils_read_module_config(dracut_t)
 modutils_read_module_deps(dracut_t)
 

@@ -39,30 +39,6 @@ interface(`modutils_read_module_deps',`
 
 ########################################
 ## <summary>
-##	List the module configuration option files
-## </summary>
-## <param name="domain">
-##	<summary>
-##	Domain allowed access.
-##	</summary>
-## </param>
-## <rolecap/>
-#
-interface(`modutils_list_module_config',`
-	gen_require(`
-		type modules_conf_t;
-	')
-
-	# This file type can be in /etc or
-	# /lib(64)?/modules
-	files_search_etc($1)
-	files_search_boot($1)
-
-	list_dirs_pattern($1, modules_conf_t, modules_conf_t)
-')
-
-########################################
-## <summary>
 ##	Read the configuration options used when
 ##	loading modules.
 ## </summary>
