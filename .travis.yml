@@ -2,6 +2,9 @@
 
 language: generic
 
+matrix:
+  fast_finish: true
+
 # for T in standard mls mcs ; do for D in arch debian gentoo ; do for I in n y ; do for M in y n ; do for S in n y ; do
 # echo "  - TYPE=$T DISTRO=$D DIRECT_INITRC=$I MONOLITHIC=$M SYSTEMD=$S" ; done ; done ; done ; done ; done
 env:
@@ -31,7 +34,8 @@ env:
   - TYPE=mls DISTRO=gentoo DIRECT_INITRC=y MONOLITHIC=n SYSTEMD=y
 
 # Uncomment to use Travis-CI container infrastructure (https://docs.travis-ci.com/user/ci-environment/)
-#sudo: false
+sudo: false
+#dist: trusty  # libustr-dev not whitelisted for trusty
 
 # Uncomment these two lines to use Travis-CI Trusty Beta environment
 #sudo: required
@@ -50,14 +54,17 @@ addons:
     - libpcre3-dev
     - swig
 
-install:
+before_install:
   - lsb_release -a
   - bison -V
   - flex -V
+  - swig -version
+  - python -V
 
+install:
   # Download current SELinux userspace tools and libraries
-  - curl -sS -L https://github.com/SELinuxProject/selinux/archive/20160223.tar.gz | tar xz
-  - mv selinux-20160223 selinux-src
+  - curl -sS -L https://github.com/SELinuxProject/selinux/archive/20161014.tar.gz | tar xz
+  - mv selinux-20161014 selinux-src
 
   # Ubuntu 12.04 coreutils is too old to provide "ln --relative" :(
   - sed 's/ln -sf --relative /ln -sf /' -i selinux-src/libsepol/src/Makefile
@@ -78,10 +85,10 @@ install:
   # Compile and install SELinux toolchain into ~/selinux
   # On Ubuntu 12.04, default CFLAGS make the build fail in libsepol/cil with:
   #    error: declaration of 'index' shadows a global declarationo
-  - make "DESTDIR=$HOME/selinux" CFLAGS="-O2 -pipe -fPIC -Wall -I$HOME/selinux/usr/include" -C selinux-src install
+  - make "DESTDIR=$TRAVIS_BUILD_DIR/selinux" CFLAGS="-O2 -Wall" -C selinux-src install
 
   # Use TEST_TOOLCHAIN variable to tell refpolicy Makefile about the installed location
-  - export TEST_TOOLCHAIN="$HOME/selinux"
+  - export TEST_TOOLCHAIN="$TRAVIS_BUILD_DIR/selinux"
 
   # Drop build.conf settings to listen to env vars
   - sed -r -i -e '/(DIRECT_INITRC|MONOLITHIC|TYPE|DISTRO|SYSTEMD)/d' build.conf
