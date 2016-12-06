@@ -436,6 +436,8 @@ gen_tunable(portage_enable_test, false)
 
 	allow portage_t self:capability2 block_suspend;
 
+	allow portage_t { portage_fetch_t portage_sandbox_t }:process signal_perms;
+
 	# Support self-update of Portage
 	allow portage_t portage_tmp_t:dir relabel_dir_perms;
 	allow portage_t portage_tmp_t:lnk_file relabel_lnk_file_perms;
@@ -490,9 +492,12 @@ gen_tunable(portage_enable_test, false)
 
 	tunable_policy(`portage_enable_test',`
 		# lots of tests connect over loopback
-		corenet_tcp_bind_generic_node(portage_sandbox_t)
 		corenet_tcp_bind_all_unreserved_ports(portage_sandbox_t)
+		corenet_tcp_bind_generic_node(portage_sandbox_t)
 		corenet_tcp_connect_all_unreserved_ports(portage_sandbox_t)
+		corenet_udp_bind_all_unreserved_ports(portage_sandbox_t)
+		corenet_udp_bind_generic_node(portage_sandbox_t)
+		corenet_udp_sendrecv_all_ports(portage_sandbox_t)
 	')
 
 	##########################################
