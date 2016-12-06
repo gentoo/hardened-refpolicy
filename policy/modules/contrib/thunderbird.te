@@ -207,3 +207,8 @@ ifdef(`distro_gentoo',`
 		pulseaudio_client_domain(thunderbird_t, thunderbird_tmpfs_t)
 	')
 ')
+
+optional_policy(`
+	ooffice_domtrans(thunderbird_t)
+	ooffice_rw_ooffice_tmp_files(thunderbird_t)
+')
