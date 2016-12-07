@@ -210,5 +210,5 @@ ifdef(`distro_gentoo',`
 
 optional_policy(`
 	ooffice_domtrans(thunderbird_t)
-	ooffice_rw_ooffice_tmp_files(thunderbird_t)
+	ooffice_rw_tmp_files(thunderbird_t)
 ')
