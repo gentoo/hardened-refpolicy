@@ -91,7 +91,7 @@ seutil_read_file_contexts(tmpfiles_t)
 
 ifdef(`distro_gentoo',`
 	dev_create_generic_dirs(tmpfiles_t)
-	# Early at boot, access /dev/console and /dev/tty which is device_t due to kernel-provided devtmpfs 
+	# Early at boot, access /dev/console and /dev/tty which is device_t due to kernel-provided devtmpfs
 	dev_rw_generic_chr_files(tmpfiles_t)
 	dev_create_generic_chr_files(tmpfiles_t)
 	dev_create_generic_blk_files(tmpfiles_t)

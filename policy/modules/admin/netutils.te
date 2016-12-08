@@ -219,7 +219,7 @@ files_read_usr_files(traceroute_t)
 
 ifdef(`distro_gentoo',`
 	########################################
-	# 
+	#
 	# netutils_t policy updates
 	#
 

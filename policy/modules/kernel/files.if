@@ -6814,7 +6814,7 @@ interface(`files_dontaudit_read_etc_runtime',`
 ########################################
 ## <summary>
 ##	Do not audit attempts to read files
-##	in /etc 
+##	in /etc
 ## </summary>
 ## <param name="domain">
 ##	<summary>

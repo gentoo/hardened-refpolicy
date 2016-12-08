@@ -407,7 +407,7 @@ optional_policy(`
 
 ifdef(`distro_gentoo',`
 	###########################################
-	# 
+	#
 	# dhcp client policy
 	#
 
@@ -440,7 +440,7 @@ ifdef(`distro_gentoo',`
 	# dhcpc_script_t
 	#
 
-	# The purpose of the dhcpc_script_t domain is to handle the post-processing of 
+	# The purpose of the dhcpc_script_t domain is to handle the post-processing of
 	# the dhcpcd ip renewal. dhcpcd (the tool) supports hooks for this, and I would
 	# assume others do as well. With the dhcpc_script_t domain we can isolate the
 	# privileges of the DHCP client itself from the hooks / flexibility that the developers

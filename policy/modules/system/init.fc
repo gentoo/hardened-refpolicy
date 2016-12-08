@@ -87,7 +87,7 @@ ifdef(`distro_suse', `
 ')
 
 ifdef(`distro_gentoo',`
-# 
+#
 # /lib
 #
 /lib/rc/console(/.*)?		gen_context(system_u:object_r:initrc_state_t,s0)

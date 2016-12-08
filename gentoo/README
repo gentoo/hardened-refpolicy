@@ -10,7 +10,7 @@ STATE
 -----
 
 The STATE file contains the commit id's of upstream up to which point our
-repository is synchronized/merged. 
+repository is synchronized/merged.
 
 release-prepare.sh
 ------------------
