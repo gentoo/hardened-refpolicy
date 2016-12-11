@@ -444,6 +444,8 @@ gen_tunable(portage_enable_test, false)
 	allow portage_t portage_exec_t:file relabel_file_perms;
 	allow portage_t portage_fetch_exec_t:file relabel_file_perms;
 
+	kernel_read_vm_overcommit_sysctl(portage_t)
+
 	# Portage is selinuxaware, transitions on calling ebuild, now marked as bin_t
 	corecmd_bin_entry_type(portage_t)
 	# Support self-update of Portage
