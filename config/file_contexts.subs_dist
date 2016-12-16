@@ -12,7 +12,6 @@
 /lib/systemd /usr/lib/systemd
 /lib32 /lib
 /lib64 /lib
-/run /var/run
 /run/lock /var/lock
 /usr/lib32 /usr/lib
 /usr/lib64 /usr/lib
@@ -20,4 +19,8 @@
 /usr/local/lib64 /usr/lib
 /usr/local/lib /usr/lib
 /var/lib/krb5kdc /var/kerberos/krb5kdc
-/var/run/lock /var/lock
+
+# backward compatibility
+# not for refpolicy intern, but for /var/run using applications,
+# like systemd tmpfiles or systemd socket configurations
+/var/run /run
