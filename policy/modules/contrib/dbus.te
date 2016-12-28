@@ -256,6 +256,7 @@ ifdef(`distro_gentoo',`
 ')
 
 optional_policy(`
+	xserver_rw_xsession_log(session_bus_type)
 	xserver_use_xdm_fds(session_bus_type)
 	xserver_rw_xdm_pipes(session_bus_type)
 ')
