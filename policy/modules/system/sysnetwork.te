@@ -493,4 +493,8 @@ ifdef(`distro_gentoo',`
 	optional_policy(`
 		ntp_manage_config(dhcpc_script_t)
 	')
+
+	optional_policy(`
+		resolvconf_client_domain(dhcpc_script_t)
+	')
 ')
