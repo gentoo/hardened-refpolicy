@@ -42,11 +42,8 @@ ifdef(`distro_debian',`
 ')
 
 ifdef(`distro_gentoo',`
-/bin/udevadm	--	gen_context(system_u:object_r:udev_exec_t,s0)
-
-/lib/udev/udevd	--	gen_context(system_u:object_r:udev_exec_t,s0)
-/lib/udev/rules\.d(/.*)?	gen_context(system_u:object_r:udev_rules_t,s0)
-/lib/systemd/systemd-udevd  --  gen_context(system_u:object_r:udev_exec_t,s0)
+/usr/lib/udev/udevd	--	gen_context(system_u:object_r:udev_exec_t,s0)
+/usr/lib/udev/rules\.d(/.*)?	gen_context(system_u:object_r:udev_rules_t,s0)
 
 /usr/bin/udevadm	--	gen_context(system_u:object_r:udev_exec_t,s0)
 

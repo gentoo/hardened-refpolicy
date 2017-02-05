@@ -81,13 +81,13 @@ ifdef(`distro_gentoo',`
 #
 # /lib
 #
-/lib/rc/console(/.*)?		gen_context(system_u:object_r:initrc_state_t,s0)
-/lib/rc/cache(/.*)?		gen_context(system_u:object_r:initrc_state_t,s0)
+/usr/lib/rc/console(/.*)?		gen_context(system_u:object_r:initrc_state_t,s0)
+/usr/lib/rc/cache(/.*)?		gen_context(system_u:object_r:initrc_state_t,s0)
 
 #
 # /sbin
 #
-/sbin/openrc		--	gen_context(system_u:object_r:rc_exec_t,s0)
+/usr/sbin/openrc		--	gen_context(system_u:object_r:rc_exec_t,s0)
 
 #
 # /var
