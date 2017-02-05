@@ -4,6 +4,6 @@
 
 /sys/fs/cgroup/cgmanager(/.*)?		gen_context(system_u:object_r:cgmanager_cgroup_t,s0)
 
-/var/run/cgmanager(/.*)?		gen_context(system_u:object_r:cgmanager_run_t,s0)
-/var/run/cgmanager.pid			gen_context(system_u:object_r:cgmanager_run_t,s0)
-/var/run/cgmanager/fs(/.*)?		<<none>>
+/run/cgmanager(/.*)?			gen_context(system_u:object_r:cgmanager_run_t,s0)
+/run/cgmanager.pid			gen_context(system_u:object_r:cgmanager_run_t,s0)
+/run/cgmanager/fs(/.*)?			<<none>>

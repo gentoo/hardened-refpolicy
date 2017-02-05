@@ -3,4 +3,4 @@
 
 /var/lib/subsonic(/.*)?				gen_context(system_u:object_r:subsonic_var_lib_t,s0)
 
-/var/run/subsonic(/.*)?				gen_context(system_u:object_r:subsonic_run_t,s0)
+/run/subsonic(/.*)?				gen_context(system_u:object_r:subsonic_run_t,s0)

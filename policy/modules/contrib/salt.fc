@@ -16,11 +16,11 @@
 /var/log/salt/master	--	gen_context(system_u:object_r:salt_master_log_t,s0)
 /var/log/salt/minion	--	gen_context(system_u:object_r:salt_minion_log_t,s0)
 
-/var/run/salt	-d	gen_context(system_u:object_r:salt_var_run_t,s0)
-/var/run/salt/master(/.*)?	gen_context(system_u:object_r:salt_master_var_run_t,s0)
-/var/run/salt/minion(/.*)?	gen_context(system_u:object_r:salt_minion_var_run_t,s0)
-/var/run/salt-master\.pid	--	gen_context(system_u:object_r:salt_master_var_run_t,s0)
-/var/run/salt-minion\.pid	--	gen_context(system_u:object_r:salt_minion_var_run_t,s0)
+/run/salt	-d	gen_context(system_u:object_r:salt_var_run_t,s0)
+/run/salt/master(/.*)?	gen_context(system_u:object_r:salt_master_var_run_t,s0)
+/run/salt/minion(/.*)?	gen_context(system_u:object_r:salt_minion_var_run_t,s0)
+/run/salt-master\.pid	--	gen_context(system_u:object_r:salt_master_var_run_t,s0)
+/run/salt-minion\.pid	--	gen_context(system_u:object_r:salt_minion_var_run_t,s0)
 
 /var/cache/salt	-d	gen_context(system_u:object_r:salt_cache_t,s0)
 /var/cache/salt/master(/.*)?	gen_context(system_u:object_r:salt_master_cache_t,s0)

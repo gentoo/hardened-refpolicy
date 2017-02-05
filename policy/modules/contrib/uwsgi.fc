@@ -2,8 +2,10 @@
 
 /usr/bin/uwsgi.*				--	gen_context(system_u:object_r:uwsgi_exec_t,s0)
 
+/run/uwsgi(/.*)?					gen_context(system_u:object_r:uwsgi_run_t,s0)
+
 /var/log/uwsgi(/.*)?					gen_context(system_u:object_r:uwsgi_var_log_t,s0)
-/var/run/uwsgi(/.*)?					gen_context(system_u:object_r:uwsgi_run_t,s0)
+
 /var/www/wsgi/.*\.so				--	gen_context(system_u:object_r:uwsgi_content_exec_t,s0)
 /var/www/wsgi/.*/bin/.*					gen_context(system_u:object_r:uwsgi_content_exec_t,s0)
 /var/www/wsgi(/.*)?					gen_context(system_u:object_r:uwsgi_content_t,s0)
