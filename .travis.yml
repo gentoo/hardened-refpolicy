@@ -105,6 +105,7 @@ install:
 
 script:
   - echo $TYPE $DISTRO $DIRECT_INITRC $MONOLITHIC $SYSTEMD $WERROR
+  - set -e
   - make bare
   - make conf
   - make
