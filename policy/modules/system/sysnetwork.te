@@ -206,7 +206,7 @@ optional_policy(`
 ')
 
 optional_policy(`
-	modutils_run_insmod(dhcpc_t, dhcpc_roles)
+	modutils_run(dhcpc_t, dhcpc_roles)
 ')
 
 # for the dhcp client to run ping to check IP addresses
@@ -387,7 +387,7 @@ optional_policy(`
 ')
 
 optional_policy(`
-	modutils_domtrans_insmod(ifconfig_t)
+	modutils_domtrans(ifconfig_t)
 ')
 
 optional_policy(`
