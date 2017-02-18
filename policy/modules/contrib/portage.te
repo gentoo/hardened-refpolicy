@@ -350,6 +350,7 @@ optional_policy(`
 # - SELinux-enforced sandbox
 #
 
+allow portage_sandbox_t self:capability setfcap;
 allow portage_sandbox_t self:process ptrace;
 dontaudit portage_sandbox_t self:netlink_route_socket rw_netlink_socket_perms;
 
