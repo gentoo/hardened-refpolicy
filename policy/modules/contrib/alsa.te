@@ -130,6 +130,6 @@ ifdef(`distro_gentoo',`
 	# ALSA applications need access to /usr/share/alsa/*
 	files_read_usr_files(alsadomain)
 
-	alsa_read_rw_config(alsadomain)
+	alsa_read_config(alsadomain)
 	alsa_read_home_files(alsadomain)
 ')

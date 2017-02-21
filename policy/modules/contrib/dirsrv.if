@@ -17,7 +17,7 @@ interface(`dirsrv_domtrans',`
 		type dirsrv_t, dirsrv_exec_t;
 	')
 
-	domain_auto_trans($1,dirsrv_exec_t,dirsrv_t)
+	domain_auto_transition_pattern($1, dirsrv_exec_t, dirsrv_t)
 
 	allow dirsrv_t $1:fd use;
 	allow dirsrv_t $1:fifo_file rw_file_perms;

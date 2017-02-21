@@ -33,7 +33,7 @@ interface(`vde_role',`
 	allow vde_t self:tun_socket { relabelfrom relabelto };
 	ps_process_pattern($2, vde_t)
 
-	domain_auto_trans($2, vde_exec_t, vde_t)
+	domain_auto_transition_pattern($2, vde_exec_t, vde_t)
 ')
 
 ########################################
