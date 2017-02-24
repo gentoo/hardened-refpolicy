@@ -7,6 +7,8 @@
 
 /usr/libexec/qemu.*	--	gen_context(system_u:object_r:qemu_exec_t,s0)
 
+/var/run/xen/qmp.*	--	gen_context(system_u:object_r:qemu_var_run_t,s0)
+
 ifdef(`distro_gentoo',`
 /usr/bin/qemu-ga	--	gen_context(system_u:object_r:qemu_ga_exec_t,s0)
 
