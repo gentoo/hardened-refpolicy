@@ -39,11 +39,6 @@ template(`mailman_domain_template',`
 	files_tmp_filetrans(mailman_$1_t, mailman_$1_tmp_t, { file dir })
 
 	auth_use_nsswitch(mailman_$1_t)
-
-	ifdef(`distro_gentoo',`
-		# Bug #536666 - Assign mailman_domain to all mailman domains
-		typeattribute mailman_$1_t mailman_domain;
-	')
 ')
 
 #######################################
