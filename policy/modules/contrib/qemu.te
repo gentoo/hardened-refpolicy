@@ -85,8 +85,6 @@ ifdef(`distro_gentoo',`
 	#
 	# Local policy
 	#
-	type qemu_var_run_t;
-	files_pid_file(qemu_var_run_t)
 
 	# VNC/GDB support
 	allow qemu_t self:tcp_socket create_stream_socket_perms;
