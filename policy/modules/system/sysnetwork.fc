@@ -71,7 +71,7 @@ ifdef(`distro_gentoo',`
 
 ifdef(`distro_debian',`
 /run/network(/.*)?	gen_context(system_u:object_r:net_conf_t,s0)
-/var/run/resolvconf/.* --	gen_context(system_u:object_r:net_conf_t,s0)
+/run/resolvconf/.* --	gen_context(system_u:object_r:net_conf_t,s0)
 ')
 
 ifdef(`distro_gentoo',`
