@@ -109,7 +109,7 @@ after_success:
   - make DESTDIR=${HOME}/tmp install
   - make DESTDIR=${HOME}/tmp install-headers
   - make DESTDIR=${HOME}/tmp install-src
-  - make DESTDIR=${HOME}/tmp install-doc
+  - make DESTDIR=${HOME}/tmp install-docs
   - make DESTDIR=${HOME}/tmp install-appconfig
 
 script:
