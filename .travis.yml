@@ -102,8 +102,6 @@ install:
 
   # Drop build.conf settings to listen to env vars
   - sed -r -i -e '/(DIRECT_INITRC|MONOLITHIC|TYPE|DISTRO|SYSTEMD|WERROR)/d' build.conf
-
-after_success:
   - make xml
   - make html
   - make DESTDIR=${HOME}/tmp install
