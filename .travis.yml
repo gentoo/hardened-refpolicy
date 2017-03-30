@@ -102,13 +102,6 @@ install:
 
   # Drop build.conf settings to listen to env vars
   - sed -r -i -e '/(DIRECT_INITRC|MONOLITHIC|TYPE|DISTRO|SYSTEMD|WERROR)/d' build.conf
-  - make xml
-  - make html
-  - make DESTDIR=${HOME}/tmp install
-  - make DESTDIR=${HOME}/tmp install-headers
-  - make DESTDIR=${HOME}/tmp install-src
-  - make DESTDIR=${HOME}/tmp install-docs
-  - make DESTDIR=${HOME}/tmp install-appconfig
 
 script:
   - echo $TYPE $DISTRO $DIRECT_INITRC $MONOLITHIC $SYSTEMD $WERROR
@@ -117,6 +110,15 @@ script:
   - make conf
   - make
   - make validate
+
+  - make xml
+  - make html
+
+  - make DESTDIR=${HOME}/tmp install
+  - make DESTDIR=${HOME}/tmp install-headers
+  - make DESTDIR=${HOME}/tmp install-src
+  - make DESTDIR=${HOME}/tmp install-docs
+  - make DESTDIR=${HOME}/tmp install-appconfig
 
 branches:
   only:
