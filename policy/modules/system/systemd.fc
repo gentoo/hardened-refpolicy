@@ -48,8 +48,10 @@
 /run/systemd/nspawn(/.*)?	gen_context(system_u:object_r:systemd_nspawn_var_run_t,s0)
 /run/systemd/machines(/.*)?	gen_context(system_u:object_r:systemd_machined_var_run_t,s0)
 
+ifdef(`init_systemd',`
 /run/tmpfiles\.d	-d	gen_context(system_u:object_r:systemd_tmpfiles_conf_t,s0)
 /run/tmpfiles\.d/.*		<<none>>
+')
 
 /var/log/journal(/.*)?		gen_context(system_u:object_r:systemd_journal_t,s0)
 /run/log/journal(/.*)?		gen_context(system_u:object_r:systemd_journal_t,s0)

@@ -23,9 +23,9 @@ files_type(modules_conf_t)
 type modules_dep_t;
 files_type(modules_dep_t)
 
+type kmod_tmpfiles_conf_t;
+typealias kmod_tmpfiles_conf_t alias { kmod_var_run_t systemd_kmod_conf_t };
 ifdef(`init_systemd',`
-	type kmod_tmpfiles_conf_t;
-	typealias kmod_tmpfiles_conf_t alias { kmod_var_run_t systemd_kmod_conf_t };
 	systemd_tmpfiles_conf_file(kmod_tmpfiles_conf_t)
 	systemd_tmpfiles_conf_filetrans(kmod_t, kmod_tmpfiles_conf_t, file)
 ')
@@ -194,5 +194,5 @@ ifdef(`distro_gentoo',`
 
 	# for /run/tmpfiles.d/kmod.conf
 	tmpfiles_create_var_run_files(kmod_t)
-	filetrans_add_pattern(kmod_t, tmpfiles_var_run_t, kmod_var_run_t, file)
+	filetrans_add_pattern(kmod_t, tmpfiles_var_run_t, kmod_tmpfiles_conf_t, file)
 ')

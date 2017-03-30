@@ -1,6 +1,8 @@
 
+ifndef(`init_systemd',`
 /etc/tmpfiles.d(/.*)?				gen_context(system_u:object_r:tmpfiles_conf_t,s0)
 /run/tmpfiles.d(/.*)?				gen_context(system_u:object_r:tmpfiles_var_run_t,s0)
+')
 
 /usr/bin/tmpfiles				--	gen_context(system_u:object_r:tmpfiles_exec_t,s0)
 /usr/lib/rc/bin/checkpath			--	gen_context(system_u:object_r:tmpfiles_exec_t,s0)
