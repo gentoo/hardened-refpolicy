@@ -56,6 +56,8 @@ files_tmp_filetrans(android_tools_t, android_tmp_t, { file dir })
 manage_dirs_pattern(android_tools_t, android_tmp_t, android_tmp_t)
 manage_files_pattern(android_tools_t, android_tmp_t, android_tmp_t)
 
+corecmd_list_bin(android_tools_t)
+
 corenet_tcp_bind_adb_port(android_tools_t)
 corenet_tcp_bind_generic_node(android_tools_t)
 corenet_tcp_connect_adb_port(android_tools_t)
@@ -63,10 +65,14 @@ corenet_tcp_connect_adb_port(android_tools_t)
 dev_read_sysfs(android_tools_t)
 dev_rw_generic_usb_dev(android_tools_t)
 
+files_read_etc_files(android_tools_t)
+
 userdom_manage_user_home_content_dirs(android_tools_t)
 userdom_manage_user_home_content_files(android_tools_t)
 userdom_search_user_home_content(android_tools_t)
 userdom_use_user_terminals(android_tools_t)
+
+sysnet_dns_name_resolve(android_tools_t)
 
 
 ############################
