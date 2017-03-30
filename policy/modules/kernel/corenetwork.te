@@ -2,7 +2,7 @@
 # This is a generated file!  Instead of modifying this file, the
 # corenetwork.te.in or corenetwork.te.m4 file should be modified.
 #
-policy_module(corenetwork, 1.21.0)
+policy_module(corenetwork, 1.23.3)
 
 ########################################
 #
@@ -867,6 +867,14 @@ typeattribute kismet_port_t unreserved_port_type;
 portcon tcp 2501 gen_context(system_u:object_r:kismet_port_t,s0)
 
 
+type kdeconnect_port_t, port_type, defined_port_type;
+type kdeconnect_client_packet_t, packet_type, client_packet_type;
+type kdeconnect_server_packet_t, packet_type, server_packet_type;
+typeattribute kdeconnect_port_t unreserved_port_type;
+portcon tcp 1714 gen_context(system_u:object_r:kdeconnect_port_t,s0)
+portcon udp 1714 gen_context(system_u:object_r:kdeconnect_port_t,s0)
+
+
 type kprop_port_t, port_type, defined_port_type;
 type kprop_client_packet_t, packet_type, client_packet_type;
 type kprop_server_packet_t, packet_type, server_packet_type;
@@ -902,6 +910,7 @@ portcon udp 389 gen_context(system_u:object_r:ldap_port_t,s0)
 portcon tcp 636 gen_context(system_u:object_r:ldap_port_t,s0)
 portcon udp 636 gen_context(system_u:object_r:ldap_port_t,s0)
 portcon tcp 3268 gen_context(system_u:object_r:ldap_port_t,s0)
+portcon tcp 3269 gen_context(system_u:object_r:ldap_port_t,s0)
 
 
 type lirc_port_t, port_type, defined_port_type;
@@ -909,6 +918,14 @@ type lirc_client_packet_t, packet_type, client_packet_type;
 type lirc_server_packet_t, packet_type, server_packet_type;
 typeattribute lirc_port_t unreserved_port_type;
 portcon tcp 8765 gen_context(system_u:object_r:lirc_port_t,s0)
+
+
+type llmnr_port_t, port_type, defined_port_type;
+type llmnr_client_packet_t, packet_type, client_packet_type;
+type llmnr_server_packet_t, packet_type, server_packet_type;
+typeattribute llmnr_port_t unreserved_port_type;
+portcon tcp 5355 gen_context(system_u:object_r:llmnr_port_t,s0)
+portcon udp 5355 gen_context(system_u:object_r:llmnr_port_t,s0)
 
 
 type lmtp_port_t, port_type, defined_port_type;
@@ -959,6 +976,21 @@ type mmcc_server_packet_t, packet_type, server_packet_type;
 typeattribute mmcc_port_t unreserved_port_type;
 portcon tcp 5050 gen_context(system_u:object_r:mmcc_port_t,s0)
 portcon udp 5050 gen_context(system_u:object_r:mmcc_port_t,s0)
+
+
+type mon_port_t, port_type, defined_port_type;
+type mon_client_packet_t, packet_type, client_packet_type;
+type mon_server_packet_t, packet_type, server_packet_type;
+typeattribute mon_port_t unreserved_port_type;
+portcon tcp 2583 gen_context(system_u:object_r:mon_port_t,s0)
+portcon udp 2583 gen_context(system_u:object_r:mon_port_t,s0)
+
+
+type monit_port_t, port_type, defined_port_type;
+type monit_client_packet_t, packet_type, client_packet_type;
+type monit_server_packet_t, packet_type, server_packet_type;
+typeattribute monit_port_t unreserved_port_type;
+portcon tcp 2812 gen_context(system_u:object_r:monit_port_t,s0)
 
 
 type monopd_port_t, port_type, defined_port_type;
@@ -1248,6 +1280,7 @@ type postgrey_port_t, port_type, defined_port_type;
 type postgrey_client_packet_t, packet_type, client_packet_type;
 type postgrey_server_packet_t, packet_type, server_packet_type;
 typeattribute postgrey_port_t unreserved_port_type;
+portcon tcp 10023 gen_context(system_u:object_r:postgrey_port_t,s0)
 portcon tcp 60000 gen_context(system_u:object_r:postgrey_port_t,s0)
 
 
@@ -1360,6 +1393,7 @@ type redis_client_packet_t, packet_type, client_packet_type;
 type redis_server_packet_t, packet_type, server_packet_type;
 typeattribute redis_port_t unreserved_port_type;
 portcon tcp 6379 gen_context(system_u:object_r:redis_port_t,s0)
+portcon tcp 26379 gen_context(system_u:object_r:redis_port_t,s0)
 
 
 type repository_port_t, port_type, defined_port_type;
@@ -1400,6 +1434,8 @@ typeattribute rndc_port_t reserved_port_type;
 typeattribute rndc_port_t rpc_port_type;
 portcon tcp 953 gen_context(system_u:object_r:rndc_port_t,s0)
 portcon udp 953 gen_context(system_u:object_r:rndc_port_t,s0)
+portcon tcp 8953 gen_context(system_u:object_r:rndc_port_t,s0)
+portcon udp 8953 gen_context(system_u:object_r:rndc_port_t,s0)
 
 
 type router_port_t, port_type, defined_port_type;
@@ -1433,7 +1469,9 @@ type rtorrent_port_t, port_type, defined_port_type;
 type rtorrent_client_packet_t, packet_type, client_packet_type;
 type rtorrent_server_packet_t, packet_type, server_packet_type;
 typeattribute rtorrent_port_t unreserved_port_type;
+portcon tcp 6881 gen_context(system_u:object_r:rtorrent_port_t,s0)
 portcon udp 6881 gen_context(system_u:object_r:rtorrent_port_t,s0)
+portcon tcp 6926 gen_context(system_u:object_r:rtorrent_port_t,s0)
 
 
 type rtsp_port_t, port_type, defined_port_type;
@@ -1611,6 +1649,27 @@ type swat_server_packet_t, packet_type, server_packet_type;
 typeattribute swat_port_t reserved_port_type;
 typeattribute swat_port_t rpc_port_type;
 portcon tcp 901 gen_context(system_u:object_r:swat_port_t,s0)
+
+
+type syncthing_port_t, port_type, defined_port_type;
+type syncthing_client_packet_t, packet_type, client_packet_type;
+type syncthing_server_packet_t, packet_type, server_packet_type;
+typeattribute syncthing_port_t unreserved_port_type;
+portcon tcp 22000 gen_context(system_u:object_r:syncthing_port_t,s0)
+
+
+type syncthing_admin_port_t, port_type, defined_port_type;
+type syncthing_admin_client_packet_t, packet_type, client_packet_type;
+type syncthing_admin_server_packet_t, packet_type, server_packet_type;
+typeattribute syncthing_admin_port_t unreserved_port_type;
+portcon tcp 8384 gen_context(system_u:object_r:syncthing_admin_port_t,s0)
+
+
+type syncthing_discovery_port_t, port_type, defined_port_type;
+type syncthing_discovery_client_packet_t, packet_type, client_packet_type;
+type syncthing_discovery_server_packet_t, packet_type, server_packet_type;
+typeattribute syncthing_discovery_port_t unreserved_port_type;
+portcon udp 21027 gen_context(system_u:object_r:syncthing_discovery_port_t,s0)
 
 
 type sype_transport_port_t, port_type, defined_port_type;
