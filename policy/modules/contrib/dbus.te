@@ -1,4 +1,4 @@
-policy_module(dbus, 1.22.4)
+policy_module(dbus, 1.22.5)
 
 gen_require(`
 	class dbus all_dbus_perms;
@@ -147,6 +147,13 @@ ifdef(`distro_gentoo',`
 	optional_policy(`
 		cpufreqselector_dbus_chat(system_dbusd_t)
 	')
+')
+
+optional_policy(`
+	# for /run/systemd/users/*
+	systemd_read_logind_pids(system_dbusd_t)
+	systemd_write_inherited_logind_sessions_pipes(system_dbusd_t)
+	systemd_write_logind_pid_pipes(system_dbusd_t)
 ')
 
 optional_policy(`
