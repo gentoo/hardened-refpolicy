@@ -46,6 +46,7 @@ ifdef(`distro_gentoo',`
 /usr/sbin/lvdisplay		--	gen_context(system_u:object_r:lvm_exec_t,s0)
 /usr/sbin/lvextend		--	gen_context(system_u:object_r:lvm_exec_t,s0)
 /usr/sbin/lvm			--	gen_context(system_u:object_r:lvm_exec_t,s0)
+/usr/sbin/lvmetad		--	gen_context(system_u:object_r:lvm_exec_t,s0)
 /usr/sbin/lvm\.static		--	gen_context(system_u:object_r:lvm_exec_t,s0)
 /usr/sbin/lvmchange		--	gen_context(system_u:object_r:lvm_exec_t,s0)
 /usr/sbin/lvmdiskscan		--	gen_context(system_u:object_r:lvm_exec_t,s0)
@@ -97,6 +98,7 @@ ifdef(`distro_gentoo',`
 /var/lock/lvm(/.*)?			gen_context(system_u:object_r:lvm_lock_t,s0)
 /run/multipathd\.sock		-s	gen_context(system_u:object_r:lvm_var_run_t,s0)
 /run/dmevent.*				gen_context(system_u:object_r:lvm_var_run_t,s0)
+/run/lvm(/.*)?				gen_context(system_u:object_r:lvm_var_run_t,s0)
 
 ifdef(`distro_gentoo',`
 # Bug 529430 comment 7
