@@ -102,10 +102,6 @@ ifdef(`distro_gentoo',`
 /run/lvm(/.*)?				gen_context(system_u:object_r:lvm_var_run_t,s0)
 
 ifdef(`distro_gentoo',`
-# Bug 529430 comment 7
-/usr/sbin/lvmetad		--	gen_context(system_u:object_r:lvm_exec_t,s0)
-/run/lvm(/.*)?				gen_context(system_u:object_r:lvm_var_run_t,s0)
-
 # Bug 529430 comment 8
 /usr/sbin/dmeventd		--	gen_context(system_u:object_r:lvm_exec_t,s0)
 ')
