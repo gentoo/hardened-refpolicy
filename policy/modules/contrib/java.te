@@ -165,6 +165,13 @@ ifdef(`distro_gentoo',`
 	')
 ')
 
+corecmd_search_bin(java_t)
+
+locallogin_use_fds(java_t)
+
+userdom_read_user_tmp_files(java_t)
+userdom_use_user_ttys(java_t)
+
 optional_policy(`
 	xserver_user_x_domain_template(java, java_t, java_tmpfs_t)
 ')
