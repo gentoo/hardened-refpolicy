@@ -149,6 +149,12 @@ ifdef(`distro_gentoo',`
 	')
 ')
 
+ifdef(`init_systemd', `
+	# gdm3 causes system_dbusd_t to want this access
+	dev_rw_dri(system_dbusd_t)
+	dev_rw_input_dev(system_dbusd_t)
+')
+
 optional_policy(`
 	# for /run/systemd/users/*
 	systemd_read_logind_pids(system_dbusd_t)
