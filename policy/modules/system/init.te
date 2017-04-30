@@ -1350,7 +1350,6 @@ ifdef(`distro_gentoo',`
 	# needs to chmod some devices in early boot
 	dev_setattr_generic_chr_files(initrc_t)
 
-	files_create_pid_dirs(initrc_t)
 	files_dontaudit_write_usr_dirs(initrc_t)
 	files_manage_generic_tmp_dirs(initrc_t)
 	files_manage_generic_tmp_files(initrc_t)

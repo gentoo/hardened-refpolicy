@@ -7232,26 +7232,6 @@ interface(`files_unconfined',`
 
 ########################################
 ## <summary>
-##	Create PID directories.
-## </summary>
-## <param name="domain">
-##	<summary>
-##	Domain allowed access.
-##	</summary>
-## </param>
-#
-interface(`files_create_pid_dirs',`
-	gen_require(`
-		type var_t, var_run_t;
-	')
-
-	allow $1 var_t:dir search_dir_perms;
-	allow $1 var_run_t:lnk_file read_lnk_file_perms;
-	create_dirs_pattern($1, var_run_t, var_run_t)
-')
-
-########################################
-## <summary>
 ##	Create, read, write, and delete symbolic links in
 ##	/etc that are dynamically created on boot.
 ## </summary>
