@@ -236,8 +236,4 @@ ifdef(`distro_gentoo',`
 	optional_policy(`
 		rtorrent_role(unconfined_r, unconfined_t)
 	')
-
-	optional_policy(`
-		xserver_role(unconfined_r, unconfined_t)
-	')
 ')
