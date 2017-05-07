@@ -89,10 +89,12 @@ xdg_cache_home_content(chromium_xdg_cache_t)
 #
 
 # execmem for load in plugins
-allow chromium_t self:process { execmem getsched setcap setrlimit setsched sigkill signal };
-allow chromium_t self:fifo_file rw_fifo_file_perms;;
+allow chromium_t self:process { execmem getsched getcap setcap setrlimit setsched sigkill signal };
+allow chromium_t self:fifo_file rw_fifo_file_perms;
 allow chromium_t self:sem create_sem_perms;
 allow chromium_t self:netlink_kobject_uevent_socket client_stream_socket_perms;
+# cap_userns sys_admin for the sandbox
+allow chromium_t self:cap_userns { sys_admin sys_chroot sys_ptrace };
 
 allow chromium_t chromium_exec_t:file execute_no_trans;
 
@@ -135,6 +137,7 @@ domtrans_pattern(chromium_t, chromium_sandbox_exec_t, chromium_sandbox_t)
 domtrans_pattern(chromium_t, chromium_naclhelper_exec_t, chromium_naclhelper_t)
 
 kernel_list_proc(chromium_t)
+kernel_read_net_sysctls(chromium_t)
 
 corecmd_exec_bin(chromium_t)
 # Look for /etc/gentoo-release through a shell invocation running find
