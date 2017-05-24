@@ -1103,6 +1103,25 @@ interface(`logging_read_generic_logs',`
 
 ########################################
 ## <summary>
+##	Map generic log files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <rolecap/>
+#
+interface(`logging_mmap_generic_logs',`
+	gen_require(`
+		type var_log_t;
+	')
+
+	allow $1 var_log_t:file map;
+')
+
+########################################
+## <summary>
 ##	Write generic log files.
 ## </summary>
 ## <param name="domain">
@@ -1367,4 +1386,22 @@ interface(`logging_syslog_managed_log_dir',`
 
 	logging_log_file($1)
 	logging_log_filetrans(syslogd_t, $1, dir, $2)
+')
+
+#######################################
+## <summary>
+##	Map files in /run/log/journal/ directory.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`logging_mmap_journal',`
+	gen_require(`
+		type syslogd_var_run_t;
+	')
+
+	allow $1 syslogd_var_run_t:file map;
 ')
