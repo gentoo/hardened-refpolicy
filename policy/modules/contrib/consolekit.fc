@@ -9,8 +9,3 @@
 /run/ConsoleKit(/.*)?	gen_context(system_u:object_r:consolekit_var_run_t,s0)
 /run/consolekit\.pid	--	gen_context(system_u:object_r:consolekit_var_run_t,s0)
 /run/console-kit-daemon\.pid	--	gen_context(system_u:object_r:consolekit_var_run_t,s0)
-
-ifdef(`distro_gentoo',`
-# Bug 497986
-/usr/lib/ConsoleKit/.*	--	gen_context(system_u:object_r:bin_t,s0)
-')
