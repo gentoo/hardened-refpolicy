@@ -224,9 +224,6 @@ ifdef(`distro_gentoo',`
 	#
 
 	# Fix bug 535988
-	allow netutils_t self:process getcap;
-	allow netutils_t self:capability setpcap;
-
 	kernel_request_load_module(netutils_t)
 	kernel_dontaudit_search_debugfs(netutils_t)
 
