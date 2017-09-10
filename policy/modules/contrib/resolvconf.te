@@ -31,6 +31,8 @@ corecmd_exec_shell(resolvconf_t)
 files_pid_filetrans(resolvconf_t, resolvconf_var_run_t, { dir file })
 files_read_etc_files(resolvconf_t)
 
+miscfiles_read_localization(resolvconf_t)
+
 sysnet_manage_config(resolvconf_t)
 
 optional_policy(`
