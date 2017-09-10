@@ -335,7 +335,25 @@ interface(`udev_relabelto_db',`
 
 ########################################
 ## <summary>
-## 	Search through udev pid content
+##	Allow process to relabelto sockets in /run/udev
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`udev_relabelto_db_sockets',`
+	gen_require(`
+		type udev_var_run_t;
+	')
+
+	allow $1 udev_var_run_t:sock_file relabelto_sock_file_perms;
+')
+
+########################################
+## <summary>
+##	Search through udev pid content
 ## </summary>
 ## <param name="domain">
 ##	<summary>
