@@ -474,6 +474,7 @@ interface(`portage_read_config',`
 	files_search_etc($1)
 	list_dirs_pattern($1, portage_conf_t, portage_conf_t)
 	read_files_pattern($1, portage_conf_t, portage_conf_t)
+	allow $1 portage_conf_t:file map;
 	read_lnk_files_pattern($1, portage_conf_t, portage_conf_t)
 ')
 
@@ -495,6 +496,7 @@ interface(`portage_read_ebuild',`
 	files_search_usr($1)
 	list_dirs_pattern($1, portage_ebuild_t, portage_ebuild_t)
 	read_files_pattern($1, portage_ebuild_t, portage_ebuild_t)
+	allow $1 portage_ebuild_t:file map;
 	read_lnk_files_pattern($1, portage_ebuild_t, portage_ebuild_t)
 ')
 
@@ -535,6 +537,7 @@ interface(`portage_read_srcrepo',`
 	files_search_usr($1)
 	list_dirs_pattern($1, portage_ebuild_t, portage_srcrepo_t)
 	read_files_pattern($1, portage_srcrepo_t, portage_srcrepo_t)
+	allow $1 portage_srcrepo_t:file map;
 	read_lnk_files_pattern($1, portage_srcrepo_t, portage_srcrepo_t)
 ')
 
