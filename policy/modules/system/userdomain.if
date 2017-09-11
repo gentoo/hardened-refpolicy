@@ -1670,7 +1670,7 @@ interface(`userdom_dontaudit_list_user_home_dirs',`
 
 ########################################
 ## <summary>
-##	Manage user home directories.
+##	Create user home directories.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -1688,7 +1688,7 @@ interface(`userdom_create_user_home_dirs',`
 
 ########################################
 ## <summary>
-##	Create user home directories.
+##	Manage user home directories.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -2013,7 +2013,7 @@ interface(`userdom_dontaudit_append_user_home_content_files',`
 
 ########################################
 ## <summary>
-##	Do not audit attempts to relabel user home files.
+##	Do not audit attempts to write user home files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -2069,7 +2069,7 @@ interface(`userdom_delete_user_home_content_files',`
 
 ########################################
 ## <summary>
-##	Do not audit attempts to write user home files.
+##	Do not audit attempts to relabel user home files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -2293,9 +2293,8 @@ interface(`userdom_manage_user_home_content_sockets',`
 
 ########################################
 ## <summary>
-##	Create objects in a directory located
-##	in a user home directory with an
-##	automatic type transition to
+##	Create objects in a user home directory
+##	with an automatic type transition to
 ##	a specified private type.
 ## </summary>
 ## <param name="domain">
@@ -2330,8 +2329,9 @@ interface(`userdom_user_home_dir_filetrans',`
 
 ########################################
 ## <summary>
-##	Create objects in a user home directory
-##	with an automatic type transition to
+##	Create objects in a directory located
+##	in a user home directory with an
+##	automatic type transition to
 ##	a specified private type.
 ## </summary>
 ## <param name="domain">
@@ -2834,6 +2834,26 @@ interface(`userdom_tmp_filetrans_user_tmp',`
 
 ########################################
 ## <summary>
+##	Read user tmpfs files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`userdom_read_user_tmpfs_files',`
+	gen_require(`
+		type user_tmpfs_t;
+	')
+
+	read_files_pattern($1, user_tmpfs_t, user_tmpfs_t)
+	allow $1 user_tmpfs_t:dir list_dir_perms;
+	fs_search_tmpfs($1)
+')
+
+########################################
+## <summary>
 ##	relabel to/from user tmpfs dirs
 ## </summary>
 ## <param name="domain">
@@ -3172,26 +3192,6 @@ interface(`userdom_user_runtime_root_filetrans_user_runtime',`
 ########################################
 ## <summary>
 ##	Read and write user tmpfs files.
-## </summary>
-## <param name="domain">
-##	<summary>
-##	Domain allowed access.
-##	</summary>
-## </param>
-#
-interface(`userdom_read_user_tmpfs_files',`
-	gen_require(`
-		type user_tmpfs_t;
-	')
-
-	read_files_pattern($1, user_tmpfs_t, user_tmpfs_t)
-	allow $1 user_tmpfs_t:dir list_dir_perms;
-	fs_search_tmpfs($1)
-')
-
-########################################
-## <summary>
-##	Read user tmpfs files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
