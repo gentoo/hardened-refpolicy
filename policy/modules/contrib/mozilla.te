@@ -663,6 +663,7 @@ gen_tunable(mozilla_plugin_connect_all_unreserved, false)
 
 	manage_files_pattern(mozilla_t, mozilla_xdg_cache_t, mozilla_xdg_cache_t) 
 	manage_dirs_pattern(mozilla_t, mozilla_xdg_cache_t, mozilla_xdg_cache_t)
+	allow mozilla_t mozilla_xdg_cache_t:file map;
 	xdg_cache_home_filetrans(mozilla_t, mozilla_xdg_cache_t, dir, "mozilla")
 
 	corenet_dontaudit_tcp_bind_generic_port(mozilla_t)
