@@ -45,6 +45,7 @@ interface(`chromium_role',`
 	allow chromium_sandbox_t $2:fd use;
 	allow chromium_naclhelper_t $2:fd use;
 ')
+
 #######################################
 ## <summary>
 ##	Read-write access to Chromiums' temporary fifo files
@@ -62,6 +63,7 @@ interface(`chromium_rw_tmp_pipes',`
 
 	rw_fifo_files_pattern($1, chromium_tmp_t, chromium_tmp_t)
 ')
+
 ##############################################
 ## <summary>
 ##	Automatically use the specified type for resources created in chromium's
@@ -91,6 +93,7 @@ interface(`chromium_tmp_filetrans',`
 	search_dirs_pattern($1, chromium_tmp_t, chromium_tmp_t)
 	filetrans_pattern($1, chromium_tmp_t, $2, $3, $4)
 ')
+
 #######################################
 ## <summary>
 ## 	Execute a domain transition to the chromium domain (chromium_t)
@@ -110,6 +113,7 @@ interface(`chromium_domtrans',`
 	corecmd_search_bin($1)
 	domtrans_pattern($1, chromium_exec_t, chromium_t)
 ')
+
 #######################################
 ## <summary>
 ## 	Execute chromium in the chromium domain and allow the specified role to access the chromium domain

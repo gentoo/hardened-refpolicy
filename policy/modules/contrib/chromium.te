@@ -113,6 +113,7 @@ allow chromium_t chromium_naclhelper_t:process { share };
 
 # tmp has a wide class access (used for plugins)
 manage_files_pattern(chromium_t, chromium_tmp_t, chromium_tmp_t)
+allow chromium_t chromium_tmp_t:file map;
 manage_dirs_pattern(chromium_t, chromium_tmp_t, chromium_tmp_t)
 manage_lnk_files_pattern(chromium_t, chromium_tmp_t, chromium_tmp_t)
 manage_sock_files_pattern(chromium_t, chromium_tmp_t, chromium_tmp_t)
@@ -120,10 +121,12 @@ manage_fifo_files_pattern(chromium_t, chromium_tmp_t, chromium_tmp_t)
 files_tmp_filetrans(chromium_t, chromium_tmp_t, { file dir sock_file })
 
 manage_files_pattern(chromium_t, chromium_tmpfs_t, chromium_tmpfs_t)
+allow chromium_t chromium_tmpfs_t:file map;
 fs_tmpfs_filetrans(chromium_t, chromium_tmpfs_t, file)
 fs_tmpfs_filetrans(chromium_renderer_t, chromium_tmpfs_t, file)
 
 manage_files_pattern(chromium_t, chromium_xdg_config_t, chromium_xdg_config_t)
+allow chromium_t chromium_xdg_config_t:file map;
 manage_lnk_files_pattern(chromium_t, chromium_xdg_config_t, chromium_xdg_config_t)
 manage_dirs_pattern(chromium_t, chromium_xdg_config_t, chromium_xdg_config_t)
 xdg_config_home_filetrans(chromium_t, chromium_xdg_config_t, dir, "chromium")
