@@ -329,6 +329,7 @@ ifdef(`init_systemd',`
 	files_create_all_pid_sockets(init_t)
 	files_create_all_spool_sockets(init_t)
 	files_create_lock_dirs(init_t)
+	systemd_rw_networkd_netlink_route_sockets(init_t)
 	files_delete_all_pids(init_t)
 	files_delete_all_spool_sockets(init_t)
 	files_exec_generic_pid_files(init_t)
