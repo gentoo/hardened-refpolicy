@@ -72,7 +72,7 @@ interface(`portage_compile_domain',`
 		type portage_tmp_t, portage_tmpfs_t;
 	')
 
-	allow $1 self:capability { chown dac_override fowner fsetid mknod net_raw setgid setuid };
+	allow $1 self:capability { chown dac_override dac_read_search fowner fsetid mknod net_raw setgid setuid };
 	dontaudit $1 self:capability sys_chroot;
 	allow $1 self:process { transition signal_perms getsched setsched getsession getpgid setpgid getcap setcap share getattr setfscreate noatsecure siginh setrlimit rlimitinh dyntransition execmem setkeycreate setsockcreate getrlimit };
 	allow $1 self:fd use;
