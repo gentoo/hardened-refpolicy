@@ -45,7 +45,6 @@ manage_fifo_files_pattern(links_t, links_tmpfs_t, links_tmpfs_t)
 manage_sock_files_pattern(links_t, links_tmpfs_t, links_tmpfs_t)
 fs_tmpfs_filetrans(links_t, links_tmpfs_t, { file lnk_file sock_file fifo_file })
 
-
 domain_use_interactive_fds(links_t)
 
 auth_use_nsswitch(links_t)
@@ -54,6 +53,7 @@ userdom_use_user_terminals(links_t)
 
 corenet_tcp_connect_http_port(links_t)
 
+miscfiles_read_all_certs(links_t)
 miscfiles_read_localization(links_t)
 
 tunable_policy(`links_manage_user_files',`
