@@ -3966,6 +3966,7 @@ interface(`files_list_kernel_modules',`
 	')
 
 	allow $1 modules_object_t:dir list_dir_perms;
+	read_lnk_files_pattern($1, modules_object_t, modules_object_t)
 ')
 
 ########################################
