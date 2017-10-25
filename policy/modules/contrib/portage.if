@@ -124,6 +124,7 @@ interface(`portage_compile_domain',`
 	manage_lnk_files_pattern($1, portage_tmpfs_t, portage_tmpfs_t)
 	manage_fifo_files_pattern($1, portage_tmpfs_t, portage_tmpfs_t)
 	manage_sock_files_pattern($1, portage_tmpfs_t, portage_tmpfs_t)
+	allow $1 portage_tmpfs_t:file map;
 	fs_tmpfs_filetrans($1, portage_tmpfs_t, { dir file lnk_file sock_file fifo_file })
 
 	kernel_read_system_state($1)
