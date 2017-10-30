@@ -28,8 +28,8 @@ interface(`rtorrent_role',`
 
 	manage_files_pattern($2, rtorrent_home_t, rtorrent_home_t)
 
-	read_files_pattern($2, rtorrent_session_t, rtorrent_session_t)
-	list_dirs_pattern($2, rtorrent_session_t, rtorrent_session_t)
+	manage_files_pattern($2, rtorrent_session_t, rtorrent_session_t)
+	manage_dirs_pattern($2, rtorrent_session_t, rtorrent_session_t)
 
 	ps_process_pattern($2, rtorrent_t)
 ')

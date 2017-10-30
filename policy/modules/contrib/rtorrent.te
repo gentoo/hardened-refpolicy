@@ -54,10 +54,15 @@ corenet_tcp_sendrecv_all_ports(rtorrent_t)
 domain_use_interactive_fds(rtorrent_t)
 
 files_list_home(rtorrent_t)
+files_list_tmp(rtorrent_t)
+files_list_var(rtorrent_t)
 files_read_etc_files(rtorrent_t)
 
 fs_getattr_xattr_fs(rtorrent_t)
 
+kernel_read_system_state(rtorrent_t)
+
+miscfiles_read_generic_certs(rtorrent_t)
 miscfiles_read_localization(rtorrent_t)
 
 sysnet_read_config(rtorrent_t)
@@ -75,7 +80,8 @@ tunable_policy(`rtorrent_use_dht',`
 tunable_policy(`rtorrent_use_rsync',`
 	allow rtorrent_t self:unix_stream_socket { create connect write read };
 
-	corecmd_search_bin(rtorrent_t)  
+	corecmd_exec_bin(rtorrent_t)
+	corecmd_exec_shell(rtorrent_t)
 
 	corenet_sendrecv_rsync_client_packets(rtorrent_t)
 	corenet_tcp_connect_rsync_port(rtorrent_t)
