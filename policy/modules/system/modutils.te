@@ -25,6 +25,7 @@ files_type(modules_dep_t)
 
 type kmod_tmpfiles_conf_t;
 typealias kmod_tmpfiles_conf_t alias { kmod_var_run_t systemd_kmod_conf_t };
+files_config_file(kmod_tmpfiles_conf_t)
 ifdef(`init_systemd',`
 	systemd_tmpfiles_conf_file(kmod_tmpfiles_conf_t)
 	systemd_tmpfiles_conf_filetrans(kmod_t, kmod_tmpfiles_conf_t, file)
