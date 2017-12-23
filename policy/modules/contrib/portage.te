@@ -207,6 +207,7 @@ init_exec(portage_t)
 libs_run_ldconfig(portage_t, portage_roles)
 
 miscfiles_read_localization(portage_t)
+miscfiles_read_fonts(portage_t)
 
 # run setfiles -r
 seutil_run_setfiles(portage_t, portage_roles)
