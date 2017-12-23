@@ -40,7 +40,7 @@ userdom_user_tmpfs_file(dropbox_tmpfs_t)
 
 allow dropbox_t self:process { execmem signal_perms };
 allow dropbox_t self:fifo_file rw_fifo_file_perms;
-allow dropbox_t dropbox_home_t:file mmap_file_perms;
+allow dropbox_t dropbox_home_t:file mmap_exec_file_perms;
 
 # dropbox updates itself in /tmp then in ~/.dropbox-dist/
 can_exec(dropbox_t, dropbox_exec_t)
