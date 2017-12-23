@@ -164,6 +164,7 @@ interface(`portage_compile_domain',`
 
 	files_exec_etc_files($1)
 	files_exec_usr_src_files($1)
+	files_map_usr_files($1)
 
 	# Came up with bug #496328
 	fs_getattr_tmpfs($1)
