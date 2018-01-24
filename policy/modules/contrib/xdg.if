@@ -785,6 +785,8 @@ interface(`xdg_read_downloads_home',`
 
 	read_files_pattern($1, xdg_downloads_home_t, xdg_downloads_home_t)
 	allow $1 xdg_downloads_home_t:file map;
+	list_dirs_pattern($1, xdg_downloads_home_t, xdg_downloads_home_t)
+	read_lnk_files_pattern($1, xdg_downloads_home_t, xdg_downloads_home_t)
 
 	userdom_search_user_home_dirs($1)
 ')
@@ -807,6 +809,7 @@ interface(`xdg_read_videos_home',`
 	read_files_pattern($1, xdg_videos_home_t, xdg_videos_home_t)
 	allow $1 xdg_videos_home_t:file map;
 	list_dirs_pattern($1, xdg_videos_home_t, xdg_videos_home_t)
+	read_lnk_files_pattern($1, xdg_videos_home_t, xdg_videos_home_t)
 
 	userdom_search_user_home_dirs($1)
 ')
@@ -829,6 +832,7 @@ interface(`xdg_read_pictures_home',`
 	read_files_pattern($1, xdg_pictures_home_t, xdg_pictures_home_t)
 	allow $1 xdg_pictures_home_t:file map;
 	list_dirs_pattern($1, xdg_pictures_home_t, xdg_pictures_home_t)
+	read_lnk_files_pattern($1, xdg_pictures_home_t, xdg_pictures_home_t)
 
 	userdom_search_user_home_dirs($1)
 ')
@@ -851,6 +855,7 @@ interface(`xdg_read_music_home',`
 	read_files_pattern($1, xdg_music_home_t, xdg_music_home_t)
 	allow $1 xdg_music_home_t:file map;
 	list_dirs_pattern($1, xdg_music_home_t, xdg_music_home_t)
+	read_lnk_files_pattern($1, xdg_music_home_t, xdg_music_home_t)
 
 	userdom_search_user_home_dirs($1)
 ')
@@ -914,6 +919,7 @@ interface(`xdg_manage_downloads_home',`
 
 	manage_dirs_pattern($1, xdg_downloads_home_t, xdg_downloads_home_t)
 	manage_files_pattern($1, xdg_downloads_home_t, xdg_downloads_home_t)
+	manage_lnk_files_pattern($1, xdg_downloads_home_t, xdg_downloads_home_t)
 	allow $1 xdg_downloads_home_t:file map;
 ')
 
@@ -934,6 +940,7 @@ interface(`xdg_manage_documents_home',`
 
 	manage_dirs_pattern($1, xdg_documents_home_t, xdg_documents_home_t)
 	manage_files_pattern($1, xdg_documents_home_t, xdg_documents_home_t)
+	manage_lnk_files_pattern($1, xdg_documents_home_t, xdg_documents_home_t)
 	allow $1 xdg_documents_home_t:file map;
 ')
 
@@ -954,6 +961,7 @@ interface(`xdg_manage_music_home',`
 
 	manage_dirs_pattern($1, xdg_music_home_t, xdg_music_home_t)
 	manage_files_pattern($1, xdg_music_home_t, xdg_music_home_t)
+	manage_lnk_files_pattern($1, xdg_music_home_t, xdg_music_home_t)
 	allow $1 xdg_music_home_t:file map;
 ')
 
@@ -974,6 +982,7 @@ interface(`xdg_manage_pictures_home',`
 
 	manage_dirs_pattern($1, xdg_pictures_home_t, xdg_pictures_home_t)
 	manage_files_pattern($1, xdg_pictures_home_t, xdg_pictures_home_t)
+	manage_lnk_files_pattern($1, xdg_pictures_home_t, xdg_pictures_home_t)
 	allow $1 xdg_pictures_home_t:file map;
 ')
 
@@ -994,5 +1003,6 @@ interface(`xdg_manage_videos_home',`
 
 	manage_dirs_pattern($1, xdg_videos_home_t, xdg_videos_home_t)
 	manage_files_pattern($1, xdg_videos_home_t, xdg_videos_home_t)
+	manage_lnk_files_pattern($1, xdg_videos_home_t, xdg_videos_home_t)
 	allow $1 xdg_videos_home_t:file map;
 ')
