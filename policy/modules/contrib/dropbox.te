@@ -89,6 +89,7 @@ dev_read_urand(dropbox_t)
 libs_exec_ldconfig(dropbox_t)
 
 files_read_usr_files(dropbox_t)
+files_map_usr_files(dropbox_t)
 auth_use_nsswitch(dropbox_t)
 miscfiles_read_localization(dropbox_t)
 

@@ -8,7 +8,7 @@ HOME_DIR/\.dropbox-dist(/.*)?/dropboxd?  -- gen_context(system_u:object_r:dropbo
 
 /opt/bin/dropbox                         -l gen_context(system_u:object_r:dropbox_exec_t,s0)
 /opt/dropbox/.*py?\.?.*egg(/.*)?            gen_context(system_u:object_r:lib_t,s0)
-/opt/dropbox/lib.*\.so\..                -- gen_context(system_u:object_r:lib_t,s0)
+/opt/dropbox/lib.*\.so\.[0-9]+           -- gen_context(system_u:object_r:lib_t,s0)
 /opt/dropbox/dropboxd?                   -- gen_context(system_u:object_r:dropbox_exec_t,s0)
 /opt/dropbox/library\.zip                -l gen_context(system_u:object_r:lib_t,s0)
 
