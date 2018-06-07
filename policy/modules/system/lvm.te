@@ -393,8 +393,11 @@ ifdef(`distro_gentoo',`
 	create_dirs_pattern(lvm_t, lvm_etc_t, lvm_metadata_t)
 	# Bug 529430 comment 6
 	create_dirs_pattern(lvm_t, lvm_etc_t, lvm_etc_t)
-	# BUg 529430 comment 8
+	# Bug 529430 comment 8
 	manage_fifo_files_pattern(lvm_t, lvm_var_run_t, lvm_var_run_t)
+
+	# Bug 615300
+	init_read_script_pipes(lvm_t)
 
 	filetrans_pattern(lvm_t, lvm_etc_t, lvm_metadata_t, dir, "cache")
 

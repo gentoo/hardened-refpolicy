@@ -1861,6 +1861,24 @@ interface(`init_ptrace',`
 
 ########################################
 ## <summary>
+##	Read an init script unnamed pipe.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`init_read_script_pipes',`
+	gen_require(`
+		type initrc_t;
+	')
+
+	allow $1 initrc_t:fifo_file read_fifo_file_perms;
+')
+
+########################################
+## <summary>
 ##	Write an init script unnamed pipe.
 ## </summary>
 ## <param name="domain">
