@@ -228,6 +228,10 @@ optional_policy(`
 ')
 
 optional_policy(`
+	gpg_spec_domtrans(portage_t, portage_fetch_t)
+')
+
+optional_policy(`
 	modutils_run(portage_t, portage_roles)
 	#dontaudit update_modules_t portage_tmp_t:dir search_dir_perms;
 ')
@@ -253,7 +257,7 @@ allow portage_fetch_t self:process signal;
 allow portage_fetch_t self:capability { chown dac_read_search dac_override fowner fsetid };
 allow portage_fetch_t self:fifo_file rw_fifo_file_perms;
 allow portage_fetch_t self:tcp_socket { accept listen };
-allow portage_fetch_t self:unix_stream_socket create_socket_perms;
+allow portage_fetch_t self:unix_stream_socket { connectto create_stream_socket_perms };
 
 allow portage_fetch_t portage_conf_t:dir list_dir_perms;
 
@@ -264,6 +268,7 @@ allow portage_fetch_t portage_gpg_t:file manage_file_perms;
 
 allow portage_fetch_t portage_tmp_t:dir manage_dir_perms;
 allow portage_fetch_t portage_tmp_t:file manage_file_perms;
+allow portage_fetch_t portage_tmp_t:sock_file manage_sock_file_perms;
 
 read_files_pattern(portage_fetch_t, portage_conf_t, portage_conf_t)
 
@@ -300,8 +305,10 @@ corenet_tcp_connect_all_reserved_ports(portage_fetch_t)
 corenet_tcp_connect_generic_port(portage_fetch_t)
 # bug 540056
 corenet_tcp_connect_all_unreserved_ports(portage_fetch_t)
+corenet_udp_bind_generic_node(portage_fetch_t)
+corenet_udp_bind_all_unreserved_ports(portage_fetch_t)
 
-dev_dontaudit_read_rand(portage_fetch_t)
+dev_read_rand(portage_fetch_t)
 
 domain_use_interactive_fds(portage_fetch_t)
 
@@ -344,7 +351,13 @@ tunable_policy(`portage_read_user_content',`
 ')
 
 optional_policy(`
+	gpg_entry_type(portage_fetch_t)
 	gpg_exec(portage_fetch_t)
+	gpg_exec_agent(portage_fetch_t)
+')
+
+optional_policy(`
+	dirmngr_exec(portage_fetch_t)
 ')
 
 ##########################################
