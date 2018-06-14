@@ -204,56 +204,12 @@ optional_policy(`
 	telepathy_mission_control_read_state(gkeyringd_domain)
 ')
 
-ifdef(`distro_gentoo',`
-	type gnome_xdg_cache_home_t;
-	type gnome_xdg_config_t; # Fase out
-	type gnome_xdg_config_home_t;
-	type gnome_xdg_data_home_t;
-
-	xdg_cache_home_content(gnome_xdg_cache_home_t)
-	xdg_config_home_content(gnome_xdg_config_t)
-	xdg_config_home_content(gnome_xdg_config_home_t)
-	xdg_data_home_content(gnome_xdg_data_home_t)
-
-	##
-	## Keyring
-	##
-
-	# When gnome-keyring creates a .cache/keyring-.... make sure it is gnome_xdg_cache_home_t
-	xdg_cache_home_filetrans(gkeyringd_domain, gnome_xdg_cache_home_t, dir)
-	# Same for ~/.config and ~/.local stuff
-	xdg_config_home_filetrans(gkeyringd_domain, gnome_xdg_config_home_t, dir)
-	xdg_data_home_filetrans(gkeyringd_domain, gnome_xdg_data_home_t, dir)
-
-	allow gkeyringd_domain gnome_xdg_cache_home_t:file manage_file_perms;
-	allow gkeyringd_domain gnome_xdg_cache_home_t:sock_file manage_sock_file_perms;
-	manage_dirs_pattern(gkeyringd_domain, gnome_xdg_cache_home_t, gnome_xdg_cache_home_t)
-
-	allow gkeyringd_domain gnome_xdg_config_home_t:file manage_file_perms;
-	manage_dirs_pattern(gkeyringd_domain, gnome_xdg_config_home_t, gnome_xdg_config_home_t)
-
-	allow gkeyringd_domain gnome_xdg_data_home_t:file manage_file_perms;
-	manage_dirs_pattern(gkeyringd_domain, gnome_xdg_data_home_t, gnome_xdg_data_home_t)
-
-	##
-	## gconfd
-	##
-
-	xdg_cache_home_filetrans(gconfd_t, gnome_xdg_cache_home_t, dir)
-	xdg_config_home_filetrans(gconfd_t, gnome_xdg_config_home_t, dir)
-	xdg_data_home_filetrans(gconfd_t, gnome_xdg_data_home_t, dir)
-
-	# gconf stores settings for gnome, it needs access
-	allow gconfd_t gnome_xdg_cache_home_t:file manage_file_perms;
-	manage_dirs_pattern(gconfd_t, gnome_xdg_cache_home_t, gnome_xdg_cache_home_t)
-
-	allow gconfd_t gnome_xdg_config_home_t:file manage_file_perms;
-	manage_dirs_pattern(gconfd_t, gnome_xdg_config_home_t, gnome_xdg_config_home_t)
-
-	allow gconfd_t gnome_xdg_data_home_t:file manage_file_perms;
-	manage_dirs_pattern(gconfd_t, gnome_xdg_data_home_t, gnome_xdg_data_home_t)
-')
-
 optional_policy(`
 	xserver_rw_xsession_log(gkeyringd_domain)
+')
+
+ifdef(`distro_gentoo',`
+	typealias gnome_xdg_cache_t alias gnome_xdg_cache_home_t;
+	typealias gnome_xdg_config_t alias gnome_xdg_config_home_t;
+	typealias gnome_xdg_data_t alias gnome_xdg_data_home_t;
 ')
