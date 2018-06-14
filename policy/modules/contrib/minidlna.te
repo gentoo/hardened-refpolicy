@@ -104,31 +104,3 @@ tunable_policy(`minidlna_read_generic_user_content',`
 	userdom_dontaudit_read_user_home_content_files(minidlna_t)
 	userdom_dontaudit_read_user_tmp_files(minidlna_t)
 ')
-
-ifdef(`distro_gentoo',`
-
-## <desc>
-##	<p>
-##	Determine whether minidlna can read all user content.
-##	</p>
-## </desc>
-gen_tunable(minidlna_read_all_user_content, false)
-
-## <desc>
-##	<p>
-##	Determine whether minidlna can read users xdg videos, pictures and music labeled files
-##	</p>
-## </desc>
-gen_tunable(minidlna_read_xdg_media_content, false)
-
-	tunable_policy(`minidlna_read_all_user_content',`
-		userdom_list_user_tmp(minidlna_t)
-		userdom_read_all_user_home_content(minidlna_t)
-	')
-	
-	tunable_policy(`minidlna_read_xdg_media_content',`
-		xdg_read_music_home(minidlna_t)
-		xdg_read_pictures_home(minidlna_t)
-		xdg_read_videos_home(minidlna_t)
-	')
-')
