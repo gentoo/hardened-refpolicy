@@ -147,5 +147,5 @@ ifdef(`distro_suse',`
 ')
 
 ifdef(`distro_gentoo',`
-HOME_DIR/\.local/share/xorg(/.*)?	gen_context(system_u:object_r:xserver_xdg_data_home_t,s0)
+HOME_DIR/\.local/share/xorg(/.*)?	gen_context(system_u:object_r:xserver_xdg_data_t,s0)
 ')
