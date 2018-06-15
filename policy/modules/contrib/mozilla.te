@@ -13,19 +13,6 @@ policy_module(mozilla, 2.13.2)
 ## </desc>
 gen_tunable(mozilla_execstack, false)
 
-## <desc>
-## <p>
-## Allow mozilla to use java plugins
-## </p>
-## <p>
-## Some plugins use named pipes inside temporary directories created
-## by the browser to communicate with the java process. If other browsers
-## need to use java plugins as well, they will get search privileges within
-## the temporary directories of mozilla
-## </p>
-## </desc>
-gen_tunable(mozilla_use_java, false)
-
 attribute_role mozilla_roles;
 attribute_role mozilla_plugin_roles;
 attribute_role mozilla_plugin_config_roles;
@@ -60,6 +47,10 @@ userdom_user_tmp_file(mozilla_plugin_tmp_t)
 type mozilla_plugin_tmpfs_t;
 userdom_user_tmpfs_file(mozilla_plugin_tmpfs_t)
 
+optional_policy(`
+	pulseaudio_tmpfs_content(mozilla_plugin_tmpfs_t)
+')
+
 type mozilla_plugin_rw_t;
 files_type(mozilla_plugin_rw_t)
 
@@ -75,6 +66,10 @@ type mozilla_tmpfs_t;
 typealias mozilla_tmpfs_t alias { user_mozilla_tmpfs_t staff_mozilla_tmpfs_t sysadm_mozilla_tmpfs_t };
 typealias mozilla_tmpfs_t alias { auditadm_mozilla_tmpfs_t secadm_mozilla_tmpfs_t };
 userdom_user_tmpfs_file(mozilla_tmpfs_t)
+
+optional_policy(`
+	pulseaudio_tmpfs_content(mozilla_tmpfs_t)
+')
 
 type mozilla_xdg_cache_t;
 xdg_cache_content(mozilla_xdg_cache_t)
@@ -127,6 +122,8 @@ stream_connect_pattern(mozilla_t, mozilla_plugin_tmpfs_t, mozilla_plugin_tmpfs_t
 manage_files_pattern(mozilla_t, mozilla_xdg_cache_t, mozilla_xdg_cache_t)
 manage_dirs_pattern(mozilla_t, mozilla_xdg_cache_t, mozilla_xdg_cache_t)
 xdg_cache_filetrans(mozilla_t, mozilla_xdg_cache_t, dir, "mozilla")
+
+can_exec(mozilla_t, { mozilla_exec_t mozilla_plugin_rw_t mozilla_plugin_home_t })
 
 kernel_read_kernel_sysctls(mozilla_t)
 kernel_read_network_state(mozilla_t)
@@ -207,7 +204,13 @@ miscfiles_dontaudit_setattr_fonts_cache_dirs(mozilla_t)
 
 userdom_use_user_ptys(mozilla_t)
 
+userdom_manage_user_tmp_dirs(mozilla_t)
+userdom_manage_user_tmp_files(mozilla_t)
+
 userdom_user_content_access_template(mozilla, { mozilla_t mozilla_plugin_t })
+userdom_user_home_dir_filetrans_user_home_content(mozilla_t, { dir file })
+
+userdom_write_user_tmp_sockets(mozilla_t)
 
 mozilla_run_plugin(mozilla_t, mozilla_roles)
 mozilla_run_plugin_config(mozilla_t, mozilla_roles)
@@ -219,6 +222,17 @@ xdg_manage_downloads(mozilla_t)
 xserver_user_x_domain_template(mozilla, mozilla_t, mozilla_tmpfs_t)
 xserver_dontaudit_read_xdm_tmp_files(mozilla_t)
 xserver_dontaudit_getattr_xdm_tmp_sockets(mozilla_t)
+
+ifndef(`enable_mls',`
+	fs_list_dos(mozilla_t)
+	fs_read_dos_files(mozilla_t)
+
+	fs_search_removable(mozilla_t)
+	fs_read_removable_files(mozilla_t)
+	fs_read_removable_symlinks(mozilla_t)
+
+	fs_read_iso9660_files(mozilla_t)
+')
 
 tunable_policy(`allow_execmem',`
 	allow mozilla_t self:process execmem;
@@ -293,6 +307,13 @@ optional_policy(`
 ')
 
 optional_policy(`
+	java_exec(mozilla_t)
+	java_manage_generic_home_content(mozilla_t)
+	java_manage_java_tmp(mozilla_t)
+	java_home_filetrans_java_home(mozilla_t, dir, ".java")
+')
+
+optional_policy(`
 	lpd_run_lpr(mozilla_t, mozilla_roles)
 ')
 
@@ -312,7 +333,6 @@ optional_policy(`
 ')
 
 optional_policy(`
-	java_manage_java_tmp(mozilla_t)
 	thunderbird_domtrans(mozilla_t)
 ')
 
@@ -344,6 +364,15 @@ userdom_user_home_dir_filetrans(mozilla_plugin_t, mozilla_home_t, dir, ".galeon"
 userdom_user_home_dir_filetrans(mozilla_plugin_t, mozilla_home_t, dir, ".mozilla")
 userdom_user_home_dir_filetrans(mozilla_plugin_t, mozilla_home_t, dir, ".netscape")
 userdom_user_home_dir_filetrans(mozilla_plugin_t, mozilla_home_t, dir, ".phoenix")
+
+userdom_user_home_dir_filetrans(mozilla_plugin_t, mozilla_plugin_home_t, dir, ".adobe")
+userdom_user_home_dir_filetrans(mozilla_plugin_t, mozilla_plugin_home_t, dir, ".macromedia")
+userdom_user_home_dir_filetrans(mozilla_plugin_t, mozilla_plugin_home_t, dir, ".gnash")
+userdom_user_home_dir_filetrans(mozilla_plugin_t, mozilla_plugin_home_t, dir, ".gcjwebplugin")
+userdom_user_home_dir_filetrans(mozilla_plugin_t, mozilla_plugin_home_t, dir, ".icedteaplugin")
+userdom_user_home_dir_filetrans(mozilla_plugin_t, mozilla_plugin_home_t, dir, ".spicec")
+userdom_user_home_dir_filetrans(mozilla_plugin_t, mozilla_plugin_home_t, dir, ".ICAClient")
+userdom_user_home_dir_filetrans(mozilla_plugin_t, mozilla_plugin_home_t, dir, "zimbrauserdata")
 
 filetrans_pattern(mozilla_plugin_t, mozilla_home_t, mozilla_plugin_home_t, dir, "plugins")
 
@@ -381,6 +410,8 @@ corecmd_exec_shell(mozilla_plugin_t)
 
 corenet_all_recvfrom_netlabel(mozilla_plugin_t)
 corenet_all_recvfrom_unlabeled(mozilla_plugin_t)
+corenet_tcp_sendrecv_generic_if(mozilla_plugin_t)
+corenet_tcp_sendrecv_generic_node(mozilla_plugin_t)
 
 corenet_sendrecv_asterisk_client_packets(mozilla_plugin_t)
 corenet_tcp_connect_asterisk_port(mozilla_plugin_t)
@@ -458,6 +489,7 @@ dev_dontaudit_getattr_all_chr_files(mozilla_plugin_t)
 domain_use_interactive_fds(mozilla_plugin_t)
 domain_dontaudit_read_all_domains_state(mozilla_plugin_t)
 
+files_exec_usr_files(mozilla_plugin_t)
 files_list_mnt(mozilla_plugin_t)
 files_read_config_files(mozilla_plugin_t)
 files_read_usr_files(mozilla_plugin_t)
@@ -470,15 +502,42 @@ fs_search_auto_mountpoints(mozilla_plugin_t)
 term_getattr_all_ttys(mozilla_plugin_t)
 term_getattr_all_ptys(mozilla_plugin_t)
 
+application_exec(mozilla_plugin_t)
+
 auth_use_nsswitch(mozilla_plugin_t)
+
+libs_exec_ld_so(mozilla_plugin_t)
+libs_exec_lib_files(mozilla_plugin_t)
 
 logging_send_syslog_msg(mozilla_plugin_t)
 
 miscfiles_read_localization(mozilla_plugin_t)
 miscfiles_read_fonts(mozilla_plugin_t)
 miscfiles_read_generic_certs(mozilla_plugin_t)
+miscfiles_dontaudit_setattr_fonts_dirs(mozilla_plugin_t)
+miscfiles_dontaudit_setattr_fonts_cache_dirs(mozilla_plugin_t)
+
+userdom_manage_user_tmp_dirs(mozilla_plugin_t)
+userdom_manage_user_tmp_files(mozilla_plugin_t)
+
+userdom_user_home_dir_filetrans_user_home_content(mozilla_plugin_t, { dir file })
+
+userdom_write_user_tmp_sockets(mozilla_plugin_t)
+
+userdom_dontaudit_use_user_terminals(mozilla_plugin_t)
 
 xdg_read_config_files(mozilla_plugin_t)
+
+ifndef(`enable_mls',`
+	fs_list_dos(mozilla_plugin_t)
+	fs_read_dos_files(mozilla_plugin_t)
+
+	fs_search_removable(mozilla_plugin_t)
+	fs_read_removable_files(mozilla_plugin_t)
+	fs_read_removable_symlinks(mozilla_plugin_t)
+
+	fs_read_iso9660_files(mozilla_plugin_t)
+')
 
 tunable_policy(`allow_execmem',`
 	allow mozilla_plugin_t self:process execmem;
@@ -498,6 +557,11 @@ tunable_policy(`use_samba_home_dirs',`
 	fs_manage_cifs_dirs(mozilla_plugin_t)
 	fs_manage_cifs_files(mozilla_plugin_t)
 	fs_manage_cifs_symlinks(mozilla_plugin_t)
+')
+
+optional_policy(`
+	alsa_read_config(mozilla_plugin_t)
+	alsa_read_home_files(mozilla_plugin_t)
 ')
 
 optional_policy(`
@@ -671,24 +735,17 @@ gen_tunable(mozilla_bind_all_unreserved_ports, false)
 ## </desc>
 gen_tunable(mozilla_plugin_connect_all_unreserved, false)
 
-	type mozilla_xdg_cache_t;
-	xdg_cache_home_content(mozilla_xdg_cache_t)
-
 	#####################
 	#
 	# Mozilla policy
 	#
 
-	allow mozilla_t mozilla_exec_t:file { execute_no_trans };
 	allow mozilla_t mozilla_plugin_t:process { rlimitinh siginh noatsecure };
 	allow mozilla_t self:process execmem; # Startup of firefox (otherwise immediately killed)
 
 	manage_fifo_files_pattern(mozilla_t, mozilla_tmp_t, mozilla_tmp_t)
 
-	manage_files_pattern(mozilla_t, mozilla_xdg_cache_t, mozilla_xdg_cache_t) 
-	manage_dirs_pattern(mozilla_t, mozilla_xdg_cache_t, mozilla_xdg_cache_t)
 	allow mozilla_t mozilla_xdg_cache_t:file map;
-	xdg_cache_home_filetrans(mozilla_t, mozilla_xdg_cache_t, dir, "mozilla")
 
 	corenet_dontaudit_tcp_bind_generic_port(mozilla_t)
 	corenet_dontaudit_tcp_sendrecv_generic_port(mozilla_t)
@@ -702,17 +759,6 @@ gen_tunable(mozilla_plugin_connect_all_unreserved, false)
 	# This deprecates userdom_use_user_ptys(mozilla_t) mentioned earlier
 	userdom_use_user_terminals(mozilla_t)
 
-	xdg_manage_downloads_home(mozilla_t)
-	xdg_read_config_home_files(mozilla_t)
-	xdg_read_data_home_files(mozilla_t)
-
-	#xserver_common_x_domain_template(mozilla_t, mozilla_tmpfs_t) is this
-	#not better than user_x_domain_template ?
-
-	# main refpolicy does not make this distinction anymore
-	# (allows manage rights automatically)
-	userdom_user_content_access_template(mozilla, { mozilla_t mozilla_plugin_t })
-
 	tunable_policy(`mozilla_bind_all_unreserved_ports',`
 		corenet_sendrecv_all_server_packets(mozilla_t)
 		corenet_tcp_bind_all_unreserved_ports(mozilla_t)
@@ -720,30 +766,12 @@ gen_tunable(mozilla_plugin_connect_all_unreserved, false)
 	')
 
 	optional_policy(`
-		tunable_policy(`mozilla_use_java',`
-			#java_noatsecure_domtrans(mozilla_t)
-			# refpolicy method below, but we might want to introduce
-			# specific domains for this (like mozilla_java_t)? TODO
-			java_exec(mozilla_t)
-			java_manage_generic_home_content(mozilla_t)
-		')
-		
-		java_home_filetrans_java_home(mozilla_t, dir, ".java")
-	
-		# Cannot handle optional_policy within tunable_policy
-		optional_policy(`
-			tunable_policy(`mozilla_use_java',`
-				chromium_tmp_filetrans(mozilla_t, mozilla_tmp_t, fifo_file)
-			')
-		')
+		# was in java tunable, upstream added unconditionally
+		chromium_tmp_filetrans(mozilla_t, mozilla_tmp_t, fifo_file)
 	')
 
 	optional_policy(`
 		nscd_socket_use(mozilla_t)
-	')
-
-	optional_policy(`
-		pulseaudio_client_domain(mozilla_t, mozilla_tmpfs_t)
 	')
 
 	ifdef(`use_alsa',`
@@ -762,8 +790,6 @@ gen_tunable(mozilla_plugin_connect_all_unreserved, false)
 	allow mozilla_plugin_t self:udp_socket create_socket_perms;
 	allow mozilla_plugin_t self:process execmem; # Needed for flash plugin
 
-	read_files_pattern(mozilla_plugin_t, mozilla_home_t, mozilla_home_t)
-
 	# Stupid google talk plugin runs find against /etc
 	files_dontaudit_getattr_all_dirs(mozilla_plugin_t)
 
@@ -771,13 +797,8 @@ gen_tunable(mozilla_plugin_connect_all_unreserved, false)
 	corenet_tcp_connect_pulseaudio_port(mozilla_plugin_t)
 	corenet_tcp_sendrecv_pulseaudio_port(mozilla_plugin_t)
 
-	miscfiles_dontaudit_setattr_fonts_cache_dirs(mozilla_plugin_t)
-	miscfiles_dontaudit_setattr_fonts_dirs(mozilla_plugin_t)
-
 	userdom_dontaudit_use_user_terminals(mozilla_plugin_t)
 	userdom_rw_user_tmpfs_files(mozilla_plugin_t)
-
-	xdg_read_config_home_files(mozilla_plugin_t)
 
 	xserver_user_x_domain_template(mozilla_plugin, mozilla_plugin_t, mozilla_plugin_tmpfs_t)
 
@@ -798,10 +819,6 @@ gen_tunable(mozilla_plugin_connect_all_unreserved, false)
 		googletalk_manage_plugin_xdg_config(mozilla_plugin_t)
 		googletalk_use_plugin_fds(mozilla_plugin_t)
 		googletalk_rw_inherited_plugin_unix_stream_sockets(mozilla_plugin_t)
-	')
-
-	optional_policy(`
-		pulseaudio_client_domain(mozilla_plugin_t, mozilla_plugin_tmpfs_t)
 	')
 
 	ifdef(`use_alsa',`
