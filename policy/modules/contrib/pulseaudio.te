@@ -306,14 +306,3 @@ optional_policy(`
 optional_policy(`
 	unconfined_signull(pulseaudio_client)
 ')
-
-ifdef(`distro_gentoo',`
-	typealias pulseaudio_home_t alias pulseaudio_xdg_config_t;
-
-	# ~/.config/pulse/
-	xdg_config_home_filetrans(pulseaudio_t, pulseaudio_home_t, dir, "pulse")
-	xdg_config_home_filetrans(pulseaudio_client, pulseaudio_home_t, dir, "pulse")
-
-	# /tmp/pulse-* gets created by the clients usually as user_tmp_t, bug 556526
-	userdom_list_user_tmp(pulseaudio_client)
-')
