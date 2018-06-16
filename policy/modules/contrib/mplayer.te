@@ -13,21 +13,6 @@ policy_module(mplayer, 2.7.1)
 ## </desc>
 gen_tunable(allow_mplayer_execstack, false)
 
-## <desc>
-## <p>
-## Allow mplayer to read user content
-## </p>
-## </desc>
-gen_tunable(mplayer_read_user_content, true)
-
-## <desc>
-## <p>
-## Allow mplayer to manage user content
-## </p>
-## </desc>
-gen_tunable(mplayer_manage_user_content, false)
-
-
 attribute_role mencoder_roles;
 attribute_role mplayer_roles;
 
@@ -98,8 +83,6 @@ userdom_use_user_terminals(mencoder_t)
 
 userdom_manage_user_tmp_dirs(mencoder_t)
 userdom_manage_user_tmp_files(mencoder_t)
-userdom_tmp_filetrans_user_tmp(mplayer_t, { dir file })
-userdom_user_runtime_filetrans_user_tmp(mplayer_t, { dir file })
 
 userdom_user_content_access_template(mplayer_mencoder, mencoder_t)
 
@@ -220,7 +203,14 @@ miscfiles_read_fonts(mplayer_t)
 
 userdom_use_user_terminals(mplayer_t)
 
+userdom_manage_user_tmp_dirs(mplayer_t)
+userdom_manage_user_tmp_files(mplayer_t)
+userdom_tmp_filetrans_user_tmp(mplayer_t, { dir file })
+userdom_user_runtime_filetrans_user_tmp(mplayer_t, { dir file })
+
 userdom_user_content_access_template(mplayer, mplayer_t)
+
+userdom_write_user_tmp_sockets(mplayer_t)
 
 xdg_read_music(mplayer_t)
 xdg_read_videos(mplayer_t)
@@ -280,26 +270,8 @@ ifdef(`distro_gentoo',`
 	# Local mplayer_t policy
 	#
 
-	xdg_manage_videos_home(mplayer_t)
-
-	tunable_policy(`mplayer_read_user_content',`
-		userdom_read_user_home_content_files(mplayer_t)
-		userdom_read_user_home_content_symlinks(mplayer_t)
-	')
-
-	tunable_policy(`mplayer_manage_user_content',`
-		userdom_manage_user_tmp_dirs(mplayer_t)
-		userdom_manage_user_tmp_files(mplayer_t)
+	tunable_policy(`mplayer_manage_generic_user_content',`
 		userdom_user_home_dir_filetrans_user_home_content(mplayer_t, { dir file })
-
-		userdom_manage_user_home_content_dirs(mplayer_t)
-		userdom_manage_user_home_content_files(mplayer_t)
-
-		userdom_write_user_tmp_sockets(mplayer_t)
-	')
-
-	optional_policy(`
-		pulseaudio_client_domain(mplayer_t, mplayer_tmpfs_t)
 	')
 
 	ifdef(`use_alsa',`
