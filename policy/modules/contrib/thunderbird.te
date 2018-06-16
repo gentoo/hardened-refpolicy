@@ -215,7 +215,8 @@ ifdef(`distro_gentoo',`
 	xdg_read_data_home_files(thunderbird_t)
 
 	optional_policy(`
-		pulseaudio_client_domain(thunderbird_t, thunderbird_tmpfs_t)
+		pulseaudio_domtrans(thunderbird_t)
+		pulseaudio_tmpfs_content(thunderbird_tmpfs_t)
 	')
 ')
 

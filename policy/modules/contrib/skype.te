@@ -29,6 +29,9 @@ ubac_constrained(skype_tmp_t)
 type skype_tmpfs_t;
 files_tmpfs_file(skype_tmpfs_t)
 ubac_constrained(skype_tmpfs_t)
+optional_policy(`
+	pulseaudio_tmpfs_content(skype_tmpfs_t)
+')
 
 ############################
 #
@@ -114,7 +117,7 @@ tunable_policy(`skype_manage_user_content',`
 ')
 
 optional_policy(`
-	pulseaudio_client_domain(skype_t, skype_tmpfs_t)
+	pulseaudio_domtrans(skype_t)
 ')
 
 optional_policy(`

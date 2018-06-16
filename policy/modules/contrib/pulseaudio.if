@@ -356,30 +356,6 @@ interface(`pulseaudio_tmpfs_content',`
 	typeattribute $1 pulseaudio_tmpfsfile;
 ')
 
-# Below are Gentoo specifics but ifdef distro_gentoo cannot be used in interfaces
-
-########################################
-## <summary>
-##	Mark the specified domain as a PulseAudio client domain
-##	and the related tmpfs file type as a (shared) PulseAudio tmpfs
-##	file type used for the shared memory access
-## </summary>
-## <param name="domain">
-##	<summary>
-##	Domain to become a PulseAudio client domain
-##	</summary>
-## </param>
-## <param name="tmpfstype">
-##	<summary>
-##	Tmpfs type used for shared memory of the given domain
-##	</summary>
-## </param>
-#
-interface(`pulseaudio_client_domain',`
-	pulseaudio_domtrans($1)
-	pulseaudio_tmpfs_content($2)
-')
-
 #######################################
 ## <summary>
 ##	Read pulseaudio tmpfs files.
@@ -417,4 +393,30 @@ interface(`pulseaudio_rw_tmpfs_files',`
 
 	fs_search_tmpfs($1)
 	rw_files_pattern($1, pulseaudio_tmpfs_t, pulseaudio_tmpfs_t)
+')
+
+# Below are Gentoo specifics but ifdef distro_gentoo cannot be used in interfaces
+
+########################################
+## <summary>
+##	Mark the specified domain as a PulseAudio client domain
+##	and the related tmpfs file type as a (shared) PulseAudio tmpfs
+##	file type used for the shared memory access
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to become a PulseAudio client domain
+##	</summary>
+## </param>
+## <param name="tmpfstype">
+##	<summary>
+##	Tmpfs type used for shared memory of the given domain
+##	</summary>
+## </param>
+#
+interface(`pulseaudio_client_domain',`
+	refpolicywarn(`$0($*) has been deprecated')
+
+	pulseaudio_domtrans($1)
+	pulseaudio_tmpfs_content($2)
 ')
