@@ -36,3 +36,19 @@ userdom_user_home_content(xdg_pictures_t)
 
 type xdg_videos_t; # customizable
 userdom_user_home_content(xdg_videos_t)
+
+ifdef(`distro_gentoo',`
+	# Compat aliases for the old gentoo-specific names
+	attribute xdg_cache_home_type;
+	attribute xdg_config_home_type;
+	attribute xdg_data_home_type;
+
+	typealias xdg_cache_t alias xdg_cache_home_t;
+	typealias xdg_config_t alias xdg_config_home_t;
+	typealias xdg_data_t alias xdg_data_home_t;
+	typealias xdg_documents_t alias xdg_documents_home_t;
+	typealias xdg_downloads_t alias xdg_downloads_home_t;
+	typealias xdg_music_t alias xdg_music_home_t;
+	typealias xdg_pictures_t alias xdg_pictures_home_t;
+	typealias xdg_videos_t alias xdg_videos_home_t;
+')
