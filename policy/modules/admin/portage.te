@@ -477,6 +477,8 @@ gen_tunable(portage_enable_test, false)
 
 	auth_use_nsswitch(portage_t)
 
+	dev_getattr_xserver_misc_dev(portage_t)
+
 	# Support cgroup FEATURES
 	fs_mount_cgroup(portage_t)
 	fs_mounton_cgroup(portage_t)
@@ -510,6 +512,8 @@ gen_tunable(portage_enable_test, false)
 
 	# install-xattr does listxattr() which throws a lot of this
 	dontaudit portage_sandbox_t self:capability sys_admin;
+
+	dev_getattr_xserver_misc_dev(portage_sandbox_t)
 
 	tunable_policy(`portage_enable_test',`
 		# lots of tests connect over loopback
