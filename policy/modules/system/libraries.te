@@ -145,3 +145,10 @@ optional_policy(`
 optional_policy(`
 	unconfined_domain(ldconfig_t)
 ')
+
+ifdef(`distro_gentoo',`
+	# on musl ldconfig is a shell script
+	allow ldconfig_t self:fifo_file rw_fifo_file_perms;
+	corecmd_exec_shell(ldconfig_t)
+	corecmd_exec_bin(ldconfig_t)
+')
