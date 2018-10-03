@@ -13,7 +13,8 @@ policy_module(tmpfiles, 1.0.0)
 ##	/run, /tmp, /dev and /var/lock.
 ##      </p>
 ## </desc>
-gen_tunable(tmpfiles_manage_all_non_security, false)
+# Enabled by default on Gentoo to fix https://bugs.gentoo.org/667122
+gen_tunable(tmpfiles_manage_all_non_security, true)
 
 type tmpfiles_t;
 type tmpfiles_exec_t;
