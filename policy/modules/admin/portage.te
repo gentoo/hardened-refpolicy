@@ -515,6 +515,8 @@ gen_tunable(portage_enable_test, false)
 
 	dev_getattr_xserver_misc_dev(portage_sandbox_t)
 
+	kernel_read_vm_overcommit_sysctl(portage_sandbox_t)
+
 	tunable_policy(`portage_enable_test',`
 		# lots of tests connect over loopback
 		corenet_tcp_bind_all_unreserved_ports(portage_sandbox_t)
