@@ -560,6 +560,13 @@ optional_policy(`
 	portage_eselect_module(semanage_t)
 ')
 
+ifdef(`init_systemd',`
+	optional_policy(`
+		init_dbus_chat(semanage_t)
+		dbus_system_bus_client(semanage_t)
+	')
+')
+
 optional_policy(`
 	locallogin_use_fds(semanage_t)
 ')
