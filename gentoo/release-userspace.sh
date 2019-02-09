@@ -70,8 +70,9 @@ setLiveReleaseDate() {
         git diff --cached --exit-code >/dev/null 2>&1 || die "Uncommitted changes"
 
         # update header and release date
-        sed -i "s@Copyright 1999-201. Gentoo Foundation@Copyright 1999-$(date '+%Y') Gentoo Foundation@" "${PN}-9999.ebuild"
+        sed -i "s@Copyright 1999-201. Gentoo .*@Copyright 1999-$(date '+%Y') Gentoo Authors@" "${PN}-9999.ebuild"
         sed -i "/^MY_RELEASEDATE=/s/.*/MY_RELEASEDATE=\"${RELEASEDATE}\"/" "${PN}-9999.ebuild"
+        sed -i "/SRC_URI/s@raw.githubusercontent.com/wiki/SELinuxProject/selinux/files/releases@github.com/SELinuxProject/selinux/releases/download@" "${PN}-9999.ebuild"
 
         # commit changes
         git add "${PN}-9999.ebuild"
