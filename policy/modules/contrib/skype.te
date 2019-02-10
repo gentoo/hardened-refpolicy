@@ -64,7 +64,7 @@ manage_sock_files_pattern(skype_t, skype_tmp_t, skype_tmp_t)
 files_tmp_filetrans(skype_t, skype_tmp_t, { dir file sock_file })
 
 kernel_dontaudit_search_sysctl(skype_t)
-kernel_dontaudit_read_kernel_sysctls(skype_t)
+kernel_dontaudit_read_kernel_sysctl(skype_t)
 kernel_read_network_state(skype_t)
 kernel_read_system_state(skype_t)
 
