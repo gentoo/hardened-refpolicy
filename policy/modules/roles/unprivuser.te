@@ -217,10 +217,6 @@ ifdef(`distro_gentoo',`
 	')
 
 	optional_policy(`
-		chromium_role(user_r, user_t)
-	')
-
-	optional_policy(`
 		devicekit_dbus_chat_disk(user_t)
 		devicekit_dbus_chat_power(user_t)
 	')

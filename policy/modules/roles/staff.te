@@ -229,10 +229,6 @@ ifdef(`distro_gentoo',`
 	')
 
 	optional_policy(`
-		chromium_role(staff_r, staff_t)
-	')
-
-	optional_policy(`
 		# bug 531784
 		devicekit_dbus_chat_disk(staff_t)
 		devicekit_dbus_chat_power(staff_t)
