@@ -412,7 +412,6 @@ ifdef(`distro_gentoo',`
 	init_domtrans_script(udev_t)
 ')
 
-
 ########################################
 #
 # udevadm Local policy
