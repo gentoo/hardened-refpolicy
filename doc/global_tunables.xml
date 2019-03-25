@@ -106,3 +106,11 @@ and may change other protocols.
 </p>
 </desc>
 </tunable>
+<tunable name="user_udp_server" dftval="false">
+<desc>
+<p>
+Allow users to run UDP servers (bind to ports and accept connection from
+the same domain and outside users)
+</p>
+</desc>
+</tunable>
