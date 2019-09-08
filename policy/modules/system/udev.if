@@ -307,10 +307,10 @@ interface(`udev_rw_db',`
 interface(`udev_create_db_dirs',`
 	gen_require(`
 		type udev_tbl_t;
-		type udev_var_run_t;
+		type udev_runtime_t;
 	')
 
-	create_dirs_pattern($1, udev_var_run_t, udev_tbl_t)
+	create_dirs_pattern($1, udev_runtime_t, udev_tbl_t)
 ')
 
 
@@ -338,10 +338,10 @@ interface(`udev_create_db_dirs',`
 interface(`udev_pid_filetrans_db',`
 	gen_require(`
 		type udev_tbl_t;
-		type udev_var_run_t;
+		type udev_runtime_t;
 	')
 
-	filetrans_pattern($1, udev_var_run_t, udev_tbl_t, $2, $3)
+	filetrans_pattern($1, udev_runtime_t, udev_tbl_t, $2, $3)
 ')
 
 ########################################
@@ -356,12 +356,12 @@ interface(`udev_pid_filetrans_db',`
 #
 interface(`udev_relabelto_db',`
 	gen_require(`
-		type udev_var_run_t;
+		type udev_runtime_t;
 	')
 
 	files_search_pids($1)
-	allow $1 udev_var_run_t:file relabelto_file_perms;
-	allow $1 udev_var_run_t:lnk_file relabelto_file_perms;
+	allow $1 udev_runtime_t:file relabelto_file_perms;
+	allow $1 udev_runtime_t:lnk_file relabelto_file_perms;
 ')
 
 ########################################
@@ -376,10 +376,10 @@ interface(`udev_relabelto_db',`
 #
 interface(`udev_relabelto_db_sockets',`
 	gen_require(`
-		type udev_var_run_t;
+		type udev_runtime_t;
 	')
 
-	allow $1 udev_var_run_t:sock_file relabelto_sock_file_perms;
+	allow $1 udev_runtime_t:sock_file relabelto_sock_file_perms;
 ')
 
 ########################################
@@ -394,11 +394,11 @@ interface(`udev_relabelto_db_sockets',`
 #
 interface(`udev_search_pids',`
 	gen_require(`
-		type udev_var_run_t;
+		type udev_runtime_t;
 	')
 
 	files_search_var_lib($1)
-	search_dirs_pattern($1, udev_var_run_t, udev_var_run_t)
+	search_dirs_pattern($1, udev_runtime_t, udev_runtime_t)
 ')
 
 ########################################
@@ -413,11 +413,11 @@ interface(`udev_search_pids',`
 #
 interface(`udev_list_pids',`
 	gen_require(`
-		type udev_var_run_t;
+		type udev_runtime_t;
 	')
 
 	files_search_pids($1)
-	allow $1 udev_var_run_t:dir list_dir_perms;
+	allow $1 udev_runtime_t:dir list_dir_perms;
 ')
 
 ########################################
@@ -433,11 +433,11 @@ interface(`udev_list_pids',`
 #
 interface(`udev_manage_pid_dirs',`
 	gen_require(`
-		type udev_var_run_t;
+		type udev_runtime_t;
 	')
 
 	files_search_var_lib($1)
-	manage_dirs_pattern($1, udev_var_run_t, udev_var_run_t)
+	manage_dirs_pattern($1, udev_runtime_t, udev_runtime_t)
 ')
 
 ########################################
@@ -452,11 +452,11 @@ interface(`udev_manage_pid_dirs',`
 #
 interface(`udev_read_pid_files',`
 	gen_require(`
-		type udev_var_run_t;
+		type udev_runtime_t;
 	')
 
 	files_search_pids($1)
-	read_files_pattern($1, udev_var_run_t, udev_var_run_t)
+	read_files_pattern($1, udev_runtime_t, udev_runtime_t)
 ')
 
 
@@ -472,10 +472,10 @@ interface(`udev_read_pid_files',`
 #
 interface(`udev_dontaudit_rw_pid_files',`
 	gen_require(`
-		type udev_var_run_t;
+		type udev_runtime_t;
 	')
 
-	dontaudit $1 udev_var_run_t:file { read write };
+	dontaudit $1 udev_runtime_t:file { read write };
 ')
 
 ########################################
@@ -491,16 +491,16 @@ interface(`udev_dontaudit_rw_pid_files',`
 #
 interface(`udev_manage_pid_files',`
 	gen_require(`
-		type udev_var_run_t;
+		type udev_runtime_t;
 	')
 
 	files_search_pids($1)
-	manage_files_pattern($1, udev_var_run_t, udev_var_run_t)
+	manage_files_pattern($1, udev_runtime_t, udev_runtime_t)
 ')
 
 ########################################
 ## <summary>
-##	Write dirs in /var/run with the udev_var_run file type.
+##	Write dirs in /var/run with the udev_runtime file type.
 ##	This method is deprecated in favor of the init_daemon_run_dir call.
 ## </summary>
 ## <param name="domain">
@@ -605,10 +605,10 @@ interface(`udevadm_exec',`
 interface(`udev_pid_filetrans_rules',`
 	gen_require(`
 		type udev_rules_t;
-		type udev_var_run_t;
+		type udev_runtime_t;
 	')
 
-	filetrans_pattern($1, udev_var_run_t, udev_rules_t, $2, $3)
+	filetrans_pattern($1, udev_runtime_t, udev_rules_t, $2, $3)
 ')
 
 ########################################
@@ -624,9 +624,9 @@ interface(`udev_pid_filetrans_rules',`
 interface(`udev_create_rules_dirs',`
 	gen_require(`
 		type udev_rules_t;
-		type udev_var_run_t;
+		type udev_runtime_t;
 	')
 
-	create_dirs_pattern($1, udev_var_run_t, udev_rules_t)
+	create_dirs_pattern($1, udev_runtime_t, udev_rules_t)
 ')
 

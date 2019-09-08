@@ -16,9 +16,9 @@
 
 /var/log/chrony(/.*)?				gen_context(system_u:object_r:chronyd_var_log_t,s0)
 
-/run/chronyd?(/.*)?				gen_context(system_u:object_r:chronyd_var_run_t,s0)
-/run/chronyd\.pid			--	gen_context(system_u:object_r:chronyd_var_run_t,s0)
-/run/chronyd\.sock			-s	gen_context(system_u:object_r:chronyd_var_run_t,s0)
+/run/chronyd?(/.*)?				gen_context(system_u:object_r:chronyd_runtime_t,s0)
+/run/chronyd\.pid			--	gen_context(system_u:object_r:chronyd_runtime_t,s0)
+/run/chronyd\.sock			-s	gen_context(system_u:object_r:chronyd_runtime_t,s0)
 
 ifdef(`distro_gentoo',`
 /etc/chrony/chrony\.keys	--	gen_context(system_u:object_r:chronyd_keys_t,s0)
