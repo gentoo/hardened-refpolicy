@@ -67,6 +67,11 @@ interface(`auth_use_pam',`
 		optional_policy(`
 			fprintd_dbus_chat($1)
 		')
+
+		optional_policy(`
+			systemd_dbus_chat_logind($1)
+			systemd_write_inherited_logind_sessions_pipes($1)
+		')
 	')
 
 	optional_policy(`

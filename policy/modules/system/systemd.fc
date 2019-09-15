@@ -16,6 +16,10 @@
 /usr/bin/systemd-tty-ask-password-agent	--	gen_context(system_u:object_r:systemd_passwd_agent_exec_t,s0)
 /usr/bin/systemd-notify			--	gen_context(system_u:object_r:systemd_notify_exec_t,s0)
 
+/usr/lib/elogind/elogind		--	gen_context(system_u:object_r:systemd_logind_exec_t,s0)
+/usr/lib/elogind/elogind-cgroups-agent	--	gen_context(system_u:object_r:systemd_logind_exec_t,s0)
+/usr/lib/elogind/elogind-uaccess-command	--	gen_context(system_u:object_r:systemd_logind_exec_t,s0)
+
 # Systemd generators
 /usr/lib/systemd/system-environment-generators/.*				--	gen_context(system_u:object_r:systemd_generator_exec_t,s0)
 /usr/lib/systemd/system-generators/.*							--	gen_context(system_u:object_r:systemd_generator_exec_t,s0)
@@ -71,6 +75,7 @@ HOME_DIR/\.local/share/systemd(/.*)?		gen_context(system_u:object_r:systemd_data
 /var/lib/systemd/rfkill(/.*)?	gen_context(system_u:object_r:systemd_rfkill_var_lib_t,s0)
 
 /run/\.nologin[^/]*	--	gen_context(system_u:object_r:systemd_sessions_runtime_t,s0)
+/run/elogind\.pid	--	gen_context(system_u:object_r:systemd_logind_runtime_t,s0)
 /run/nologin	--	gen_context(system_u:object_r:systemd_sessions_runtime_t,s0)
 
 /run/user/%{USERID}/systemd	-d	gen_context(system_u:object_r:systemd_user_runtime_t,s0)

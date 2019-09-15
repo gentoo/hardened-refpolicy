@@ -144,6 +144,9 @@ init_system_domain(systemd_locale_t, systemd_locale_exec_t)
 
 type systemd_logind_t;
 type systemd_logind_exec_t;
+optional_policy(`
+	dbus_system_domain(systemd_logind_t, systemd_logind_exec_t)
+')
 init_daemon_domain(systemd_logind_t, systemd_logind_exec_t)
 init_named_socket_activation(systemd_logind_t, systemd_logind_runtime_t)
 
@@ -154,6 +157,7 @@ init_mountpoint(systemd_logind_inhibit_runtime_t)
 type systemd_logind_runtime_t alias systemd_logind_var_run_t;
 files_runtime_file(systemd_logind_runtime_t)
 init_daemon_runtime_file(systemd_logind_runtime_t, dir, "systemd_logind")
+init_daemon_runtime_file(systemd_logind_runtime_t, file, "elogind.pid")
 init_mountpoint(systemd_logind_runtime_t)
 
 type systemd_logind_var_lib_t;
@@ -585,7 +589,7 @@ logging_send_syslog_msg(systemd_log_parse_env_type)
 # Logind local policy
 #
 
-allow systemd_logind_t self:capability { chown dac_override dac_read_search fowner sys_admin sys_tty_config };
+allow systemd_logind_t self:capability { chown dac_override dac_read_search fowner fsetid sys_admin sys_resource sys_tty_config };
 allow systemd_logind_t self:process { getcap setfscreate };
 allow systemd_logind_t self:netlink_kobject_uevent_socket create_socket_perms;
 allow systemd_logind_t self:unix_dgram_socket create_socket_perms;
@@ -597,6 +601,9 @@ init_var_lib_filetrans(systemd_logind_t, systemd_logind_var_lib_t, dir)
 manage_fifo_files_pattern(systemd_logind_t, systemd_logind_runtime_t, systemd_logind_runtime_t)
 manage_files_pattern(systemd_logind_t, systemd_logind_runtime_t, systemd_logind_runtime_t)
 allow systemd_logind_t systemd_logind_runtime_t:dir manage_dir_perms;
+files_runtime_filetrans(systemd_logind_t, systemd_logind_runtime_t, file)
+
+create_dirs_pattern(systemd_logind_t, systemd_machined_runtime_t, systemd_machined_runtime_t)
 
 manage_dirs_pattern(systemd_logind_t, systemd_logind_inhibit_runtime_t, systemd_logind_inhibit_runtime_t)
 manage_files_pattern(systemd_logind_t, systemd_logind_inhibit_runtime_t, systemd_logind_inhibit_runtime_t)
@@ -611,6 +618,8 @@ allow systemd_logind_t systemd_sessions_runtime_t:file manage_file_perms;
 allow systemd_logind_t systemd_sessions_runtime_t:fifo_file manage_fifo_file_perms;
 
 kernel_read_kernel_sysctls(systemd_logind_t)
+
+auth_write_login_records(systemd_logind_t)
 
 dev_getattr_dri_dev(systemd_logind_t)
 dev_getattr_generic_usb_dev(systemd_logind_t)
@@ -631,9 +640,12 @@ dev_setattr_video_dev(systemd_logind_t)
 
 domain_obj_id_change_exemption(systemd_logind_t)
 
+files_purge_tmp(systemd_logind_t)
 files_search_runtime(systemd_logind_t)
 
 fs_getattr_cgroup(systemd_logind_t)
+fs_manage_cgroup_dirs(systemd_logind_t)
+fs_manage_cgroup_files(systemd_logind_t)
 fs_getattr_tmpfs(systemd_logind_t)
 fs_getattr_tmpfs_dirs(systemd_logind_t)
 fs_list_tmpfs(systemd_logind_t)
@@ -642,6 +654,8 @@ fs_read_cgroup_files(systemd_logind_t)
 fs_read_efivarfs_files(systemd_logind_t)
 fs_relabelfrom_tmpfs_dirs(systemd_logind_t)
 fs_unmount_tmpfs(systemd_logind_t)
+
+logging_send_audit_msgs(systemd_logind_t)
 
 selinux_use_status_page(systemd_logind_t)
 
@@ -656,6 +670,7 @@ term_use_unallocated_ttys(systemd_logind_t)
 auth_manage_faillog(systemd_logind_t)
 auth_use_nsswitch(systemd_logind_t)
 
+init_create_runtime_dirs(systemd_logind_t)
 init_dbus_send_script(systemd_logind_t)
 init_get_all_units_status(systemd_logind_t)
 init_get_system_status(systemd_logind_t)
@@ -702,6 +717,14 @@ userdom_relabelto_user_runtime_dirs(systemd_logind_t)
 userdom_setattr_user_ttys(systemd_logind_t)
 userdom_use_user_ttys(systemd_logind_t)
 
+tunable_policy(`use_nfs_home_dirs',`
+       fs_read_nfs_files(systemd_logind_t)
+')
+
+tunable_policy(`use_samba_home_dirs',`
+       fs_read_cifs_files(systemd_logind_t)
+')
+
 # Needed to work around patch not yet merged into the systemd-logind supported on RHEL 7.x
 # The change in systemd by Nicolas Iooss on 02-Feb-2016 with hash 4b51966cf6c06250036e428608da92f8640beb96
 # should fix the problem where user directories in /run/user/$UID/ are not getting the proper context
@@ -740,6 +763,10 @@ optional_policy(`
 
 optional_policy(`
 	policykit_dbus_chat(systemd_logind_t)
+')
+
+optional_policy(`
+	shutdown_domtrans(systemd_logind_t)
 ')
 
 optional_policy(`

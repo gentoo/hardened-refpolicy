@@ -160,6 +160,8 @@ template(`sudo_role_template',`
 
 	optional_policy(`
 		dbus_system_bus_client($1_sudo_t)
+		systemd_dbus_chat_logind($1_sudo_t)
+		systemd_write_inherited_logind_sessions_pipes($1_sudo_t)
 
 		ifdef(`init_systemd',`
 			init_dbus_chat($1_sudo_t)
