@@ -22,7 +22,7 @@ env:
   - TYPE=mls DISTRO=gentoo MONOLITHIC=y SYSTEMD=y WERROR=y
 
 sudo: false
-dist: trusty
+dist: bionic
 
 cache:
   directories:
