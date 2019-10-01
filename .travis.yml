@@ -8,6 +8,7 @@ matrix:
 # for T in standard mls mcs ; do for D in arch debian gentoo ; do for I in n y ; do for M in y n ; do for S in n y ; do
 # echo "  - TYPE=$T DISTRO=$D DIRECT_INITRC=$I MONOLITHIC=$M SYSTEMD=$S" ; done ; done ; done ; done ; done
 env:
+  - LINT=true TYPE=standard
   - TYPE=standard DISTRO=gentoo MONOLITHIC=n SYSTEMD=n WERROR=y
   - TYPE=standard DISTRO=gentoo MONOLITHIC=n SYSTEMD=y WERROR=y
   - TYPE=standard DISTRO=gentoo MONOLITHIC=y SYSTEMD=n WERROR=y
@@ -85,6 +86,7 @@ install:
 script:
   - echo $TYPE $DISTRO $MONOLITHIC $SYSTEMD $WERROR
   - set -e
+  - if [ -n "$LINT" ] ; then ./testing/check_fc_files.py ; fi
   - make bare
   - make conf
   - make
