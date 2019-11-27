@@ -323,6 +323,7 @@ ifdef(`distro_gentoo',`
 /usr/share/GNUstep/Makefiles/mkinstalldirs	--	gen_context(system_u:object_r:bin_t,s0)
 /usr/share/hal/device-manager/hal-device-manager -- gen_context(system_u:object_r:bin_t,s0)
 /usr/share/hal/scripts(/.*)?		gen_context(system_u:object_r:bin_t,s0)
+/usr/share/ifupdown2/__main__\.py	--	gen_context(system_u:object_r:bin_t,s0)
 /usr/share/libalpm/scripts(/.*)?	gen_context(system_u:object_r:bin_t,s0)
 /usr/share/mc/extfs/.*		--	gen_context(system_u:object_r:bin_t,s0)
 /usr/share/Modules/init(/.*)?		gen_context(system_u:object_r:bin_t,s0)
