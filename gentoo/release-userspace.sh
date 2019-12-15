@@ -74,6 +74,9 @@ setLiveReleaseDate() {
         sed -i "/^MY_RELEASEDATE=/s/.*/MY_RELEASEDATE=\"${RELEASEDATE}\"/" "${PN}-9999.ebuild"
         sed -i "/SRC_URI/s@raw.githubusercontent.com/wiki/SELinuxProject/selinux/files/releases@github.com/SELinuxProject/selinux/releases/download@" "${PN}-9999.ebuild"
 
+        # no changes, skip
+        [[ -z "$(git status --porcelain -- .)" ]] && continue
+
         # commit changes
         git add "${PN}-9999.ebuild"
         git --no-pager diff --cached
