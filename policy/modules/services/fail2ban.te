@@ -163,9 +163,9 @@ ifdef(`distro_gentoo',`
 	files_dontaudit_write_usr_dirs(fail2ban_t)
 
 	# Fix bug 534256 - Startup fails without these
-	allow fail2ban_client_t fail2ban_var_run_t:dir write;
+	allow fail2ban_client_t fail2ban_runtime_t:dir write;
 
-	init_daemon_pid_file(fail2ban_var_run_t, dir, "fail2ban")
+	init_daemon_pid_file(fail2ban_runtime_t, dir, "fail2ban")
 	init_use_script_ptys(fail2ban_client_t)
 ')
 

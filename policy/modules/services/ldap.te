@@ -154,7 +154,7 @@ optional_policy(`
 ')
 
 ifdef(`distro_gentoo',`
-	init_daemon_pid_file(slapd_var_run_t, dir, "openldap")
+	init_daemon_pid_file(slapd_runtime_t, dir, "openldap")
 
 	########################################
 	#

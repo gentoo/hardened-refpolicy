@@ -449,10 +449,10 @@ interface(`mysql_admin',`
 #
 interface(`mysql_setattr_run_dirs',`
 	gen_require(`
-		type mysqld_var_run_t;
+		type mysqld_runtime_t;
 	')
 
-	setattr_dirs_pattern($1, mysqld_var_run_t, mysqld_var_run_t)
+	setattr_dirs_pattern($1, mysqld_runtime_t, mysqld_runtime_t)
 ')
 
 #######################################
@@ -467,10 +467,10 @@ interface(`mysql_setattr_run_dirs',`
 #
 interface(`mysql_create_run_dirs',`
 	gen_require(`
-		type mysqld_var_run_t;
+		type mysqld_runtime_t;
 	')
 
-	create_dirs_pattern($1, mysqld_var_run_t, mysqld_var_run_t)
+	create_dirs_pattern($1, mysqld_runtime_t, mysqld_runtime_t)
 ')
 
 #######################################

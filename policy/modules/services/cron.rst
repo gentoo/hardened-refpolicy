@@ -208,7 +208,7 @@ cron_var_lib_t
 crond_tmp_t
   is used for the temporary files created/managed by the cron daemon
 
-crond_var_run_t
+crond_runtime_t
   is used for the variable runtime information of the cron daemon
 
 POLICY

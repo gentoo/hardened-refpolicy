@@ -201,7 +201,7 @@ ifdef(`distro_gentoo',`
 	#
 
 	# Startup of courier-imapd creates /var/run/imapd.pid.lock and imapd.lock (bug 534030)
-	files_pid_filetrans(courier_tcpd_t, courier_var_run_t, file)
+	files_pid_filetrans(courier_tcpd_t, courier_runtime_t, file)
 
 	########################################
 	#

@@ -330,5 +330,5 @@ optional_policy(`
 ')
 
 ifdef(`distro_gentoo',`
-	init_daemon_pid_file(clamd_var_run_t, dir, "clamav")
+	init_daemon_pid_file(clamd_runtime_t, dir, "clamav")
 ')

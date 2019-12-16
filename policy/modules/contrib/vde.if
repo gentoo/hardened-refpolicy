@@ -19,7 +19,7 @@
 interface(`vde_role',`
 	gen_require(`
 		type vde_t, vde_tmp_t;
-		type vde_var_run_t;
+		type vde_runtime_t;
 		type vde_initrc_exec_t, vde_exec_t;
 	')
 
@@ -49,10 +49,10 @@ interface(`vde_role',`
 #
 interface(`vde_connect',`
 	gen_require(`
-		type vde_t, vde_var_run_t, vde_tmp_t;
+		type vde_t, vde_runtime_t, vde_tmp_t;
 	')
 	
-	allow $1 vde_var_run_t:sock_file write_sock_file_perms;
+	allow $1 vde_runtime_t:sock_file write_sock_file_perms;
 	allow $1 vde_t:unix_stream_socket { connectto };
 	allow $1 vde_t:unix_dgram_socket { sendto };
 	allow vde_t $1:unix_dgram_socket { sendto };

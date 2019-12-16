@@ -95,8 +95,8 @@ interface(`resolvconf_exec',`
 #
 interface(`resolvconf_generic_run_filetrans_run',`
 	gen_require(`
-		type resolvconf_var_run_t;
+		type resolvconf_runtime_t;
 	')
 
-	files_pid_filetrans($1, resolvconf_var_run_t, $2, $3)
+	files_pid_filetrans($1, resolvconf_runtime_t, $2, $3)
 ')

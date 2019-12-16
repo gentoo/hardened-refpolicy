@@ -355,7 +355,7 @@ ifdef(`distro_gentoo',`
 
 	rw_files_pattern(puppetmaster_t, puppet_log_t, puppet_log_t)
 
-	manage_files_pattern(puppetmaster_t, puppet_var_run_t, puppet_var_run_t)
+	manage_files_pattern(puppetmaster_t, puppet_runtime_t, puppet_runtime_t)
 
 	optional_policy(`
 		usermanage_check_exec_passwd(puppetmaster_t)

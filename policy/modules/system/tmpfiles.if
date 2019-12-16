@@ -10,14 +10,14 @@
 ##	</summary>
 ## </param>
 #
-interface(`tmpfiles_read_var_run',`
+interface(`tmpfiles_read_runtime',`
 	gen_require(`
-		type tmpfiles_var_run_t;
+		type tmpfiles_runtime_t;
 	')
 
 	files_search_pids($1)
-	allow $1 tmpfiles_var_run_t:dir list_dir_perms;
-	allow $1 tmpfiles_var_run_t:file read_file_perms;
+	allow $1 tmpfiles_runtime_t:dir list_dir_perms;
+	allow $1 tmpfiles_runtime_t:file read_file_perms;
 ')
 
 ########################################
@@ -30,14 +30,14 @@ interface(`tmpfiles_read_var_run',`
 ##	</summary>
 ## </param>
 #
-interface(`tmpfiles_create_var_run_files',`
+interface(`tmpfiles_create_runtime_files',`
 	gen_require(`
-		type tmpfiles_var_run_t;
+		type tmpfiles_runtime_t;
 	')
 
-	create_files_pattern($1, tmpfiles_var_run_t, tmpfiles_var_run_t)
+	create_files_pattern($1, tmpfiles_runtime_t, tmpfiles_runtime_t)
 
-	tmpfiles_read_var_run($1)
+	tmpfiles_read_runtime($1)
 ')
 
 ########################################
@@ -50,14 +50,14 @@ interface(`tmpfiles_create_var_run_files',`
 ##	</summary>
 ## </param>
 #
-interface(`tmpfiles_write_var_run_files',`
+interface(`tmpfiles_write_runtime_files',`
 	gen_require(`
-		type tmpfiles_var_run_t;
+		type tmpfiles_runtime_t;
 	')
 
-	write_files_pattern($1, tmpfiles_var_run_t, tmpfiles_var_run_t)
+	write_files_pattern($1, tmpfiles_runtime_t, tmpfiles_runtime_t)
 
-	tmpfiles_read_var_run($1)
+	tmpfiles_read_runtime($1)
 ')
 
 ########################################
@@ -70,14 +70,14 @@ interface(`tmpfiles_write_var_run_files',`
 ##	</summary>
 ## </param>
 #
-interface(`tmpfiles_manage_var_run_files',`
+interface(`tmpfiles_manage_runtime_files',`
 	gen_require(`
-		type tmpfiles_var_run_t;
+		type tmpfiles_runtime_t;
 	')
 
-	tmpfiles_read_var_run($1)
+	tmpfiles_read_runtime($1)
 
-	manage_files_pattern($1, tmpfiles_var_run_t, tmpfiles_var_run_t)
+	manage_files_pattern($1, tmpfiles_runtime_t, tmpfiles_runtime_t)
 ')
 
 ########################################

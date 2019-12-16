@@ -48,9 +48,9 @@ files_tmp_file(salt_master_tmp_t)
 type salt_master_tmpfs_t;
 files_tmpfs_file(salt_master_tmpfs_t)
 
-type salt_master_var_run_t;
-init_daemon_pid_file(salt_master_var_run_t, file, "salt-master.pid")
-files_pid_file(salt_master_var_run_t)
+type salt_master_runtime_t alias salt_master_var_run_t;
+init_daemon_pid_file(salt_master_runtime_t, file, "salt-master.pid")
+files_pid_file(salt_master_runtime_t)
 
 type salt_minion_t;
 type salt_minion_exec_t;
@@ -75,9 +75,9 @@ files_tmp_file(salt_minion_tmp_t)
 type salt_minion_tmpfs_t;
 files_tmpfs_file(salt_minion_tmpfs_t)
 
-type salt_minion_var_run_t;
-init_daemon_pid_file(salt_minion_var_run_t, file, "salt-minion.pid")
-files_pid_file(salt_minion_var_run_t)
+type salt_minion_runtime_t alias salt_minion_var_run_t;
+init_daemon_pid_file(salt_minion_runtime_t, file, "salt-minion.pid")
+files_pid_file(salt_minion_runtime_t)
 
 type salt_cache_t;
 files_type(salt_cache_t)
@@ -94,8 +94,8 @@ files_type(salt_sls_t)
 type salt_pki_t;
 files_type(salt_pki_t)
 
-type salt_var_run_t;
-files_pid_file(salt_var_run_t)
+type salt_runtime_t alias salt_var_run_t;
+files_pid_file(salt_runtime_t)
 
 #########################################
 #
@@ -150,11 +150,11 @@ can_exec(salt_master_t, salt_master_tmp_t)
 allow salt_master_t salt_master_tmpfs_t:file { manage_file_perms map };
 fs_tmpfs_filetrans(salt_master_t, salt_master_tmpfs_t, file)
 
-# salt_master_var_run_t
-allow salt_master_t salt_master_var_run_t:file manage_file_perms;
-allow salt_master_t salt_master_var_run_t:sock_file manage_sock_file_perms;
-manage_dirs_pattern(salt_master_t, salt_var_run_t, salt_master_var_run_t)
-filetrans_pattern(salt_master_t, salt_var_run_t, salt_master_var_run_t, dir)
+# salt_master_runtime_t
+allow salt_master_t salt_master_runtime_t:file manage_file_perms;
+allow salt_master_t salt_master_runtime_t:sock_file manage_sock_file_perms;
+manage_dirs_pattern(salt_master_t, salt_runtime_t, salt_master_runtime_t)
+filetrans_pattern(salt_master_t, salt_runtime_t, salt_master_runtime_t, dir)
 
 # salt_pki_t
 create_dirs_pattern(salt_master_t, salt_etc_t, salt_pki_t)
@@ -164,10 +164,10 @@ filetrans_pattern(salt_master_t, salt_etc_t, salt_pki_t, dir, "pki")
 read_files_pattern(salt_master_t, salt_sls_t, salt_sls_t)
 allow salt_master_t salt_sls_t:dir list_dir_perms;
 
-# salt_var_run_t
-allow salt_master_t salt_var_run_t:dir create_dir_perms;
-files_pid_filetrans(salt_master_t, salt_var_run_t, dir)
-files_pid_filetrans(salt_master_t, salt_master_var_run_t, file, "salt-master.pid")
+# salt_runtime_t
+allow salt_master_t salt_runtime_t:dir create_dir_perms;
+files_pid_filetrans(salt_master_t, salt_runtime_t, dir)
+files_pid_filetrans(salt_master_t, salt_master_runtime_t, file, "salt-master.pid")
 
 kernel_read_network_state(salt_master_t)
 kernel_read_software_raid_state(salt_master_t)
@@ -269,20 +269,20 @@ can_exec(salt_minion_t, salt_minion_tmp_t)
 allow salt_minion_t salt_minion_tmpfs_t:file { manage_file_perms map };
 fs_tmpfs_filetrans(salt_minion_t, salt_minion_tmpfs_t, file)
 
-# salt_minion_var_run_t
-allow salt_minion_t salt_minion_var_run_t:file manage_file_perms;
-allow salt_minion_t salt_minion_var_run_t:sock_file manage_sock_file_perms;
-manage_dirs_pattern(salt_minion_t, salt_var_run_t, salt_minion_var_run_t)
-filetrans_pattern(salt_minion_t, salt_var_run_t, salt_minion_var_run_t, dir)
+# salt_minion_runtime_t
+allow salt_minion_t salt_minion_runtime_t:file manage_file_perms;
+allow salt_minion_t salt_minion_runtime_t:sock_file manage_sock_file_perms;
+manage_dirs_pattern(salt_minion_t, salt_runtime_t, salt_minion_runtime_t)
+filetrans_pattern(salt_minion_t, salt_runtime_t, salt_minion_runtime_t, dir)
 
 # salt_pki_t
 create_dirs_pattern(salt_minion_t, salt_etc_t, salt_pki_t)
 filetrans_pattern(salt_minion_t, salt_etc_t, salt_pki_t, dir, "pki")
 
-# salt_var_run_t
-allow salt_minion_t salt_var_run_t:dir create_dir_perms;
-files_pid_filetrans(salt_minion_t, salt_var_run_t, dir)
-files_pid_filetrans(salt_minion_t, salt_minion_var_run_t, file, "salt-minion.pid")
+# salt_runtime_t
+allow salt_minion_t salt_runtime_t:dir create_dir_perms;
+files_pid_filetrans(salt_minion_t, salt_runtime_t, dir)
+files_pid_filetrans(salt_minion_t, salt_minion_runtime_t, file, "salt-minion.pid")
 
 kernel_read_network_state(salt_minion_t)
 kernel_read_software_raid_state(salt_minion_t)

@@ -401,7 +401,7 @@ ifdef(`distro_gentoo',`
 	# Bug 529430 comment 6
 	create_dirs_pattern(lvm_t, lvm_etc_t, lvm_etc_t)
 	# Bug 529430 comment 8
-	manage_fifo_files_pattern(lvm_t, lvm_var_run_t, lvm_var_run_t)
+	manage_fifo_files_pattern(lvm_t, lvm_runtime_t, lvm_runtime_t)
 
 	# Bug 615300
 	init_read_script_pipes(lvm_t)

@@ -17,7 +17,7 @@ template(`ceph_domain_template',`
 		attribute cephpidfile;
 		attribute_role ceph_roles;
 		
-		type ceph_var_run_t;
+		type ceph_runtime_t;
 	')
 
 	type ceph_$1_t, cephdomain;
@@ -28,8 +28,9 @@ template(`ceph_domain_template',`
 	type ceph_$1_data_t, cephdata;
 	files_type(ceph_$1_data_t)
 
-	type ceph_$1_var_run_t, cephpidfile;
-	files_pid_file(ceph_$1_var_run_t)
+	type ceph_$1_runtime_t, cephpidfile;
+	typealias ceph_$1_runtime_t alias ceph_$1_var_run_t;
+	files_pid_file(ceph_$1_runtime_t)
 
 	########################################
 	#
@@ -37,12 +38,12 @@ template(`ceph_domain_template',`
 	#
 	# Rules which cannot be made part of the domain
 
-	allow ceph_$1_t ceph_$1_var_run_t:file manage_file_perms;
-	allow ceph_$1_t ceph_$1_var_run_t:sock_file manage_file_perms;
+	allow ceph_$1_t ceph_$1_runtime_t:file manage_file_perms;
+	allow ceph_$1_t ceph_$1_runtime_t:sock_file manage_file_perms;
 	allow ceph_$1_t ceph_$1_data_t:dir manage_dir_perms;
 	allow ceph_$1_t ceph_$1_data_t:file manage_file_perms;
 
-	filetrans_pattern(ceph_$1_t, ceph_var_run_t, ceph_$1_var_run_t, { file sock_file })
+	filetrans_pattern(ceph_$1_t, ceph_runtime_t, ceph_$1_runtime_t, { file sock_file })
 
 	files_var_lib_filetrans(ceph_$1_t, ceph_$1_data_t, { file dir })
 ')

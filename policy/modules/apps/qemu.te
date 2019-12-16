@@ -90,9 +90,9 @@ ifdef(`distro_gentoo',`
 	allow qemu_t self:udp_socket create_socket_perms;
 
 	# Network related socket
-	allow qemu_t qemu_var_run_t:sock_file manage_sock_file_perms;
+	allow qemu_t qemu_runtime_t:sock_file manage_sock_file_perms;
 
-	files_pid_filetrans(qemu_t, qemu_var_run_t, sock_file)
+	files_pid_filetrans(qemu_t, qemu_runtime_t, sock_file)
 
 	optional_policy(`
 		vde_connect(qemu_t)

@@ -23,8 +23,8 @@
 
 /var/log/ceph(/.*)?		gen_context(system_u:object_r:ceph_log_t,s0)
 
-/run/ceph		-d	gen_context(system_u:object_r:ceph_var_run_t,s0)
-/run/ceph/ceph-osd.*		gen_context(system_u:object_r:ceph_osd_var_run_t,s0)
-/run/ceph/ceph-mon.*		gen_context(system_u:object_r:ceph_mon_var_run_t,s0)
-/run/ceph/ceph-mds.*		gen_context(system_u:object_r:ceph_mds_var_run_t,s0)
-/run/ceph/mds.*		--	gen_context(system_u:object_r:ceph_mds_var_run_t,s0)
+/run/ceph		-d	gen_context(system_u:object_r:ceph_runtime_t,s0)
+/run/ceph/ceph-osd.*		gen_context(system_u:object_r:ceph_osd_runtime_t,s0)
+/run/ceph/ceph-mon.*		gen_context(system_u:object_r:ceph_mon_runtime_t,s0)
+/run/ceph/ceph-mds.*		gen_context(system_u:object_r:ceph_mds_runtime_t,s0)
+/run/ceph/mds.*		--	gen_context(system_u:object_r:ceph_mds_runtime_t,s0)

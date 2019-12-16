@@ -124,13 +124,13 @@ salt_master_log_t
 salt_minion_log_t
   is used for the Salt minion log file (*/var/log/salt/minion*)
 
-salt_var_run_t
+salt_runtime_t
   is used for the parent directory for Salt run-time files (*/var/run/salt*)
 
-salt_master_var_run_t
+salt_master_runtime_t
   is used for the Salt master variable run-time files (*/var/run/salt/master*)
 
-salt_minion_var_run_t
+salt_minion_runtime_t
   is used for the Salt minion variable run-time files (*/var/run/salt/minion*)
 
 CONFIGURATION FILES

@@ -31,8 +31,8 @@ type bitcoin_var_lib_t;
 files_type(bitcoin_var_lib_t)
 init_script_readable_type(bitcoin_var_lib_t)
 
-type bitcoin_var_run_t;
-files_pid_file(bitcoin_var_run_t)
+type bitcoin_runtime_t alias bitcoin_var_run_t;
+files_pid_file(bitcoin_runtime_t)
 
 type bitcoin_tmp_t;
 files_tmp_file(bitcoin_tmp_t)

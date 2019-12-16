@@ -4,4 +4,4 @@
 
 /usr/sbin/resolvconf	--	gen_context(system_u:object_r:resolvconf_exec_t,s0)
 
-/run/resolvconf(/.*)?       gen_context(system_u:object_r:resolvconf_var_run_t,s0)
+/run/resolvconf(/.*)?       gen_context(system_u:object_r:resolvconf_runtime_t,s0)

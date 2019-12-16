@@ -607,7 +607,7 @@ interface(`dbus_unconfined',`
 
 ########################################
 ## <summary>
-##	Create resources in /run or /var/run with the system_dbusd_var_run_t
+##	Create resources in /run or /var/run with the system_dbusd_runtime_t
 ##	label. This method is deprecated in favor of the init_daemon_run_dir
 ##	call.
 ## </summary>
@@ -633,7 +633,7 @@ interface(`dbus_generic_pid_filetrans_system_dbusd_var_run',`
 
 ########################################
 ## <summary>
-##	Create directories with the system_dbusd_var_run_t label
+##	Create directories with the system_dbusd_runtime_t label
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -643,10 +643,10 @@ interface(`dbus_generic_pid_filetrans_system_dbusd_var_run',`
 #
 interface(`dbus_create_system_dbusd_var_run_dirs',`
 	gen_require(`
-		type system_dbusd_var_run_t;
+		type system_dbusd_runtime_t;
 	')
 
-	create_dirs_pattern($1, system_dbusd_var_run_t, system_dbusd_var_run_t)
+	create_dirs_pattern($1, system_dbusd_runtime_t, system_dbusd_runtime_t)
 ')
 
 

@@ -28,8 +28,8 @@ logging_log_file(ceph_log_t)
 type ceph_var_lib_t;
 files_type(ceph_var_lib_t)
 
-type ceph_var_run_t;
-files_pid_file(ceph_var_run_t)
+type ceph_runtime_t alias ceph_var_run_t;
+files_pid_file(ceph_runtime_t)
 
 #########################################
 #
@@ -48,8 +48,8 @@ allow cephdomain ceph_log_t:file { create_file_perms rw_file_perms };
 allow cephdomain ceph_var_lib_t:dir search_dir_perms;
 allow cephdomain self:netlink_route_socket { rw_netlink_socket_perms };
 allow cephdomain self:tcp_socket { create_socket_perms listen accept }; 
-allow cephdomain ceph_var_run_t:file manage_file_perms;
-allow cephdomain ceph_var_run_t:dir manage_dir_perms;
+allow cephdomain ceph_runtime_t:file manage_file_perms;
+allow cephdomain ceph_runtime_t:dir manage_dir_perms;
 
 kernel_read_system_state(cephdomain)
 
@@ -60,7 +60,7 @@ corenet_tcp_connect_all_unreserved_ports(cephdomain)
 files_read_etc_files(cephdomain)
 files_search_pids(cephdomain)
 files_search_var_lib(cephdomain)
-files_pid_filetrans(cephdomain, ceph_var_run_t, dir)
+files_pid_filetrans(cephdomain, ceph_runtime_t, dir)
 
 fs_getattr_all_fs(cephdomain)
 

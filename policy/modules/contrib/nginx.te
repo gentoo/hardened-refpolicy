@@ -69,8 +69,8 @@ type nginx_var_lib_t;
 files_type(nginx_var_lib_t)
 
 # pid files
-type nginx_var_run_t;
-files_pid_file(nginx_var_run_t)
+type nginx_runtime_t alias nginx_var_run_t;
+files_pid_file(nginx_runtime_t)
 
 ########################################
 #
@@ -92,9 +92,9 @@ logging_log_filetrans(nginx_t, nginx_log_t, { file dir })
 
 
 # pid file
-manage_dirs_pattern(nginx_t, nginx_var_run_t, nginx_var_run_t)
-manage_files_pattern(nginx_t, nginx_var_run_t, nginx_var_run_t)
-files_pid_filetrans(nginx_t, nginx_var_run_t, file)
+manage_dirs_pattern(nginx_t, nginx_runtime_t, nginx_runtime_t)
+manage_files_pattern(nginx_t, nginx_runtime_t, nginx_runtime_t)
+files_pid_filetrans(nginx_t, nginx_runtime_t, file)
 
 # tmp files
 manage_files_pattern(nginx_t, nginx_tmp_t, nginx_tmp_t)

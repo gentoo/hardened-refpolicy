@@ -47,4 +47,4 @@
 /run/nm-dns-dnsmasq\.conf	--	gen_context(system_u:object_r:NetworkManager_runtime_t,s0)
 /run/wpa_supplicant(/.*)?	gen_context(system_u:object_r:NetworkManager_runtime_t,s0)
 /run/wpa_supplicant-global	-s	gen_context(system_u:object_r:NetworkManager_runtime_t,s0)
-/run/wpa_cli-.*		--	gen_context(system_u:object_r:wpa_cli_var_run_t,s0)
+/run/wpa_cli-.*		--	gen_context(system_u:object_r:wpa_cli_runtime_t,s0)

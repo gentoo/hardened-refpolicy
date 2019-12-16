@@ -32,12 +32,12 @@ type dirsrv_snmp_var_log_t;
 logging_log_file(dirsrv_snmp_var_log_t)
 
 # pid files
-type dirsrv_var_run_t;
-files_pid_file(dirsrv_var_run_t)
+type dirsrv_runtime_t alias dirsrv_var_run_t;
+files_pid_file(dirsrv_runtime_t)
 
 # snmp pid file
-type dirsrv_snmp_var_run_t;
-files_pid_file(dirsrv_snmp_var_run_t)
+type dirsrv_snmp_runtime_t alias dirsrv_snmp_var_run_t;
+files_pid_file(dirsrv_snmp_runtime_t)
 
 # lock files
 type dirsrv_var_lock_t;
@@ -95,11 +95,11 @@ allow dirsrv_t dirsrv_var_log_t:dir { setattr };
 logging_log_filetrans(dirsrv_t,dirsrv_var_log_t,{ sock_file file dir })
 
 # pid files
-manage_files_pattern(dirsrv_t, dirsrv_var_run_t, dirsrv_var_run_t)
-files_pid_filetrans(dirsrv_t, dirsrv_var_run_t, { file sock_file })
+manage_files_pattern(dirsrv_t, dirsrv_runtime_t, dirsrv_runtime_t)
+files_pid_filetrans(dirsrv_t, dirsrv_runtime_t, { file sock_file })
 
 # ldapi socket
-manage_sock_files_pattern(dirsrv_t, dirsrv_var_run_t, dirsrv_var_run_t)
+manage_sock_files_pattern(dirsrv_t, dirsrv_runtime_t, dirsrv_runtime_t)
 
 # lock files
 manage_files_pattern(dirsrv_t, dirsrv_var_lock_t, dirsrv_var_lock_t)
@@ -175,7 +175,7 @@ files_manage_var_files(dirsrv_snmp_t)
 rw_files_pattern(dirsrv_snmp_t, dirsrv_tmpfs_t, dirsrv_tmpfs_t)
 
 # stats file
-read_files_pattern(dirsrv_snmp_t, dirsrv_var_run_t, dirsrv_var_run_t)
+read_files_pattern(dirsrv_snmp_t, dirsrv_runtime_t, dirsrv_runtime_t)
 
 # process stuff
 allow dirsrv_snmp_t self:capability { dac_override dac_read_search };
@@ -184,9 +184,9 @@ allow dirsrv_snmp_t self:capability { dac_override dac_read_search };
 read_files_pattern(dirsrv_snmp_t, dirsrv_config_t, dirsrv_config_t)
 
 # pid file
-manage_files_pattern(dirsrv_snmp_t, dirsrv_snmp_var_run_t, dirsrv_snmp_var_run_t)
-files_pid_filetrans(dirsrv_snmp_t, dirsrv_snmp_var_run_t, { file sock_file })
-search_dirs_pattern(dirsrv_snmp_t, dirsrv_var_run_t, dirsrv_var_run_t)
+manage_files_pattern(dirsrv_snmp_t, dirsrv_snmp_runtime_t, dirsrv_snmp_runtime_t)
+files_pid_filetrans(dirsrv_snmp_t, dirsrv_snmp_runtime_t, { file sock_file })
+search_dirs_pattern(dirsrv_snmp_t, dirsrv_runtime_t, dirsrv_runtime_t)
 
 # log file
 manage_files_pattern(dirsrv_snmp_t, dirsrv_var_log_t, dirsrv_snmp_var_log_t);

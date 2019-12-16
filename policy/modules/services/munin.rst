@@ -71,7 +71,7 @@ munin_plugin_state_t
 munin_var_lib_t
   is used for the variable information used by munin
 
-munin_var_run_t
+munin_runtime_t
   is used for the variable runtime state information of munin
 
 POLICY

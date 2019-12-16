@@ -39,7 +39,7 @@
 /var/log/ntp.*				--	gen_context(system_u:object_r:ntpd_log_t,s0)
 /var/log/ntpstats(/.*)?				gen_context(system_u:object_r:ntpd_log_t,s0)
 /var/log/xntpd.*			--	gen_context(system_u:object_r:ntpd_log_t,s0)
-/run/ntpd\.sock	-s	gen_context(system_u:object_r:ntpd_var_run_t,s0)
+/run/ntpd\.sock	-s	gen_context(system_u:object_r:ntpd_pid_t,s0)
 
 ifdef(`distro_gentoo',`
 /var/lib/openntpd/ntpd.drift	--	gen_context(system_u:object_r:ntp_drift_t,s0)

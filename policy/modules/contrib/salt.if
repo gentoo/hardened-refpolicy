@@ -21,8 +21,8 @@ interface(`salt_admin_master',`
 		type salt_master_initrc_exec_t;
 		type salt_master_exec_t;
 		type salt_etc_t;
-		type salt_var_run_t;
-		type salt_master_var_run_t;
+		type salt_runtime_t;
+		type salt_master_runtime_t;
 		attribute_role salt_master_roles;
 	')
 
@@ -40,8 +40,8 @@ interface(`salt_admin_master',`
 	files_list_etc($1)
 	admin_pattern($1, salt_etc_t, salt_etc_t)
 
-	allow $1 salt_var_run_t:dir search_dir_perms;
-	stream_connect_pattern($1, salt_master_var_run_t, salt_master_var_run_t, salt_master_t)
+	allow $1 salt_runtime_t:dir search_dir_perms;
+	stream_connect_pattern($1, salt_master_runtime_t, salt_master_runtime_t, salt_master_t)
 ')
 
 #########################################

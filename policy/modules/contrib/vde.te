@@ -15,8 +15,8 @@ init_script_file(vde_initrc_exec_t)
 type vde_var_lib_t;
 files_type(vde_var_lib_t)
 
-type vde_var_run_t;
-files_pid_file(vde_var_run_t)
+type vde_runtime_t alias vde_var_run_t;
+files_pid_file(vde_runtime_t)
 
 type vde_tmp_t;
 files_tmp_file(vde_tmp_t)
@@ -34,10 +34,10 @@ allow vde_t self:unix_stream_socket {  create_stream_socket_perms connectto };
 allow vde_t self:unix_dgram_socket create_socket_perms;
 files_tmp_filetrans(vde_t, vde_tmp_t, sock_file)
 
-manage_dirs_pattern(vde_t, vde_var_run_t, vde_var_run_t)
-manage_files_pattern(vde_t, vde_var_run_t, vde_var_run_t)
-manage_sock_files_pattern(vde_t, vde_var_run_t, vde_var_run_t)
-files_pid_filetrans(vde_t, vde_var_run_t, { dir file sock_file unix_dgram_socket })
+manage_dirs_pattern(vde_t, vde_runtime_t, vde_runtime_t)
+manage_files_pattern(vde_t, vde_runtime_t, vde_runtime_t)
+manage_sock_files_pattern(vde_t, vde_runtime_t, vde_runtime_t)
+files_pid_filetrans(vde_t, vde_runtime_t, { dir file sock_file unix_dgram_socket })
 
 files_read_etc_files(vde_t)
 

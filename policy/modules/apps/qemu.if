@@ -427,8 +427,8 @@ interface(`qemu_entry_type',`
 #
 interface(`qemu_rw_pid_sock_files',`
 	gen_require(`
-		type qemu_var_run_t;
+		type qemu_runtime_t;
 	')
 
-	allow $1 qemu_var_run_t:sock_file rw_sock_file_perms;
+	allow $1 qemu_runtime_t:sock_file rw_sock_file_perms;
 ')

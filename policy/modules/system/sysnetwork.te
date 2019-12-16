@@ -434,14 +434,14 @@ ifdef(`distro_gentoo',`
 	allow dhcpc_t self:netlink_socket client_stream_socket_perms;
 
 	# Allow dhcpcd to set its control sockets
-	allow dhcpc_t dhcpc_var_run_t:sock_file manage_sock_file_perms;
+	allow dhcpc_t dhcpc_runtime_t:sock_file manage_sock_file_perms;
 
 	# Allow dhcpc to set hostname (/proc/sys/kernel/hostname)
 	allow dhcpc_t self:capability sys_admin;
 	kernel_rw_kernel_sysctl(dhcpc_t)
 
 	# Fixes bug 468878
-	files_pid_filetrans(dhcpc_t, dhcpc_var_run_t, sock_file)
+	files_pid_filetrans(dhcpc_t, dhcpc_runtime_t, sock_file)
 	allow dhcpc_t self:unix_stream_socket { create_stream_socket_perms connectto };
 
 	optional_policy(`
@@ -479,9 +479,9 @@ ifdef(`distro_gentoo',`
 	manage_files_pattern(dhcpc_script_t, dhcpc_script_tmp_t, dhcpc_script_tmp_t)
 	files_tmp_filetrans(dhcpc_script_t, dhcpc_script_tmp_t, { file dir })
 
-	manage_files_pattern(dhcpc_script_t, dhcpc_var_run_t, dhcpc_var_run_t)
-	create_dirs_pattern(dhcpc_script_t, dhcpc_var_run_t, dhcpc_var_run_t)
-	files_pid_filetrans(dhcpc_script_t, dhcpc_var_run_t, { file dir })
+	manage_files_pattern(dhcpc_script_t, dhcpc_runtime_t, dhcpc_runtime_t)
+	create_dirs_pattern(dhcpc_script_t, dhcpc_runtime_t, dhcpc_runtime_t)
+	files_pid_filetrans(dhcpc_script_t, dhcpc_runtime_t, { file dir })
 
 	kernel_read_network_state(dhcpc_script_t)
 	kernel_read_system_state(dhcpc_script_t)

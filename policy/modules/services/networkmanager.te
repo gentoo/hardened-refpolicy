@@ -38,8 +38,8 @@ type wpa_cli_exec_t;
 init_system_domain(wpa_cli_t, wpa_cli_exec_t)
 
 ifdef(`distro_gentoo',`
-	type wpa_cli_var_run_t;
-	files_pid_file(wpa_cli_var_run_t)
+	type wpa_cli_runtime_t alias wpa_cli_var_run_t;
+	files_pid_file(wpa_cli_runtime_t)
 ')
 
 ########################################
@@ -425,8 +425,8 @@ ifdef(`distro_gentoo',`
 	#
 	# wpa_cli_t policy
 	#
-	manage_files_pattern(wpa_cli_t, wpa_cli_var_run_t, wpa_cli_var_run_t)
-	files_pid_filetrans(wpa_cli_t, wpa_cli_var_run_t, file)
+	manage_files_pattern(wpa_cli_t, wpa_cli_runtime_t, wpa_cli_runtime_t)
+	files_pid_filetrans(wpa_cli_t, wpa_cli_runtime_t, file)
 
 	corecmd_exec_bin(wpa_cli_t)
 	corecmd_exec_shell(wpa_cli_t)

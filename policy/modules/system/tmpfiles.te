@@ -23,8 +23,8 @@ init_daemon_domain(tmpfiles_t, tmpfiles_exec_t)
 type tmpfiles_conf_t;
 files_config_file(tmpfiles_conf_t)
 
-type tmpfiles_var_run_t;
-files_pid_file(tmpfiles_var_run_t)
+type tmpfiles_runtime_t alias tmpfiles_var_run_t;
+files_pid_file(tmpfiles_runtime_t)
 
 
 ########################################
@@ -42,8 +42,8 @@ allow tmpfiles_t tmpfiles_exec_t:file execute_no_trans;
 list_dirs_pattern(tmpfiles_t, tmpfiles_conf_t, tmpfiles_conf_t)
 read_files_pattern(tmpfiles_t, tmpfiles_conf_t, tmpfiles_conf_t)
 
-manage_files_pattern(tmpfiles_t, tmpfiles_var_run_t, tmpfiles_var_run_t)
-manage_dirs_pattern(tmpfiles_t, tmpfiles_var_run_t, tmpfiles_var_run_t)
+manage_files_pattern(tmpfiles_t, tmpfiles_runtime_t, tmpfiles_runtime_t)
+manage_dirs_pattern(tmpfiles_t, tmpfiles_runtime_t, tmpfiles_runtime_t)
 
 corecmd_exec_bin(tmpfiles_t)
 corecmd_exec_shell(tmpfiles_t)

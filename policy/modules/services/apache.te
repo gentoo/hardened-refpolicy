@@ -1487,8 +1487,8 @@ ifdef(`distro_gentoo',`
 ## </desc>
 gen_tunable(hiawatha_httpd, false)
 
-init_daemon_pid_file(httpd_var_run_t, dir, "apache_ssl_mutex")
-init_daemon_pid_file(httpd_var_run_t, dir, "apache2")
+init_daemon_pid_file(httpd_runtime_t, dir, "apache_ssl_mutex")
+init_daemon_pid_file(httpd_runtime_t, dir, "apache2")
 
 tunable_policy(`hiawatha_httpd',`
 	# bug 513362

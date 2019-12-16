@@ -1,9 +1,9 @@
 /etc/rc\.d/init\.d/atd	--	gen_context(system_u:object_r:atd_initrc_exec_t,s0)
 
 /usr/bin/at	--	gen_context(system_u:object_r:at_exec_t,s0)
-/usr/sbin/atd	--	gen_context(system_u:object_r:atd_exec_t,s0)
+/usr/bin/atd	--	gen_context(system_u:object_r:atd_exec_t,s0)
 
-/run/atd\.pid	--	gen_context(system_u:object_r:atd_var_run_t,s0)
+/run/atd\.pid	--	gen_context(system_u:object_r:atd_runtime_t,s0)
 
 /var/spool/at(/.*)?	gen_context(system_u:object_r:at_spool_t,s0)
 /var/spool/at/atjobs(/.*)?	gen_context(system_u:object_r:at_job_t,s0)

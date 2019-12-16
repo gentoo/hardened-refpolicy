@@ -49,7 +49,7 @@ tmpfiles_conf_t
 tmpfiles_exec_t
   is used as entrypoint for the tmpfiles application
 
-tmpfiles_var_run_t
+tmpfiles_runtime_t
   is used as the variable run-time data used by the tmpfiles application
 
 POLICY

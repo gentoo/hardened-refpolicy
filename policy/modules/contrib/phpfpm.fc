@@ -1,5 +1,5 @@
 /usr/lib/php.*/bin/php-fpm		gen_context(system_u:object_r:phpfpm_exec_t,s0)
-/run/php*-fpm/*.sock			gen_context(system_u:object_r:phpfpm_var_run_t,s0)
+/run/php*-fpm/*.sock			gen_context(system_u:object_r:phpfpm_runtime_t,s0)
 
 /var/log/php-fpm.log			gen_context(system_u:object_r:phpfpm_log_t,s0)
-/run/php-fpm.pid			gen_context(system_u:object_r:phpfpm_var_run_t,s0)
+/run/php-fpm.pid			gen_context(system_u:object_r:phpfpm_runtime_t,s0)

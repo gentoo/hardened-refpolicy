@@ -21,8 +21,8 @@ init_daemon_domain(atd_t, atd_exec_t)
 type atd_initrc_exec_t;
 init_script_file(atd_initrc_exec_t)
 
-type atd_var_run_t;
-files_pid_file(atd_var_run_t)
+type atd_runtime_t alias atd_var_run_t;
+files_pid_file(atd_runtime_t)
 
 ########################################
 #
@@ -39,8 +39,8 @@ list_dirs_pattern(atd_t, at_spool_t, at_job_t)
 
 manage_files_pattern(atd_t, at_job_log_t, at_job_log_t)
 
-manage_files_pattern(atd_t, atd_var_run_t, atd_var_run_t)
-files_pid_filetrans(atd_t, atd_var_run_t, file)
+manage_files_pattern(atd_t, atd_runtime_t, atd_runtime_t)
+files_pid_filetrans(atd_t, atd_runtime_t, file)
 
 kernel_read_kernel_sysctls(atd_t)
 
@@ -81,7 +81,7 @@ allow at_t at_spool_t:dir search_dir_perms;
 
 allow at_t atd_t:process signal;
 
-allow at_t atd_var_run_t:file read_file_perms;
+allow at_t atd_runtime_t:file read_file_perms;
 
 domain_use_interactive_fds(at_t)
 
