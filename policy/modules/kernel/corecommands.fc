@@ -101,7 +101,7 @@ ifdef(`distro_redhat',`
 
 /etc/vmware-tools(/.*)?			gen_context(system_u:object_r:bin_t,s0)
 
-/etc/wpa_supplicant/wpa_cli.sh	--	gen_context(system_u:object_r:bin_t,s0)
+/etc/wpa_supplicant/wpa_cli\.sh	--	gen_context(system_u:object_r:bin_t,s0)
 
 /etc/X11/xdm/GiveConsole	--	gen_context(system_u:object_r:bin_t,s0)
 /etc/X11/xdm/TakeConsole	--	gen_context(system_u:object_r:bin_t,s0)
@@ -268,7 +268,7 @@ ifdef(`distro_gentoo',`
 /usr/lib/[^/]*/run-mozilla\.sh --	gen_context(system_u:object_r:bin_t,s0)
 /usr/lib/[^/]*/mozilla-xremote-client -- gen_context(system_u:object_r:bin_t,s0)
 /usr/lib/thunderbird.*/mozilla-xremote-client -- gen_context(system_u:object_r:bin_t,s0)
-/usr/lib/nspluginwrapper/i386/linux/npviewer.bin --	gen_context(system_u:object_r:bin_t,s0)
+/usr/lib/nspluginwrapper/i386/linux/npviewer\.bin --	gen_context(system_u:object_r:bin_t,s0)
 /usr/lib/nspluginwrapper/i386/linux/npviewer	--	gen_context(system_u:object_r:shell_exec_t,s0)
 /usr/lib/xulrunner-.*/plugin-container		--	gen_context(system_u:object_r:bin_t,s0)
 
@@ -301,7 +301,7 @@ ifdef(`distro_gentoo',`
 /usr/share/apr(-[0-9])?/build/libtool --	gen_context(system_u:object_r:bin_t,s0)
 /usr/share/build-1/[^/]+\.sh	--	gen_context(system_u:object_r:bin_t,s0)
 /usr/share/build-1/libtool	--	gen_context(system_u:object_r:bin_t,s0)
-/usr/share/build-1/mkdir.sh	--	gen_context(system_u:object_r:bin_t,s0)
+/usr/share/build-1/mkdir\.sh	--	gen_context(system_u:object_r:bin_t,s0)
 /usr/share/dayplanner/dayplanner --	gen_context(system_u:object_r:bin_t,s0)
 /usr/share/debconf/.+		--	gen_context(system_u:object_r:bin_t,s0)
 /usr/share/denyhosts/scripts(/.*)?	gen_context(system_u:object_r:bin_t,s0)
@@ -319,7 +319,7 @@ ifdef(`distro_gentoo',`
 /usr/share/gnome-sound-recorder/org\.gnome\.SoundRecorder	--	gen_context(system_u:object_r:bin_t,s0)
 /usr/share/gnucash/finance-quote-check -- gen_context(system_u:object_r:bin_t,s0)
 /usr/share/gnucash/finance-quote-helper -- gen_context(system_u:object_r:bin_t,s0)
-/usr/share/GNUstep/Makefiles/*\.sh		--	gen_context(system_u:object_r:bin_t,s0)
+/usr/share/GNUstep/Makefiles/[^/]*\.sh		--	gen_context(system_u:object_r:bin_t,s0)
 /usr/share/GNUstep/Makefiles/mkinstalldirs	--	gen_context(system_u:object_r:bin_t,s0)
 /usr/share/hal/device-manager/hal-device-manager -- gen_context(system_u:object_r:bin_t,s0)
 /usr/share/hal/scripts(/.*)?		gen_context(system_u:object_r:bin_t,s0)

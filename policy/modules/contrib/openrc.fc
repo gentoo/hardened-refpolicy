@@ -1,1 +1,1 @@
-/usr/lib/rc/sh/cgroup-release-agent.sh	--	gen_context(system_u:object_r:openrc_cgroup_release_exec_t,s0)
+/usr/lib/rc/sh/cgroup-release-agent\.sh	--	gen_context(system_u:object_r:openrc_cgroup_release_exec_t,s0)

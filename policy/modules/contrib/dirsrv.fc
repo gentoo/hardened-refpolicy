@@ -5,8 +5,8 @@
 /var/lib/dirsrv(/.*)?	gen_context(system_u:object_r:dirsrv_var_lib_t,s0)
 /var/lock/dirsrv(/.*)?	gen_context(system_u:object_r:dirsrv_var_lock_t,s0)
 /var/log/dirsrv(/.*)?	gen_context(system_u:object_r:dirsrv_var_log_t,s0)
-/var/log/dirsrv/ldap-agent.log	gen_context(system_u:object_r:dirsrv_snmp_var_log_t,s0)
+/var/log/dirsrv/ldap-agent\.log	gen_context(system_u:object_r:dirsrv_snmp_var_log_t,s0)
 /run/dirsrv(/.*)?	gen_context(system_u:object_r:dirsrv_runtime_t,s0)
-/run/ldap-agent.pid	gen_context(system_u:object_r:dirsrv_snmp_runtime_t,s0)
+/run/ldap-agent\.pid	gen_context(system_u:object_r:dirsrv_snmp_runtime_t,s0)
 
 /etc/dirsrv(/.*)?	gen_context(system_u:object_r:dirsrv_config_t,s0)

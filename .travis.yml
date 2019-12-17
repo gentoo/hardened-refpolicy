@@ -25,7 +25,7 @@ env:
 matrix:
   include:
   - python: 3.7
-    env: LINT=true TYPE=standard
+    env: LINT=true TYPE=standard DISTRO=gentoo
 
 sudo: false
 dist: bionic

@@ -42,7 +42,7 @@
 /run/ntpd\.sock	-s	gen_context(system_u:object_r:ntpd_pid_t,s0)
 
 ifdef(`distro_gentoo',`
-/var/lib/openntpd/ntpd.drift	--	gen_context(system_u:object_r:ntp_drift_t,s0)
+/var/lib/openntpd/ntpd\.drift	--	gen_context(system_u:object_r:ntp_drift_t,s0)
 
 # hardlinked to ntpd
 /usr/sbin/ntpctl		--	gen_context(system_u:object_r:ntpd_exec_t,s0)

@@ -1,4 +1,4 @@
-/etc/resolvconf.conf	--	gen_context(system_u:object_r:resolvconf_conf_t,s0)
+/etc/resolvconf\.conf	--	gen_context(system_u:object_r:resolvconf_conf_t,s0)
 
 /usr/lib/resolvconf(/.*)?		gen_context(system_u:object_r:bin_t,s0)
 

@@ -34,5 +34,5 @@ HOME_DIR/\.java(/.*)?	gen_context(system_u:object_r:java_home_t,s0)
 
 ifdef(`distro_gentoo',`
 # Running maven (mvn) command needs read access to this, yet the file is marked as bin_t otherwise
-/usr/share/maven-bin-[^/]*/bin/m2.conf	--	gen_context(system_u:object_r:usr_t,s0)
+/usr/share/maven-bin-[^/]*/bin/m2\.conf	--	gen_context(system_u:object_r:usr_t,s0)
 ')
