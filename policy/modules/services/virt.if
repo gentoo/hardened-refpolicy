@@ -1021,7 +1021,6 @@ interface(`virt_search_images',`
 #
 interface(`virt_read_images',`
 	gen_require(`
-		type virt_var_lib_t;
 		attribute virt_image_type;
 	')
 
@@ -1101,7 +1100,6 @@ interface(`virt_manage_virt_cache',`
 #
 interface(`virt_manage_images',`
 	gen_require(`
-		type virt_var_lib_t;
 		attribute virt_image_type;
 	')
 
