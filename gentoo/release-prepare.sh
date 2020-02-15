@@ -8,7 +8,7 @@
 TRANSLATE="s:\(${HARDENEDREFPOL}\|${REFPOLRELEASE}\):refpolicy/:g";
 NEWVERSION="${1}";
 # If remote requires a different username, it should be set in ~/.ssh/config
-REMOTELOCATION="dev.gentoo.org:/home/swift/public_html/patches/selinux-base-policy";
+REMOTELOCATION="dev.gentoo.org:/home/perfinion/public_html/patches/selinux-base-policy";
 
 usage() {
   echo "Usage: $0 <newversion>";
