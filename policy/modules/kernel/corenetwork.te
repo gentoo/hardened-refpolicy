@@ -2,7 +2,7 @@
 # This is a generated file!  Instead of modifying this file, the
 # corenetwork.te.in or corenetwork.te.m4 file should be modified.
 #
-policy_module(corenetwork, 1.25.1)
+policy_module(corenetwork, 1.26.2)
 
 ########################################
 #
@@ -1991,7 +1991,6 @@ portcon sctp 1-511 gen_context(system_u:object_r:reserved_port_t, s0)
 # nodes in net_contexts or net_contexts.mls.
 #
 type node_t, node_type;
-typealias node_t alias { compat_ipv4_node_t lo_node_t link_local_node_t inaddr_any_node_t unspec_node_t };
 sid node gen_context(system_u:object_r:node_t,s0 - mls_systemhigh)
 
 # network_node examples:
@@ -2013,14 +2012,14 @@ ifdef(`enable_mls',`
 
 
 gen_require(`type unlabeled_t;')
-type lo_netif_t alias netif_lo_t, netif_type;
+type lo_netif_t, netif_type;
 netifcon lo gen_context(system_u:object_r:lo_netif_t,s0 - mls_systemhigh) gen_context(system_u:object_r:unlabeled_t,s0 - mls_systemhigh)
 
 
 
 ',`
 
-typealias netif_t alias { lo_netif_t netif_lo_t };
+typealias netif_t alias lo_netif_t;
 
 ')
 
@@ -2030,12 +2029,11 @@ typealias netif_t alias { lo_netif_t netif_lo_t };
 # Unconfined access to this module
 #
 
-allow corenet_unconfined_type node_type:node { tcp_recv tcp_send udp_recv udp_send rawip_recv rawip_send enforce_dest dccp_recv dccp_send recvfrom sendto };
-allow corenet_unconfined_type netif_type:netif { tcp_recv tcp_send udp_recv udp_send rawip_recv rawip_send dccp_recv dccp_send ingress egress };
-allow corenet_unconfined_type packet_type:packet { send recv relabelto flow_in flow_out forward_in forward_out };
-allow corenet_unconfined_type port_type:tcp_socket { send_msg recv_msg name_connect };
-allow corenet_unconfined_type port_type:sctp_socket { send_msg recv_msg name_connect };
-allow corenet_unconfined_type port_type:udp_socket { send_msg recv_msg };
+allow corenet_unconfined_type node_type:node { recvfrom sendto };
+allow corenet_unconfined_type netif_type:netif { ingress egress };
+allow corenet_unconfined_type packet_type:packet { send recv relabelto forward_in forward_out };
+allow corenet_unconfined_type port_type:tcp_socket { name_connect };
+allow corenet_unconfined_type port_type:sctp_socket { name_connect };
 
 # Bind to any network address.
 allow corenet_unconfined_type port_type:{ tcp_socket udp_socket rawip_socket sctp_socket } name_bind;
