@@ -59,8 +59,6 @@ corenet_tcp_connect_pop_port(mutt_t)
 corenet_tcp_connect_smtp_port(mutt_t)
 corenet_tcp_sendrecv_generic_if(mutt_t)
 corenet_tcp_sendrecv_generic_node(mutt_t)
-corenet_tcp_sendrecv_pop_port(mutt_t)
-corenet_tcp_sendrecv_smtp_port(mutt_t)
 
 dev_read_rand(mutt_t)
 dev_read_urand(mutt_t)

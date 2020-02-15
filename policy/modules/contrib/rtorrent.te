@@ -49,7 +49,6 @@ allow rtorrent_t rtorrent_session_t:file map;
 corenet_tcp_bind_generic_node(rtorrent_t)
 corenet_tcp_bind_rtorrent_port(rtorrent_t)
 corenet_tcp_connect_all_ports(rtorrent_t)
-corenet_tcp_sendrecv_all_ports(rtorrent_t)
 
 domain_use_interactive_fds(rtorrent_t)
 

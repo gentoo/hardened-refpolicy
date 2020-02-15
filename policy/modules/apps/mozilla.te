@@ -724,10 +724,8 @@ gen_tunable(mozilla_plugin_connect_all_unreserved, false)
 	allow mozilla_t mozilla_xdg_cache_t:file map;
 
 	corenet_dontaudit_tcp_bind_generic_port(mozilla_t)
-	corenet_dontaudit_tcp_sendrecv_generic_port(mozilla_t)
 	corenet_sendrecv_tor_client_packets(mozilla_t)
 	corenet_tcp_connect_tor_port(mozilla_t)
-	corenet_tcp_sendrecv_tor_port(mozilla_t)
 
 	domain_use_interactive_fds(mozilla_t)
 
@@ -738,7 +736,6 @@ gen_tunable(mozilla_plugin_connect_all_unreserved, false)
 	tunable_policy(`mozilla_bind_all_unreserved_ports',`
 		corenet_sendrecv_all_server_packets(mozilla_t)
 		corenet_tcp_bind_all_unreserved_ports(mozilla_t)
-		corenet_tcp_sendrecv_all_ports(mozilla_t)
 	')
 
 	optional_policy(`
@@ -771,7 +768,6 @@ gen_tunable(mozilla_plugin_connect_all_unreserved, false)
 
 	corenet_sendrecv_pulseaudio_client_packets(mozilla_plugin_t)
 	corenet_tcp_connect_pulseaudio_port(mozilla_plugin_t)
-	corenet_tcp_sendrecv_pulseaudio_port(mozilla_plugin_t)
 
 	userdom_dontaudit_use_user_terminals(mozilla_plugin_t)
 	userdom_rw_user_tmpfs_files(mozilla_plugin_t)

@@ -368,7 +368,6 @@ ifdef(`distro_gentoo',`
 
 	corenet_sendrecv_puppetclient_server_packets(puppet_t)
 	corenet_tcp_bind_puppetclient_port(puppet_t)
-	corenet_tcp_sendrecv_puppetclient_port(puppet_t)
 
 	usermanage_domtrans_passwd(puppet_t)
 

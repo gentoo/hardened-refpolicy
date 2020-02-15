@@ -525,7 +525,6 @@ gen_tunable(portage_enable_test, false)
 		corenet_tcp_connect_all_unreserved_ports(portage_sandbox_t)
 		corenet_udp_bind_all_unreserved_ports(portage_sandbox_t)
 		corenet_udp_bind_generic_node(portage_sandbox_t)
-		corenet_udp_sendrecv_all_ports(portage_sandbox_t)
 	')
 
 	##########################################

@@ -51,7 +51,6 @@ corenet_sendrecv_innd_client_packets(pan_t)
 corenet_tcp_connect_innd_port(pan_t)
 corenet_tcp_sendrecv_generic_if(pan_t)
 corenet_tcp_sendrecv_generic_node(pan_t)
-corenet_tcp_sendrecv_innd_port(pan_t)
 
 domain_dontaudit_use_interactive_fds(pan_t)
 

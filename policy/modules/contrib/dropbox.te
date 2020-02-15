@@ -108,7 +108,6 @@ corenet_tcp_sendrecv_generic_node(dropbox_t)
 
 tunable_policy(`dropbox_bind_port',`
 	allow dropbox_t self:tcp_socket { accept listen };
-	allow dropbox_t self:udp_socket { send_msg recv_msg };
 
 	corenet_tcp_bind_dropbox_port(dropbox_t)
 	corenet_udp_bind_dropbox_port(dropbox_t)

@@ -81,7 +81,6 @@ corenet_tcp_bind_generic_port(skype_t)
 corenet_tcp_connect_all_unreserved_ports(skype_t)
 corenet_tcp_connect_generic_port(skype_t)
 corenet_tcp_connect_http_port(skype_t)
-corenet_tcp_sendrecv_http_port(skype_t)
 corenet_udp_bind_generic_node(skype_t)
 corenet_udp_bind_generic_port(skype_t)
 
