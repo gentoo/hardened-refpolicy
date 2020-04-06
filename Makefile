@@ -123,12 +123,14 @@ tunxml := $(docs)/global_tunables.xml
 gentooxml := $(docs)/gentoo_tunables.xml
 boolxml := $(docs)/global_booleans.xml
 htmldir := $(docs)/html
+doctmpdir := $(docs)/tmp
 else
 polxml := $(LOCAL_ROOT)/doc/policy.xml
 tunxml := $(LOCAL_ROOT)/doc/global_tunables.xml
 gentooxml := $(LOCAL_ROOT)/doc/gentoo_tunables.xml
 boolxml := $(LOCAL_ROOT)/doc/global_booleans.xml
 htmldir := $(LOCAL_ROOT)/doc/html
+doctmpdir := $(LOCAL_ROOT)/doc/tmp
 endif
 
 # config file paths
@@ -272,8 +274,8 @@ generated_fc := $(basename $(foreach dir,$(all_layers),$(wildcard $(dir)/*.fc.in
 # when a generated file is already generated
 detected_mods := $(sort $(foreach dir,$(all_layers),$(wildcard $(dir)/*.te)) $(generated_te))
 
-modxml := $(addprefix $(tmpdir)/, $(detected_mods:.te=.xml))
-layerxml := $(sort $(addprefix $(tmpdir)/, $(notdir $(addsuffix .xml,$(all_layers)))))
+modxml := $(addprefix $(doctmpdir)/, $(detected_mods:.te=.xml))
+layerxml := $(sort $(addprefix $(doctmpdir)/, $(notdir $(addsuffix .xml,$(all_layers)))))
 layer_names := $(sort $(notdir $(all_layers)))
 all_metaxml = $(call detect-metaxml, $(layer_names))
 
@@ -408,22 +410,22 @@ conf.intermediate: $(polxml)
 #
 # Documentation generation
 #
-iftemplates: $(tmpdir)/iftemplates
-$(tmpdir)/iftemplates:
-	@echo "Generating interface templates into $(tmpdir)/iftemplates"
-	@test -d $(tmpdir)/iftemplates || mkdir -p $(tmpdir)/iftemplates
-	$(verbose) $(gentemplates) -g -s $(moddir) -t $(tmpdir)/iftemplates
+iftemplates: $(doctmpdir)/iftemplates
+$(doctmpdir)/iftemplates:
+	@echo "Generating interface templates into $(doctmpdir)/iftemplates"
+	@test -d $(doctmpdir)/iftemplates || mkdir -p $(doctmpdir)/iftemplates
+	$(verbose) $(gentemplates) -g -s $(moddir) -t $(doctmpdir)/iftemplates
 ifdef LOCAL_ROOT
-	$(verbose) $(gentemplates) -g -s $(local_moddir) -t $(tmpdir)/iftemplates
+	$(verbose) $(gentemplates) -g -s $(local_moddir) -t $(doctmpdir)/iftemplates
 endif
-	@touch $(tmpdir)/iftemplates
+	@touch $(doctmpdir)/iftemplates
 
-$(layerxml): %.xml: $(tmpdir)/iftemplates $(all_metaxml) $(filter $(addprefix $(moddir)/, $(notdir $*))%, $(detected_mods)) $(subst .te,.if, $(filter $(addprefix $(moddir)/, $(notdir $*))%, $(detected_mods)))
-	@test -d $(tmpdir) || mkdir -p $(tmpdir)
+$(layerxml): %.xml: $(doctmpdir)/iftemplates $(all_metaxml) $(filter $(addprefix $(moddir)/, $(notdir $*))%, $(detected_mods)) $(subst .te,.if, $(filter $(addprefix $(moddir)/, $(notdir $*))%, $(detected_mods)))
+	@test -d $(doctmpdir) || mkdir -p $(doctmpdir)
 	$(verbose) cat $(filter %/$(notdir $*)/$(metaxml), $(all_metaxml)) > $@
-	$(verbose) for i in $(basename $(filter $(addprefix $(moddir)/, $(notdir $*))%, $(detected_mods))); do $(genxml) -w -T $(tmpdir)/iftemplates -m $$i >> $@; done
+	$(verbose) for i in $(basename $(filter $(addprefix $(moddir)/, $(notdir $*))%, $(detected_mods))); do $(genxml) -w -T $(doctmpdir)/iftemplates -m $$i >> $@; done
 ifdef LOCAL_ROOT
-	$(verbose) for i in $(basename $(filter $(addprefix $(local_moddir)/, $(notdir $*))%, $(detected_mods))); do $(genxml) -w -T $(tmpdir)/iftemplates -m $$i >> $@; done
+	$(verbose) for i in $(basename $(filter $(addprefix $(local_moddir)/, $(notdir $*))%, $(detected_mods))); do $(genxml) -w -T $(doctmpdir)/iftemplates -m $$i >> $@; done
 endif
 
 $(tunxml): $(globaltun)
@@ -435,11 +437,11 @@ $(boolxml): $(globalbool)
 $(polxml): $(layerxml) $(tunxml) $(boolxml) $(gentooxml)
 	@echo "Creating $(@F)"
 	@test -d $(dir $(polxml)) || mkdir -p $(dir $(polxml))
-	@test -d $(tmpdir) || mkdir -p $(tmpdir)
+	@test -d $(doctmpdir) || mkdir -p $(doctmpdir)
 	$(verbose) echo '<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>' > $@
 	$(verbose) echo '<!DOCTYPE policy SYSTEM "$(notdir $(xmldtd))">' >> $@
 	$(verbose) echo '<policy>' >> $@
-	$(verbose) for i in $(basename $(notdir $(layerxml))); do echo "<layer name=\"$$i\">" >> $@; cat $(tmpdir)/$$i.xml >> $@; echo "</layer>" >> $@; done
+	$(verbose) for i in $(basename $(notdir $(layerxml))); do echo "<layer name=\"$$i\">" >> $@; cat $(doctmpdir)/$$i.xml >> $@; echo "</layer>" >> $@; done
 	$(verbose) cat $(tunxml) $(boolxml) $(gentooxml) >> $@
 	$(verbose) echo '</policy>' >> $@
 	$(verbose) if test -x $(XMLLINT) && test -f $(xmldtd); then \
@@ -630,8 +632,7 @@ resetlabels:
 #
 bare: clean
 	$(verbose) rm -f $(polxml)
-	$(verbose) rm -f $(layerxml)
-	$(verbose) rm -f $(modxml)
+	$(verbose) rm -fR $(doctmpdir)
 	$(verbose) rm -f $(tunxml)
 	$(verbose) rm -f $(boolxml)
 	$(verbose) rm -f $(mod_conf)
