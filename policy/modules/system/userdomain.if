@@ -3999,7 +3999,7 @@ interface(`userdom_spec_domtrans_all_users',`
 
 	corecmd_shell_spec_domtrans($1, userdomain)
 	allow userdomain $1:fd use;
-	allow userdomain $1:fifo_file rw_fifo_file_perms;
+	allow userdomain $1:fifo_file rw_inherited_fifo_file_perms;
 	allow userdomain $1:process sigchld;
 ')
 
@@ -4022,7 +4022,7 @@ interface(`userdom_xsession_spec_domtrans_all_users',`
 
 	xserver_xsession_spec_domtrans($1, userdomain)
 	allow userdomain $1:fd use;
-	allow userdomain $1:fifo_file rw_fifo_file_perms;
+	allow userdomain $1:fifo_file rw_inherited_fifo_file_perms;
 	allow userdomain $1:process sigchld;
 ')
 
@@ -4045,7 +4045,7 @@ interface(`userdom_spec_domtrans_unpriv_users',`
 
 	corecmd_shell_spec_domtrans($1, unpriv_userdomain)
 	allow unpriv_userdomain $1:fd use;
-	allow unpriv_userdomain $1:fifo_file rw_fifo_file_perms;
+	allow unpriv_userdomain $1:fifo_file rw_inherited_fifo_file_perms;
 	allow unpriv_userdomain $1:process sigchld;
 ')
 
@@ -4068,7 +4068,7 @@ interface(`userdom_xsession_spec_domtrans_unpriv_users',`
 
 	xserver_xsession_spec_domtrans($1, unpriv_userdomain)
 	allow unpriv_userdomain $1:fd use;
-	allow unpriv_userdomain $1:fifo_file rw_fifo_file_perms;
+	allow unpriv_userdomain $1:fifo_file rw_inherited_fifo_file_perms;
 	allow unpriv_userdomain $1:process sigchld;
 ')
 
@@ -4165,7 +4165,7 @@ interface(`userdom_bin_spec_domtrans_unpriv_users',`
 
 	corecmd_bin_spec_domtrans($1, unpriv_userdomain)
 	allow unpriv_userdomain $1:fd use;
-	allow unpriv_userdomain $1:fifo_file rw_fifo_file_perms;
+	allow unpriv_userdomain $1:fifo_file rw_inherited_fifo_file_perms;
 	allow unpriv_userdomain $1:process sigchld;
 ')
 
@@ -4188,7 +4188,7 @@ interface(`userdom_entry_spec_domtrans_unpriv_users',`
 
 	domain_entry_file_spec_domtrans($1, unpriv_userdomain)
 	allow unpriv_userdomain $1:fd use;
-	allow unpriv_userdomain $1:fifo_file rw_fifo_file_perms;
+	allow unpriv_userdomain $1:fifo_file rw_inherited_fifo_file_perms;
 	allow unpriv_userdomain $1:process sigchld;
 ')
 
