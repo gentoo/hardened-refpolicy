@@ -845,7 +845,7 @@ interface(`logging_delete_devlog_socket',`
 
 ########################################
 ## <summary>
-##	Create, read, write, and delete syslog PID sockets.
+##	Create, read, write, and delete syslog PID sockets.  (Deprecated)
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -854,6 +854,21 @@ interface(`logging_delete_devlog_socket',`
 ## </param>
 #
 interface(`logging_manage_pid_sockets',`
+	refpolicywarn(`$0($*) has been deprecated, please use logging_manage_runtime_sockets() instead.')
+	logging_manage_runtime_sockets($1)
+')
+
+########################################
+## <summary>
+##	Create, read, write, and delete syslog PID sockets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`logging_manage_runtime_sockets',`
 	gen_require(`
 		type syslogd_runtime_t;
 	')

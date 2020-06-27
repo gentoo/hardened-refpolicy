@@ -384,7 +384,7 @@ interface(`udev_relabelto_db_sockets',`
 
 ########################################
 ## <summary>
-##	Search through udev pid content
+##	Search through udev pid content  (Deprecated)
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -393,6 +393,117 @@ interface(`udev_relabelto_db_sockets',`
 ## </param>
 #
 interface(`udev_search_pids',`
+	refpolicywarn(`$0($*) has been deprecated, please use udev_search_runtime() instead.')
+	udev_search_runtime($1)
+')
+
+########################################
+## <summary>
+##      list udev pid content  (Deprecated)
+## </summary>
+## <param name="domain">
+##      <summary>
+##      Domain allowed access.
+##      </summary>
+## </param>
+#
+interface(`udev_list_pids',`
+	refpolicywarn(`$0($*) has been deprecated, please use udev_list_runtime() instead.')
+	udev_list_runtime($1)
+')
+
+########################################
+## <summary>
+##	Create, read, write, and delete
+##	udev pid directories  (Deprecated)
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`udev_manage_pid_dirs',`
+	refpolicywarn(`$0($*) has been deprecated, please use udev_manage_runtime_dirs() instead.')
+	udev_manage_runtime_dirs($1)
+')
+
+########################################
+## <summary>
+##	Read udev pid files.  (Deprecated)
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`udev_read_pid_files',`
+	refpolicywarn(`$0($*) has been deprecated, please use udev_read_runtime_files() instead.')
+	udev_read_runtime_files($1)
+')
+
+########################################
+## <summary>
+##	dontaudit attempts to read/write udev pidfiles  (Deprecated)
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`udev_dontaudit_rw_pid_files',`
+	refpolicywarn(`$0($*) has been deprecated, please use udev_dontaudit_rw_runtime_files() instead.')
+	udev_dontaudit_rw_runtime_files($1)
+')
+
+########################################
+## <summary>
+##	Create, read, write, and delete
+##	udev pid files.  (Deprecated)
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`udev_manage_pid_files',`
+	refpolicywarn(`$0($*) has been deprecated, please use udev_manage_runtime_files() instead.')
+	udev_manage_runtime_files($1)
+')
+
+########################################
+## <summary>
+##	Create directories in the run location with udev_runtime_t type  (Deprecated)
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <param name="name" optional="true">
+## 	<summary>
+##	Name of the directory that is created
+##	</summary>
+## </param>
+#
+interface(`udev_generic_pid_filetrans_run_dirs',`
+	refpolicywarn(`$0($*) has been deprecated.')
+')
+
+########################################
+## <summary>
+##	Search through udev runtime dirs.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`udev_search_runtime',`
 	gen_require(`
 		type udev_runtime_t;
 	')
@@ -403,7 +514,7 @@ interface(`udev_search_pids',`
 
 ########################################
 ## <summary>
-##      list udev pid content
+##      List udev runtime dirs.
 ## </summary>
 ## <param name="domain">
 ##      <summary>
@@ -411,7 +522,7 @@ interface(`udev_search_pids',`
 ##      </summary>
 ## </param>
 #
-interface(`udev_list_pids',`
+interface(`udev_list_runtime',`
 	gen_require(`
 		type udev_runtime_t;
 	')
@@ -423,7 +534,7 @@ interface(`udev_list_pids',`
 ########################################
 ## <summary>
 ##	Create, read, write, and delete
-##	udev run directories
+##	udev runtime directories
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -431,7 +542,7 @@ interface(`udev_list_pids',`
 ##	</summary>
 ## </param>
 #
-interface(`udev_manage_pid_dirs',`
+interface(`udev_manage_runtime_dirs',`
 	gen_require(`
 		type udev_runtime_t;
 	')
@@ -442,7 +553,7 @@ interface(`udev_manage_pid_dirs',`
 
 ########################################
 ## <summary>
-##	Read udev pid files
+##	Read udev runtime files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -450,7 +561,7 @@ interface(`udev_manage_pid_dirs',`
 ##	</summary>
 ## </param>
 #
-interface(`udev_read_pid_files',`
+interface(`udev_read_runtime_files',`
 	gen_require(`
 		type udev_runtime_t;
 	')
@@ -462,7 +573,7 @@ interface(`udev_read_pid_files',`
 
 ########################################
 ## <summary>
-##	dontaudit attempts to read/write udev pidfiles
+##	dontaudit attempts to read/write udev runtime files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -470,7 +581,7 @@ interface(`udev_read_pid_files',`
 ##	</summary>
 ## </param>
 #
-interface(`udev_dontaudit_rw_pid_files',`
+interface(`udev_dontaudit_rw_runtime_files',`
 	gen_require(`
 		type udev_runtime_t;
 	')
@@ -481,7 +592,7 @@ interface(`udev_dontaudit_rw_pid_files',`
 ########################################
 ## <summary>
 ##	Create, read, write, and delete
-##	udev pid files.
+##	udev runtime files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -489,33 +600,13 @@ interface(`udev_dontaudit_rw_pid_files',`
 ##	</summary>
 ## </param>
 #
-interface(`udev_manage_pid_files',`
+interface(`udev_manage_runtime_files',`
 	gen_require(`
 		type udev_runtime_t;
 	')
 
 	files_search_pids($1)
 	manage_files_pattern($1, udev_runtime_t, udev_runtime_t)
-')
-
-########################################
-## <summary>
-##	Write dirs in /var/run with the udev_runtime file type.
-##	This method is deprecated in favor of the init_daemon_run_dir call.
-## </summary>
-## <param name="domain">
-##	<summary>
-##	Domain allowed access.
-##	</summary>
-## </param>
-## <param name="name" optional="true">
-##	<summary>
-##	Name of the directory that the file transition will work on
-##	</summary>
-## </param>
-#
-interface(`udev_generic_pid_filetrans_run_dirs',`
-	refpolicywarn(`$0($*) has been deprecated.')
 ')
 
 ########################################
