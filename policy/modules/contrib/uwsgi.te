@@ -13,7 +13,7 @@ type uwsgi_conf_t;
 files_config_file(uwsgi_conf_t)
 
 type uwsgi_run_t;
-init_daemon_pid_file(uwsgi_run_t, dir, "uwsgi")
+init_daemon_runtime_file(uwsgi_run_t, dir, "uwsgi")
 
 type uwsgi_var_log_t;
 logging_log_file(uwsgi_var_log_t)

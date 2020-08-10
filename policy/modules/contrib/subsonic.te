@@ -13,7 +13,7 @@ type subsonic_var_lib_t;
 files_type(subsonic_var_lib_t)
 
 type subsonic_run_t;
-files_pid_file(subsonic_run_t)
+files_runtime_file(subsonic_run_t)
 
 ##############################
 #
@@ -28,7 +28,7 @@ kernel_dontaudit_list_all_proc(subsonic_t)
 
 manage_dirs_pattern(subsonic_t, subsonic_run_t, subsonic_run_t)
 manage_files_pattern(subsonic_t, subsonic_run_t, subsonic_run_t)
-files_pid_filetrans(subsonic_t, subsonic_run_t, dir)
+files_runtime_filetrans(subsonic_t, subsonic_run_t, dir)
 
 manage_dirs_pattern(subsonic_t, subsonic_var_lib_t, subsonic_var_lib_t)
 manage_files_pattern(subsonic_t, subsonic_var_lib_t, subsonic_var_lib_t)

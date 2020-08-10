@@ -1425,7 +1425,7 @@ ifdef(`distro_gentoo',`
 	read_lnk_files_pattern(initrc_t, init_script_readable, init_script_readable)
 
 	manage_dirs_pattern(initrc_t, initrc_runtime_t, initrc_runtime_t)
-	files_pid_filetrans(initrc_t, initrc_runtime_t, dir)
+	files_runtime_filetrans(initrc_t, initrc_runtime_t, dir)
 
 	kernel_write_proc_files(initrc_t)
 

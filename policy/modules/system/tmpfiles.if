@@ -15,7 +15,7 @@ interface(`tmpfiles_read_runtime',`
 		type tmpfiles_runtime_t;
 	')
 
-	files_search_pids($1)
+	files_search_runtime($1)
 	allow $1 tmpfiles_runtime_t:dir list_dir_perms;
 	allow $1 tmpfiles_runtime_t:file read_file_perms;
 ')

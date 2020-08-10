@@ -24,7 +24,7 @@ type tmpfiles_conf_t;
 files_config_file(tmpfiles_conf_t)
 
 type tmpfiles_runtime_t alias tmpfiles_var_run_t;
-files_pid_file(tmpfiles_runtime_t)
+files_runtime_file(tmpfiles_runtime_t)
 
 
 ########################################
@@ -60,19 +60,21 @@ dev_setattr_all_blk_files(tmpfiles_t)
 dev_setattr_all_chr_files(tmpfiles_t)
 dev_setattr_generic_dirs(tmpfiles_t)
 
-files_manage_all_pids(tmpfiles_t)
+files_manage_all_runtime_dirs(tmpfiles_t)
+files_manage_all_runtime_files(tmpfiles_t)
+files_manage_all_runtime_symlinks(tmpfiles_t)
 files_manage_generic_locks(tmpfiles_t)
 files_manage_generic_tmp_dirs(tmpfiles_t)
 files_manage_generic_tmp_files(tmpfiles_t)
 files_manage_var_dirs(tmpfiles_t)
 files_manage_var_files(tmpfiles_t)
 files_relabel_all_lock_dirs(tmpfiles_t)
-files_relabel_all_pidfiles(tmpfiles_t)
+files_relabel_all_runtime_files(tmpfiles_t)
 files_relabel_all_tmp_dirs(tmpfiles_t)
 files_relabel_all_tmp_files(tmpfiles_t)
 files_setattr_all_tmp_dirs(tmpfiles_t)
 files_setattr_lock_dirs(tmpfiles_t)
-files_setattr_pid_dirs(tmpfiles_t)
+files_setattr_runtime_dirs(tmpfiles_t)
 
 fs_getattr_all_fs(tmpfiles_t)
 fs_getattr_tmpfs_dirs(tmpfiles_t)

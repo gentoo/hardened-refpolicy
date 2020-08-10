@@ -16,7 +16,7 @@ interface(`uwsgi_stream_connect',`
 		type uwsgi_t, uwsgi_run_t;
 	')
 
-	files_search_pids($1)
+	files_search_runtime($1)
 	list_dirs_pattern($1, uwsgi_run_t, uwsgi_run_t)
 	stream_connect_pattern($1, uwsgi_run_t, uwsgi_run_t, uwsgi_t)
 ')
@@ -36,7 +36,7 @@ interface(`uwsgi_manage_content',`
 		type uwsgi_content_t;
 	')
 
-	files_search_pids($1)
+	files_search_runtime($1)
 	manage_dirs_pattern($1, uwsgi_content_t, uwsgi_content_t)
 	manage_files_pattern($1, uwsgi_content_t, uwsgi_content_t)
 	manage_lnk_files_pattern($1, uwsgi_content_t, uwsgi_content_t)
@@ -124,7 +124,7 @@ interface(`uwsgi_admin',`
 	logging_search_logs($1)
 	admin_pattern($1, { uwsgi_var_log_t })
 
-	files_search_pids($1)
+	files_search_runtime($1)
 	admin_pattern($1, uwsgi_run_t)
 
 	files_search_tmp($1)

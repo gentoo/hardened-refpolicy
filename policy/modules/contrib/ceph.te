@@ -29,7 +29,7 @@ type ceph_var_lib_t;
 files_type(ceph_var_lib_t)
 
 type ceph_runtime_t alias ceph_var_run_t;
-files_pid_file(ceph_runtime_t)
+files_runtime_file(ceph_runtime_t)
 
 #########################################
 #
@@ -58,9 +58,9 @@ corenet_tcp_bind_all_unreserved_ports(cephdomain)
 corenet_tcp_connect_all_unreserved_ports(cephdomain)
 
 files_read_etc_files(cephdomain)
-files_search_pids(cephdomain)
+files_search_runtime(cephdomain)
 files_search_var_lib(cephdomain)
-files_pid_filetrans(cephdomain, ceph_runtime_t, dir)
+files_runtime_filetrans(cephdomain, ceph_runtime_t, dir)
 
 fs_getattr_all_fs(cephdomain)
 

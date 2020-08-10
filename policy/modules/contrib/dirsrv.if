@@ -134,7 +134,7 @@ interface(`dirsrv_pid_filetrans',`
 		type dirsrv_runtime_t;
 	')
 	# Allow creating a dir in /var/run with this type
-	files_pid_filetrans($1, dirsrv_runtime_t, dir)
+	files_runtime_filetrans($1, dirsrv_runtime_t, dir)
 ')
 
 #######################################

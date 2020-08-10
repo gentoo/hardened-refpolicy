@@ -22,7 +22,7 @@ type atd_initrc_exec_t;
 init_script_file(atd_initrc_exec_t)
 
 type atd_runtime_t alias atd_var_run_t;
-files_pid_file(atd_runtime_t)
+files_runtime_file(atd_runtime_t)
 
 ########################################
 #
@@ -40,7 +40,7 @@ list_dirs_pattern(atd_t, at_spool_t, at_job_t)
 manage_files_pattern(atd_t, at_job_log_t, at_job_log_t)
 
 manage_files_pattern(atd_t, atd_runtime_t, atd_runtime_t)
-files_pid_filetrans(atd_t, atd_runtime_t, file)
+files_runtime_filetrans(atd_t, atd_runtime_t, file)
 
 kernel_read_kernel_sysctls(atd_t)
 
@@ -87,7 +87,7 @@ domain_use_interactive_fds(at_t)
 
 files_read_etc_files(at_t)
 files_search_spool(at_t)
-files_search_pids(at_t)
+files_search_runtime(at_t)
 
 miscfiles_read_localization(at_t)
 

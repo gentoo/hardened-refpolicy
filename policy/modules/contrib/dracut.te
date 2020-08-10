@@ -44,7 +44,7 @@ files_create_kernel_img(dracut_t)
 files_read_etc_files(dracut_t)
 files_read_kernel_modules(dracut_t)
 files_read_usr_files(dracut_t)
-files_search_pids(dracut_t)
+files_search_runtime(dracut_t)
 
 libs_exec_ldconfig(dracut_t)
 libs_exec_ld_so(dracut_t)

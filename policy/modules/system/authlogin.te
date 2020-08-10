@@ -474,5 +474,5 @@ optional_policy(`
 ')
 
 ifdef(`distro_gentoo',`
-	init_daemon_pid_file(pam_runtime_t, dir, "sepermit")
+	init_daemon_runtime_file(pam_runtime_t, dir, "sepermit")
 ')

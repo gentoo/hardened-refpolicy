@@ -91,7 +91,7 @@ ifdef(`distro_gentoo',`
 	# Network related socket
 	allow qemu_t qemu_runtime_t:sock_file manage_sock_file_perms;
 
-	files_pid_filetrans(qemu_t, qemu_runtime_t, sock_file)
+	files_runtime_filetrans(qemu_t, qemu_runtime_t, sock_file)
 
 	optional_policy(`
 		vde_connect(qemu_t)
@@ -109,7 +109,7 @@ ifdef(`distro_gentoo',`
 	logging_log_file(qemu_ga_log_t)
 
 	type qemu_ga_run_t;
-	files_pid_file(qemu_ga_run_t)
+	files_runtime_file(qemu_ga_run_t)
 
 	allow qemu_ga_t self:capability sys_admin;
 	allow qemu_ga_t self:unix_dgram_socket create_socket_perms;
@@ -121,7 +121,7 @@ ifdef(`distro_gentoo',`
 	logging_log_filetrans(qemu_ga_t, qemu_ga_log_t, { dir file })
 
 	allow qemu_ga_t qemu_ga_run_t:file manage_file_perms;
-	files_pid_filetrans(qemu_ga_t, qemu_ga_run_t, file)
+	files_runtime_filetrans(qemu_ga_t, qemu_ga_run_t, file)
 
 	corecmd_exec_bin(qemu_ga_t)
 	corecmd_exec_shell(qemu_ga_t)

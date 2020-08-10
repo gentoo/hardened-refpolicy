@@ -412,6 +412,6 @@ ifdef(`distro_gentoo',`
 	dev_filetrans(lvm_t, lvm_lock_t, dir, ".lvm")
 
 	optional_policy(`
-		udev_read_pid_files(lvm_t)
+		udev_read_runtime_files(lvm_t)
 	')
 ')

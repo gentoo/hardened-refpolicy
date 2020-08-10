@@ -24,7 +24,7 @@ corecmd_exec_shell(openrc_cgroup_release_t)
 
 # The following two I cannot find out why they are needed, but they are.
 files_read_etc_files(openrc_cgroup_release_t)
-files_search_pids(openrc_cgroup_release_t)
+files_search_runtime(openrc_cgroup_release_t)
 
 fs_manage_cgroup_dirs(openrc_cgroup_release_t)
 fs_manage_cgroup_files(openrc_cgroup_release_t)

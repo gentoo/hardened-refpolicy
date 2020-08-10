@@ -20,7 +20,7 @@ type phpfpm_tmp_t;
 files_tmp_file(phpfpm_tmp_t)
 
 type phpfpm_runtime_t alias phpfpm_var_run_t;
-files_pid_file(phpfpm_runtime_t)
+files_runtime_file(phpfpm_runtime_t)
 
 type phpfpm_log_t;
 logging_log_file(phpfpm_log_t)
@@ -46,7 +46,7 @@ manage_dirs_pattern(phpfpm_t, phpfpm_tmp_t, phpfpm_tmp_t)
 files_tmp_filetrans(phpfpm_t, phpfpm_tmp_t, {file dir})
 
 manage_files_pattern(phpfpm_t, phpfpm_runtime_t, phpfpm_runtime_t)
-files_pid_filetrans(phpfpm_t, phpfpm_runtime_t, { file sock_file })
+files_runtime_filetrans(phpfpm_t, phpfpm_runtime_t, { file sock_file })
 
 manage_sock_files_pattern(phpfpm_t, phpfpm_runtime_t, phpfpm_runtime_t)
 

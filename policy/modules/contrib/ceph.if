@@ -30,7 +30,7 @@ template(`ceph_domain_template',`
 
 	type ceph_$1_runtime_t, cephpidfile;
 	typealias ceph_$1_runtime_t alias ceph_$1_var_run_t;
-	files_pid_file(ceph_$1_runtime_t)
+	files_runtime_file(ceph_$1_runtime_t)
 
 	########################################
 	#
