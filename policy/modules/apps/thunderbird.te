@@ -178,9 +178,6 @@ optional_policy(`
 ifdef(`distro_gentoo',`
 	typealias thunderbird_xdg_cache_t alias thunderbird_xdg_cache_home_t;
 
-	type thunderbird_tmp_t;
-	userdom_user_tmp_file(thunderbird_tmp_t)
-
 	################################
 	#
 	# Thunderbird local policy
@@ -188,10 +185,6 @@ ifdef(`distro_gentoo',`
 
 	# thunderbird-bin to execute stuff in /opt/thunderbird/
 	can_exec(thunderbird_t, thunderbird_exec_t)
-
-	manage_dirs_pattern(thunderbird_t, thunderbird_tmp_t, thunderbird_tmp_t)
-	manage_files_pattern(thunderbird_t, thunderbird_tmp_t, thunderbird_tmp_t)
-	files_tmp_filetrans(thunderbird_t, thunderbird_tmp_t, { dir file })
 
 	# File preview apps for instance
 	corecmd_exec_bin(thunderbird_t)
