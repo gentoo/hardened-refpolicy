@@ -123,6 +123,11 @@ files_read_etc_files(nginx_t)
 miscfiles_read_localization(nginx_t)
 sysnet_dns_name_resolve(nginx_t)
 
+optional_policy(`
+	apache_read_config(nginx_t)
+	apache_read_module_files(nginx_t)
+	apache_manage_log(nginx_t)
+')
 
 tunable_policy(`nginx_enable_http_server',`
 	corenet_tcp_bind_http_port(nginx_t)
