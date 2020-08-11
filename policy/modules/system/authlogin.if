@@ -1105,7 +1105,7 @@ interface(`auth_read_pam_pid',`
 
 #######################################
 ## <summary>
-##	Do not audit attemps to read PAM PID files.  (Deprecated)
+##	Do not audit attempts to read PAM PID files.  (Deprecated)
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -1248,7 +1248,7 @@ interface(`auth_read_pam_runtime_files',`
 
 #######################################
 ## <summary>
-##	Do not audit attemps to read PAM runtime files.
+##	Do not audit attempts to read PAM runtime files.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -1561,7 +1561,7 @@ interface(`auth_run_utempter',`
 
 #######################################
 ## <summary>
-##	Do not audit attemps to execute utempter executable.
+##	Do not audit attempts to execute utempter executable.
 ## </summary>
 ## <param name="domain">
 ##	<summary>

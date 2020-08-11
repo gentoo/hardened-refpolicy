@@ -5910,7 +5910,7 @@ interface(`files_read_var_lib_symlinks',`
 ')
 
 # cjp: the next two interfaces really need to be fixed
-# in some way.  They really neeed their own types.
+# in some way.  They really need their own types.
 
 ########################################
 ## <summary>
@@ -7032,7 +7032,7 @@ interface(`files_manage_all_runtime_dirs',`
 ## </summary>
 ## <param name="domain">
 ##	<summary>
-##	Domain alloed access.
+##	Domain allowed access.
 ##	</summary>
 ## </param>
 #
@@ -7153,7 +7153,7 @@ interface(`files_delete_all_runtime_files',`
 ## </summary>
 ## <param name="domain">
 ##	<summary>
-##	Domain alloed access.
+##	Domain allowed access.
 ##	</summary>
 ## </param>
 #
@@ -7209,7 +7209,7 @@ interface(`files_delete_all_runtime_symlinks',`
 ## </summary>
 ## <param name="domain">
 ##	<summary>
-##	Domain alloed access.
+##	Domain allowed access.
 ##	</summary>
 ## </param>
 #
@@ -7227,7 +7227,7 @@ interface(`files_manage_all_runtime_symlinks',`
 ## </summary>
 ## <param name="domain">
 ##	<summary>
-##	Domain alloed access.
+##	Domain allowed access.
 ##	</summary>
 ## </param>
 #
@@ -7319,7 +7319,7 @@ interface(`files_delete_all_runtime_sockets',`
 ## </summary>
 ## <param name="domain">
 ##	<summary>
-##	Domain alloed access.
+##	Domain allowed access.
 ##	</summary>
 ## </param>
 #
@@ -7474,7 +7474,7 @@ interface(`files_delete_all_pid_dirs',`
 ## </summary>
 ## <param name="domain">
 ##	<summary>
-##	Domain alloed access.
+##	Domain allowed access.
 ##	</summary>
 ## </param>
 #
@@ -7491,7 +7491,7 @@ interface(`files_manage_all_pids',`
 ## </summary>
 ## <param name="domain">
 ##	<summary>
-##	Domain alloed access.
+##	Domain allowed access.
 ##	</summary>
 ## </param>
 #
@@ -7506,7 +7506,7 @@ interface(`files_relabel_all_pid_dirs',`
 ## </summary>
 ## <param name="domain">
 ##	<summary>
-##	Domain alloed access.
+##	Domain allowed access.
 ##	</summary>
 ## </param>
 #
@@ -7521,7 +7521,7 @@ interface(`files_relabel_all_pid_sock_files',`
 ## </summary>
 ## <param name="domain">
 ##	<summary>
-##	Domain alloed access.
+##	Domain allowed access.
 ##	</summary>
 ## </param>
 #
