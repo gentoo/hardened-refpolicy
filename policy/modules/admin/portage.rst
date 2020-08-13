@@ -55,7 +55,7 @@ portage_fetch_t
 The **portage_fetch_t** domain is used to manage and update the Portage tree.
 
 Permission-wise, it is allowed to transition to the **portage_t** domain when
-it, for instance, needs to update metadata. 
+it, for instance, needs to update metadata.
 
 The domain is affected by the following booleans:
 
@@ -68,7 +68,7 @@ portage_sandbox_t
 The **portage_sandbox_t** domain is used when building software. It has a wide
 range of read rights as it has to be flexible enough to support all possible
 software builds. This includes networking support (for instance when using
-``distcc``). 
+``distcc``).
 
 This domain is only transitioned towards by the **portage_t** domain and is not
 directly accessible. Also, this domain is not allowed to transition towards any
@@ -78,7 +78,7 @@ The domain is affected by the following booleans:
 
 * **portage_use_nfs** allows the **portage_sandbox_t** domain to manage
   NFS-hosted files.
-  
+ 
   If you have the repository on an NFS share, or any of the Portage related
   locations (such as the temporary build dir) on NFS, then you will need to
   enable this boolean.
@@ -98,7 +98,7 @@ The domain is affected by the following booleans:
 * **portage_use_nfs** allows the **gcc_config_t** domain to read NFS hosted
   files. This was made necessary as the ``gcc-config`` application underlyingly
   uses Portage code, which reads information from the repository and configuration
-  locations. 
+  locations.
 
   This boolean only needs to be set if you have the Portage tree hosted on an
   NFS share.
@@ -232,7 +232,7 @@ portage_read_ebuild
 SEE ALSO
 ========
 
-* Gentoo and SELinux at 
+* Gentoo and SELinux at
   https://wiki.gentoo.org/wiki/SELinux
 * Gentoo Hardened SELinux Project at
   https://wiki.gentoo.org/wiki/Project:Hardened

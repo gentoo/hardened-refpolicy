@@ -1,7 +1,7 @@
 policy_module(mutt, 1.0.0)
 
 ############################
-# 
+#
 # Declarations
 #
 

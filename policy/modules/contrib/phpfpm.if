@@ -9,7 +9,7 @@
 ##	Domain allowed access
 ##	</summary>
 ## </param>
-# 
+#
 interface(`phpfpm_admin',`
 	gen_require(`
 		type phpfpm_t;

@@ -15,7 +15,7 @@ DESCRIPTION
 ===========
 
 The *munin* SELinux module supports the Munin networked resource management
-tool. 
+tool.
 
 DOMAINS
 =======

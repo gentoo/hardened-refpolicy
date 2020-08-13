@@ -24,7 +24,7 @@ aide_t
 ------
 
 The **aide_t** domain is used for the application runtime context. When the
-``aide`` command is invoked, it should run within this domain. 
+``aide`` command is invoked, it should run within this domain.
 
 The use of this domain is restricted to the roles responsible for the security
 administration of the system, so **sysadm_r** and **secadm_r**. It is strongly
@@ -101,7 +101,7 @@ aide_domtrans
 SEE ALSO
 ========
 
-* Gentoo and SELinux at 
+* Gentoo and SELinux at
   https://wiki.gentoo.org/wiki/SELinux
-* Gentoo Hardened SELinux Project at 
+* Gentoo Hardened SELinux Project at
   https://wiki.gentoo.org/wiki/Project:Hardened

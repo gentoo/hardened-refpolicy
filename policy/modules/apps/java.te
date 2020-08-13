@@ -113,7 +113,7 @@ tunable_policy(`java_manage_generic_user_content',`
 
 ifdef(`distro_gentoo',`
 	# For java browser plugin accessing internet resources
-	allow java_domain self:netlink_route_socket create_netlink_socket_perms; 
+	allow java_domain self:netlink_route_socket create_netlink_socket_perms;
 	allow java_domain self:sem create_sem_perms;
 
 	manage_dirs_pattern(java_domain, java_home_t, java_home_t)

@@ -47,7 +47,7 @@ allow cephdomain ceph_log_t:dir manage_dir_perms;
 allow cephdomain ceph_log_t:file { create_file_perms rw_file_perms };
 allow cephdomain ceph_var_lib_t:dir search_dir_perms;
 allow cephdomain self:netlink_route_socket { rw_netlink_socket_perms };
-allow cephdomain self:tcp_socket { create_socket_perms listen accept }; 
+allow cephdomain self:tcp_socket { create_socket_perms listen accept };
 allow cephdomain ceph_runtime_t:file manage_file_perms;
 allow cephdomain ceph_runtime_t:dir manage_dir_perms;
 

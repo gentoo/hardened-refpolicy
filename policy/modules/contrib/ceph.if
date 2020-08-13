@@ -34,7 +34,7 @@ template(`ceph_domain_template',`
 
 	########################################
 	#
-	# Local policy 
+	# Local policy
 	#
 	# Rules which cannot be made part of the domain
 

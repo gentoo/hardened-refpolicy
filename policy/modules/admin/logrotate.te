@@ -290,7 +290,6 @@ optional_policy(`
 	logging_read_all_logs(logrotate_mail_t)
 ')
 
-
 ifdef(`distro_gentoo',`
 	# Fix bug 534256 - fail2ban installs a logrotate file that calls fail2ban-client so allow transition
 	optional_policy(`

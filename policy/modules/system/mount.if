@@ -274,6 +274,5 @@ interface(`mount_rw_pipes',`
 	gen_require(`
 		type mount_t;
 	')
-
 	allow $1 mount_t:fifo_file rw_fifo_file_perms;
 ')

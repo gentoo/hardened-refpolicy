@@ -756,9 +756,9 @@ gen_tunable(mozilla_plugin_connect_all_unreserved, false)
 	')
 
 	###########################
-	# 
+	#
 	# Mozilla plugin policy
-	# 
+	#
 
 	allow mozilla_plugin_t self:netlink_route_socket r_netlink_socket_perms;
 	allow mozilla_plugin_t self:udp_socket create_socket_perms;

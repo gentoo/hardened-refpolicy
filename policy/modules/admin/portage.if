@@ -364,7 +364,7 @@ interface(`portage_dontaudit_rw_tmp_files',`
 
 ########################################
 ## <summary>
-##   Allow the domain to run within an eselect module script. 
+##   Allow the domain to run within an eselect module script.
 ## </summary>
 ## <param name="domain">
 ##     <summary>
@@ -373,7 +373,7 @@ interface(`portage_dontaudit_rw_tmp_files',`
 ## </param>
 #   Specific to Gentoo,
 #   eselect modules allow users to switch between different flavors or versions
-#   of underlying components. In return, eselect makes a wrapper binary which 
+#   of underlying components. In return, eselect makes a wrapper binary which
 #   makes the proper selections. If this binary is different from bin_t, it might
 #   not hold the necessary privileges for the wrapper to function. However, just
 #   marking the target binaries doesn't always work, since for python scripts the

@@ -38,7 +38,7 @@ interface(`vde_role',`
 
 ########################################
 ## <summary>
-#    Allow communication with the VDE service 
+#    Allow communication with the VDE service
 ## </summary>
 ## <param name="domain">
 ##	<summary>
