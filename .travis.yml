@@ -3,9 +3,6 @@
 language: python
 python: 3.5
 
-matrix:
-  fast_finish: true
-
 # for T in standard mls mcs ; do for D in arch debian gentoo ; do for I in n y ; do for M in y n ; do for S in n y ; do
 # echo "  - TYPE=$T DISTRO=$D DIRECT_INITRC=$I MONOLITHIC=$M SYSTEMD=$S" ; done ; done ; done ; done ; done
 env:
@@ -25,12 +22,13 @@ env:
   - TYPE=mls DISTRO=gentoo MONOLITHIC=y SYSTEMD=y WERROR=y
   - TYPE=mls DISTRO=gentoo MONOLITHIC=y SYSTEMD=n WERROR=y APPS_OFF=unconfined
 
-matrix:
+jobs:
+  fast_finish: true
   include:
   - python: 3.7
     env: LINT=true TYPE=standard DISTRO=gentoo
 
-sudo: false
+os: linux
 dist: bionic
 
 cache:
