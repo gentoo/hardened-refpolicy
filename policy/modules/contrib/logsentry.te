@@ -24,7 +24,7 @@ files_type(logsentry_filter_t)
 # Local Policy
 #
 
-allow logsentry_t self:fifo_file { read write getattr ioctl };
+allow logsentry_t self:fifo_file rw_inherited_fifo_file_perms;
 allow logsentry_t self:capability { setuid setgid };
 allow logsentry_t logsentry_exec_t:file execute_no_trans;
 

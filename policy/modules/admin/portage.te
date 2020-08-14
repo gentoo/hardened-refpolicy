@@ -525,7 +525,7 @@ gen_tunable(portage_enable_test, false)
 	# Portage eselect module domain
 	#
 
-	allow portage_eselect_domain self:fifo_file { read write };
+	allow portage_eselect_domain self:fifo_file rw_inherited_fifo_file_perms;
 
 	corecmd_exec_shell(portage_eselect_domain)
 

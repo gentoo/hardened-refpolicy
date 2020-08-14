@@ -72,7 +72,7 @@ miscfiles_read_localization(dirsrv_t)
 dev_read_urand(dirsrv_t)
 libs_use_ld_so(dirsrv_t)
 libs_use_shared_libs(dirsrv_t)
-allow dirsrv_t self:fifo_file { read write };
+allow dirsrv_t self:fifo_file rw_inherited_fifo_file_perms;
 
 # process stuff
 allow dirsrv_t self:process { getsched setsched setfscreate signal_perms};
@@ -160,7 +160,7 @@ dev_read_urand(dirsrv_snmp_t)
 files_read_usr_files(dirsrv_snmp_t)
 fs_getattr_tmpfs(dirsrv_snmp_t)
 fs_search_tmpfs(dirsrv_snmp_t)
-allow dirsrv_snmp_t self:fifo_file { read write };
+allow dirsrv_snmp_t self:fifo_file rw_inherited_fifo_file_perms;
 sysnet_read_config(dirsrv_snmp_t)
 sysnet_dns_name_resolve(dirsrv_snmp_t)
 

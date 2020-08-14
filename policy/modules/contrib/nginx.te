@@ -77,7 +77,7 @@ files_runtime_file(nginx_runtime_t)
 # nginx local policy
 #
 
-allow nginx_t self:fifo_file { read write };
+allow nginx_t self:fifo_file rw_inherited_fifo_file_perms;
 allow nginx_t self:unix_stream_socket create_stream_socket_perms;
 allow nginx_t self:tcp_socket { listen accept };
 allow nginx_t self:capability { setuid net_bind_service setgid chown };
