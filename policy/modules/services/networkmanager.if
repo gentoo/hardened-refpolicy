@@ -485,7 +485,7 @@ interface(`networkmanager_domtrans_wpa_cli',`
 #
 interface(`networkmanager_run_wpa_cli',`
         gen_require(`
-                type wpa_cli_exec_t;
+                type wpa_cli_t;
         ')
 
         networkmanager_domtrans_wpa_cli($1)

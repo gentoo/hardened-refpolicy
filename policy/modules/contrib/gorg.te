@@ -5,10 +5,10 @@ type gorg_exec_t;
 application_domain(gorg_t, gorg_exec_t)
 
 type gorg_cache_t;
-files_type(gorg_cache_t);
+files_type(gorg_cache_t)
 
 type gorg_config_t;
-files_type(gorg_config_t);
+files_type(gorg_config_t)
 
 ###################################
 #

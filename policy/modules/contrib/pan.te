@@ -33,7 +33,7 @@ ubac_constrained(pan_tmpfs_t)
 #
 allow pan_t self:process { getsched signal };
 allow pan_t self:fifo_file rw_fifo_file_perms;
-allow pan_t pan_tmpfs_t:file { read write };
+allow pan_t pan_tmpfs_t:file rw_inherited_file_perms;
 
 # Allow pan to work with its ~/.pan2 location
 manage_dirs_pattern(pan_t, pan_home_t, pan_home_t)

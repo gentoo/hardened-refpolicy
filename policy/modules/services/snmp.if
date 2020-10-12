@@ -193,8 +193,8 @@ interface(`snmp_admin',`
 #
 interface(`snmp_append_var_lib_files',`
 	gen_require(`
-		type snmp_var_lib_t;
+		type snmpd_var_lib_t;
 	')
 
-	allow $1 snmp_var_lib_t:file append_file_perms;
+	allow $1 snmpd_var_lib_t:file append_file_perms;
 ')

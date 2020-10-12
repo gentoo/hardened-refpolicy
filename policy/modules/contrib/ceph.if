@@ -39,7 +39,7 @@ template(`ceph_domain_template',`
 	# Rules which cannot be made part of the domain
 
 	allow ceph_$1_t ceph_$1_runtime_t:file manage_file_perms;
-	allow ceph_$1_t ceph_$1_runtime_t:sock_file manage_file_perms;
+	allow ceph_$1_t ceph_$1_runtime_t:sock_file manage_sock_file_perms;
 	allow ceph_$1_t ceph_$1_data_t:dir manage_dir_perms;
 	allow ceph_$1_t ceph_$1_data_t:file manage_file_perms;
 

@@ -11,10 +11,10 @@ application_domain(logsentry_t, logsentry_exec_t)
 role system_r types logsentry_t;
 
 type logsentry_etc_t;
-files_type(logsentry_etc_t);
+files_type(logsentry_etc_t)
 
 type logsentry_tmp_t;
-files_tmp_file(logsentry_tmp_t);
+files_tmp_file(logsentry_tmp_t)
 
 type logsentry_filter_t;
 files_type(logsentry_filter_t)

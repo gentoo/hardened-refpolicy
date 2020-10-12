@@ -17,11 +17,11 @@
 #
 interface(`skype_role',`
 	gen_require(`
-		type skype_t, skype_exec_t, skype_tmpfs_t, skype_home_t;
+		type skype_t, skype_exec_t, skype_home_t;
 	')
-	
+
 	role $1 types skype_t;
-	
+
 	domtrans_pattern($2, skype_exec_t, skype_t)
 
 	allow $2 skype_t:process { ptrace signal_perms };
@@ -36,4 +36,4 @@ interface(`skype_role',`
 	relabel_lnk_files_pattern($2, skype_home_t, skype_home_t)
 
 	ps_process_pattern($2, skype_t)
-')	
+')

@@ -57,7 +57,7 @@ interface(`nginx_domtrans',`
 		type nginx_t, nginx_exec_t;
 	')
 	allow nginx_t $1:fd use;
-	allow nginx_t $1:fifo_file rw_file_perms;
+	allow nginx_t $1:fifo_file rw_fifo_file_perms;
 	allow nginx_t $1:process sigchld;
 
 	domain_auto_transition_pattern($1, nginx_exec_t, nginx_t)

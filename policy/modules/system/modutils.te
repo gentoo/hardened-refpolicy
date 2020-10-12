@@ -213,5 +213,5 @@ ifdef(`distro_gentoo',`
 
 	# for /run/tmpfiles.d/kmod.conf
 	tmpfiles_create_runtime_files(kmod_t)
-	filetrans_add_pattern(kmod_t, tmpfiles_runtime_t, kmod_tmpfiles_conf_t, file)
+	filetrans_add_pattern(kmod_t, tmpfiles_runtime_t, kmod_tmpfiles_conf_t, file) #selint-disable:W-001
 ')

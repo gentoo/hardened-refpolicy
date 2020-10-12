@@ -376,7 +376,7 @@ ifdef(`distro_gentoo',`
 		# So, we duplicate the content of files_relabel_all_files except for
 		# the policy configuration stuff and hope users do that through Portage
 		
-		gen_require(`
+		gen_require(` #selint-disable:S-001
 			attribute file_type;
 			attribute security_file_type;
 			type policy_config_t;

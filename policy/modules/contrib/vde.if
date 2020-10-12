@@ -18,9 +18,8 @@
 #
 interface(`vde_role',`
 	gen_require(`
-		type vde_t, vde_tmp_t;
-		type vde_runtime_t;
-		type vde_initrc_exec_t, vde_exec_t;
+		type vde_t;
+		type vde_exec_t;
 	')
 
 	role $1 types vde_t;

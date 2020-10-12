@@ -17,14 +17,14 @@
 #
 interface(`links_role',`
 	gen_require(`
-		type links_t, links_exec_t, links_tmpfs_t, links_home_t;
+		type links_t, links_exec_t, links_home_t;
 	')
 
 	#######################################
 	#
 	# Declarations
 	#
-	
+
 	role $1 types links_t;
 
 	############################
@@ -43,4 +43,4 @@ interface(`links_role',`
 	domtrans_pattern($2, links_exec_t, links_t)
 
 	ps_process_pattern($2, links_t)
-')	
+')

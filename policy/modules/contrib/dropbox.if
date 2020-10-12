@@ -18,6 +18,7 @@
 interface(`dropbox_role',`
 	gen_require(`
 		type dropbox_t;
+		type dropbox_content_t;
 		type dropbox_exec_t;
 		type dropbox_home_t;
 		type dropbox_tmp_t;

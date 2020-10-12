@@ -349,7 +349,7 @@ interface(`postgresql_exec',`
 		type postgresql_exec_t;
 	')
 
-	can_exec($1, postgresql_exec_t);
+	can_exec($1, postgresql_exec_t)
 ')
 
 ########################################

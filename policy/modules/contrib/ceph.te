@@ -40,7 +40,7 @@ ceph_domain_template(osd)
 ceph_domain_template(mds)
 ceph_domain_template(mon)
 
-allow cephdomain self:fifo_file rw_file_perms;
+allow cephdomain self:fifo_file rw_fifo_file_perms;
 
 read_files_pattern(cephdomain, ceph_conf_t, { ceph_conf_t ceph_key_t })
 allow cephdomain ceph_log_t:dir manage_dir_perms;

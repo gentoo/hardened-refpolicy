@@ -5630,6 +5630,6 @@ interface(`dev_dontaudit_read_usbmon_dev',`
 		type usbmon_device_t;
 	')
 
-	dontaudit $1 usbmon_device_t:chr_file read_file_perms;
+	dontaudit $1 usbmon_device_t:chr_file read_chr_file_perms;
 ')
 

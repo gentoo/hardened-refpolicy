@@ -43,7 +43,6 @@ HOME_DIR/zimbrauserdata(/.*)?	gen_context(system_u:object_r:mozilla_plugin_home_
 /usr/lib/xulrunner[^/]*/plugin-container	--	gen_context(system_u:object_r:mozilla_plugin_exec_t,s0)
 /usr/lib/[^/]*firefox[^/]*/plugin-container	--	gen_context(system_u:object_r:mozilla_plugin_exec_t,s0)
 
-/opt/firefox/libxul\.so	--	gen_context(system_u:object_r:textrel_shlib_t,s0)
 /opt/firefox/firefox	--	gen_context(system_u:object_r:mozilla_exec_t,s0)
 /opt/firefox/run-mozilla\.sh	--	gen_context(system_u:object_r:mozilla_exec_t,s0)
 /opt/firefox/firefox-bin	--	gen_context(system_u:object_r:mozilla_exec_t,s0)

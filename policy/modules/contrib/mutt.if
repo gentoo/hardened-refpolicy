@@ -17,7 +17,7 @@
 #
 interface(`mutt_role',`
 	gen_require(`
-		type mutt_t, mutt_exec_t, mutt_home_t, mutt_conf_t, mutt_etc_t;
+		type mutt_t, mutt_exec_t, mutt_home_t, mutt_conf_t;
 		type mutt_tmp_t;
 	')
 
@@ -99,6 +99,6 @@ interface(`mutt_rw_tmp_files',`
 
 	# The use of rw_files_pattern here is not needed, since this incurs the open privilege as well
 	allow $1 mutt_tmp_t:dir search_dir_perms;
-	allow $1 mutt_tmp_t:file { read write };
+	allow $1 mutt_tmp_t:file rw_inherited_file_perms;
 	files_search_tmp($1)
 ')

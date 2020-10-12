@@ -20,7 +20,7 @@ interface(`dirsrv_domtrans',`
 	domain_auto_transition_pattern($1, dirsrv_exec_t, dirsrv_t)
 
 	allow dirsrv_t $1:fd use;
-	allow dirsrv_t $1:fifo_file rw_file_perms;
+	allow dirsrv_t $1:fifo_file rw_fifo_file_perms;
 	allow dirsrv_t $1:process sigchld;
 ')
 
@@ -116,7 +116,7 @@ interface(`dirsrv_manage_var_run',`
 	')
 	allow $1 dirsrv_runtime_t:dir manage_dir_perms;
 	allow $1 dirsrv_runtime_t:file manage_file_perms;
-	allow $1 dirsrv_runtime_t:sock_file manage_file_perms;
+	allow $1 dirsrv_runtime_t:sock_file manage_sock_file_perms;
 ')
 
 ######################################

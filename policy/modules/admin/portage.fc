@@ -2,7 +2,6 @@
 /etc/make\.globals	--	gen_context(system_u:object_r:portage_conf_t,s0)
 /etc/make\.profile	-l	gen_context(system_u:object_r:portage_conf_t,s0)
 /etc/portage(/.*)?	gen_context(system_u:object_r:portage_conf_t,s0)
-/etc/portage/bin(/.*)?	--	gen_context(system_u:object_r:bin_t,s0)
 /etc/portage/gpg(/.*)?	gen_context(system_u:object_r:portage_gpg_t,s0)
 
 /usr/bin/emerge --	gen_context(system_u:object_r:portage_exec_t,s0)
@@ -11,11 +10,9 @@
 /usr/bin/layman	--	gen_context(system_u:object_r:portage_fetch_exec_t,s0)
 /usr/bin/sandbox	--	gen_context(system_u:object_r:portage_exec_t,s0)
 
-/usr/lib/portage/bin/ebuild	--	gen_context(system_u:object_r:bin_t,s0)
 /usr/lib/portage/bin/emerge	--	gen_context(system_u:object_r:portage_exec_t,s0)
 /usr/lib/portage/bin/emerge-webrsync	--	gen_context(system_u:object_r:portage_fetch_exec_t,s0)
 /usr/lib/portage/bin/quickpkg	--	gen_context(system_u:object_r:portage_exec_t,s0)
-/usr/lib/portage/bin/ebuild\.sh	--	gen_context(system_u:object_r:bin_t,s0)
 /usr/lib/portage/bin/regenworld	--	gen_context(system_u:object_r:portage_exec_t,s0)
 /usr/lib/portage/bin/sandbox	--	gen_context(system_u:object_r:portage_exec_t,s0)
 

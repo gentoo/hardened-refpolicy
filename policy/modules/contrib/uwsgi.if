@@ -33,7 +33,7 @@ interface(`uwsgi_stream_connect',`
 #
 interface(`uwsgi_manage_content',`
 	gen_require(`
-		type uwsgi_content_t;
+		type uwsgi_content_t, uwsgi_content_exec_t;
 	')
 
 	files_search_runtime($1)
@@ -81,7 +81,7 @@ interface(`uwsgi_domtrans',`
 #
 interface(`uwsgi_content_exec',`
 	gen_require(`
-		type uwsgi_t, uwsgi_exec_t, uwsgi_content_exec_t;
+		type uwsgi_content_exec_t;
 	')
 
 	corecmd_search_bin($1)

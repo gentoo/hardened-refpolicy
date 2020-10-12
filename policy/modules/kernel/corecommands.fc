@@ -115,6 +115,10 @@ ifdef(`distro_debian',`
 /etc/mysql/debian-start		--	gen_context(system_u:object_r:bin_t,s0)
 ')
 
+ifdef(`distro_gentoo',`
+/etc/portage/bin(/.*)?			--	gen_context(system_u:object_r:bin_t,s0)
+')
+
 #
 # /opt
 #
@@ -391,6 +395,20 @@ ifdef(`distro_gentoo', `
 /usr/lib/rc/bin/.*			--	gen_context(system_u:object_r:bin_t,s0)
 /usr/lib/rc/sbin/.*			--	gen_context(system_u:object_r:bin_t,s0)
 /usr/lib/rc/sh/.*			--	gen_context(system_u:object_r:bin_t,s0)
+
+/usr/lib/portage/bin/ebuild		--	gen_context(system_u:object_r:bin_t,s0)
+/usr/lib/portage/bin/ebuild\.sh	--	gen_context(system_u:object_r:bin_t,s0)
+/usr/lib/resolvconf(/.*)?			gen_context(system_u:object_r:bin_t,s0)
+
+/usr/share/mysql/scripts(/.*)?			gen_context(system_u:object_r:bin_t,s0)
+/usr/share/shorewall/compiler\.pl	--	gen_context(system_u:object_r:bin_t,s0)
+/usr/share/shorewall/configpath	--	gen_context(system_u:object_r:bin_t,s0)
+/usr/share/shorewall/getparams		--	gen_context(system_u:object_r:bin_t,s0)
+/usr/share/shorewall/wait4ifup		--	gen_context(system_u:object_r:bin_t,s0)
+/usr/share/shorewall-perl(/.*)?		gen_context(system_u:object_r:bin_t,s0)
+/usr/share/shorewall-shell(/.*)?		gen_context(system_u:object_r:bin_t,s0)
+/usr/share/shorewall-lite(/.*)?		gen_context(system_u:object_r:bin_t,s0)
+/usr/share/shorewall6-lite(/.*)?		gen_context(system_u:object_r:bin_t,s0)
 ')
 
 ifdef(`distro_redhat', `
