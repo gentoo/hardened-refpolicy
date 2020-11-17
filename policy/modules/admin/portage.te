@@ -303,6 +303,7 @@ corenet_udp_bind_generic_node(portage_fetch_t)
 corenet_udp_bind_all_unreserved_ports(portage_fetch_t)
 
 dev_read_rand(portage_fetch_t)
+dev_read_urand(portage_fetch_t)
 
 domain_use_interactive_fds(portage_fetch_t)
 
