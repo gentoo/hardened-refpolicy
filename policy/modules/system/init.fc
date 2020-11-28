@@ -95,23 +95,3 @@ ifdef(`distro_suse', `
 /run/setleds-on	--	gen_context(system_u:object_r:initrc_runtime_t,s0)
 /run/sysconfig(/.*)?	gen_context(system_u:object_r:initrc_runtime_t,s0)
 ')
-
-ifdef(`distro_gentoo',`
-#
-# /lib
-#
-/usr/lib/rc/console(/.*)?		gen_context(system_u:object_r:initrc_state_t,s0)
-/usr/lib/rc/cache(/.*)?		gen_context(system_u:object_r:initrc_state_t,s0)
-
-#
-# /sbin
-#
-/usr/sbin/openrc		--	gen_context(system_u:object_r:rc_exec_t,s0)
-
-#
-# /var
-#
-/var/lib/ip6?tables(/.*)?		gen_context(system_u:object_r:initrc_tmp_t,s0)
-
-/run/openrc(/.*)?			gen_context(system_u:object_r:initrc_state_t,s0)
-')
