@@ -78,7 +78,7 @@ buildpatch() {
 createEbuilds() {
   cd ${GENTOOX86}/sec-policy;
   printf "Removing old patchbundle references in Manifest (in case of rebuild)... ";
-  for PKG in *;
+  for PKG in selinux-*;
   do
     [[ -f "${PKG}/Manifest}" ]] || continue;
     sed -i -e "/patchbundle-selinux-base-policy-${NEWVERSION}/d" ${PKG}/Manifest;
@@ -86,10 +86,11 @@ createEbuilds() {
   printf "done\n";
 
   printf "Creating new ebuilds based on 9999 version... ";
-  for PKG in *;
+  for PKG in selinux-*;
   do
     [[ -f "${PKG}/${PKG}-9999.ebuild" ]] || continue;
     cp ${PKG}/${PKG}-9999.ebuild ${PKG}/${PKG}-${NEWVERSION}.ebuild;
+    sed -i "s/Copyright 1999-201. Gentoo .*/Copyright 1999-$(date '+%Y') Gentoo Authors/" ${PKG}/${PKG}-${NEWVERSION}.ebuild;
   done
   printf "done\n";
 }
@@ -129,19 +130,19 @@ The release has now been prepared.
 Please go do the following to finish up:
 
 In ${GENTOOX86}/sec-policy:
-git add .
-repoman --digest=y full
+$ git add .
+$ repoman --digest=y full
 
 Then, before finally committing - do a run yourself, ensuring that the right
 version is deployed of course:
-- "emerge -1 \$(qlist -IC sec-policy)"
+# emerge -v1 @selinux-rebuild
 
 Only then do:
-repoman commit -m 'sec-policy: Release of SELinux policies ${NEWVERSION}'
-git push --sign
+$ repoman commit -m 'sec-policy: Release of SELinux policies ${NEWVERSION}'
+$ git push --sign
 
 In ${HARDENEDREFPOL} do:
-git push origin --tags
+$ git push origin --tags
 EOF
 
 cleanTmp;
