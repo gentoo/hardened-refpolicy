@@ -225,7 +225,7 @@ interface(`udev_manage_rules_files',`
 
 ########################################
 ## <summary>
-##	Do not audit search of udev database directories.
+##	Do not audit search of udev database directories.  (Deprecated)
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -234,20 +234,16 @@ interface(`udev_manage_rules_files',`
 ## </param>
 #
 interface(`udev_dontaudit_search_db',`
-	gen_require(`
-		type udev_tbl_t;
-	')
-
-	dontaudit $1 udev_tbl_t:dir search_dir_perms;
+	refpolicywarn(`$0($*) has been deprecated.')
 ')
 
 ########################################
 ## <summary>
-##	Read the udev device table.
+##	Read the udev device table.  (Deprecated)
 ## </summary>
 ## <desc>
 ##	<p>
-##	Allow the specified domain to read the udev device table.
+##	Allow the specified domain to read the udev device table.  (Deprecated)
 ##	</p>
 ## </desc>
 ## <param name="domain">
@@ -258,26 +254,12 @@ interface(`udev_dontaudit_search_db',`
 ## <infoflow type="read" weight="10"/>
 #
 interface(`udev_read_db',`
-	gen_require(`
-		type udev_tbl_t;
-	')
-
-	allow $1 udev_tbl_t:dir list_dir_perms;
-
-	read_files_pattern($1, udev_tbl_t, udev_tbl_t)
-	read_lnk_files_pattern($1, udev_tbl_t, udev_tbl_t)
-
-	dev_list_all_dev_nodes($1)
-
-	files_search_etc($1)
-
-	# Device table files are beneith /run/udev
-	udev_search_runtime($1)
+	refpolicywarn(`$0($*) has been deprecated.')
 ')
 
 ########################################
 ## <summary>
-##	Allow process to modify list of devices.
+##	Allow process to modify list of devices.  (Deprecated)
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -286,12 +268,7 @@ interface(`udev_read_db',`
 ## </param>
 #
 interface(`udev_rw_db',`
-	gen_require(`
-		type udev_tbl_t;
-	')
-
-	dev_list_all_dev_nodes($1)
-	allow $1 udev_tbl_t:file rw_file_perms;
+	refpolicywarn(`$0($*) has been deprecated.')
 ')
 
 ########################################
@@ -346,7 +323,7 @@ interface(`udev_pid_filetrans_db',`
 
 ########################################
 ## <summary>
-##      Allow process to relabelto udev database
+##      Allow process to relabelto udev database  (Deprecated)
 ## </summary>
 ## <param name="domain">
 ##      <summary>
@@ -355,18 +332,12 @@ interface(`udev_pid_filetrans_db',`
 ## </param>
 #
 interface(`udev_relabelto_db',`
-	gen_require(`
-		type udev_runtime_t;
-	')
-
-	files_search_runtime($1)
-	allow $1 udev_runtime_t:file relabelto_file_perms;
-	allow $1 udev_runtime_t:lnk_file relabelto_lnk_file_perms;
+	refpolicywarn(`$0($*) has been deprecated.')
 ')
 
 ########################################
 ## <summary>
-##	Allow process to relabelto sockets in /run/udev
+##	Allow process to relabelto sockets in /run/udev  (Deprecated)
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -375,11 +346,7 @@ interface(`udev_relabelto_db',`
 ## </param>
 #
 interface(`udev_relabelto_db_sockets',`
-	gen_require(`
-		type udev_runtime_t;
-	')
-
-	allow $1 udev_runtime_t:sock_file relabelto_sock_file_perms;
+	refpolicywarn(`$0($*) has been deprecated.')
 ')
 
 ########################################

@@ -362,9 +362,6 @@ optional_policy(`
 	seutil_sigchld_newrole(ssh_keygen_t)
 ')
 
-optional_policy(`
-	udev_read_db(ssh_keygen_t)
-')
 
 ifdef(`distro_gentoo',`
 	# Fix bug #529336 - Allow ssh_t to read/write sshd_tmp_t sockets (ssh agent forwarding)
