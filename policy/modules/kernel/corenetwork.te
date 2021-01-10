@@ -2,7 +2,7 @@
 # This is a generated file!  Instead of modifying this file, the
 # corenetwork.te.in or corenetwork.te.m4 file should be modified.
 #
-policy_module(corenetwork, 1.26.2)
+policy_module(corenetwork, 1.28.0)
 
 ########################################
 #
@@ -45,6 +45,13 @@ dev_node(tun_tap_device_t)
 # client_packet_t is the default type of IPv4 and IPv6 client packets.
 #
 type client_packet_t, packet_type, client_packet_type;
+
+#
+# ICMP and ICMPv6
+#
+
+type icmp_packet_t, packet_type;
+
 
 #
 # The netlabel_peer_t is used by the kernel's NetLabel subsystem for network
@@ -194,6 +201,13 @@ typeattribute apertus_ldp_port_t reserved_port_type;
 typeattribute apertus_ldp_port_t rpc_port_type;
 portcon tcp 539 gen_context(system_u:object_r:apertus_ldp_port_t,s0)
 portcon udp 539 gen_context(system_u:object_r:apertus_ldp_port_t,s0)
+
+
+type aptcacher_port_t, port_type, defined_port_type;
+type aptcacher_client_packet_t, packet_type, client_packet_type;
+type aptcacher_server_packet_t, packet_type, server_packet_type;
+typeattribute aptcacher_port_t unreserved_port_type;
+portcon tcp 3142 gen_context(system_u:object_r:aptcacher_port_t,s0)
 
 
 type armtechdaemon_port_t, port_type, defined_port_type;
@@ -1850,7 +1864,7 @@ type winshadow_port_t, port_type, defined_port_type;
 type winshadow_client_packet_t, packet_type, client_packet_type;
 type winshadow_server_packet_t, packet_type, server_packet_type;
 typeattribute winshadow_port_t unreserved_port_type;
-portcon tcp 3161 gen_context(system_u:object_r:winshadow_port_t,s0)
+portcon tcp 3261 gen_context(system_u:object_r:winshadow_port_t,s0)
 portcon udp 3261 gen_context(system_u:object_r:winshadow_port_t,s0)
 
 
@@ -2011,7 +2025,7 @@ sid netif gen_context(system_u:object_r:netif_t,s0 - mls_systemhigh)
 ifdef(`enable_mls',`
 
 
-gen_require(`type unlabeled_t;')
+gen_require(`type unlabeled_t;')  #selint-disable:S-001
 type lo_netif_t, netif_type;
 netifcon lo gen_context(system_u:object_r:lo_netif_t,s0 - mls_systemhigh) gen_context(system_u:object_r:unlabeled_t,s0 - mls_systemhigh)
 

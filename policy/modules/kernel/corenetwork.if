@@ -1498,11 +1498,11 @@ interface(`corenet_udp_send_all_ports',`
 #
 interface(`corenet_sctp_bind_generic_port',`
 	gen_require(`
-		type port_t, unreserved_port_t, ephemeral_port_t;
+		type port_t, unreserved_port_t;
 		attribute defined_port_type;
 	')
 
-	allow $1 { port_t unreserved_port_t ephemeral_port_t }:sctp_socket name_bind;
+	allow $1 { port_t unreserved_port_t }:sctp_socket name_bind;
 	dontaudit $1 defined_port_type:sctp_socket name_bind;
 ')
 
@@ -1571,10 +1571,10 @@ interface(`corenet_udp_sendrecv_all_ports',`
 #
 interface(`corenet_dontaudit_sctp_bind_generic_port',`
 	gen_require(`
-		type port_t, unreserved_port_t, ephemeral_port_t;
+		type port_t, unreserved_port_t;
 	')
 
-	dontaudit $1 { port_t unreserved_port_t ephemeral_port_t }:sctp_socket name_bind;
+	dontaudit $1 { port_t unreserved_port_t }:sctp_socket name_bind;
 ')
 
 ########################################
@@ -1645,10 +1645,10 @@ interface(`corenet_udp_bind_all_ports',`
 #
 interface(`corenet_sctp_connect_generic_port',`
 	gen_require(`
-		type port_t, unreserved_port_t,ephemeral_port_t;
+		type port_t, unreserved_port_t;
 	')
 
-	allow $1 { port_t unreserved_port_t ephemeral_port_t }:sctp_socket name_connect;
+	allow $1 { port_t unreserved_port_t }:sctp_socket name_connect;
 ')
 
 ########################################
@@ -2761,7 +2761,7 @@ interface(`corenet_dontaudit_raw_recvfrom_unlabeled',`
 ##	Allow the specified domain to receive packets from an
 ##	unlabeled connection.  On machines that do not utilize
 ##	labeled networking, this will be required on all
-##	networking domains.  On machines tha do utilize
+##	networking domains.  On machines that do utilize
 ##	labeled networking, this will be required for any
 ##	networking domain that is allowed to receive
 ##	network traffic that does not have a label.
@@ -3339,13 +3339,7 @@ interface(`corenet_relabelto_all_server_packets',`
 ## </param>
 #
 interface(`corenet_sctp_recvfrom_unlabeled',`
-	gen_require(`
-		attribute corenet_unlabeled_type;
-	')
-
 	kernel_recvfrom_unlabeled_peer($1)
-
-	typeattribute $1 corenet_unlabeled_type;
 	kernel_sendrecv_unlabeled_association($1)
 ')
 
@@ -3527,6 +3521,135 @@ interface(`corenet_unconfined',`
 
 	typeattribute $1 corenet_unconfined_type;
 ')
+
+
+########################################
+## <summary>
+##	Send icmp packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="write" weight="10"/>
+#
+interface(`corenet_send_icmp_packets',`
+	gen_require(`
+		type icmp_packet_t;
+	')
+
+	allow $1 icmp_packet_t:packet send;
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to send icmp packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to not audit.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_dontaudit_send_icmp_packets',`
+	gen_require(`
+		type icmp_packet_t;
+	')
+
+	dontaudit $1 icmp_packet_t:packet send;
+')
+
+########################################
+## <summary>
+##	Receive icmp packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="read" weight="10"/>
+#
+interface(`corenet_receive_icmp_packets',`
+	gen_require(`
+		type icmp_packet_t;
+	')
+
+	allow $1 icmp_packet_t:packet recv;
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to receive icmp packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_dontaudit_receive_icmp_packets',`
+	gen_require(`
+		type icmp_packet_t;
+	')
+
+	dontaudit $1 icmp_packet_t:packet recv;
+')
+
+########################################
+## <summary>
+##	Send and receive icmp packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="both" weight="10"/>
+#
+interface(`corenet_sendrecv_icmp_packets',`
+	corenet_send_icmp_packets($1)
+	corenet_receive_icmp_packets($1)
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to send and receive icmp packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to not audit.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_dontaudit_sendrecv_icmp_packets',`
+	corenet_dontaudit_send_icmp_packets($1)
+	corenet_dontaudit_receive_icmp_packets($1)
+')
+
+########################################
+## <summary>
+##	Relabel packets to icmp the packet type.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`corenet_relabelto_icmp_packets',`
+	gen_require(`
+		type icmp_packet_t;
+	')
+
+	allow $1 icmp_packet_t:packet relabelto;
+')
+
+
 
 
 ########################################
@@ -9839,6 +9962,427 @@ interface(`corenet_relabelto_apertus_ldp_server_packets',`
 	')
 
 	allow $1 apertus_ldp_server_packet_t:packet relabelto;
+')
+
+
+
+
+########################################
+## <summary>
+##	Send and receive TCP traffic on the aptcacher port.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="both" weight="10"/>
+#
+interface(`corenet_tcp_sendrecv_aptcacher_port',`
+	refpolicywarn(`$0() has been deprecated, please remove.')
+')
+
+########################################
+## <summary>
+##	Send UDP traffic on the aptcacher port.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="write" weight="10"/>
+#
+interface(`corenet_udp_send_aptcacher_port',`
+	refpolicywarn(`$0() has been deprecated, please remove.')
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to send UDP traffic on the aptcacher port.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to not audit.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_dontaudit_udp_send_aptcacher_port',`
+	refpolicywarn(`$0() has been deprecated, please remove.')
+')
+
+########################################
+## <summary>
+##	Receive UDP traffic on the aptcacher port.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="read" weight="10"/>
+#
+interface(`corenet_udp_receive_aptcacher_port',`
+	refpolicywarn(`$0() has been deprecated, please remove.')
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to receive UDP traffic on the aptcacher port.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to not audit.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_dontaudit_udp_receive_aptcacher_port',`
+	refpolicywarn(`$0() has been deprecated, please remove.')
+')
+
+########################################
+## <summary>
+##	Send and receive UDP traffic on the aptcacher port.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="both" weight="10"/>
+#
+interface(`corenet_udp_sendrecv_aptcacher_port',`
+	refpolicywarn(`$0() has been deprecated, please remove.')
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to send and receive
+##	UDP traffic on the aptcacher port.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to not audit.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_dontaudit_udp_sendrecv_aptcacher_port',`
+	refpolicywarn(`$0() has been deprecated, please remove.')
+')
+
+########################################
+## <summary>
+##	Bind TCP sockets to the aptcacher port.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_tcp_bind_aptcacher_port',`
+	gen_require(`
+		type aptcacher_port_t;
+	')
+
+	allow $1 aptcacher_port_t:tcp_socket name_bind;
+	
+')
+
+########################################
+## <summary>
+##	Bind UDP sockets to the aptcacher port.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_udp_bind_aptcacher_port',`
+	gen_require(`
+		type aptcacher_port_t;
+	')
+
+	allow $1 aptcacher_port_t:udp_socket name_bind;
+	
+')
+
+########################################
+## <summary>
+##	Make a TCP connection to the aptcacher port.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`corenet_tcp_connect_aptcacher_port',`
+	gen_require(`
+		type aptcacher_port_t;
+	')
+
+	allow $1 aptcacher_port_t:tcp_socket name_connect;
+')
+
+
+########################################
+## <summary>
+##	Send aptcacher_client packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="write" weight="10"/>
+#
+interface(`corenet_send_aptcacher_client_packets',`
+	gen_require(`
+		type aptcacher_client_packet_t;
+	')
+
+	allow $1 aptcacher_client_packet_t:packet send;
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to send aptcacher_client packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to not audit.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_dontaudit_send_aptcacher_client_packets',`
+	gen_require(`
+		type aptcacher_client_packet_t;
+	')
+
+	dontaudit $1 aptcacher_client_packet_t:packet send;
+')
+
+########################################
+## <summary>
+##	Receive aptcacher_client packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="read" weight="10"/>
+#
+interface(`corenet_receive_aptcacher_client_packets',`
+	gen_require(`
+		type aptcacher_client_packet_t;
+	')
+
+	allow $1 aptcacher_client_packet_t:packet recv;
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to receive aptcacher_client packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_dontaudit_receive_aptcacher_client_packets',`
+	gen_require(`
+		type aptcacher_client_packet_t;
+	')
+
+	dontaudit $1 aptcacher_client_packet_t:packet recv;
+')
+
+########################################
+## <summary>
+##	Send and receive aptcacher_client packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="both" weight="10"/>
+#
+interface(`corenet_sendrecv_aptcacher_client_packets',`
+	corenet_send_aptcacher_client_packets($1)
+	corenet_receive_aptcacher_client_packets($1)
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to send and receive aptcacher_client packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to not audit.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_dontaudit_sendrecv_aptcacher_client_packets',`
+	corenet_dontaudit_send_aptcacher_client_packets($1)
+	corenet_dontaudit_receive_aptcacher_client_packets($1)
+')
+
+########################################
+## <summary>
+##	Relabel packets to aptcacher_client the packet type.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`corenet_relabelto_aptcacher_client_packets',`
+	gen_require(`
+		type aptcacher_client_packet_t;
+	')
+
+	allow $1 aptcacher_client_packet_t:packet relabelto;
+')
+
+
+########################################
+## <summary>
+##	Send aptcacher_server packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="write" weight="10"/>
+#
+interface(`corenet_send_aptcacher_server_packets',`
+	gen_require(`
+		type aptcacher_server_packet_t;
+	')
+
+	allow $1 aptcacher_server_packet_t:packet send;
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to send aptcacher_server packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to not audit.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_dontaudit_send_aptcacher_server_packets',`
+	gen_require(`
+		type aptcacher_server_packet_t;
+	')
+
+	dontaudit $1 aptcacher_server_packet_t:packet send;
+')
+
+########################################
+## <summary>
+##	Receive aptcacher_server packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="read" weight="10"/>
+#
+interface(`corenet_receive_aptcacher_server_packets',`
+	gen_require(`
+		type aptcacher_server_packet_t;
+	')
+
+	allow $1 aptcacher_server_packet_t:packet recv;
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to receive aptcacher_server packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_dontaudit_receive_aptcacher_server_packets',`
+	gen_require(`
+		type aptcacher_server_packet_t;
+	')
+
+	dontaudit $1 aptcacher_server_packet_t:packet recv;
+')
+
+########################################
+## <summary>
+##	Send and receive aptcacher_server packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="both" weight="10"/>
+#
+interface(`corenet_sendrecv_aptcacher_server_packets',`
+	corenet_send_aptcacher_server_packets($1)
+	corenet_receive_aptcacher_server_packets($1)
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to send and receive aptcacher_server packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to not audit.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_dontaudit_sendrecv_aptcacher_server_packets',`
+	corenet_dontaudit_send_aptcacher_server_packets($1)
+	corenet_dontaudit_receive_aptcacher_server_packets($1)
+')
+
+########################################
+## <summary>
+##	Relabel packets to aptcacher_server the packet type.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`corenet_relabelto_aptcacher_server_packets',`
+	gen_require(`
+		type aptcacher_server_packet_t;
+	')
+
+	allow $1 aptcacher_server_packet_t:packet relabelto;
 ')
 
 
