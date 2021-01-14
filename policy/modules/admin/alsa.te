@@ -107,11 +107,6 @@ userdom_manage_unpriv_user_semaphores(alsa_t)
 userdom_manage_unpriv_user_shared_mem(alsa_t)
 userdom_search_user_home_dirs(alsa_t)
 
-optional_policy(`
-	hal_use_fds(alsa_t)
-	hal_write_log(alsa_t)
-')
-
 ifdef(`distro_gentoo',`
 
 # alsa_domain - see http://oss.tresys.com/pipermail/refpolicy/2014-March/007029.html

@@ -197,10 +197,6 @@ optional_policy(`
 ')
 
 optional_policy(`
-	consolekit_use_inhibit_lock(system_dbusd_t)
-')
-
-optional_policy(`
 	policykit_read_lib(system_dbusd_t)
 ')
 
@@ -304,12 +300,6 @@ seutil_read_config(session_bus_type)
 seutil_read_default_contexts(session_bus_type)
 
 term_use_all_terms(session_bus_type)
-
-ifdef(`distro_gentoo',`
-	optional_policy(`
-		hal_dbus_chat(session_bus_type)
-	')
-')
 
 optional_policy(`
 	xserver_rw_xsession_log(session_bus_type)
