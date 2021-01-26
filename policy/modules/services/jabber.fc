@@ -27,6 +27,8 @@
 /var/lib/jabberd/log(/.*)?	gen_context(system_u:object_r:jabberd_log_t,s0)
 /var/lib/jabberd/pid(/.*)?	gen_context(system_u:object_r:jabberd_runtime_t,s0)
 
+/var/spool/jabber(/.*)?	gen_context(system_u:object_r:jabberd_spool_t,s0)
+
 /run/ejabber\.pid	--	gen_context(system_u:object_r:jabberd_runtime_t,s0)
 /run/jabber\.pid	--	gen_context(system_u:object_r:jabberd_runtime_t,s0)
 /run/prosody(/.*)?	--	gen_context(system_u:object_r:jabberd_runtime_t,s0)
