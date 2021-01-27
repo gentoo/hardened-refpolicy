@@ -80,6 +80,8 @@ ifndef(`distro_gentoo',`
 /usr/sbin/hiawatha					--	gen_context(system_u:object_r:httpd_exec_t,s0)
 /usr/sbin/httpd\.event					--	gen_context(system_u:object_r:httpd_exec_t,s0)
 /usr/sbin/httpd(\.worker)?				--	gen_context(system_u:object_r:httpd_exec_t,s0)
+/usr/sbin/php.*-fpm					--	gen_context(system_u:object_r:httpd_exec_t,s0)
+/usr/sbin/php-fpm[^/]+					--	gen_context(system_u:object_r:httpd_exec_t,s0)
 /usr/sbin/lighttpd					--	gen_context(system_u:object_r:httpd_exec_t,s0)
 ifndef(`distro_gentoo',`
 /usr/sbin/nginx						--  gen_context(system_u:object_r:httpd_exec_t,s0)
@@ -152,7 +154,7 @@ ifndef(`distro_gentoo',`
 /var/lib/php/session(/.*)?					gen_context(system_u:object_r:httpd_runtime_t,s0)
 /var/lib/pootle/po(/.*)?					gen_context(system_u:object_r:httpd_sys_rw_content_t,s0)
 /var/lib/rt3/data/RT-Shredder(/.*)?				gen_context(system_u:object_r:httpd_var_lib_t,s0)
-/var/lib/squirrelmail/prefs(/.*)?				gen_context(system_u:object_r:httpd_squirrelmail_t,s0)
+/var/lib/squirrelmail(/.*)?					gen_context(system_u:object_r:httpd_squirrelmail_t,s0)
 /var/lib/stickshift/\.httpd\.d(/.*)?				gen_context(system_u:object_r:httpd_config_t,s0)
 /var/lib/svn(/.*)?						gen_context(system_u:object_r:httpd_sys_rw_content_t,s0)
 /var/lib/trac(/.*)?						gen_context(system_u:object_r:httpd_sys_content_t,s0)
@@ -180,6 +182,7 @@ ifndef(`distro_gentoo',`
 /var/log/roundcubemail(/.*)?					gen_context(system_u:object_r:httpd_log_t,s0)
 /var/log/suphp\.log.*					--	gen_context(system_u:object_r:httpd_log_t,s0)
 /var/log/z-push(/.*)?						gen_context(system_u:object_r:httpd_sys_rw_content_t,s0)
+/var/log/php7..-fpm.log					--	gen_context(system_u:object_r:httpd_log_t,s0)
 
 /run/apache.*							gen_context(system_u:object_r:httpd_runtime_t,s0)
 /run/cherokee\.pid					--	gen_context(system_u:object_r:httpd_runtime_t,s0)
@@ -188,6 +191,7 @@ ifndef(`distro_gentoo',`
 /run/httpd.*							gen_context(system_u:object_r:httpd_runtime_t,s0)
 /run/lighttpd(/.*)?						gen_context(system_u:object_r:httpd_runtime_t,s0)
 /run/mod_.*							gen_context(system_u:object_r:httpd_runtime_t,s0)
+/run/php(/.*)?							gen_context(system_u:object_r:httpd_runtime_t,s0)
 /run/wsgi.*						-s	gen_context(system_u:object_r:httpd_runtime_t,s0)
 /run/user/apache(/.*)?						gen_context(system_u:object_r:httpd_tmp_t,s0)
 
