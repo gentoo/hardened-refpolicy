@@ -12,6 +12,13 @@ policy_module(phpfpm, 1.1)
 ## </desc>
 gen_tunable(phpfpm_use_ldap, false)
 
+## <desc>
+## <p>
+## Allow phpfpm to send syslog messages
+## </p>
+## </desc>
+gen_tunable(phpfpm_send_syslog_msg, false)
+
 type phpfpm_t;
 type phpfpm_exec_t;
 init_daemon_domain(phpfpm_t, phpfpm_exec_t)
@@ -97,4 +104,8 @@ optional_policy(`
 	tunable_policy(`phpfpm_use_ldap',`
 		sysnet_use_ldap(phpfpm_t)
 	')
+')
+
+tunable_policy(`phpfpm_send_syslog_msg',`
+	logging_send_syslog_msg(phpfpm_t)
 ')
