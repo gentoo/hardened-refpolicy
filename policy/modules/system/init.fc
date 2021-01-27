@@ -82,7 +82,6 @@ ifdef(`distro_debian',`
 
 ifdef(`distro_gentoo', `
 /var/lib/init\.d(/.*)?		gen_context(system_u:object_r:initrc_state_t,s0)
-/var/lib/ip6?tables(/.*)?	gen_context(system_u:object_r:initrc_tmp_t,s0)
 
 /run/openrc(/.*)?		gen_context(system_u:object_r:initrc_state_t,s0)
 /run/svscan\.pid	--	gen_context(system_u:object_r:initrc_runtime_t,s0)

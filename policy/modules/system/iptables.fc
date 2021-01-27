@@ -45,3 +45,8 @@
 /usr/sbin/xtables-legacy-multi		--	gen_context(system_u:object_r:iptables_exec_t,s0)
 /usr/sbin/xtables-multi			--	gen_context(system_u:object_r:iptables_exec_t,s0)
 /usr/sbin/xtables-nft-multi		--	gen_context(system_u:object_r:iptables_exec_t,s0)
+
+ifdef(`distro_gentoo', `
+/var/lib/ip6?tables(/.*)?		gen_context(system_u:object_r:iptables_conf_t,s0)
+/var/lib/nftables(/.*)?			gen_context(system_u:object_r:iptables_conf_t,s0)
+')
