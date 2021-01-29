@@ -111,6 +111,10 @@ tunable_policy(`use_nfs_home_dirs',`
 	fs_read_nfs_symlinks(screen_domain)
 ')
 
+optional_policy(`
+	xdg_search_config_dirs(screen_domain)
+')
+
 ifdef(`distro_gentoo',`
 	######################################
 	#
