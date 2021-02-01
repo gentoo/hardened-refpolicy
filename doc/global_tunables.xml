@@ -26,6 +26,16 @@ Allow unconfined executables to make their stack executable.  This should never,
 </p>
 </desc>
 </tunable>
+<tunable name="allow_raw_memory_access" dftval="false">
+<desc>
+<p>
+Allow raw memory device (/dev/mem, /dev/kmem, /dev/mergemem,
+dev/oldmem, /dev/port) access for confined executables.  This is
+extremely dangerous as it can bypass the SELinux protections, and
+should only be used by trusted domains.
+</p>
+</desc>
+</tunable>
 <tunable name="allow_polyinstantiation" dftval="false">
 <desc>
 <p>

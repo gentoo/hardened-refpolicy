@@ -2,7 +2,7 @@
 # This is a generated file!  Instead of modifying this file, the
 # corenetwork.te.in or corenetwork.te.m4 file should be modified.
 #
-policy_module(corenetwork, 1.28.0)
+policy_module(corenetwork, 1.28.1)
 
 ########################################
 #
@@ -582,13 +582,6 @@ type gds_db_server_packet_t, packet_type, server_packet_type;
 typeattribute gds_db_port_t unreserved_port_type;
 portcon tcp 3050 gen_context(system_u:object_r:gds_db_port_t,s0)
 portcon udp 3050 gen_context(system_u:object_r:gds_db_port_t,s0)
-
-
-type giftd_port_t, port_type, defined_port_type;
-type giftd_client_packet_t, packet_type, client_packet_type;
-type giftd_server_packet_t, packet_type, server_packet_type;
-typeattribute giftd_port_t unreserved_port_type;
-portcon tcp 1213 gen_context(system_u:object_r:giftd_port_t,s0)
 
 
 type git_port_t, port_type, defined_port_type;
