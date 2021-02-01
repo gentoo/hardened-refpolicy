@@ -84,7 +84,6 @@ files_read_usr_files(kdeconnect_t)
 fs_getattr_xattr_fs(kdeconnect_t)
 
 miscfiles_read_localization(kdeconnect_t)
-udev_read_db(kdeconnect_t)
 
 userdom_manage_user_tmp_files(kdeconnect_t)
 userdom_manage_user_tmp_sockets(kdeconnect_t)

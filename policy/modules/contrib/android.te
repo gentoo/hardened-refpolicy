@@ -117,8 +117,6 @@ domain_dontaudit_search_all_domains_state(android_java_t)
 miscfiles_read_fonts(android_java_t)
 miscfiles_read_localization(android_java_t)
 
-udev_read_db(android_java_t)
-
 userdom_use_user_terminals(android_java_t)
 userdom_user_home_dir_filetrans(android_java_t, android_home_t, dir, ".android")
 userdom_user_home_dir_filetrans(android_java_t, android_home_t, dir, ".AndroidStudioBeta")
