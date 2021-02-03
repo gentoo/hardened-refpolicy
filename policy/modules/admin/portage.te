@@ -163,8 +163,8 @@ optional_policy(`
 allow portage_t self:process { setfscreate };
 # - kill for mysql merging, at least
 allow portage_t self:capability { kill setfcap sys_nice };
+allow portage_t self:netlink_route_socket rw_netlink_socket_perms;
 dontaudit portage_t self:capability { dac_read_search };
-dontaudit portage_t self:netlink_route_socket rw_netlink_socket_perms;
 
 # user post-sync scripts
 can_exec(portage_t, portage_conf_t)
