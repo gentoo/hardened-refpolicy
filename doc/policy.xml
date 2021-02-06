@@ -85508,7 +85508,17 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_mounton_proc" lineno="924">
+<interface name="kernel_dontaudit_getattr_proc" lineno="923">
+<summary>
+Do not audit attempts to get the attributes of the proc filesystem.
+</summary>
+<param name="domain">
+<summary>
+Domain to not audit.
+</summary>
+</param>
+</interface>
+<interface name="kernel_mounton_proc" lineno="942">
 <summary>
 Mount on proc directories.
 </summary>
@@ -85519,7 +85529,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_dontaudit_setattr_proc_dirs" lineno="943">
+<interface name="kernel_dontaudit_setattr_proc_dirs" lineno="961">
 <summary>
 Do not audit attempts to set the
 attributes of directories in /proc.
@@ -85530,7 +85540,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_search_proc" lineno="961">
+<interface name="kernel_search_proc" lineno="979">
 <summary>
 Search directories in /proc.
 </summary>
@@ -85540,7 +85550,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_list_proc" lineno="979">
+<interface name="kernel_list_proc" lineno="997">
 <summary>
 List the contents of directories in /proc.
 </summary>
@@ -85550,7 +85560,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_list_proc" lineno="998">
+<interface name="kernel_dontaudit_list_proc" lineno="1016">
 <summary>
 Do not audit attempts to list the
 contents of directories in /proc.
@@ -85561,7 +85571,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_write_proc_dirs" lineno="1017">
+<interface name="kernel_dontaudit_write_proc_dirs" lineno="1035">
 <summary>
 Do not audit attempts to write the
 directories in /proc.
@@ -85572,7 +85582,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_mounton_proc_dirs" lineno="1035">
+<interface name="kernel_mounton_proc_dirs" lineno="1053">
 <summary>
 Mount the directories in /proc.
 </summary>
@@ -85582,7 +85592,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_getattr_proc_files" lineno="1053">
+<interface name="kernel_getattr_proc_files" lineno="1071">
 <summary>
 Get the attributes of files in /proc.
 </summary>
@@ -85592,7 +85602,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_read_proc_symlinks" lineno="1080">
+<interface name="kernel_read_proc_symlinks" lineno="1098">
 <summary>
 Read generic symbolic links in /proc.
 </summary>
@@ -85611,7 +85621,7 @@ Domain allowed access.
 </param>
 <infoflow type="read" weight="10"/>
 </interface>
-<interface name="kernel_read_system_state" lineno="1119">
+<interface name="kernel_read_system_state" lineno="1137">
 <summary>
 Allows caller to read system state information in /proc.
 </summary>
@@ -85642,7 +85652,7 @@ Domain allowed access.
 <infoflow type="read" weight="10"/>
 <rolecap/>
 </interface>
-<interface name="kernel_write_proc_files" lineno="1145">
+<interface name="kernel_write_proc_files" lineno="1163">
 <summary>
 Write to generic proc entries.
 </summary>
@@ -85653,7 +85663,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_dontaudit_read_system_state" lineno="1164">
+<interface name="kernel_dontaudit_read_system_state" lineno="1182">
 <summary>
 Do not audit attempts by caller to
 read system state information in proc.
@@ -85664,7 +85674,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_read_proc_symlinks" lineno="1183">
+<interface name="kernel_dontaudit_read_proc_symlinks" lineno="1201">
 <summary>
 Do not audit attempts by caller to
 read symbolic links in proc.
@@ -85675,7 +85685,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_rw_afs_state" lineno="1202">
+<interface name="kernel_rw_afs_state" lineno="1220">
 <summary>
 Allow caller to read and write state information for AFS.
 </summary>
@@ -85686,7 +85696,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_read_software_raid_state" lineno="1222">
+<interface name="kernel_read_software_raid_state" lineno="1240">
 <summary>
 Allow caller to read the state information for software raid.
 </summary>
@@ -85697,7 +85707,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_rw_software_raid_state" lineno="1242">
+<interface name="kernel_rw_software_raid_state" lineno="1260">
 <summary>
 Allow caller to read and set the state information for software raid.
 </summary>
@@ -85707,7 +85717,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_getattr_core_if" lineno="1262">
+<interface name="kernel_getattr_core_if" lineno="1280">
 <summary>
 Allows caller to get attributes of core kernel interface.
 </summary>
@@ -85717,7 +85727,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_getattr_core_if" lineno="1283">
+<interface name="kernel_dontaudit_getattr_core_if" lineno="1301">
 <summary>
 Do not audit attempts to get the attributes of
 core kernel interfaces.
@@ -85728,7 +85738,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_read_core_if" lineno="1301">
+<interface name="kernel_read_core_if" lineno="1319">
 <summary>
 Allows caller to read the core kernel interface.
 </summary>
@@ -85738,7 +85748,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_read_messages" lineno="1325">
+<interface name="kernel_read_messages" lineno="1343">
 <summary>
 Allow caller to read kernel messages
 using the /proc/kmsg interface.
@@ -85749,7 +85759,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_getattr_message_if" lineno="1347">
+<interface name="kernel_getattr_message_if" lineno="1365">
 <summary>
 Allow caller to get the attributes of kernel message
 interface (/proc/kmsg).
@@ -85760,7 +85770,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_getattr_message_if" lineno="1366">
+<interface name="kernel_dontaudit_getattr_message_if" lineno="1384">
 <summary>
 Do not audit attempts by caller to get the attributes of kernel
 message interfaces.
@@ -85771,7 +85781,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_mounton_message_if" lineno="1385">
+<interface name="kernel_mounton_message_if" lineno="1403">
 <summary>
 Mount on kernel message interfaces files.
 </summary>
@@ -85782,7 +85792,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_dontaudit_search_network_state" lineno="1406">
+<interface name="kernel_dontaudit_search_network_state" lineno="1424">
 <summary>
 Do not audit attempts to search the network
 state directory.
@@ -85794,7 +85804,7 @@ Domain to not audit.
 </param>
 
 </interface>
-<interface name="kernel_search_network_state" lineno="1425">
+<interface name="kernel_search_network_state" lineno="1443">
 <summary>
 Allow searching of network state directory.
 </summary>
@@ -85805,7 +85815,7 @@ Domain allowed access.
 </param>
 
 </interface>
-<interface name="kernel_read_network_state" lineno="1455">
+<interface name="kernel_read_network_state" lineno="1473">
 <summary>
 Read the network state information.
 </summary>
@@ -85827,7 +85837,7 @@ Domain allowed access.
 <infoflow type="read" weight="10"/>
 <rolecap/>
 </interface>
-<interface name="kernel_read_network_state_symlinks" lineno="1476">
+<interface name="kernel_read_network_state_symlinks" lineno="1494">
 <summary>
 Allow caller to read the network state symbolic links.
 </summary>
@@ -85837,7 +85847,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_search_xen_state" lineno="1497">
+<interface name="kernel_search_xen_state" lineno="1515">
 <summary>
 Allow searching of xen state directory.
 </summary>
@@ -85848,7 +85858,7 @@ Domain allowed access.
 </param>
 
 </interface>
-<interface name="kernel_dontaudit_search_xen_state" lineno="1517">
+<interface name="kernel_dontaudit_search_xen_state" lineno="1535">
 <summary>
 Do not audit attempts to search the xen
 state directory.
@@ -85860,7 +85870,7 @@ Domain to not audit.
 </param>
 
 </interface>
-<interface name="kernel_read_xen_state" lineno="1536">
+<interface name="kernel_read_xen_state" lineno="1554">
 <summary>
 Allow caller to read the xen state information.
 </summary>
@@ -85871,7 +85881,7 @@ Domain allowed access.
 </param>
 
 </interface>
-<interface name="kernel_read_xen_state_symlinks" lineno="1558">
+<interface name="kernel_read_xen_state_symlinks" lineno="1576">
 <summary>
 Allow caller to read the xen state symbolic links.
 </summary>
@@ -85882,7 +85892,7 @@ Domain allowed access.
 </param>
 
 </interface>
-<interface name="kernel_write_xen_state" lineno="1579">
+<interface name="kernel_write_xen_state" lineno="1597">
 <summary>
 Allow caller to write xen state information.
 </summary>
@@ -85893,7 +85903,7 @@ Domain allowed access.
 </param>
 
 </interface>
-<interface name="kernel_list_all_proc" lineno="1597">
+<interface name="kernel_list_all_proc" lineno="1615">
 <summary>
 Allow attempts to list all proc directories.
 </summary>
@@ -85903,7 +85913,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_list_all_proc" lineno="1616">
+<interface name="kernel_dontaudit_list_all_proc" lineno="1634">
 <summary>
 Do not audit attempts to list all proc directories.
 </summary>
@@ -85913,7 +85923,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_search_sysctl" lineno="1637">
+<interface name="kernel_dontaudit_search_sysctl" lineno="1655">
 <summary>
 Do not audit attempts by caller to search
 the base directory of sysctls.
@@ -85925,7 +85935,7 @@ Domain to not audit.
 </param>
 
 </interface>
-<interface name="kernel_mounton_sysctl_dirs" lineno="1656">
+<interface name="kernel_mounton_sysctl_dirs" lineno="1674">
 <summary>
 Mount on sysctl_t dirs.
 </summary>
@@ -85936,7 +85946,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_read_sysctl" lineno="1676">
+<interface name="kernel_read_sysctl" lineno="1694">
 <summary>
 Allow access to read sysctl directories.
 </summary>
@@ -85947,7 +85957,7 @@ Domain allowed access.
 </param>
 
 </interface>
-<interface name="kernel_mounton_sysctl_files" lineno="1696">
+<interface name="kernel_mounton_sysctl_files" lineno="1714">
 <summary>
 Mount on sysctl files.
 </summary>
@@ -85958,7 +85968,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_read_device_sysctls" lineno="1716">
+<interface name="kernel_read_device_sysctls" lineno="1734">
 <summary>
 Allow caller to read the device sysctls.
 </summary>
@@ -85969,7 +85979,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_rw_device_sysctls" lineno="1737">
+<interface name="kernel_rw_device_sysctls" lineno="1755">
 <summary>
 Read and write device sysctls.
 </summary>
@@ -85980,7 +85990,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_search_vm_sysctl" lineno="1757">
+<interface name="kernel_search_vm_sysctl" lineno="1775">
 <summary>
 Allow caller to search virtual memory sysctls.
 </summary>
@@ -85990,7 +86000,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_read_vm_sysctls" lineno="1776">
+<interface name="kernel_read_vm_sysctls" lineno="1794">
 <summary>
 Allow caller to read virtual memory sysctls.
 </summary>
@@ -86001,7 +86011,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_rw_vm_sysctls" lineno="1797">
+<interface name="kernel_rw_vm_sysctls" lineno="1815">
 <summary>
 Read and write virtual memory sysctls.
 </summary>
@@ -86012,7 +86022,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_search_network_sysctl" lineno="1819">
+<interface name="kernel_search_network_sysctl" lineno="1837">
 <summary>
 Search network sysctl directories.
 </summary>
@@ -86022,7 +86032,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_search_network_sysctl" lineno="1837">
+<interface name="kernel_dontaudit_search_network_sysctl" lineno="1855">
 <summary>
 Do not audit attempts by caller to search network sysctl directories.
 </summary>
@@ -86032,7 +86042,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_read_net_sysctls" lineno="1856">
+<interface name="kernel_read_net_sysctls" lineno="1874">
 <summary>
 Allow caller to read network sysctls.
 </summary>
@@ -86043,7 +86053,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_rw_net_sysctls" lineno="1877">
+<interface name="kernel_rw_net_sysctls" lineno="1895">
 <summary>
 Allow caller to modiry contents of sysctl network files.
 </summary>
@@ -86054,7 +86064,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_read_unix_sysctls" lineno="1899">
+<interface name="kernel_read_unix_sysctls" lineno="1917">
 <summary>
 Allow caller to read unix domain
 socket sysctls.
@@ -86066,7 +86076,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_rw_unix_sysctls" lineno="1921">
+<interface name="kernel_rw_unix_sysctls" lineno="1939">
 <summary>
 Read and write unix domain
 socket sysctls.
@@ -86078,7 +86088,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_read_hotplug_sysctls" lineno="1942">
+<interface name="kernel_read_hotplug_sysctls" lineno="1960">
 <summary>
 Read the hotplug sysctl.
 </summary>
@@ -86089,7 +86099,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_rw_hotplug_sysctls" lineno="1963">
+<interface name="kernel_rw_hotplug_sysctls" lineno="1981">
 <summary>
 Read and write the hotplug sysctl.
 </summary>
@@ -86100,7 +86110,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_read_modprobe_sysctls" lineno="1984">
+<interface name="kernel_read_modprobe_sysctls" lineno="2002">
 <summary>
 Read the modprobe sysctl.
 </summary>
@@ -86111,7 +86121,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_rw_modprobe_sysctls" lineno="2005">
+<interface name="kernel_rw_modprobe_sysctls" lineno="2023">
 <summary>
 Read and write the modprobe sysctl.
 </summary>
@@ -86122,7 +86132,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_dontaudit_search_kernel_sysctl" lineno="2025">
+<interface name="kernel_dontaudit_search_kernel_sysctl" lineno="2043">
 <summary>
 Do not audit attempts to search generic kernel sysctls.
 </summary>
@@ -86132,7 +86142,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_read_kernel_sysctl" lineno="2043">
+<interface name="kernel_dontaudit_read_kernel_sysctl" lineno="2061">
 <summary>
 Do not audit attempted reading of kernel sysctls
 </summary>
@@ -86142,7 +86152,7 @@ Domain to not audit accesses from
 </summary>
 </param>
 </interface>
-<interface name="kernel_read_crypto_sysctls" lineno="2061">
+<interface name="kernel_read_crypto_sysctls" lineno="2079">
 <summary>
 Read generic crypto sysctls.
 </summary>
@@ -86152,7 +86162,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_read_kernel_sysctls" lineno="2102">
+<interface name="kernel_read_kernel_sysctls" lineno="2120">
 <summary>
 Read general kernel sysctls.
 </summary>
@@ -86184,7 +86194,7 @@ Domain allowed access.
 </param>
 <infoflow type="read" weight="10"/>
 </interface>
-<interface name="kernel_dontaudit_write_kernel_sysctl" lineno="2122">
+<interface name="kernel_dontaudit_write_kernel_sysctl" lineno="2140">
 <summary>
 Do not audit attempts to write generic kernel sysctls.
 </summary>
@@ -86194,7 +86204,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_rw_kernel_sysctl" lineno="2141">
+<interface name="kernel_rw_kernel_sysctl" lineno="2159">
 <summary>
 Read and write generic kernel sysctls.
 </summary>
@@ -86205,7 +86215,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_mounton_kernel_sysctl_files" lineno="2162">
+<interface name="kernel_mounton_kernel_sysctl_files" lineno="2180">
 <summary>
 Mount on kernel sysctl files.
 </summary>
@@ -86216,7 +86226,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_read_kernel_ns_lastpid_sysctls" lineno="2182">
+<interface name="kernel_read_kernel_ns_lastpid_sysctls" lineno="2200">
 <summary>
 Read kernel ns lastpid sysctls.
 </summary>
@@ -86227,7 +86237,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_dontaudit_write_kernel_ns_lastpid_sysctl" lineno="2202">
+<interface name="kernel_dontaudit_write_kernel_ns_lastpid_sysctl" lineno="2220">
 <summary>
 Do not audit attempts to write kernel ns lastpid sysctls.
 </summary>
@@ -86237,7 +86247,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_rw_kernel_ns_lastpid_sysctl" lineno="2221">
+<interface name="kernel_rw_kernel_ns_lastpid_sysctl" lineno="2239">
 <summary>
 Read and write kernel ns lastpid sysctls.
 </summary>
@@ -86248,7 +86258,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_search_fs_sysctls" lineno="2242">
+<interface name="kernel_search_fs_sysctls" lineno="2260">
 <summary>
 Search filesystem sysctl directories.
 </summary>
@@ -86259,7 +86269,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_read_fs_sysctls" lineno="2261">
+<interface name="kernel_read_fs_sysctls" lineno="2279">
 <summary>
 Read filesystem sysctls.
 </summary>
@@ -86270,7 +86280,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_rw_fs_sysctls" lineno="2282">
+<interface name="kernel_rw_fs_sysctls" lineno="2300">
 <summary>
 Read and write filesystem sysctls.
 </summary>
@@ -86281,7 +86291,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_read_irq_sysctls" lineno="2303">
+<interface name="kernel_read_irq_sysctls" lineno="2321">
 <summary>
 Read IRQ sysctls.
 </summary>
@@ -86292,7 +86302,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_rw_irq_sysctls" lineno="2324">
+<interface name="kernel_rw_irq_sysctls" lineno="2342">
 <summary>
 Read and write IRQ sysctls.
 </summary>
@@ -86303,7 +86313,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_read_rpc_sysctls" lineno="2345">
+<interface name="kernel_read_rpc_sysctls" lineno="2363">
 <summary>
 Read RPC sysctls.
 </summary>
@@ -86314,7 +86324,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_rw_rpc_sysctls" lineno="2366">
+<interface name="kernel_rw_rpc_sysctls" lineno="2384">
 <summary>
 Read and write RPC sysctls.
 </summary>
@@ -86325,7 +86335,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_dontaudit_list_all_sysctls" lineno="2386">
+<interface name="kernel_dontaudit_list_all_sysctls" lineno="2404">
 <summary>
 Do not audit attempts to list all sysctl directories.
 </summary>
@@ -86335,7 +86345,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_read_all_sysctls" lineno="2406">
+<interface name="kernel_read_all_sysctls" lineno="2424">
 <summary>
 Allow caller to read all sysctls.
 </summary>
@@ -86346,7 +86356,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_rw_all_sysctls" lineno="2429">
+<interface name="kernel_rw_all_sysctls" lineno="2447">
 <summary>
 Read and write all sysctls.
 </summary>
@@ -86357,7 +86367,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_associate_proc" lineno="2454">
+<interface name="kernel_associate_proc" lineno="2472">
 <summary>
 Associate a file to proc_t (/proc)
 </summary>
@@ -86368,7 +86378,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_kill_unlabeled" lineno="2471">
+<interface name="kernel_kill_unlabeled" lineno="2489">
 <summary>
 Send a kill signal to unlabeled processes.
 </summary>
@@ -86378,7 +86388,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_mount_unlabeled" lineno="2489">
+<interface name="kernel_mount_unlabeled" lineno="2507">
 <summary>
 Mount a kernel unlabeled filesystem.
 </summary>
@@ -86388,7 +86398,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_unmount_unlabeled" lineno="2507">
+<interface name="kernel_unmount_unlabeled" lineno="2525">
 <summary>
 Unmount a kernel unlabeled filesystem.
 </summary>
@@ -86398,7 +86408,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_signal_unlabeled" lineno="2525">
+<interface name="kernel_signal_unlabeled" lineno="2543">
 <summary>
 Send general signals to unlabeled processes.
 </summary>
@@ -86408,7 +86418,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_signull_unlabeled" lineno="2543">
+<interface name="kernel_signull_unlabeled" lineno="2561">
 <summary>
 Send a null signal to unlabeled processes.
 </summary>
@@ -86418,7 +86428,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_sigstop_unlabeled" lineno="2561">
+<interface name="kernel_sigstop_unlabeled" lineno="2579">
 <summary>
 Send a stop signal to unlabeled processes.
 </summary>
@@ -86428,7 +86438,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_sigchld_unlabeled" lineno="2579">
+<interface name="kernel_sigchld_unlabeled" lineno="2597">
 <summary>
 Send a child terminated signal to unlabeled processes.
 </summary>
@@ -86438,7 +86448,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_getattr_unlabeled_dirs" lineno="2597">
+<interface name="kernel_getattr_unlabeled_dirs" lineno="2615">
 <summary>
 Get the attributes of unlabeled directories.
 </summary>
@@ -86448,7 +86458,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_search_unlabeled" lineno="2615">
+<interface name="kernel_dontaudit_search_unlabeled" lineno="2633">
 <summary>
 Do not audit attempts to search unlabeled directories.
 </summary>
@@ -86458,7 +86468,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_list_unlabeled" lineno="2633">
+<interface name="kernel_list_unlabeled" lineno="2651">
 <summary>
 List unlabeled directories.
 </summary>
@@ -86468,7 +86478,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_read_unlabeled_state" lineno="2651">
+<interface name="kernel_read_unlabeled_state" lineno="2669">
 <summary>
 Read the process state (/proc/pid) of all unlabeled_t.
 </summary>
@@ -86478,7 +86488,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_list_unlabeled" lineno="2671">
+<interface name="kernel_dontaudit_list_unlabeled" lineno="2689">
 <summary>
 Do not audit attempts to list unlabeled directories.
 </summary>
@@ -86488,7 +86498,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_rw_unlabeled_dirs" lineno="2689">
+<interface name="kernel_rw_unlabeled_dirs" lineno="2707">
 <summary>
 Read and write unlabeled directories.
 </summary>
@@ -86498,7 +86508,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_delete_unlabeled_dirs" lineno="2707">
+<interface name="kernel_delete_unlabeled_dirs" lineno="2725">
 <summary>
 Delete unlabeled directories.
 </summary>
@@ -86508,7 +86518,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_manage_unlabeled_dirs" lineno="2725">
+<interface name="kernel_manage_unlabeled_dirs" lineno="2743">
 <summary>
 Create, read, write, and delete unlabeled directories.
 </summary>
@@ -86518,7 +86528,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_mounton_unlabeled_dirs" lineno="2743">
+<interface name="kernel_mounton_unlabeled_dirs" lineno="2761">
 <summary>
 Mount a filesystem on an unlabeled directory.
 </summary>
@@ -86528,7 +86538,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_read_unlabeled_files" lineno="2761">
+<interface name="kernel_read_unlabeled_files" lineno="2779">
 <summary>
 Read unlabeled files.
 </summary>
@@ -86538,7 +86548,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_rw_unlabeled_files" lineno="2779">
+<interface name="kernel_rw_unlabeled_files" lineno="2797">
 <summary>
 Read and write unlabeled files.
 </summary>
@@ -86548,7 +86558,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_delete_unlabeled_files" lineno="2797">
+<interface name="kernel_delete_unlabeled_files" lineno="2815">
 <summary>
 Delete unlabeled files.
 </summary>
@@ -86558,7 +86568,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_manage_unlabeled_files" lineno="2815">
+<interface name="kernel_manage_unlabeled_files" lineno="2833">
 <summary>
 Create, read, write, and delete unlabeled files.
 </summary>
@@ -86568,7 +86578,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_getattr_unlabeled_files" lineno="2834">
+<interface name="kernel_dontaudit_getattr_unlabeled_files" lineno="2852">
 <summary>
 Do not audit attempts by caller to get the
 attributes of an unlabeled file.
@@ -86579,7 +86589,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_read_unlabeled_files" lineno="2853">
+<interface name="kernel_dontaudit_read_unlabeled_files" lineno="2871">
 <summary>
 Do not audit attempts by caller to
 read an unlabeled file.
@@ -86590,7 +86600,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_delete_unlabeled_symlinks" lineno="2871">
+<interface name="kernel_delete_unlabeled_symlinks" lineno="2889">
 <summary>
 Delete unlabeled symbolic links.
 </summary>
@@ -86600,7 +86610,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_manage_unlabeled_symlinks" lineno="2889">
+<interface name="kernel_manage_unlabeled_symlinks" lineno="2907">
 <summary>
 Create, read, write, and delete unlabeled symbolic links.
 </summary>
@@ -86610,7 +86620,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_getattr_unlabeled_symlinks" lineno="2908">
+<interface name="kernel_dontaudit_getattr_unlabeled_symlinks" lineno="2926">
 <summary>
 Do not audit attempts by caller to get the
 attributes of unlabeled symbolic links.
@@ -86621,7 +86631,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_getattr_unlabeled_pipes" lineno="2927">
+<interface name="kernel_dontaudit_getattr_unlabeled_pipes" lineno="2945">
 <summary>
 Do not audit attempts by caller to get the
 attributes of unlabeled named pipes.
@@ -86632,7 +86642,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_getattr_unlabeled_sockets" lineno="2946">
+<interface name="kernel_dontaudit_getattr_unlabeled_sockets" lineno="2964">
 <summary>
 Do not audit attempts by caller to get the
 attributes of unlabeled named sockets.
@@ -86643,7 +86653,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_getattr_unlabeled_blk_files" lineno="2965">
+<interface name="kernel_dontaudit_getattr_unlabeled_blk_files" lineno="2983">
 <summary>
 Do not audit attempts by caller to get attributes for
 unlabeled block devices.
@@ -86654,7 +86664,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_rw_unlabeled_blk_files" lineno="2983">
+<interface name="kernel_rw_unlabeled_blk_files" lineno="3001">
 <summary>
 Read and write unlabeled block device nodes.
 </summary>
@@ -86664,7 +86674,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_delete_unlabeled_blk_files" lineno="3001">
+<interface name="kernel_delete_unlabeled_blk_files" lineno="3019">
 <summary>
 Delete unlabeled block device nodes.
 </summary>
@@ -86674,7 +86684,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_manage_unlabeled_blk_files" lineno="3019">
+<interface name="kernel_manage_unlabeled_blk_files" lineno="3037">
 <summary>
 Create, read, write, and delete unlabeled block device nodes.
 </summary>
@@ -86684,7 +86694,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_getattr_unlabeled_chr_files" lineno="3038">
+<interface name="kernel_dontaudit_getattr_unlabeled_chr_files" lineno="3056">
 <summary>
 Do not audit attempts by caller to get attributes for
 unlabeled character devices.
@@ -86695,7 +86705,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_write_unlabeled_chr_files" lineno="3057">
+<interface name="kernel_dontaudit_write_unlabeled_chr_files" lineno="3075">
 <summary>
 Do not audit attempts to
 write unlabeled character devices.
@@ -86706,7 +86716,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_delete_unlabeled_chr_files" lineno="3075">
+<interface name="kernel_delete_unlabeled_chr_files" lineno="3093">
 <summary>
 Delete unlabeled character device nodes.
 </summary>
@@ -86716,7 +86726,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_manage_unlabeled_chr_files" lineno="3094">
+<interface name="kernel_manage_unlabeled_chr_files" lineno="3112">
 <summary>
 Create, read, write, and delete unlabeled character device nodes.
 </summary>
@@ -86726,7 +86736,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_relabelfrom_unlabeled_dirs" lineno="3112">
+<interface name="kernel_relabelfrom_unlabeled_dirs" lineno="3130">
 <summary>
 Allow caller to relabel unlabeled directories.
 </summary>
@@ -86736,7 +86746,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_relabelfrom_unlabeled_files" lineno="3130">
+<interface name="kernel_relabelfrom_unlabeled_files" lineno="3148">
 <summary>
 Allow caller to relabel unlabeled files.
 </summary>
@@ -86746,7 +86756,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_relabelfrom_unlabeled_symlinks" lineno="3149">
+<interface name="kernel_relabelfrom_unlabeled_symlinks" lineno="3167">
 <summary>
 Allow caller to relabel unlabeled symbolic links.
 </summary>
@@ -86756,7 +86766,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_relabelfrom_unlabeled_pipes" lineno="3168">
+<interface name="kernel_relabelfrom_unlabeled_pipes" lineno="3186">
 <summary>
 Allow caller to relabel unlabeled named pipes.
 </summary>
@@ -86766,7 +86776,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_delete_unlabeled_pipes" lineno="3187">
+<interface name="kernel_delete_unlabeled_pipes" lineno="3205">
 <summary>
 Delete unlabeled named pipes
 </summary>
@@ -86776,7 +86786,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_relabelfrom_unlabeled_sockets" lineno="3205">
+<interface name="kernel_relabelfrom_unlabeled_sockets" lineno="3223">
 <summary>
 Allow caller to relabel unlabeled named sockets.
 </summary>
@@ -86786,7 +86796,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_delete_unlabeled_sockets" lineno="3224">
+<interface name="kernel_delete_unlabeled_sockets" lineno="3242">
 <summary>
 Delete unlabeled named sockets.
 </summary>
@@ -86796,7 +86806,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_relabelfrom_unlabeled_blk_devs" lineno="3242">
+<interface name="kernel_relabelfrom_unlabeled_blk_devs" lineno="3260">
 <summary>
 Allow caller to relabel from unlabeled block devices.
 </summary>
@@ -86806,7 +86816,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_relabelfrom_unlabeled_chr_devs" lineno="3260">
+<interface name="kernel_relabelfrom_unlabeled_chr_devs" lineno="3278">
 <summary>
 Allow caller to relabel from unlabeled character devices.
 </summary>
@@ -86816,7 +86826,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_sendrecv_unlabeled_association" lineno="3293">
+<interface name="kernel_sendrecv_unlabeled_association" lineno="3311">
 <summary>
 Send and receive messages from an
 unlabeled IPSEC association.
@@ -86841,7 +86851,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_sendrecv_unlabeled_association" lineno="3326">
+<interface name="kernel_dontaudit_sendrecv_unlabeled_association" lineno="3344">
 <summary>
 Do not audit attempts to send and receive messages
 from an	unlabeled IPSEC association.
@@ -86866,7 +86876,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_tcp_recvfrom_unlabeled" lineno="3353">
+<interface name="kernel_tcp_recvfrom_unlabeled" lineno="3371">
 <summary>
 Receive TCP packets from an unlabeled connection.
 </summary>
@@ -86885,7 +86895,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_tcp_recvfrom_unlabeled" lineno="3382">
+<interface name="kernel_dontaudit_tcp_recvfrom_unlabeled" lineno="3400">
 <summary>
 Do not audit attempts to receive TCP packets from an unlabeled
 connection.
@@ -86906,7 +86916,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_udp_recvfrom_unlabeled" lineno="3409">
+<interface name="kernel_udp_recvfrom_unlabeled" lineno="3427">
 <summary>
 Receive UDP packets from an unlabeled connection.
 </summary>
@@ -86925,7 +86935,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_udp_recvfrom_unlabeled" lineno="3438">
+<interface name="kernel_dontaudit_udp_recvfrom_unlabeled" lineno="3456">
 <summary>
 Do not audit attempts to receive UDP packets from an unlabeled
 connection.
@@ -86946,7 +86956,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_raw_recvfrom_unlabeled" lineno="3465">
+<interface name="kernel_raw_recvfrom_unlabeled" lineno="3483">
 <summary>
 Receive Raw IP packets from an unlabeled connection.
 </summary>
@@ -86965,7 +86975,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_raw_recvfrom_unlabeled" lineno="3494">
+<interface name="kernel_dontaudit_raw_recvfrom_unlabeled" lineno="3512">
 <summary>
 Do not audit attempts to receive Raw IP packets from an unlabeled
 connection.
@@ -86986,7 +86996,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_sendrecv_unlabeled_packets" lineno="3524">
+<interface name="kernel_sendrecv_unlabeled_packets" lineno="3542">
 <summary>
 Send and receive unlabeled packets.
 </summary>
@@ -87008,7 +87018,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_recvfrom_unlabeled_peer" lineno="3552">
+<interface name="kernel_recvfrom_unlabeled_peer" lineno="3570">
 <summary>
 Receive packets from an unlabeled peer.
 </summary>
@@ -87028,7 +87038,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_dontaudit_recvfrom_unlabeled_peer" lineno="3580">
+<interface name="kernel_dontaudit_recvfrom_unlabeled_peer" lineno="3598">
 <summary>
 Do not audit attempts to receive packets from an unlabeled peer.
 </summary>
@@ -87048,7 +87058,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="kernel_relabelfrom_unlabeled_database" lineno="3598">
+<interface name="kernel_relabelfrom_unlabeled_database" lineno="3616">
 <summary>
 Relabel from unlabeled database objects.
 </summary>
@@ -87058,7 +87068,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_unconfined" lineno="3635">
+<interface name="kernel_unconfined" lineno="3653">
 <summary>
 Unconfined access to kernel module resources.
 </summary>
@@ -87068,7 +87078,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_read_vm_overcommit_sysctl" lineno="3655">
+<interface name="kernel_read_vm_overcommit_sysctl" lineno="3673">
 <summary>
 Read virtual memory overcommit sysctl.
 </summary>
@@ -87079,7 +87089,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_rw_vm_overcommit_sysctl" lineno="3675">
+<interface name="kernel_rw_vm_overcommit_sysctl" lineno="3693">
 <summary>
 Read and write virtual memory overcommit sysctl.
 </summary>
@@ -87090,7 +87100,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="kernel_ib_access_unlabeled_pkeys" lineno="3694">
+<interface name="kernel_ib_access_unlabeled_pkeys" lineno="3712">
 <summary>
 Access unlabeled infiniband pkeys.
 </summary>
@@ -87100,7 +87110,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="kernel_ib_manage_subnet_unlabeled_endports" lineno="3712">
+<interface name="kernel_ib_manage_subnet_unlabeled_endports" lineno="3730">
 <summary>
 Manage subnet on unlabeled Infiniband endports.
 </summary>
@@ -91982,6 +91992,36 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
+<interface name="aptcacher_filetrans_log_dir" lineno="77">
+<summary>
+create /var/log/apt-cacher-ng
+</summary>
+<param name="domain">
+<summary>
+Domain allowed access.
+</summary>
+</param>
+</interface>
+<interface name="aptcacher_filetrans_cache_dir" lineno="95">
+<summary>
+create /var/cache/apt-cacher-ng
+</summary>
+<param name="domain">
+<summary>
+Domain allowed access.
+</summary>
+</param>
+</interface>
+<interface name="aptcacher_etc_filetrans_conf_dir" lineno="113">
+<summary>
+create /etc/apt-cacher-ng
+</summary>
+<param name="domain">
+<summary>
+Domain allowed access.
+</summary>
+</param>
+</interface>
 </module>
 <module name="arpwatch" filename="policy/modules/services/arpwatch.if">
 <summary>Ethernet activity monitor.</summary>
@@ -93058,6 +93098,14 @@ Role allowed access.
 </summary>
 </param>
 </interface>
+<tunable name="certbot_acmesh" dftval="false">
+<desc>
+<p>
+Determine whether additional rules
+should be enabled to support acme.sh
+</p>
+</desc>
+</tunable>
 </module>
 <module name="certmaster" filename="policy/modules/services/certmaster.if">
 <summary>Remote certificate distribution framework.</summary>
@@ -93786,6 +93834,26 @@ Role allowed access.
 </summary>
 </param>
 <rolecap/>
+</interface>
+<interface name="clamav_filetrans_log" lineno="444">
+<summary>
+specified domain creates /var/log/clamav/freshclam.log with correct type
+</summary>
+<param name="domain">
+<summary>
+Domain allowed access.
+</summary>
+</param>
+</interface>
+<interface name="clamav_filetrans_runtime_dir" lineno="462">
+<summary>
+specified domain creates /run/clamav with correct type
+</summary>
+<param name="domain">
+<summary>
+Domain allowed access.
+</summary>
+</param>
 </interface>
 <tunable name="clamav_read_user_content_files_clamscan" dftval="false">
 <desc>
@@ -96650,7 +96718,18 @@ Domain allowed to transition.
 </summary>
 </param>
 </interface>
-<interface name="dovecot_manage_spool" lineno="75">
+<interface name="dovecot_read_config" lineno="75">
+<summary>
+Read dovecot configuration content.
+</summary>
+<param name="domain">
+<summary>
+Domain allowed access.
+</summary>
+</param>
+<rolecap/>
+</interface>
+<interface name="dovecot_manage_spool" lineno="97">
 <summary>
 Create, read, write, and delete
 dovecot spool files.
@@ -96661,7 +96740,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dovecot_dontaudit_unlink_lib_files" lineno="97">
+<interface name="dovecot_dontaudit_unlink_lib_files" lineno="119">
 <summary>
 Do not audit attempts to delete
 dovecot lib files.
@@ -96672,7 +96751,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="dovecot_write_inherited_tmp_files" lineno="115">
+<interface name="dovecot_write_inherited_tmp_files" lineno="137">
 <summary>
 Write inherited dovecot tmp files.
 </summary>
@@ -96682,7 +96761,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="dovecot_admin" lineno="140">
+<interface name="dovecot_admin" lineno="162">
 <summary>
 All of the rules required to
 administrate an dovecot environment.
@@ -97417,6 +97496,16 @@ Role allowed access.
 </summary>
 </param>
 <rolecap/>
+</interface>
+<interface name="ftp_filetrans_pure_ftpd_runtime" lineno="203">
+<summary>
+create /run/pure-ftpd
+</summary>
+<param name="domain">
+<summary>
+Domain allowed access.
+</summary>
+</param>
 </interface>
 <tunable name="allow_ftpd_anon_write" dftval="false">
 <desc>
@@ -100192,7 +100281,17 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="milter_getattr_data_dir" lineno="111">
+<interface name="milter_var_lib_filetrans_spamass_state" lineno="111">
+<summary>
+create spamass milter state dir
+</summary>
+<param name="domain">
+<summary>
+Domain allowed access.
+</summary>
+</param>
+</interface>
+<interface name="milter_getattr_data_dir" lineno="129">
 <summary>
 Get the attributes of the spamassissin milter data dir.
 </summary>
@@ -101188,7 +101287,17 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="mta_queue_filetrans" lineno="1021">
+<interface name="mta_watch_spool" lineno="1004">
+<summary>
+Watch mail spool content.
+</summary>
+<param name="domain">
+<summary>
+Domain allowed access.
+</summary>
+</param>
+</interface>
+<interface name="mta_queue_filetrans" lineno="1039">
 <summary>
 Create specified objects in the
 mail queue spool directory with a
@@ -101215,7 +101324,7 @@ The name of the object being created.
 </summary>
 </param>
 </interface>
-<interface name="mta_search_queue" lineno="1040">
+<interface name="mta_search_queue" lineno="1058">
 <summary>
 Search mail queue directories.
 </summary>
@@ -101225,7 +101334,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="mta_list_queue" lineno="1059">
+<interface name="mta_list_queue" lineno="1077">
 <summary>
 List mail queue directories.
 </summary>
@@ -101235,7 +101344,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="mta_read_queue" lineno="1078">
+<interface name="mta_read_queue" lineno="1096">
 <summary>
 Read mail queue files.
 </summary>
@@ -101245,7 +101354,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="mta_dontaudit_rw_queue" lineno="1098">
+<interface name="mta_dontaudit_rw_queue" lineno="1116">
 <summary>
 Do not audit attempts to read and
 write mail queue content.
@@ -101256,7 +101365,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="mta_manage_queue" lineno="1118">
+<interface name="mta_manage_queue" lineno="1136">
 <summary>
 Create, read, write, and delete
 mail queue content.
@@ -101267,7 +101376,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="mta_read_sendmail_bin" lineno="1138">
+<interface name="mta_read_sendmail_bin" lineno="1156">
 <summary>
 Read sendmail binary.
 </summary>
@@ -101277,7 +101386,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="mta_rw_user_mail_stream_sockets" lineno="1157">
+<interface name="mta_rw_user_mail_stream_sockets" lineno="1175">
 <summary>
 Read and write unix domain stream
 sockets of all base mail domains.
@@ -101515,7 +101624,17 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="mysql_manage_mysqld_home_files" lineno="255">
+<interface name="mysql_var_lib_filetrans_db_dir" lineno="254">
+<summary>
+create mysqld db dir.
+</summary>
+<param name="domain">
+<summary>
+Domain allowed access.
+</summary>
+</param>
+</interface>
+<interface name="mysql_manage_mysqld_home_files" lineno="273">
 <summary>
 Create, read, write, and delete
 mysqld home files.
@@ -101526,7 +101645,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="mysql_relabel_mysqld_home_files" lineno="274">
+<interface name="mysql_relabel_mysqld_home_files" lineno="292">
 <summary>
 Relabel mysqld home files.
 </summary>
@@ -101536,7 +101655,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="mysql_home_filetrans_mysqld_home" lineno="304">
+<interface name="mysql_home_filetrans_mysqld_home" lineno="322">
 <summary>
 Create objects in user home
 directories with the mysqld home type.
@@ -101557,7 +101676,7 @@ The name of the object being created.
 </summary>
 </param>
 </interface>
-<interface name="mysql_write_log" lineno="322">
+<interface name="mysql_write_log" lineno="340">
 <summary>
 Write mysqld log files.
 </summary>
@@ -101567,7 +101686,17 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="mysql_domtrans_mysql_safe" lineno="342">
+<interface name="mysql_log_filetrans_log_dir" lineno="360">
+<summary>
+create mysqld log dir.
+</summary>
+<param name="domain">
+<summary>
+Domain allowed access.
+</summary>
+</param>
+</interface>
+<interface name="mysql_domtrans_mysql_safe" lineno="380">
 <summary>
 Execute mysqld safe in the
 mysqld safe domain.
@@ -101578,7 +101707,7 @@ Domain allowed to transition.
 </summary>
 </param>
 </interface>
-<interface name="mysql_read_pid_files" lineno="361">
+<interface name="mysql_read_pid_files" lineno="399">
 <summary>
 Read mysqld pid files.  (Deprecated)
 </summary>
@@ -101588,7 +101717,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="mysql_search_pid_files" lineno="376">
+<interface name="mysql_search_pid_files" lineno="414">
 <summary>
 Search mysqld pid files.  (Deprecated)
 </summary>
@@ -101599,7 +101728,7 @@ Domain allowed access.
 </param>
 
 </interface>
-<interface name="mysql_admin" lineno="397">
+<interface name="mysql_admin" lineno="435">
 <summary>
 All of the rules required to
 administrate an mysqld environment.
@@ -101616,7 +101745,7 @@ Role allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="mysql_setattr_run_dirs" lineno="439">
+<interface name="mysql_setattr_run_dirs" lineno="477">
 <summary>
 Set the attributes of the MySQL run directories
 </summary>
@@ -101626,7 +101755,7 @@ Domain allowed access
 </summary>
 </param>
 </interface>
-<interface name="mysql_create_run_dirs" lineno="457">
+<interface name="mysql_create_run_dirs" lineno="495">
 <summary>
 Create MySQL run directories
 </summary>
@@ -101636,7 +101765,7 @@ Domain allowed access
 </summary>
 </param>
 </interface>
-<interface name="mysql_generic_run_filetrans_run" lineno="488">
+<interface name="mysql_generic_run_filetrans_run" lineno="526">
 <summary>
 Automatically use the MySQL run label for created resources in generic
 run locations. This method is deprecated in favor of the
@@ -113234,7 +113363,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_use_pam_motd_dynamic" lineno="116">
+<interface name="auth_use_pam_motd_dynamic" lineno="117">
 <summary>
 Use the pam module motd with dynamic support during authentication.
 This module comes from Ubuntu (https://bugs.launchpad.net/ubuntu/+source/pam/+bug/399071)
@@ -113246,7 +113375,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_login_pgm_domain" lineno="140">
+<interface name="auth_login_pgm_domain" lineno="141">
 <summary>
 Make the specified domain used for a login program.
 </summary>
@@ -113256,7 +113385,7 @@ Domain type used for a login program domain.
 </summary>
 </param>
 </interface>
-<interface name="auth_login_entry_type" lineno="227">
+<interface name="auth_login_entry_type" lineno="228">
 <summary>
 Use the login program as an entry point program.
 </summary>
@@ -113266,7 +113395,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_domtrans_login_program" lineno="250">
+<interface name="auth_domtrans_login_program" lineno="251">
 <summary>
 Execute a login_program in the target domain.
 </summary>
@@ -113281,7 +113410,7 @@ The type of the login_program process.
 </summary>
 </param>
 </interface>
-<interface name="auth_ranged_domtrans_login_program" lineno="280">
+<interface name="auth_ranged_domtrans_login_program" lineno="281">
 <summary>
 Execute a login_program in the target domain,
 with a range transition.
@@ -113302,7 +113431,7 @@ Range of the login program.
 </summary>
 </param>
 </interface>
-<interface name="auth_search_cache" lineno="306">
+<interface name="auth_search_cache" lineno="307">
 <summary>
 Search authentication cache
 </summary>
@@ -113312,7 +113441,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_read_cache" lineno="324">
+<interface name="auth_read_cache" lineno="325">
 <summary>
 Read authentication cache
 </summary>
@@ -113322,7 +113451,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_rw_cache" lineno="342">
+<interface name="auth_rw_cache" lineno="343">
 <summary>
 Read/Write authentication cache
 </summary>
@@ -113332,7 +113461,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_manage_cache" lineno="360">
+<interface name="auth_manage_cache" lineno="361">
 <summary>
 Manage authentication cache
 </summary>
@@ -113342,7 +113471,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_var_filetrans_cache" lineno="379">
+<interface name="auth_var_filetrans_cache" lineno="380">
 <summary>
 Automatic transition from cache_t to cache.
 </summary>
@@ -113352,7 +113481,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_domtrans_chk_passwd" lineno="397">
+<interface name="auth_domtrans_chk_passwd" lineno="398">
 <summary>
 Run unix_chkpwd to check a password.
 </summary>
@@ -113362,7 +113491,7 @@ Domain allowed to transition.
 </summary>
 </param>
 </interface>
-<interface name="auth_domtrans_chkpwd" lineno="445">
+<interface name="auth_domtrans_chkpwd" lineno="446">
 <summary>
 Run unix_chkpwd to check a password.
 Stripped down version to be called within boolean
@@ -113373,7 +113502,7 @@ Domain allowed to transition.
 </summary>
 </param>
 </interface>
-<interface name="auth_run_chk_passwd" lineno="471">
+<interface name="auth_run_chk_passwd" lineno="472">
 <summary>
 Execute chkpwd programs in the chkpwd domain.
 </summary>
@@ -113388,7 +113517,7 @@ The role to allow the chkpwd domain.
 </summary>
 </param>
 </interface>
-<interface name="auth_domtrans_upd_passwd" lineno="490">
+<interface name="auth_domtrans_upd_passwd" lineno="491">
 <summary>
 Execute a domain transition to run unix_update.
 </summary>
@@ -113398,7 +113527,7 @@ Domain allowed to transition.
 </summary>
 </param>
 </interface>
-<interface name="auth_run_upd_passwd" lineno="515">
+<interface name="auth_run_upd_passwd" lineno="516">
 <summary>
 Execute updpwd programs in the updpwd domain.
 </summary>
@@ -113413,7 +113542,7 @@ The role to allow the updpwd domain.
 </summary>
 </param>
 </interface>
-<interface name="auth_getattr_shadow" lineno="534">
+<interface name="auth_getattr_shadow" lineno="535">
 <summary>
 Get the attributes of the shadow passwords file.
 </summary>
@@ -113423,7 +113552,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_dontaudit_getattr_shadow" lineno="554">
+<interface name="auth_dontaudit_getattr_shadow" lineno="555">
 <summary>
 Do not audit attempts to get the attributes
 of the shadow passwords file.
@@ -113434,7 +113563,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="auth_read_shadow" lineno="576">
+<interface name="auth_read_shadow" lineno="577">
 <summary>
 Read the shadow passwords file (/etc/shadow)
 </summary>
@@ -113444,7 +113573,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_map_shadow" lineno="591">
+<interface name="auth_map_shadow" lineno="592">
 <summary>
 Map the shadow passwords file (/etc/shadow)
 </summary>
@@ -113454,7 +113583,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_can_read_shadow_passwords" lineno="617">
+<interface name="auth_can_read_shadow_passwords" lineno="618">
 <summary>
 Pass shadow assertion for reading.
 </summary>
@@ -113473,7 +113602,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_tunable_read_shadow" lineno="643">
+<interface name="auth_tunable_read_shadow" lineno="644">
 <summary>
 Read the shadow password file.
 </summary>
@@ -113491,7 +113620,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_dontaudit_read_shadow" lineno="663">
+<interface name="auth_dontaudit_read_shadow" lineno="664">
 <summary>
 Do not audit attempts to read the shadow
 password file (/etc/shadow).
@@ -113502,7 +113631,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="auth_rw_shadow" lineno="681">
+<interface name="auth_rw_shadow" lineno="682">
 <summary>
 Read and write the shadow password file (/etc/shadow).
 </summary>
@@ -113512,7 +113641,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_manage_shadow" lineno="703">
+<interface name="auth_manage_shadow" lineno="704">
 <summary>
 Create, read, write, and delete the shadow
 password file.
@@ -113523,7 +113652,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_etc_filetrans_shadow" lineno="723">
+<interface name="auth_etc_filetrans_shadow" lineno="729">
 <summary>
 Automatic transition from etc to shadow.
 </summary>
@@ -113532,8 +113661,13 @@ Automatic transition from etc to shadow.
 Domain allowed access.
 </summary>
 </param>
+<param name="name" optional="true">
+<summary>
+The name of the object being created.
+</summary>
+</param>
 </interface>
-<interface name="auth_relabelto_shadow" lineno="742">
+<interface name="auth_relabelto_shadow" lineno="748">
 <summary>
 Relabel to the shadow
 password file type.
@@ -113544,7 +113678,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_relabel_shadow" lineno="764">
+<interface name="auth_relabel_shadow" lineno="770">
 <summary>
 Relabel from and to the shadow
 password file type.
@@ -113555,7 +113689,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_append_faillog" lineno="785">
+<interface name="auth_append_faillog" lineno="791">
 <summary>
 Append to the login failure log.
 </summary>
@@ -113565,7 +113699,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_create_faillog_files" lineno="804">
+<interface name="auth_create_faillog_files" lineno="810">
 <summary>
 Create fail log lock (in /run/faillock).
 </summary>
@@ -113575,7 +113709,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_rw_faillog" lineno="822">
+<interface name="auth_rw_faillog" lineno="828">
 <summary>
 Read and write the login failure log.
 </summary>
@@ -113585,7 +113719,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_manage_faillog" lineno="841">
+<interface name="auth_manage_faillog" lineno="847">
 <summary>
 Manage the login failure logs.
 </summary>
@@ -113595,7 +113729,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_setattr_faillog_files" lineno="860">
+<interface name="auth_setattr_faillog_files" lineno="866">
 <summary>
 Setattr the login failure logs.
 </summary>
@@ -113605,7 +113739,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_read_lastlog" lineno="879">
+<interface name="auth_read_lastlog" lineno="885">
 <summary>
 Read the last logins log.
 </summary>
@@ -113616,7 +113750,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="auth_append_lastlog" lineno="898">
+<interface name="auth_append_lastlog" lineno="904">
 <summary>
 Append only to the last logins log.
 </summary>
@@ -113626,7 +113760,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_relabel_lastlog" lineno="917">
+<interface name="auth_relabel_lastlog" lineno="923">
 <summary>
 relabel the last logins log.
 </summary>
@@ -113636,7 +113770,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_rw_lastlog" lineno="936">
+<interface name="auth_rw_lastlog" lineno="942">
 <summary>
 Read and write to the last logins log.
 </summary>
@@ -113646,7 +113780,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_manage_lastlog" lineno="955">
+<interface name="auth_manage_lastlog" lineno="961">
 <summary>
 Manage the last logins log.
 </summary>
@@ -113656,7 +113790,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_domtrans_pam" lineno="974">
+<interface name="auth_domtrans_pam" lineno="980">
 <summary>
 Execute pam programs in the pam domain.
 </summary>
@@ -113666,7 +113800,7 @@ Domain allowed to transition.
 </summary>
 </param>
 </interface>
-<interface name="auth_signal_pam" lineno="992">
+<interface name="auth_signal_pam" lineno="998">
 <summary>
 Send generic signals to pam processes.
 </summary>
@@ -113676,7 +113810,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_run_pam" lineno="1015">
+<interface name="auth_run_pam" lineno="1021">
 <summary>
 Execute pam programs in the PAM domain.
 </summary>
@@ -113691,7 +113825,7 @@ The role to allow the PAM domain.
 </summary>
 </param>
 </interface>
-<interface name="auth_exec_pam" lineno="1034">
+<interface name="auth_exec_pam" lineno="1040">
 <summary>
 Execute the pam program.
 </summary>
@@ -113701,7 +113835,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_read_var_auth" lineno="1053">
+<interface name="auth_read_var_auth" lineno="1059">
 <summary>
 Read var auth files. Used by various other applications
 and pam applets etc.
@@ -113712,7 +113846,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_rw_var_auth" lineno="1073">
+<interface name="auth_rw_var_auth" lineno="1079">
 <summary>
 Read and write var auth files. Used by various other applications
 and pam applets etc.
@@ -113723,7 +113857,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_manage_var_auth" lineno="1093">
+<interface name="auth_manage_var_auth" lineno="1099">
 <summary>
 Manage var auth files. Used by various other applications
 and pam applets etc.
@@ -113734,7 +113868,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_read_pam_pid" lineno="1114">
+<interface name="auth_read_pam_pid" lineno="1120">
 <summary>
 Read PAM PID files.  (Deprecated)
 </summary>
@@ -113744,7 +113878,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_dontaudit_read_pam_pid" lineno="1129">
+<interface name="auth_dontaudit_read_pam_pid" lineno="1135">
 <summary>
 Do not audit attempts to read PAM PID files.  (Deprecated)
 </summary>
@@ -113754,7 +113888,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="auth_pid_filetrans_pam_var_run" lineno="1157">
+<interface name="auth_pid_filetrans_pam_var_run" lineno="1163">
 <summary>
 Create specified objects in
 pid directories with the pam var
@@ -113777,7 +113911,7 @@ The name of the object being created.
 </summary>
 </param>
 </interface>
-<interface name="auth_delete_pam_pid" lineno="1172">
+<interface name="auth_delete_pam_pid" lineno="1178">
 <summary>
 Delete pam PID files.  (Deprecated)
 </summary>
@@ -113787,7 +113921,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_manage_pam_pid" lineno="1187">
+<interface name="auth_manage_pam_pid" lineno="1193">
 <summary>
 Manage pam PID files.  (Deprecated)
 </summary>
@@ -113797,7 +113931,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_manage_pam_runtime_dirs" lineno="1203">
+<interface name="auth_manage_pam_runtime_dirs" lineno="1209">
 <summary>
 Manage pam runtime dirs.
 </summary>
@@ -113807,7 +113941,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_runtime_filetrans_pam_runtime" lineno="1234">
+<interface name="auth_runtime_filetrans_pam_runtime" lineno="1240">
 <summary>
 Create specified objects in
 pid directories with the pam runtime
@@ -113829,7 +113963,7 @@ The name of the object being created.
 </summary>
 </param>
 </interface>
-<interface name="auth_read_pam_runtime_files" lineno="1252">
+<interface name="auth_read_pam_runtime_files" lineno="1258">
 <summary>
 Read PAM runtime files.
 </summary>
@@ -113839,7 +113973,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_dontaudit_read_pam_runtime_files" lineno="1272">
+<interface name="auth_dontaudit_read_pam_runtime_files" lineno="1278">
 <summary>
 Do not audit attempts to read PAM runtime files.
 </summary>
@@ -113849,7 +113983,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="auth_delete_pam_runtime_files" lineno="1290">
+<interface name="auth_delete_pam_runtime_files" lineno="1296">
 <summary>
 Delete pam runtime files.
 </summary>
@@ -113859,7 +113993,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_manage_pam_runtime_files" lineno="1309">
+<interface name="auth_manage_pam_runtime_files" lineno="1315">
 <summary>
 Create, read, write, and delete pam runtime files.
 </summary>
@@ -113869,7 +114003,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_domtrans_pam_console" lineno="1328">
+<interface name="auth_domtrans_pam_console" lineno="1334">
 <summary>
 Execute pam_console with a domain transition.
 </summary>
@@ -113879,7 +114013,7 @@ Domain allowed to transition.
 </summary>
 </param>
 </interface>
-<interface name="auth_search_pam_console_data" lineno="1347">
+<interface name="auth_search_pam_console_data" lineno="1353">
 <summary>
 Search the contents of the
 pam_console data directory.
@@ -113890,7 +114024,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_list_pam_console_data" lineno="1367">
+<interface name="auth_list_pam_console_data" lineno="1373">
 <summary>
 List the contents of the pam_console
 data directory.
@@ -113901,7 +114035,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_create_pam_console_data_dirs" lineno="1386">
+<interface name="auth_create_pam_console_data_dirs" lineno="1392">
 <summary>
 Create pam var console pid directories.
 </summary>
@@ -113911,7 +114045,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_relabel_pam_console_data_dirs" lineno="1405">
+<interface name="auth_relabel_pam_console_data_dirs" lineno="1411">
 <summary>
 Relabel pam_console data directories.
 </summary>
@@ -113921,7 +114055,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_read_pam_console_data" lineno="1423">
+<interface name="auth_read_pam_console_data" lineno="1429">
 <summary>
 Read pam_console data files.
 </summary>
@@ -113931,7 +114065,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_manage_pam_console_data" lineno="1444">
+<interface name="auth_manage_pam_console_data" lineno="1450">
 <summary>
 Create, read, write, and delete
 pam_console data files.
@@ -113942,7 +114076,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_delete_pam_console_data" lineno="1464">
+<interface name="auth_delete_pam_console_data" lineno="1470">
 <summary>
 Delete pam_console data.
 </summary>
@@ -113952,7 +114086,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_pid_filetrans_pam_var_console" lineno="1497">
+<interface name="auth_pid_filetrans_pam_var_console" lineno="1503">
 <summary>
 Create specified objects in
 pid directories with the pam var
@@ -113975,7 +114109,7 @@ The name of the object being created.
 </summary>
 </param>
 </interface>
-<interface name="auth_runtime_filetrans_pam_var_console" lineno="1525">
+<interface name="auth_runtime_filetrans_pam_var_console" lineno="1531">
 <summary>
 Create specified objects in generic
 runtime directories with the pam var
@@ -113998,7 +114132,7 @@ The name of the object being created.
 </summary>
 </param>
 </interface>
-<interface name="auth_domtrans_utempter" lineno="1543">
+<interface name="auth_domtrans_utempter" lineno="1549">
 <summary>
 Execute utempter programs in the utempter domain.
 </summary>
@@ -114008,7 +114142,7 @@ Domain allowed to transition.
 </summary>
 </param>
 </interface>
-<interface name="auth_run_utempter" lineno="1566">
+<interface name="auth_run_utempter" lineno="1572">
 <summary>
 Execute utempter programs in the utempter domain.
 </summary>
@@ -114023,7 +114157,7 @@ The role to allow the utempter domain.
 </summary>
 </param>
 </interface>
-<interface name="auth_dontaudit_exec_utempter" lineno="1585">
+<interface name="auth_dontaudit_exec_utempter" lineno="1591">
 <summary>
 Do not audit attempts to execute utempter executable.
 </summary>
@@ -114033,7 +114167,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="auth_setattr_login_records" lineno="1603">
+<interface name="auth_setattr_login_records" lineno="1609">
 <summary>
 Set the attributes of login record files.
 </summary>
@@ -114043,7 +114177,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_read_login_records" lineno="1623">
+<interface name="auth_read_login_records" lineno="1629">
 <summary>
 Read login records files (/var/log/wtmp).
 </summary>
@@ -114054,7 +114188,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="auth_dontaudit_read_login_records" lineno="1644">
+<interface name="auth_dontaudit_read_login_records" lineno="1650">
 <summary>
 Do not audit attempts to read login records
 files (/var/log/wtmp).
@@ -114066,7 +114200,7 @@ Domain to not audit.
 </param>
 <rolecap/>
 </interface>
-<interface name="auth_dontaudit_write_login_records" lineno="1663">
+<interface name="auth_dontaudit_write_login_records" lineno="1669">
 <summary>
 Do not audit attempts to write to
 login records files.
@@ -114077,7 +114211,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="auth_append_login_records" lineno="1681">
+<interface name="auth_append_login_records" lineno="1687">
 <summary>
 Append to login records (wtmp).
 </summary>
@@ -114087,7 +114221,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_write_login_records" lineno="1700">
+<interface name="auth_write_login_records" lineno="1706">
 <summary>
 Write to login records (wtmp).
 </summary>
@@ -114097,7 +114231,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_rw_login_records" lineno="1718">
+<interface name="auth_rw_login_records" lineno="1724">
 <summary>
 Read and write login records.
 </summary>
@@ -114107,7 +114241,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_log_filetrans_login_records" lineno="1738">
+<interface name="auth_log_filetrans_login_records" lineno="1744">
 <summary>
 Create a login records in the log directory
 using a type transition.
@@ -114118,7 +114252,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_manage_login_records" lineno="1757">
+<interface name="auth_manage_login_records" lineno="1763">
 <summary>
 Create, read, write, and delete login
 records files.
@@ -114129,7 +114263,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_relabel_login_records" lineno="1776">
+<interface name="auth_relabel_login_records" lineno="1782">
 <summary>
 Relabel login record files.
 </summary>
@@ -114139,7 +114273,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="auth_use_nsswitch" lineno="1804">
+<interface name="auth_use_nsswitch" lineno="1810">
 <summary>
 Use nsswitch to look up user, password, group, or
 host information.
@@ -114159,7 +114293,7 @@ Domain allowed access.
 </param>
 <infoflow type="both" weight="10"/>
 </interface>
-<interface name="auth_unconfined" lineno="1832">
+<interface name="auth_unconfined" lineno="1838">
 <summary>
 Unconfined access to the authlogin module.
 </summary>
@@ -120757,7 +120891,7 @@ can manage samba
 </module>
 <module name="systemd" filename="policy/modules/system/systemd.if">
 <summary>Systemd components (not PID 1)</summary>
-<template name="systemd_role_template" lineno="23">
+<template name="systemd_role_template" lineno="28">
 <summary>
 Template for systemd --user per-role domains.
 </summary>
@@ -120776,8 +120910,13 @@ The user role.
 The user domain for the role.
 </summary>
 </param>
+<param name="pty_type">
+<summary>
+The type for the user pty
+</summary>
+</param>
 </template>
-<interface name="systemd_log_parse_environment" lineno="82">
+<interface name="systemd_log_parse_environment" lineno="96">
 <summary>
 Make the specified type usable as an
 log parse environment type.
@@ -120788,7 +120927,7 @@ Type to be used as a log parse environment type.
 </summary>
 </param>
 </interface>
-<interface name="systemd_use_nss" lineno="102">
+<interface name="systemd_use_nss" lineno="116">
 <summary>
 Allow domain to use systemd's Name Service Switch (NSS) module.
 This module provides UNIX user and group name resolution for dynamic users
@@ -120800,7 +120939,7 @@ Domain allowed access
 </summary>
 </param>
 </interface>
-<interface name="systemd_PrivateDevices" lineno="129">
+<interface name="systemd_PrivateDevices" lineno="143">
 <summary>
 Allow domain to be used as a systemd service with a unit
 that uses PrivateDevices=yes in section [Service].
@@ -120811,7 +120950,7 @@ Domain allowed access
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_hwdb" lineno="146">
+<interface name="systemd_read_hwdb" lineno="160">
 <summary>
 Allow domain to read udev hwdb file
 </summary>
@@ -120821,7 +120960,7 @@ domain allowed access
 </summary>
 </param>
 </interface>
-<interface name="systemd_map_hwdb" lineno="164">
+<interface name="systemd_map_hwdb" lineno="178">
 <summary>
 Allow domain to map udev hwdb file
 </summary>
@@ -120831,7 +120970,7 @@ domain allowed access
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_logind_pids" lineno="182">
+<interface name="systemd_read_logind_pids" lineno="196">
 <summary>
 Read systemd_login PID files.  (Deprecated)
 </summary>
@@ -120841,7 +120980,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_manage_logind_pid_pipes" lineno="197">
+<interface name="systemd_manage_logind_pid_pipes" lineno="211">
 <summary>
 Manage systemd_login PID pipes.  (Deprecated)
 </summary>
@@ -120851,7 +120990,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_write_logind_pid_pipes" lineno="212">
+<interface name="systemd_write_logind_pid_pipes" lineno="226">
 <summary>
 Write systemd_login named pipe.  (Deprecated)
 </summary>
@@ -120861,7 +121000,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_logind_runtime_files" lineno="227">
+<interface name="systemd_read_logind_runtime_files" lineno="241">
 <summary>
 Read systemd-logind runtime files.
 </summary>
@@ -120871,7 +121010,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_manage_logind_runtime_pipes" lineno="247">
+<interface name="systemd_manage_logind_runtime_pipes" lineno="261">
 <summary>
 Manage systemd-logind runtime pipes.
 </summary>
@@ -120881,7 +121020,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_write_logind_runtime_pipes" lineno="266">
+<interface name="systemd_write_logind_runtime_pipes" lineno="280">
 <summary>
 Write systemd-logind runtime named pipe.
 </summary>
@@ -120891,7 +121030,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_use_logind_fds" lineno="287">
+<interface name="systemd_use_logind_fds" lineno="301">
 <summary>
 Use inherited systemd
 logind file descriptors.
@@ -120902,7 +121041,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_logind_sessions_files" lineno="305">
+<interface name="systemd_read_logind_sessions_files" lineno="319">
 <summary>
 Read logind sessions files.
 </summary>
@@ -120912,7 +121051,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_write_inherited_logind_sessions_pipes" lineno="326">
+<interface name="systemd_write_inherited_logind_sessions_pipes" lineno="340">
 <summary>
 Write inherited logind sessions pipes.
 </summary>
@@ -120922,7 +121061,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_write_inherited_logind_inhibit_pipes" lineno="346">
+<interface name="systemd_write_inherited_logind_inhibit_pipes" lineno="360">
 <summary>
 Write inherited logind inhibit pipes.
 </summary>
@@ -120932,7 +121071,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_dbus_chat_logind" lineno="367">
+<interface name="systemd_dbus_chat_logind" lineno="381">
 <summary>
 Send and receive messages from
 systemd logind over dbus.
@@ -120943,7 +121082,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_status_logind" lineno="387">
+<interface name="systemd_status_logind" lineno="401">
 <summary>
 Get the system status information from systemd_login
 </summary>
@@ -120953,7 +121092,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_signull_logind" lineno="406">
+<interface name="systemd_signull_logind" lineno="420">
 <summary>
 Send systemd_login a null signal.
 </summary>
@@ -120963,7 +121102,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_manage_userdb_runtime_dirs" lineno="424">
+<interface name="systemd_manage_userdb_runtime_dirs" lineno="438">
 <summary>
 Manage systemd userdb runtime directories.
 </summary>
@@ -120973,7 +121112,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_manage_userdb_runtime_sock_files" lineno="442">
+<interface name="systemd_manage_userdb_runtime_sock_files" lineno="456">
 <summary>
 Manage socket files under /run/systemd/userdb .
 </summary>
@@ -120983,7 +121122,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_stream_connect_userdb" lineno="460">
+<interface name="systemd_stream_connect_userdb" lineno="474">
 <summary>
 Connect to /run/systemd/userdb/io.systemd.DynamicUser .
 </summary>
@@ -120993,7 +121132,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_machines" lineno="481">
+<interface name="systemd_read_machines" lineno="495">
 <summary>
 Allow reading /run/systemd/machines
 </summary>
@@ -121003,7 +121142,17 @@ Domain that can access the machines files
 </summary>
 </param>
 </interface>
-<interface name="systemd_dbus_chat_hostnamed" lineno="501">
+<interface name="systemd_connect_machined" lineno="514">
+<summary>
+Allow connecting to /run/systemd/userdb/io.systemd.Machine socket
+</summary>
+<param name="domain">
+<summary>
+Domain that can access the socket
+</summary>
+</param>
+</interface>
+<interface name="systemd_dbus_chat_hostnamed" lineno="533">
 <summary>
 Send and receive messages from
 systemd hostnamed over dbus.
@@ -121014,7 +121163,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_use_passwd_agent_fds" lineno="521">
+<interface name="systemd_use_passwd_agent_fds" lineno="553">
 <summary>
 allow systemd_passwd_agent to inherit fds
 </summary>
@@ -121024,7 +121173,22 @@ Domain that owns the fds
 </summary>
 </param>
 </interface>
-<interface name="systemd_use_passwd_agent" lineno="540">
+<interface name="systemd_run_passwd_agent" lineno="576">
+<summary>
+allow systemd_passwd_agent to be run by admin
+</summary>
+<param name="domain">
+<summary>
+Domain that runs it
+</summary>
+</param>
+<param name="role">
+<summary>
+role that it runs in
+</summary>
+</param>
+</interface>
+<interface name="systemd_use_passwd_agent" lineno="597">
 <summary>
 Allow a systemd_passwd_agent_t process to interact with a daemon
 that needs a password from the sysadmin.
@@ -121035,7 +121199,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_filetrans_passwd_runtime_dirs" lineno="564">
+<interface name="systemd_filetrans_passwd_runtime_dirs" lineno="621">
 <summary>
 Transition to systemd_passwd_runtime_t when creating dirs
 </summary>
@@ -121045,7 +121209,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_filetrans_userdb_runtime_dirs" lineno="585">
+<interface name="systemd_filetrans_userdb_runtime_dirs" lineno="642">
 <summary>
 Transition to systemd_userdb_runtime_t when
 creating the userdb directory inside an init runtime
@@ -121057,7 +121221,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_manage_passwd_runtime_symlinks" lineno="603">
+<interface name="systemd_manage_passwd_runtime_symlinks" lineno="660">
 <summary>
 Allow to domain to create systemd-passwd symlink
 </summary>
@@ -121067,7 +121231,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_manage_all_units" lineno="621">
+<interface name="systemd_manage_all_units" lineno="678">
 <summary>
 manage systemd unit dirs and the files in them  (Deprecated)
 </summary>
@@ -121077,7 +121241,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_journal_files" lineno="636">
+<interface name="systemd_read_journal_files" lineno="693">
 <summary>
 Allow domain to read systemd_journal_t files
 </summary>
@@ -121087,7 +121251,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_manage_journal_files" lineno="655">
+<interface name="systemd_manage_journal_files" lineno="712">
 <summary>
 Allow domain to create/manage systemd_journal_t files
 </summary>
@@ -121097,7 +121261,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_relabelto_journal_dirs" lineno="675">
+<interface name="systemd_relabelto_journal_dirs" lineno="732">
 <summary>
 Relabel to systemd-journald directory type.
 </summary>
@@ -121107,7 +121271,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_relabelto_journal_files" lineno="694">
+<interface name="systemd_relabelto_journal_files" lineno="751">
 <summary>
 Relabel to systemd-journald file type.
 </summary>
@@ -121117,7 +121281,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_networkd_units" lineno="714">
+<interface name="systemd_read_networkd_units" lineno="771">
 <summary>
 Allow domain to read systemd_networkd_t unit files
 </summary>
@@ -121127,7 +121291,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_manage_networkd_units" lineno="734">
+<interface name="systemd_manage_networkd_units" lineno="791">
 <summary>
 Allow domain to create/manage systemd_networkd_t unit files
 </summary>
@@ -121137,7 +121301,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_enabledisable_networkd" lineno="754">
+<interface name="systemd_enabledisable_networkd" lineno="811">
 <summary>
 Allow specified domain to enable systemd-networkd units
 </summary>
@@ -121147,7 +121311,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_startstop_networkd" lineno="773">
+<interface name="systemd_startstop_networkd" lineno="830">
 <summary>
 Allow specified domain to start systemd-networkd units
 </summary>
@@ -121157,7 +121321,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_status_networkd" lineno="792">
+<interface name="systemd_status_networkd" lineno="849">
 <summary>
 Allow specified domain to get status of systemd-networkd
 </summary>
@@ -121167,7 +121331,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_relabelfrom_networkd_tun_sockets" lineno="811">
+<interface name="systemd_relabelfrom_networkd_tun_sockets" lineno="868">
 <summary>
 Relabel systemd_networkd tun socket.
 </summary>
@@ -121177,7 +121341,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_rw_networkd_netlink_route_sockets" lineno="829">
+<interface name="systemd_rw_networkd_netlink_route_sockets" lineno="886">
 <summary>
 Read/Write from systemd_networkd netlink route socket.
 </summary>
@@ -121187,7 +121351,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_list_networkd_runtime" lineno="847">
+<interface name="systemd_list_networkd_runtime" lineno="904">
 <summary>
 Allow domain to list dirs under /run/systemd/netif
 </summary>
@@ -121197,7 +121361,7 @@ domain permitted the access
 </summary>
 </param>
 </interface>
-<interface name="systemd_watch_networkd_runtime_dirs" lineno="866">
+<interface name="systemd_watch_networkd_runtime_dirs" lineno="923">
 <summary>
 Watch directories under /run/systemd/netif
 </summary>
@@ -121207,7 +121371,7 @@ Domain permitted the access
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_networkd_runtime" lineno="885">
+<interface name="systemd_read_networkd_runtime" lineno="942">
 <summary>
 Allow domain to read files generated by systemd_networkd
 </summary>
@@ -121217,7 +121381,7 @@ domain allowed access
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_logind_state" lineno="904">
+<interface name="systemd_read_logind_state" lineno="961">
 <summary>
 Allow systemd_logind_t to read process state for cgroup file
 </summary>
@@ -121227,7 +121391,7 @@ Domain systemd_logind_t may access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_start_power_units" lineno="923">
+<interface name="systemd_start_power_units" lineno="980">
 <summary>
 Allow specified domain to start power units
 </summary>
@@ -121237,7 +121401,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="systemd_status_power_units" lineno="942">
+<interface name="systemd_status_power_units" lineno="999">
 <summary>
 Get the system status information about power units
 </summary>
@@ -121247,7 +121411,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_stream_connect_socket_proxyd" lineno="961">
+<interface name="systemd_stream_connect_socket_proxyd" lineno="1018">
 <summary>
 Allows connections to the systemd-socket-proxyd's socket.
 </summary>
@@ -121257,7 +121421,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_tmpfiles_conf_file" lineno="980">
+<interface name="systemd_tmpfiles_conf_file" lineno="1037">
 <summary>
 Make the specified type usable for
 systemd tmpfiles config files.
@@ -121268,7 +121432,7 @@ Type to be used for systemd tmpfiles config files.
 </summary>
 </param>
 </interface>
-<interface name="systemd_tmpfiles_creator" lineno="1001">
+<interface name="systemd_tmpfiles_creator" lineno="1058">
 <summary>
 Allow the specified domain to create
 the tmpfiles config directory with
@@ -121280,7 +121444,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_tmpfiles_conf_filetrans" lineno="1037">
+<interface name="systemd_tmpfiles_conf_filetrans" lineno="1094">
 <summary>
 Create an object in the systemd tmpfiles config
 directory, with a private type
@@ -121307,7 +121471,7 @@ The name of the object being created.
 </summary>
 </param>
 </interface>
-<interface name="systemd_list_tmpfiles_conf" lineno="1056">
+<interface name="systemd_list_tmpfiles_conf" lineno="1113">
 <summary>
 Allow domain to list systemd tmpfiles config directory
 </summary>
@@ -121317,7 +121481,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_relabelto_tmpfiles_conf_dirs" lineno="1074">
+<interface name="systemd_relabelto_tmpfiles_conf_dirs" lineno="1131">
 <summary>
 Allow domain to relabel to systemd tmpfiles config directory
 </summary>
@@ -121327,7 +121491,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_relabelto_tmpfiles_conf_files" lineno="1092">
+<interface name="systemd_relabelto_tmpfiles_conf_files" lineno="1149">
 <summary>
 Allow domain to relabel to systemd tmpfiles config files
 </summary>
@@ -121337,7 +121501,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_tmpfilesd_managed" lineno="1115">
+<interface name="systemd_tmpfilesd_managed" lineno="1172">
 <summary>
 Allow systemd_tmpfiles_t to manage filesystem objects
 </summary>
@@ -121352,7 +121516,7 @@ object class to manage
 </summary>
 </param>
 </interface>
-<interface name="systemd_dbus_chat_resolved" lineno="1134">
+<interface name="systemd_dbus_chat_resolved" lineno="1191">
 <summary>
 Send and receive messages from
 systemd resolved over dbus.
@@ -121363,7 +121527,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_resolved_runtime" lineno="1154">
+<interface name="systemd_read_resolved_runtime" lineno="1211">
 <summary>
 Allow domain to read resolv.conf file generated by systemd_resolved
 </summary>
@@ -121373,7 +121537,7 @@ domain allowed access
 </summary>
 </param>
 </interface>
-<interface name="systemd_getattr_updated_runtime" lineno="1172">
+<interface name="systemd_getattr_updated_runtime" lineno="1229">
 <summary>
 Allow domain to getattr on .updated file (generated by systemd-update-done
 </summary>
@@ -121383,7 +121547,7 @@ domain allowed access
 </summary>
 </param>
 </interface>
-<interface name="systemd_search_all_user_keys" lineno="1190">
+<interface name="systemd_search_all_user_keys" lineno="1247">
 <summary>
 Search keys for the all systemd --user domains.
 </summary>
@@ -121393,7 +121557,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_create_all_user_keys" lineno="1208">
+<interface name="systemd_create_all_user_keys" lineno="1265">
 <summary>
 Create keys for the all systemd --user domains.
 </summary>
@@ -121403,7 +121567,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_write_all_user_keys" lineno="1226">
+<interface name="systemd_write_all_user_keys" lineno="1283">
 <summary>
 Write keys for the all systemd --user domains.
 </summary>
@@ -121413,7 +121577,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_domtrans_sysusers" lineno="1245">
+<interface name="systemd_domtrans_sysusers" lineno="1302">
 <summary>
 Execute systemd-sysusers in the
 systemd sysusers domain.
@@ -121424,7 +121588,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_run_sysusers" lineno="1270">
+<interface name="systemd_run_sysusers" lineno="1327">
 <summary>
 Run systemd-sysusers with a domain transition.
 </summary>
@@ -121436,6 +121600,17 @@ Domain allowed access.
 <param name="role">
 <summary>
 Role allowed access.
+</summary>
+</param>
+<rolecap/>
+</interface>
+<interface name="systemd_use_inherited_machined_ptys" lineno="1347">
+<summary>
+receive and use a systemd_machined_devpts_t file handle
+</summary>
+<param name="domain">
+<summary>
+Domain allowed access.
 </summary>
 </param>
 <rolecap/>
