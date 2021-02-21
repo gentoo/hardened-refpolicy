@@ -54,6 +54,7 @@ allow pulseaudio_t self:process { getcap getsched setcap setrlimit setsched sign
 allow pulseaudio_t self:fifo_file rw_fifo_file_perms;
 allow pulseaudio_t self:unix_stream_socket { accept connectto listen };
 allow pulseaudio_t self:unix_dgram_socket sendto;
+allow pulseaudio_t self:bluetooth_socket shutdown;
 allow pulseaudio_t self:tcp_socket { accept listen };
 allow pulseaudio_t self:netlink_kobject_uevent_socket create_socket_perms;
 
