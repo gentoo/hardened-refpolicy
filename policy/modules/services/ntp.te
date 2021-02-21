@@ -81,7 +81,7 @@ logging_log_filetrans(ntpd_t, ntpd_log_t, { file dir })
 
 manage_files_pattern(ntpd_t, ntpd_pid_t, ntpd_pid_t)
 manage_sock_files_pattern(ntpd_t, ntpd_pid_t, ntpd_pid_t)
-files_runtime_filetrans(ntpd_t, ntpd_pid_t, file)
+files_runtime_filetrans(ntpd_t, ntpd_pid_t, { file sock_file })
 
 manage_dirs_pattern(ntpd_t, ntpd_tmp_t, ntpd_tmp_t)
 manage_files_pattern(ntpd_t, ntpd_tmp_t, ntpd_tmp_t)
