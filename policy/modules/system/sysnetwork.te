@@ -451,6 +451,10 @@ ifdef(`distro_gentoo',`
 		resolvconf_client_domain(dhcpc_t)
 	')
 
+	optional_policy(`
+		udev_read_runtime_files(dhcpc_t)
+	')
+
 	#########################################
 	#
 	# dhcpc_script_t
