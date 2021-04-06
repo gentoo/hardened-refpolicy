@@ -100,6 +100,8 @@ ifdef(`distro_gentoo',`
 	# Gentoo default /etc/issue makes agetty
 	# do a DNS lookup for the hostname
 	sysnet_dns_name_resolve(getty_t)
+
+	files_search_var_lib(getty_t)
 ')
 
 ifdef(`distro_ubuntu',`
