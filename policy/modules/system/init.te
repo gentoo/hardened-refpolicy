@@ -651,6 +651,9 @@ setattr_dirs_pattern(initrc_t, daemonpidfile, daemonpidfile)
 
 domtrans_pattern(init_run_all_scripts_domain, initrc_exec_t, initrc_t)
 
+manage_dirs_pattern(init_t, initrc_state_t, initrc_state_t)
+manage_fifo_files_pattern(init_t, initrc_state_t, initrc_state_t)
+
 manage_dirs_pattern(initrc_t, initrc_state_t, initrc_state_t)
 manage_files_pattern(initrc_t, initrc_state_t, initrc_state_t)
 manage_lnk_files_pattern(initrc_t, initrc_state_t, initrc_state_t)
