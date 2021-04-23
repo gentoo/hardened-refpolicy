@@ -214,6 +214,50 @@ interface(`netutils_exec_ping',`
 
 ########################################
 ## <summary>
+##      Execute a domain transition to run ss.
+## </summary>
+## <param name="domain">
+## <summary>
+##      Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`netutils_domtrans_ss',`
+        gen_require(`
+		type ss_t, ss_exec_t;
+        ')
+
+        corecmd_search_bin($1)
+        domtrans_pattern($1, ss_exec_t, ss_t)
+')
+
+########################################
+## <summary>
+##      Execute ss in the ss domain, and
+##      allow the specified role the ss domain.
+## </summary>
+## <param name="domain">
+##      <summary>
+##      Domain allowed to transition.
+##      </summary>
+## </param>
+## <param name="role">
+##      <summary>
+##      Role allowed access.
+##      </summary>
+## </param>
+#
+interface(`netutils_run_ss',`
+        gen_require(`
+		type ss_t;
+        ')
+
+        netutils_domtrans_ss($1)
+        role $2 types ss_t;
+')
+
+########################################
+## <summary>
 ##	Execute traceroute in the traceroute domain.
 ## </summary>
 ## <param name="domain">

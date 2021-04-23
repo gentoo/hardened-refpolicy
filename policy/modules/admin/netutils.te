@@ -23,6 +23,10 @@ type ping_t;
 type ping_exec_t;
 init_system_domain(ping_t, ping_exec_t)
 
+type ss_t;
+type ss_exec_t;
+userdom_user_application_domain(ss_t, ss_exec_t)
+
 type traceroute_t;
 type traceroute_exec_t;
 init_system_domain(traceroute_t, traceroute_exec_t)
@@ -147,6 +151,25 @@ ifdef(`hide_broken_symptoms',`
 optional_policy(`
 	munin_append_log(ping_t)
 ')
+
+########################################
+#
+# ss local policy
+#
+
+allow ss_t self:capability net_admin;
+allow ss_t self:netlink_tcpdiag_socket r_netlink_socket_perms;
+
+kernel_read_net_sysctls(ss_t)
+kernel_read_network_state(ss_t)
+kernel_read_proc_symlinks(ss_t)
+kernel_read_system_state(ss_t)
+
+domain_use_interactive_fds(ss_t)
+
+files_read_etc_files(ss_t)
+
+userdom_use_inherited_user_terminals(ss_t)
 
 ########################################
 #
