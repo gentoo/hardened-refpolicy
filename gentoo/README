@@ -1,19 +1,61 @@
 Gentoo refpolicy repository
 ===========================
 
-Our upstream is Tresys' refpolicy project, available at
-https://github.com/TresysTechnology/refpolicy.git. To properly keep track of the upstream
-activity as well as merge its changes, a set of documents, files and scripts are
-provided to ease the management of our repository.
+Our upstream is SELinuxProject's refpolicy project, available at:
+https://github.com/SELinuxProject/refpolicy/. To properly keep track of the
+upstream activity as well as merge its changes, a set of documents, files and
+scripts are provided to ease the management of our repository.
 
-STATE
------
+Environment Variables
+---------------------
 
-The STATE file contains the commit id's of upstream up to which point our
+The scripts in this directory expect several envvars defining locations to repos.
+For example, set in .bashrc:
+
+export GENTOOX86="/var/db/repos/gentoo"
+export HARDENEDREFPOL="${HOME}/code/gentoo/hardened-refpolicy"
+export REFPOLGIT="${HOME}/code/gentoo/refpolicy"
+export REFPOLRELEASE="${HOME}/code/gentoo/refpolicy-release/refpolicy"
+
+
+gentoo/STATE
+------------
+
+The STATE file contains the commit id of upstream up to which point our
 repository is synchronized/merged.
 
-release-prepare.sh
-------------------
+Merging upstream
+----------------
 
-The release-prepare.sh script handles the creation of a new policy release, from
-creating the new ebuilds, patchbundle to tagging the repository.
+To merge changes from upstream, first have both repos checked out and up to date.
+Format patches from upstream repo:
+
+    refpolicy $ git fetch origin
+    refpolicy $ rm -f ./0*.patch # cleanup any previous patches
+    refpolicy $ git format-patch $(cat ${HARDENEDREFPOL}/gentoo/STATE)..origin/HEAD
+
+Apply all the patches to our repo:
+
+    hardened-refpolicy $ git am ${REFPOLGIT}/0*.patch --signoff
+
+If there are merge conflicts, patch fuzzy-apply is usually somewhat successful:
+
+    $ patch -p1 -F99 -l --no-backup-if-mismatch < <(git am --show-current-patch=diff)
+
+Or resolve conflicts manually. Then, as always, make sure everything is sane,
+then continue until all patches are applied: $ git am --continue
+
+Make sure to test thoroughly and push to github so the Github Actions CI will
+test all config combinations and flag any deprecations.
+
+Finally, make sure the STATE file is updated:
+
+    $ git -C ${REFPOLGIT} rev-parse origin/HEAD > gentoo/STATE
+    $ git add gentoo/STATE
+    $ git commit -m "Merge upstream" -s
+
+gentoo/release-prepare.sh
+-------------------------
+
+The release-prepare.sh script handles the creation of a new Gentoo policy
+release, from creating the new ebuilds & patchbundle to tagging the repository.
