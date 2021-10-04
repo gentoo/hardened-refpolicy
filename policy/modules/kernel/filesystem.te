@@ -25,6 +25,7 @@ sid fs gen_context(system_u:object_r:fs_t,s0)
 fs_use_xattr btrfs gen_context(system_u:object_r:fs_t,s0);
 fs_use_xattr ceph gen_context(system_u:object_r:fs_t,s0);
 fs_use_xattr encfs gen_context(system_u:object_r:fs_t,s0);
+fs_use_xattr erofs gen_context(system_u:object_r:fs_t,s0);
 fs_use_xattr ext2 gen_context(system_u:object_r:fs_t,s0);
 fs_use_xattr ext3 gen_context(system_u:object_r:fs_t,s0);
 fs_use_xattr ext4 gen_context(system_u:object_r:fs_t,s0);
