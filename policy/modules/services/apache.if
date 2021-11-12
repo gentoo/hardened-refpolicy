@@ -1466,3 +1466,23 @@ interface(`apache_rw_runtime_files',`
 
 	allow $1 httpd_runtime_t:file rw_file_perms;
 ')
+
+########################################
+## <summary>
+##	Map httpd sys content files.
+##	This interface is Gentoo-specific.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`apache_map_sys_content',`
+	gen_require(`
+		type httpd_sys_content_t, httpd_sys_rw_content_t;
+	')
+
+	allow $1 httpd_sys_content_t:file map;
+	allow $1 httpd_sys_rw_content_t:file map;
+')
