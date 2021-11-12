@@ -119,8 +119,13 @@ domain_use_interactive_fds(nginx_t)
 
 files_read_etc_files(nginx_t)
 
+auth_use_nsswitch(nginx_t)
 
+logging_send_syslog_msg(nginx_t)
+
+miscfiles_read_generic_certs(nginx_t)
 miscfiles_read_localization(nginx_t)
+
 sysnet_dns_name_resolve(nginx_t)
 
 optional_policy(`
@@ -129,10 +134,16 @@ optional_policy(`
 	apache_manage_log(nginx_t)
 ')
 
+tunable_policy(`httpd_read_user_content',`
+	userdom_list_user_home_content(nginx_t)
+	userdom_read_user_home_content_files(nginx_t)
+')
+
 tunable_policy(`nginx_enable_http_server',`
 	corenet_tcp_bind_http_port(nginx_t)
 	apache_read_all_content(nginx_t)
 	apache_manage_all_rw_content(nginx_t)
+	apache_list_sys_content(nginx_t)
 ')
 
 # We enable both binding and connecting, since nginx acts here as a reverse proxy
@@ -157,6 +168,10 @@ tunable_policy(`nginx_can_network_connect_http',`
 
 tunable_policy(`nginx_can_network_connect',`
 	corenet_tcp_connect_all_ports(nginx_t)
+')
+
+optional_policy(`
+	certbot_read_lib(nginx_t)
 ')
 
 optional_policy(`
