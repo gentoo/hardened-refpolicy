@@ -19,6 +19,49 @@ gen_tunable(phpfpm_use_ldap, false)
 ## </desc>
 gen_tunable(phpfpm_send_syslog_msg, false)
 
+## <desc>
+## <p>
+## Allow phpfpm to execute shells. This
+## is needed by some webapps.
+## </p>
+## </desc>
+gen_tunable(phpfpm_exec_shell, false)
+
+## <desc>
+## <p>
+## Allow phpfpm to connect to http ports.
+## </p>
+## </desc>
+gen_tunable(phpfpm_connect_http, false)
+
+## <desc>
+## <p>
+## Allow phpfpm to connect to pop ports.
+## </p>
+## </desc>
+gen_tunable(phpfpm_connect_pop, false)
+
+## <desc>
+## <p>
+## Allow phpfpm to connect to redis ports.
+## </p>
+## </desc>
+gen_tunable(phpfpm_connect_redis, false)
+
+## <desc>
+## <p>
+## Allow phpfpm to connect to sieve ports.
+## </p>
+## </desc>
+gen_tunable(phpfpm_connect_sieve, false)
+
+## <desc>
+## <p>
+## Allow phpfpm to connect to smtp ports.
+## </p>
+## </desc>
+gen_tunable(phpfpm_connect_smtp, false)
+
 type phpfpm_t;
 type phpfpm_exec_t;
 init_daemon_domain(phpfpm_t, phpfpm_exec_t)
@@ -44,6 +87,8 @@ allow phpfpm_t self:fifo_file rw_fifo_file_perms;
 allow phpfpm_t self:tcp_socket rw_stream_socket_perms;
 allow phpfpm_t self:udp_socket connected_socket_perms;
 allow phpfpm_t self:unix_stream_socket { accept create_stream_socket_perms };
+allow phpfpm_t self:unix_dgram_socket { create_socket_perms };
+dontaudit phpfpm_t self:capability net_admin;
 
 manage_files_pattern(phpfpm_t, phpfpm_log_t, phpfpm_log_t)
 logging_log_filetrans(phpfpm_t, phpfpm_log_t, file)
@@ -87,6 +132,10 @@ apache_read_sys_content(phpfpm_t)
 apache_dontaudit_search_modules(phpfpm_t)
 
 optional_policy(`
+	apache_map_sys_content(phpfpm_t)
+')
+
+optional_policy(`
 	mysql_stream_connect(phpfpm_t)
 	mysql_tcp_connect(phpfpm_t)
 ')
@@ -104,6 +153,30 @@ optional_policy(`
 	tunable_policy(`phpfpm_use_ldap',`
 		sysnet_use_ldap(phpfpm_t)
 	')
+')
+
+tunable_policy(`phpfpm_exec_shell',`
+	corecmd_exec_shell(phpfpm_t)
+')
+
+tunable_policy(`phpfpm_connect_http',`
+	corenet_tcp_connect_http_port(phpfpm_t)
+')
+
+tunable_policy(`phpfpm_connect_pop',`
+	corenet_tcp_connect_pop_port(phpfpm_t)
+')
+
+tunable_policy(`phpfpm_connect_redis',`
+	corenet_tcp_connect_redis_port(phpfpm_t)
+')
+
+tunable_policy(`phpfpm_connect_sieve',`
+	corenet_tcp_connect_sieve_port(phpfpm_t)
+')
+
+tunable_policy(`phpfpm_connect_smtp',`
+	corenet_tcp_connect_smtp_port(phpfpm_t)
 ')
 
 tunable_policy(`phpfpm_send_syslog_msg',`
