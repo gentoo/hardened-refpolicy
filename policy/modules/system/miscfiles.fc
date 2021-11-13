@@ -58,6 +58,9 @@ ifdef(`distro_redhat',`
 
 /usr/share/ssl/certs(/.*)?	gen_context(system_u:object_r:cert_t,s0)
 /usr/share/ssl/private(/.*)?	gen_context(system_u:object_r:cert_t,s0)
+ifdef(`distro_gentoo',`
+/usr/share/ca-certificates(/.*)?	gen_context(system_u:object_r:cert_t,s0)
+')
 
 /usr/X11R6/lib/X11/fonts(/.*)?	gen_context(system_u:object_r:fonts_t,s0)
 
