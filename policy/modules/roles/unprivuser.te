@@ -240,10 +240,6 @@ ifdef(`distro_gentoo',`
 	')
 
 	optional_policy(`
-		pulseaudio_role(user_r, user_t)
-	')
-
-	optional_policy(`
 		rtorrent_role(user_r, user_t)
 	')
 
