@@ -53,7 +53,7 @@ genfscon securityfs / gen_context(system_u:object_r:security_t,s0)
 neverallow ~{ selinux_unconfined_type can_setenforce } security_t:security setenforce;
 
 allow can_setenforce security_t:dir list_dir_perms;
-allow can_setenforce security_t:file rw_file_perms;
+allow can_setenforce security_t:file mmap_rw_file_perms;
 
 dev_search_sysfs(can_setenforce)
 
@@ -71,7 +71,7 @@ if(secure_mode_policyload) {
 neverallow ~{ selinux_unconfined_type can_load_policy } security_t:security load_policy;
 
 allow can_load_policy security_t:dir list_dir_perms;
-allow can_load_policy security_t:file rw_file_perms;
+allow can_load_policy security_t:file mmap_rw_file_perms;
 
 dev_search_sysfs(can_load_policy)
 
@@ -89,7 +89,7 @@ if(secure_mode_policyload) {
 neverallow ~{ selinux_unconfined_type can_setsecparam } security_t:security setsecparam;
 
 allow can_setsecparam security_t:dir list_dir_perms;
-allow can_setsecparam security_t:file rw_file_perms;
+allow can_setsecparam security_t:file mmap_rw_file_perms;
 allow can_setsecparam security_t:security setsecparam;
 auditallow can_setsecparam security_t:security setsecparam;
 
@@ -102,7 +102,7 @@ dev_search_sysfs(can_setsecparam)
 
 # use SELinuxfs
 allow selinux_unconfined_type security_t:dir list_dir_perms;
-allow selinux_unconfined_type security_t:file rw_file_perms;
+allow selinux_unconfined_type security_t:file mmap_rw_file_perms;
 allow selinux_unconfined_type boolean_type:file read_file_perms;
 
 # Access the security API.

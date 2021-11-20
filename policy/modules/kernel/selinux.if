@@ -295,7 +295,7 @@ interface(`selinux_get_enforce_mode',`
 
 	dev_search_sysfs($1)
 	allow $1 security_t:dir list_dir_perms;
-	allow $1 security_t:file read_file_perms;
+	allow $1 security_t:file mmap_read_file_perms;
 ')
 
 ########################################
@@ -363,7 +363,7 @@ interface(`selinux_read_policy',`
 
 	dev_search_sysfs($1)
 	allow $1 security_t:dir list_dir_perms;
-	allow $1 security_t:file read_file_perms;
+	allow $1 security_t:file mmap_read_file_perms;
 	allow $1 security_t:security read_policy;
 ')
 
@@ -533,7 +533,7 @@ interface(`selinux_validate_context',`
 
 	dev_search_sysfs($1)
 	allow $1 security_t:dir list_dir_perms;
-	allow $1 security_t:file rw_file_perms;
+	allow $1 security_t:file mmap_rw_file_perms;
 	allow $1 security_t:security check_context;
 ')
 
@@ -554,7 +554,7 @@ interface(`selinux_dontaudit_validate_context',`
 	')
 
 	dontaudit $1 security_t:dir list_dir_perms;
-	dontaudit $1 security_t:file rw_file_perms;
+	dontaudit $1 security_t:file mmap_rw_file_perms;
 	dontaudit $1 security_t:security check_context;
 ')
 
@@ -577,7 +577,7 @@ interface(`selinux_compute_access_vector',`
 	dev_search_sysfs($1)
 	allow $1 self:netlink_selinux_socket create_socket_perms;
 	allow $1 security_t:dir list_dir_perms;
-	allow $1 security_t:file rw_file_perms;
+	allow $1 security_t:file mmap_rw_file_perms;
 	allow $1 security_t:security compute_av;
 ')
 
@@ -599,7 +599,7 @@ interface(`selinux_compute_create_context',`
 
 	dev_search_sysfs($1)
 	allow $1 security_t:dir list_dir_perms;
-	allow $1 security_t:file rw_file_perms;
+	allow $1 security_t:file mmap_rw_file_perms;
 	allow $1 security_t:security compute_create;
 ')
 
@@ -621,7 +621,7 @@ interface(`selinux_compute_member',`
 
 	dev_search_sysfs($1)
 	allow $1 security_t:dir list_dir_perms;
-	allow $1 security_t:file rw_file_perms;
+	allow $1 security_t:file mmap_rw_file_perms;
 	allow $1 security_t:security compute_member;
 ')
 
@@ -651,7 +651,7 @@ interface(`selinux_compute_relabel_context',`
 
 	dev_search_sysfs($1)
 	allow $1 security_t:dir list_dir_perms;
-	allow $1 security_t:file rw_file_perms;
+	allow $1 security_t:file mmap_rw_file_perms;
 	allow $1 security_t:security compute_relabel;
 ')
 
@@ -672,7 +672,7 @@ interface(`selinux_compute_user_contexts',`
 
 	dev_search_sysfs($1)
 	allow $1 security_t:dir list_dir_perms;
-	allow $1 security_t:file rw_file_perms;
+	allow $1 security_t:file mmap_rw_file_perms;
 	allow $1 security_t:security compute_user;
 ')
 
