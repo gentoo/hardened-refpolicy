@@ -253,7 +253,8 @@ userdom_user_home_dir_filetrans(session_bus_type, session_dbusd_home_t, dir, ".d
 
 manage_dirs_pattern(session_bus_type, session_dbusd_tmp_t, session_dbusd_tmp_t)
 manage_files_pattern(session_bus_type, session_dbusd_tmp_t, session_dbusd_tmp_t)
-files_tmp_filetrans(session_bus_type, session_dbusd_tmp_t, { dir file })
+manage_sock_files_pattern(session_bus_type, session_dbusd_tmp_t, session_dbusd_tmp_t)
+files_tmp_filetrans(session_bus_type, session_dbusd_tmp_t, { dir file sock_file })
 
 manage_dirs_pattern(session_bus_type, session_dbusd_runtime_t, session_dbusd_runtime_t)
 manage_files_pattern(session_bus_type, session_dbusd_runtime_t, session_dbusd_runtime_t)
