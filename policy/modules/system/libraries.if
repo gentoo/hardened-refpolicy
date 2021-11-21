@@ -391,6 +391,24 @@ interface(`libs_delete_lib_symlinks',`
 
 ########################################
 ## <summary>
+##	Manage generic symlinks in library directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`libs_manage_lib_symlinks',`
+	gen_require(`
+		type lib_t;
+	')
+
+	manage_lnk_files_pattern($1, lib_t, lib_t)
+')
+
+########################################
+## <summary>
 ##	Create, read, write, and delete shared libraries.
 ## </summary>
 ## <param name="domain">
