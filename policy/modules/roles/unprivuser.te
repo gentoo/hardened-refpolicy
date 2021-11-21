@@ -248,10 +248,6 @@ ifdef(`distro_gentoo',`
 	')
 
 	optional_policy(`
-		wine_role(user_r, user_t)
-	')
-
-	optional_policy(`
-		xscreensaver_role(user_r, user_t)
+		wine_role(user, user_t, user_application_exec_domain, user_r)
 	')
 ')
