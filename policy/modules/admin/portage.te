@@ -132,6 +132,7 @@ libs_run_ldconfig(gcc_config_t, portage_roles)
 libs_manage_shared_libs(gcc_config_t)
 # gcc-config creates a temp dir for the libs
 libs_manage_lib_dirs(gcc_config_t)
+libs_manage_lib_symlinks(gcc_config_t)
 
 logging_send_syslog_msg(gcc_config_t)
 
