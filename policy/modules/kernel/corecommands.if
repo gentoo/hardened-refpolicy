@@ -335,6 +335,25 @@ interface(`corecmd_manage_bin_files',`
 
 ########################################
 ## <summary>
+##	Manage symlinks for bin files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`corecmd_manage_bin_symlinks',`
+	gen_require(`
+		type bin_t;
+	')
+
+	corecmd_search_bin($1)
+	manage_lnk_files_pattern($1, bin_t, bin_t)
+')
+
+########################################
+## <summary>
 ##	Relabel to and from the bin type.
 ## </summary>
 ## <param name="domain">
