@@ -435,6 +435,9 @@ gen_tunable(portage_enable_test, false)
 	can_exec(gcc_config_t, gcc_config_tmp_t) # libffi support
 	files_tmp_filetrans(gcc_config_t, gcc_config_tmp_t, file)
 
+	allow gcc_config_t portage_tmp_t:dir manage_dir_perms;
+	allow gcc_config_t portage_tmp_t:file manage_file_perms;
+
 	files_manage_etc_runtime_files(gcc_config_t)
 	files_manage_etc_runtime_lnk_files(gcc_config_t)
 
