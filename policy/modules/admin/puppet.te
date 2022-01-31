@@ -370,28 +370,8 @@ ifdef(`distro_gentoo',`
 	usermanage_domtrans_passwd(puppet_t)
 
 	tunable_policy(`puppet_manage_all_files',`
-		# We should use files_relabel_all_files here, but it calls
-		# seutil_relabelto_bin_policy which sets a "typeattribute type attr",
-		# which is not allowed within a tunable_policy.
-		# So, we duplicate the content of files_relabel_all_files except for
-		# the policy configuration stuff and hope users do that through Portage
-		
-		gen_require(` #selint-disable:S-001
-			attribute file_type;
-			attribute security_file_type;
-			type policy_config_t;
-		')
-	
-		allow puppet_t { file_type -policy_config_t -security_file_type }:dir list_dir_perms;
-		relabel_dirs_pattern(puppet_t, { file_type -policy_config_t -security_file_type }, { file_type -policy_config_t -security_file_type })
-		relabel_files_pattern(puppet_t, { file_type -policy_config_t -security_file_type }, { file_type -policy_config_t -security_file_type })
-		relabel_lnk_files_pattern(puppet_t, { file_type -policy_config_t -security_file_type }, { file_type -policy_config_t -security_file_type })
-		relabel_fifo_files_pattern(puppet_t, { file_type -policy_config_t -security_file_type }, { file_type -policy_config_t -security_file_type })
-		relabel_sock_files_pattern(puppet_t, { file_type -policy_config_t -security_file_type }, { file_type -policy_config_t -security_file_type })
-		# this is only relabelfrom since there should be no
-		# device nodes with file types.
-		relabelfrom_blk_files_pattern(puppet_t, { file_type -policy_config_t -security_file_type }, { file_type -policy_config_t -security_file_type })
-		relabelfrom_chr_files_pattern(puppet_t, { file_type -policy_config_t -security_file_type }, { file_type -policy_config_t -security_file_type })
+		# Also allows relabelfrom blk and chr_files which are not in files_manage_non_auth_files
+		files_relabel_all_non_security_file_types(puppet_t)
 	')
 
 	optional_policy(`
