@@ -57542,6 +57542,427 @@ interface(`corenet_relabelto_ntp_server_packets',`
 
 ########################################
 ## <summary>
+##	Send and receive TCP traffic on the ntske port.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="both" weight="10"/>
+#
+interface(`corenet_tcp_sendrecv_ntske_port',`
+	refpolicywarn(`$0() has been deprecated, please remove.')
+')
+
+########################################
+## <summary>
+##	Send UDP traffic on the ntske port.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="write" weight="10"/>
+#
+interface(`corenet_udp_send_ntske_port',`
+	refpolicywarn(`$0() has been deprecated, please remove.')
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to send UDP traffic on the ntske port.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to not audit.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_dontaudit_udp_send_ntske_port',`
+	refpolicywarn(`$0() has been deprecated, please remove.')
+')
+
+########################################
+## <summary>
+##	Receive UDP traffic on the ntske port.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="read" weight="10"/>
+#
+interface(`corenet_udp_receive_ntske_port',`
+	refpolicywarn(`$0() has been deprecated, please remove.')
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to receive UDP traffic on the ntske port.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to not audit.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_dontaudit_udp_receive_ntske_port',`
+	refpolicywarn(`$0() has been deprecated, please remove.')
+')
+
+########################################
+## <summary>
+##	Send and receive UDP traffic on the ntske port.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="both" weight="10"/>
+#
+interface(`corenet_udp_sendrecv_ntske_port',`
+	refpolicywarn(`$0() has been deprecated, please remove.')
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to send and receive
+##	UDP traffic on the ntske port.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to not audit.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_dontaudit_udp_sendrecv_ntske_port',`
+	refpolicywarn(`$0() has been deprecated, please remove.')
+')
+
+########################################
+## <summary>
+##	Bind TCP sockets to the ntske port.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_tcp_bind_ntske_port',`
+	gen_require(`
+		type ntske_port_t;
+	')
+
+	allow $1 ntske_port_t:tcp_socket name_bind;
+	
+')
+
+########################################
+## <summary>
+##	Bind UDP sockets to the ntske port.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_udp_bind_ntske_port',`
+	gen_require(`
+		type ntske_port_t;
+	')
+
+	allow $1 ntske_port_t:udp_socket name_bind;
+	
+')
+
+########################################
+## <summary>
+##	Make a TCP connection to the ntske port.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`corenet_tcp_connect_ntske_port',`
+	gen_require(`
+		type ntske_port_t;
+	')
+
+	allow $1 ntske_port_t:tcp_socket name_connect;
+')
+
+
+########################################
+## <summary>
+##	Send ntske_client packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="write" weight="10"/>
+#
+interface(`corenet_send_ntske_client_packets',`
+	gen_require(`
+		type ntske_client_packet_t;
+	')
+
+	allow $1 ntske_client_packet_t:packet send;
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to send ntske_client packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to not audit.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_dontaudit_send_ntske_client_packets',`
+	gen_require(`
+		type ntske_client_packet_t;
+	')
+
+	dontaudit $1 ntske_client_packet_t:packet send;
+')
+
+########################################
+## <summary>
+##	Receive ntske_client packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="read" weight="10"/>
+#
+interface(`corenet_receive_ntske_client_packets',`
+	gen_require(`
+		type ntske_client_packet_t;
+	')
+
+	allow $1 ntske_client_packet_t:packet recv;
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to receive ntske_client packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_dontaudit_receive_ntske_client_packets',`
+	gen_require(`
+		type ntske_client_packet_t;
+	')
+
+	dontaudit $1 ntske_client_packet_t:packet recv;
+')
+
+########################################
+## <summary>
+##	Send and receive ntske_client packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="both" weight="10"/>
+#
+interface(`corenet_sendrecv_ntske_client_packets',`
+	corenet_send_ntske_client_packets($1)
+	corenet_receive_ntske_client_packets($1)
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to send and receive ntske_client packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to not audit.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_dontaudit_sendrecv_ntske_client_packets',`
+	corenet_dontaudit_send_ntske_client_packets($1)
+	corenet_dontaudit_receive_ntske_client_packets($1)
+')
+
+########################################
+## <summary>
+##	Relabel packets to ntske_client the packet type.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`corenet_relabelto_ntske_client_packets',`
+	gen_require(`
+		type ntske_client_packet_t;
+	')
+
+	allow $1 ntske_client_packet_t:packet relabelto;
+')
+
+
+########################################
+## <summary>
+##	Send ntske_server packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="write" weight="10"/>
+#
+interface(`corenet_send_ntske_server_packets',`
+	gen_require(`
+		type ntske_server_packet_t;
+	')
+
+	allow $1 ntske_server_packet_t:packet send;
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to send ntske_server packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to not audit.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_dontaudit_send_ntske_server_packets',`
+	gen_require(`
+		type ntske_server_packet_t;
+	')
+
+	dontaudit $1 ntske_server_packet_t:packet send;
+')
+
+########################################
+## <summary>
+##	Receive ntske_server packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="read" weight="10"/>
+#
+interface(`corenet_receive_ntske_server_packets',`
+	gen_require(`
+		type ntske_server_packet_t;
+	')
+
+	allow $1 ntske_server_packet_t:packet recv;
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to receive ntske_server packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_dontaudit_receive_ntske_server_packets',`
+	gen_require(`
+		type ntske_server_packet_t;
+	')
+
+	dontaudit $1 ntske_server_packet_t:packet recv;
+')
+
+########################################
+## <summary>
+##	Send and receive ntske_server packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <infoflow type="both" weight="10"/>
+#
+interface(`corenet_sendrecv_ntske_server_packets',`
+	corenet_send_ntske_server_packets($1)
+	corenet_receive_ntske_server_packets($1)
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to send and receive ntske_server packets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to not audit.
+##	</summary>
+## </param>
+## <infoflow type="none"/>
+#
+interface(`corenet_dontaudit_sendrecv_ntske_server_packets',`
+	corenet_dontaudit_send_ntske_server_packets($1)
+	corenet_dontaudit_receive_ntske_server_packets($1)
+')
+
+########################################
+## <summary>
+##	Relabel packets to ntske_server the packet type.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`corenet_relabelto_ntske_server_packets',`
+	gen_require(`
+		type ntske_server_packet_t;
+	')
+
+	allow $1 ntske_server_packet_t:packet relabelto;
+')
+
+
+
+
+########################################
+## <summary>
 ##	Send and receive TCP traffic on the oa_system port.
 ## </summary>
 ## <param name="domain">
