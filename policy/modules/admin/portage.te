@@ -200,6 +200,8 @@ domain_dontaudit_read_all_domains_state(portage_t)
 files_manage_all_files(portage_t)
 # eselect uses file, which mmap()s its db
 files_map_usr_files(portage_t)
+# portage executing git mmap()s ebuild files when syncing
+allow portage_t portage_ebuild_t:file map;
 
 selinux_get_fs_mount(portage_t)
 
