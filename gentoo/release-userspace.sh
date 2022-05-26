@@ -4,18 +4,17 @@
 # Copyright 2017-2021 Jason Zaman <perfinion@gentoo.org>
 # Licensed under the GPL-3 license
 
-RELEASEDATE="${1}"
-NEWVERSION="${2}"
+NEWVERSION="${1}"
 
 PACKAGES="
 sys-libs/libsepol
+sys-apps/secilc
 sys-libs/libselinux
 sys-libs/libsemanage
 sys-apps/checkpolicy
 sys-apps/policycoreutils
 sys-apps/selinux-python
 sys-apps/semodule-utils
-sys-apps/secilc
 sys-apps/mcstrans
 sys-apps/restorecond
 "
@@ -25,7 +24,7 @@ sys-apps/restorecond
 usage() {
   echo "Usage: $0 <release date> <newversion>"
   echo ""
-  echo "Example: $0 20170101 2.7_rc1"
+  echo "Example: $0 3.4_rc1"
   echo ""
   echo "The script will update the live ebuilds then copy towards the"
   echo "<newversion>."
@@ -53,15 +52,15 @@ die() {
 }
 
 # set the release date in the live ebuilds so it will be correct when copying to the new version
-setLiveReleaseDate() {
+updateLiveEbuilds() {
     local PKG
     local PN
-    cd ${GENTOOX86}
+    cd ${GENTOOX86} || die
     echo "Setting release date var in live ebuilds... "
 
     for PKG in $PACKAGES
     do
-        cd "${GENTOOX86}/${PKG}"
+        cd "${GENTOOX86}/${PKG}" || die
         PN="${PKG#*/}"
         [[ -f "${PN}-9999.ebuild" ]] || continue
 
@@ -71,8 +70,9 @@ setLiveReleaseDate() {
 
         # update header and release date
         sed -i "s@Copyright 1999-20.. Gentoo .*@Copyright 1999-$(date '+%Y') Gentoo Authors@" "${PN}-9999.ebuild"
-        sed -i "/^MY_RELEASEDATE=/s/.*/MY_RELEASEDATE=\"${RELEASEDATE}\"/" "${PN}-9999.ebuild"
-        sed -i "/SRC_URI/s@raw.githubusercontent.com/wiki/SELinuxProject/selinux/files/releases@github.com/SELinuxProject/selinux/releases/download@" "${PN}-9999.ebuild"
+
+        # Update PYTHON_COMPAT
+        sed -i '/^PYTHON_COMPAT/s/PYTHON_COMPAT=.*$/PYTHON_COMPAT=( python3_{8..10} )/' "${PN}-9999.ebuild" || die
 
         # no changes, skip
         [[ -z "$(git status --porcelain -- .)" ]] && continue
@@ -127,7 +127,7 @@ createEbuilds() {
     echo -e "\ndone ${PN}\n"
 }
 
-if [ $# -ne 2 ]
+if [ $# -ne 1 ]
 then
   usage
   exit 3
@@ -136,7 +136,7 @@ fi
 # Assert that all needed information is available
 assertDirEnvVar GENTOOX86
 
-setLiveReleaseDate
+updateLiveEbuilds
 
 # Create ebuilds
 createEbuilds
