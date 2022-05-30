@@ -24,6 +24,8 @@
 /usr/bin/xtables-multi			--	gen_context(system_u:object_r:iptables_exec_t,s0)
 /usr/bin/xtables-nft-multi		--	gen_context(system_u:object_r:iptables_exec_t,s0)
 
+/usr/libexec/nftables/nftables\.sh	--	gen_context(system_u:object_r:iptables_exec_t,s0)
+
 /usr/lib/systemd/system/[^/]*arptables.* --	gen_context(system_u:object_r:iptables_unit_t,s0)
 /usr/lib/systemd/system/[^/]*ebtables.*	 --	gen_context(system_u:object_r:iptables_unit_t,s0)
 /usr/lib/systemd/system/[^/]*ip6tables.* --	gen_context(system_u:object_r:iptables_unit_t,s0)
