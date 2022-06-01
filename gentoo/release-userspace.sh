@@ -21,6 +21,9 @@ sys-apps/restorecond
 # app-admin/setools not released together
 # dev-python/sepolgen became selinux-python in 2.7 release
 
+SCAN="$(command -v pkgcheck || command -v repoman)"
+COMMIT="$(command -v pkgdev || command -v repoman)"
+
 usage() {
   echo "Usage: $0 <release date> <newversion>"
   echo ""
@@ -49,6 +52,20 @@ die() {
   printf "\n"
   echo "!!! Error: $*"
   exit 2
+}
+
+# scan the tree for QA issues with pkgcheck or repoman
+doScan() {
+  if [[ "$(basename "${SCAN}")" == "pkgcheck" ]]; then
+    "${SCAN}" -q scan --staged
+  else
+    "${SCAN}" -q full
+  fi
+}
+
+# commit the current staged changes with pkgdev or repoman
+doCommit() {
+  "${COMMIT}" -q commit -m "${@}"
 }
 
 # set the release date in the live ebuilds so it will be correct when copying to the new version
@@ -80,10 +97,10 @@ updateLiveEbuilds() {
         # commit changes
         git add "${PN}-9999.ebuild"
         git --no-pager diff --cached
-        repoman -q full
+        doScan
         if [[ $? -eq 0 ]]
         then
-            repoman -q commit -m "$PKG: update live ebuild"
+            doCommit "$PKG: update live ebuild"
         else
             git reset -- .
         fi
@@ -112,14 +129,14 @@ createEbuilds() {
         sed -i -e "/${PN}-${NEWVERSION//_/-}/d" Manifest || die
         cp ${PN}-9999.ebuild ${PN}-${NEWVERSION}.ebuild || die
 
-        repoman -q manifest || die
+        "${COMMIT}" -q manifest || die
         git add Manifest ${PN}-${NEWVERSION}.ebuild || die
 
         #git --no-pager diff --cached
-        repoman -q full
+        doScan
         if [[ $? -eq 0 ]]
         then
-            repoman -q commit -m "$PKG: bump to ${NEWVERSION}" || die
+            doCommit "$PKG: bump to ${NEWVERSION}" || die
         else
             git reset -- . || die
         fi
