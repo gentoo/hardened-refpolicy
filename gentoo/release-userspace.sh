@@ -1,7 +1,8 @@
 #!/bin/sh
 
 # Copyright 2013,2014 Sven Vermeulen <swift@gentoo.org>
-# Copyright 2017-2021 Jason Zaman <perfinion@gentoo.org>
+# Copyright 2017-2022 Jason Zaman <perfinion@gentoo.org>
+# Copyright 2022 Kenton Groombridge <concord@gentoo.org>
 # Licensed under the GPL-3 license
 
 NEWVERSION="${1}"
