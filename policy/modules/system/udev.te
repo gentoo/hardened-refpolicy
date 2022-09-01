@@ -401,6 +401,10 @@ ifdef(`distro_gentoo',`
 	init_domtrans_script(udev_t)
 ')
 
+optional_policy(`
+	zfs_read_config(udev_t)
+')
+
 ########################################
 #
 # udevadm Local policy
