@@ -684,6 +684,7 @@ portcon tcp 488 gen_context(system_u:object_r:http_port_t,s0)
 portcon tcp 8008 gen_context(system_u:object_r:http_port_t,s0)
 portcon tcp 8009 gen_context(system_u:object_r:http_port_t,s0)
 portcon tcp 8443 gen_context(system_u:object_r:http_port_t,s0)
+portcon tcp 8448 gen_context(system_u:object_r:http_port_t,s0)
  #8443 is mod_nss default port
 
 type http_cache_port_t, port_type, defined_port_type;
