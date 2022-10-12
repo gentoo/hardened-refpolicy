@@ -148,5 +148,6 @@
 
 ifdef(`distro_gentoo',`
 # Bug 529430 comment 8
+/usr/bin/dmeventd		--	gen_context(system_u:object_r:lvm_exec_t,s0)
 /usr/sbin/dmeventd		--	gen_context(system_u:object_r:lvm_exec_t,s0)
 ')
