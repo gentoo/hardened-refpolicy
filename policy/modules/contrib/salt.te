@@ -147,7 +147,7 @@ files_tmp_filetrans(salt_master_t, salt_master_tmp_t, { file dir })
 can_exec(salt_master_t, salt_master_tmp_t)
 
 # salt_master_tmpfs_t
-allow salt_master_t salt_master_tmpfs_t:file { manage_file_perms map };
+allow salt_master_t salt_master_tmpfs_t:file mmap_manage_file_perms;
 fs_tmpfs_filetrans(salt_master_t, salt_master_tmpfs_t, file)
 
 # salt_master_runtime_t
@@ -266,7 +266,7 @@ files_tmp_filetrans(salt_minion_t, salt_minion_tmp_t, { file dir })
 can_exec(salt_minion_t, salt_minion_tmp_t)
 
 # salt_minion_tmpfs_t
-allow salt_minion_t salt_minion_tmpfs_t:file { manage_file_perms map };
+allow salt_minion_t salt_minion_tmpfs_t:file mmap_manage_file_perms;
 fs_tmpfs_filetrans(salt_minion_t, salt_minion_tmpfs_t, file)
 
 # salt_minion_runtime_t
