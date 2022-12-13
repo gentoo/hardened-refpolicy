@@ -606,6 +606,14 @@ portcon tcp 9191 gen_context(system_u:object_r:glance_registry_port_t,s0)
 portcon udp 9191 gen_context(system_u:object_r:glance_registry_port_t,s0)
 
 
+type glusterd_port_t, port_type, defined_port_type;
+type glusterd_client_packet_t, packet_type, client_packet_type;
+type glusterd_server_packet_t, packet_type, server_packet_type;
+typeattribute glusterd_port_t unreserved_port_type;
+portcon tcp 24007 gen_context(system_u:object_r:glusterd_port_t,s0)
+portcon tcp 24009 gen_context(system_u:object_r:glusterd_port_t,s0)
+
+
 type gopher_port_t, port_type, defined_port_type;
 type gopher_client_packet_t, packet_type, client_packet_type;
 type gopher_server_packet_t, packet_type, server_packet_type;
@@ -908,6 +916,17 @@ typeattribute ktalkd_port_t reserved_port_type;
 typeattribute ktalkd_port_t rpc_port_type;
 portcon udp 517 gen_context(system_u:object_r:ktalkd_port_t,s0)
 portcon udp 518 gen_context(system_u:object_r:ktalkd_port_t,s0)
+
+
+type kubernetes_port_t, port_type, defined_port_type;
+type kubernetes_client_packet_t, packet_type, client_packet_type;
+type kubernetes_server_packet_t, packet_type, server_packet_type;
+typeattribute kubernetes_port_t unreserved_port_type;
+portcon tcp 2379-2381 gen_context(system_u:object_r:kubernetes_port_t,s0)
+portcon tcp 6443 gen_context(system_u:object_r:kubernetes_port_t,s0)
+portcon tcp 10248-10250 gen_context(system_u:object_r:kubernetes_port_t,s0)
+portcon tcp 10256-10257 gen_context(system_u:object_r:kubernetes_port_t,s0)
+portcon tcp 10259 gen_context(system_u:object_r:kubernetes_port_t,s0)
 
 
 type l2tp_port_t, port_type, defined_port_type;
