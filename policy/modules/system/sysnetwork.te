@@ -499,6 +499,9 @@ ifdef(`distro_gentoo',`
 	kernel_read_network_state(dhcpc_script_t)
 	kernel_read_system_state(dhcpc_script_t)
 
+	# Allow the dhcp script to read process information
+	kernel_read_kernel_sysctls(dhcpc_script_t)
+
 	corecmd_exec_bin(dhcpc_script_t)
 	corecmd_exec_shell(dhcpc_script_t)
 
@@ -506,6 +509,9 @@ ifdef(`distro_gentoo',`
 
 	init_use_script_fds(dhcpc_script_t)
 	init_use_script_ptys(dhcpc_script_t)
+
+	# Don't audit FD leaks
+	sysnet_dontaudit_rw_dhcpc_dgram_sockets(dhcpc_script_t)
 
 	# Perhaps sysnet_domtrans_dhcpc_script could be used instead and positioned in the dhcpc_t section
 	domtrans_pattern(dhcpc_t, dhcpc_script_exec_t, dhcpc_script_t)
