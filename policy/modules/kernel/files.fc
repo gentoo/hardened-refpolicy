@@ -214,6 +214,8 @@ ifdef(`distro_gentoo',`
 /usr/share/maven-bin-[^/]*/bin/m2\.conf	--	gen_context(system_u:object_r:usr_t,s0)
 ')
 
+/usr/share/munin/plugins/plugin\.sh	--	gen_context(system_u:object_r:usr_t,s0)
+
 /usr/tmp		-d	gen_context(system_u:object_r:tmp_t,s0-mls_systemhigh)
 /usr/tmp/.*			<<none>>
 
