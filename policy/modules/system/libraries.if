@@ -532,6 +532,24 @@ interface(`libs_legacy_use_shared_libs',`
 
 ########################################
 ## <summary>
+##	watch lib dirs
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`libs_watch_shared_libs_dirs',`
+	gen_require(`
+		type lib_t;
+	')
+
+	allow $1 lib_t:dir watch;
+')
+
+########################################
+## <summary>
 ##	Relabel to and from the type used for
 ##	shared libraries.
 ## </summary>
