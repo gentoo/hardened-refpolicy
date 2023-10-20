@@ -58392,7 +58392,17 @@ Domain allow access.
 </summary>
 </param>
 </interface>
-<interface name="dev_dontaudit_getattr_sysfs" lineno="4399">
+<interface name="dev_unmount_sysfs" lineno="4399">
+<summary>
+unmount a sysfs filesystem
+</summary>
+<param name="domain">
+<summary>
+Domain allowed access.
+</summary>
+</param>
+</interface>
+<interface name="dev_dontaudit_getattr_sysfs" lineno="4417">
 <summary>
 Do not audit getting the attributes of sysfs filesystem
 </summary>
@@ -58402,7 +58412,7 @@ Domain to dontaudit access from
 </summary>
 </param>
 </interface>
-<interface name="dev_dontaudit_read_sysfs" lineno="4417">
+<interface name="dev_dontaudit_read_sysfs" lineno="4435">
 <summary>
 Dont audit attempts to read hardware state information
 </summary>
@@ -58412,7 +58422,7 @@ Domain for which the attempts do not need to be audited
 </summary>
 </param>
 </interface>
-<interface name="dev_mounton_sysfs_dirs" lineno="4437">
+<interface name="dev_mounton_sysfs_dirs" lineno="4455">
 <summary>
 Mount on sysfs directories.
 </summary>
@@ -58422,7 +58432,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_search_sysfs" lineno="4455">
+<interface name="dev_search_sysfs" lineno="4473">
 <summary>
 Search the sysfs directories.
 </summary>
@@ -58432,7 +58442,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_dontaudit_search_sysfs" lineno="4473">
+<interface name="dev_dontaudit_search_sysfs" lineno="4491">
 <summary>
 Do not audit attempts to search sysfs.
 </summary>
@@ -58442,7 +58452,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="dev_list_sysfs" lineno="4491">
+<interface name="dev_list_sysfs" lineno="4509">
 <summary>
 List the contents of the sysfs directories.
 </summary>
@@ -58452,7 +58462,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_write_sysfs_dirs" lineno="4510">
+<interface name="dev_write_sysfs_dirs" lineno="4528">
 <summary>
 Write in a sysfs directories.
 </summary>
@@ -58462,7 +58472,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_dontaudit_write_sysfs_dirs" lineno="4528">
+<interface name="dev_dontaudit_write_sysfs_dirs" lineno="4546">
 <summary>
 Do not audit attempts to write in a sysfs directory.
 </summary>
@@ -58472,7 +58482,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="dev_dontaudit_write_sysfs_files" lineno="4546">
+<interface name="dev_dontaudit_write_sysfs_files" lineno="4564">
 <summary>
 Do not audit attempts to write to a sysfs file.
 </summary>
@@ -58482,7 +58492,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="dev_manage_sysfs_dirs" lineno="4565">
+<interface name="dev_manage_sysfs_dirs" lineno="4583">
 <summary>
 Create, read, write, and delete sysfs
 directories.
@@ -58493,7 +58503,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_read_sysfs" lineno="4592">
+<interface name="dev_read_sysfs" lineno="4610">
 <summary>
 Read hardware state information.
 </summary>
@@ -58512,7 +58522,7 @@ Domain allowed access.
 </param>
 <infoflow type="read" weight="10"/>
 </interface>
-<interface name="dev_write_sysfs" lineno="4620">
+<interface name="dev_write_sysfs" lineno="4638">
 <summary>
 Write to hardware state information.
 </summary>
@@ -58529,7 +58539,7 @@ Domain allowed access.
 </param>
 <infoflow type="read" weight="10"/>
 </interface>
-<interface name="dev_rw_sysfs" lineno="4639">
+<interface name="dev_rw_sysfs" lineno="4657">
 <summary>
 Allow caller to modify hardware state information.
 </summary>
@@ -58539,7 +58549,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_create_sysfs_files" lineno="4660">
+<interface name="dev_create_sysfs_files" lineno="4678">
 <summary>
 Add a sysfs file
 </summary>
@@ -58549,7 +58559,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_relabel_sysfs_dirs" lineno="4678">
+<interface name="dev_relabel_sysfs_dirs" lineno="4696">
 <summary>
 Relabel hardware state directories.
 </summary>
@@ -58559,7 +58569,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_relabel_all_sysfs" lineno="4696">
+<interface name="dev_relabel_all_sysfs" lineno="4714">
 <summary>
 Relabel from/to all sysfs types.
 </summary>
@@ -58569,7 +58579,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_setattr_all_sysfs" lineno="4716">
+<interface name="dev_setattr_all_sysfs" lineno="4734">
 <summary>
 Set the attributes of sysfs files, directories and symlinks.
 </summary>
@@ -58579,7 +58589,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_rw_tpm" lineno="4736">
+<interface name="dev_rw_tpm" lineno="4754">
 <summary>
 Read and write the TPM device.
 </summary>
@@ -58589,7 +58599,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_read_urand" lineno="4777">
+<interface name="dev_read_urand" lineno="4795">
 <summary>
 Read from pseudo random number generator devices (e.g., /dev/urandom).
 </summary>
@@ -58622,7 +58632,7 @@ Domain allowed access.
 </param>
 <infoflow type="read" weight="10"/>
 </interface>
-<interface name="dev_dontaudit_read_urand" lineno="4796">
+<interface name="dev_dontaudit_read_urand" lineno="4814">
 <summary>
 Do not audit attempts to read from pseudo
 random devices (e.g., /dev/urandom)
@@ -58633,7 +58643,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="dev_write_urand" lineno="4815">
+<interface name="dev_write_urand" lineno="4833">
 <summary>
 Write to the pseudo random device (e.g., /dev/urandom). This
 sets the random number generator seed.
@@ -58644,7 +58654,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_create_urand_dev" lineno="4833">
+<interface name="dev_create_urand_dev" lineno="4851">
 <summary>
 Create the urandom device (/dev/urandom).
 </summary>
@@ -58654,7 +58664,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_setattr_urand_dev" lineno="4851">
+<interface name="dev_setattr_urand_dev" lineno="4869">
 <summary>
 Set attributes on the urandom device (/dev/urandom).
 </summary>
@@ -58664,7 +58674,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_getattr_generic_usb_dev" lineno="4869">
+<interface name="dev_getattr_generic_usb_dev" lineno="4887">
 <summary>
 Getattr generic the USB devices.
 </summary>
@@ -58674,7 +58684,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_setattr_generic_usb_dev" lineno="4887">
+<interface name="dev_setattr_generic_usb_dev" lineno="4905">
 <summary>
 Setattr generic the USB devices.
 </summary>
@@ -58684,7 +58694,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_read_generic_usb_dev" lineno="4905">
+<interface name="dev_read_generic_usb_dev" lineno="4923">
 <summary>
 Read generic the USB devices.
 </summary>
@@ -58694,7 +58704,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_rw_generic_usb_dev" lineno="4923">
+<interface name="dev_rw_generic_usb_dev" lineno="4941">
 <summary>
 Read and write generic the USB devices.
 </summary>
@@ -58704,7 +58714,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_relabel_generic_usb_dev" lineno="4941">
+<interface name="dev_relabel_generic_usb_dev" lineno="4959">
 <summary>
 Relabel generic the USB devices.
 </summary>
@@ -58714,7 +58724,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_read_usbmon_dev" lineno="4959">
+<interface name="dev_read_usbmon_dev" lineno="4977">
 <summary>
 Read USB monitor devices.
 </summary>
@@ -58724,7 +58734,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_write_usbmon_dev" lineno="4977">
+<interface name="dev_write_usbmon_dev" lineno="4995">
 <summary>
 Write USB monitor devices.
 </summary>
@@ -58734,7 +58744,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_mount_usbfs" lineno="4995">
+<interface name="dev_mount_usbfs" lineno="5013">
 <summary>
 Mount a usbfs filesystem.
 </summary>
@@ -58744,7 +58754,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_associate_usbfs" lineno="5013">
+<interface name="dev_associate_usbfs" lineno="5031">
 <summary>
 Associate a file to a usbfs filesystem.
 </summary>
@@ -58754,7 +58764,7 @@ The type of the file to be associated to usbfs.
 </summary>
 </param>
 </interface>
-<interface name="dev_getattr_usbfs_dirs" lineno="5031">
+<interface name="dev_getattr_usbfs_dirs" lineno="5049">
 <summary>
 Get the attributes of a directory in the usb filesystem.
 </summary>
@@ -58764,7 +58774,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_dontaudit_getattr_usbfs_dirs" lineno="5050">
+<interface name="dev_dontaudit_getattr_usbfs_dirs" lineno="5068">
 <summary>
 Do not audit attempts to get the attributes
 of a directory in the usb filesystem.
@@ -58775,7 +58785,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="dev_search_usbfs" lineno="5068">
+<interface name="dev_search_usbfs" lineno="5086">
 <summary>
 Search the directory containing USB hardware information.
 </summary>
@@ -58785,7 +58795,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_list_usbfs" lineno="5086">
+<interface name="dev_list_usbfs" lineno="5104">
 <summary>
 Allow caller to get a list of usb hardware.
 </summary>
@@ -58795,7 +58805,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_setattr_usbfs_files" lineno="5107">
+<interface name="dev_setattr_usbfs_files" lineno="5125">
 <summary>
 Set the attributes of usbfs filesystem.
 </summary>
@@ -58805,7 +58815,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_read_usbfs" lineno="5127">
+<interface name="dev_read_usbfs" lineno="5145">
 <summary>
 Read USB hardware information using
 the usbfs filesystem interface.
@@ -58816,7 +58826,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_rw_usbfs" lineno="5147">
+<interface name="dev_rw_usbfs" lineno="5165">
 <summary>
 Allow caller to modify usb hardware configuration files.
 </summary>
@@ -58826,7 +58836,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_getattr_video_dev" lineno="5167">
+<interface name="dev_getattr_video_dev" lineno="5185">
 <summary>
 Get the attributes of video4linux devices.
 </summary>
@@ -58836,7 +58846,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_rw_userio_dev" lineno="5185">
+<interface name="dev_rw_userio_dev" lineno="5203">
 <summary>
 Read and write userio device.
 </summary>
@@ -58846,7 +58856,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_dontaudit_getattr_video_dev" lineno="5204">
+<interface name="dev_dontaudit_getattr_video_dev" lineno="5222">
 <summary>
 Do not audit attempts to get the attributes
 of video4linux device nodes.
@@ -58857,7 +58867,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="dev_setattr_video_dev" lineno="5222">
+<interface name="dev_setattr_video_dev" lineno="5240">
 <summary>
 Set the attributes of video4linux device nodes.
 </summary>
@@ -58867,7 +58877,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_dontaudit_setattr_video_dev" lineno="5241">
+<interface name="dev_dontaudit_setattr_video_dev" lineno="5259">
 <summary>
 Do not audit attempts to set the attributes
 of video4linux device nodes.
@@ -58878,7 +58888,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="dev_read_video_dev" lineno="5259">
+<interface name="dev_read_video_dev" lineno="5277">
 <summary>
 Read the video4linux devices.
 </summary>
@@ -58888,7 +58898,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_write_video_dev" lineno="5277">
+<interface name="dev_write_video_dev" lineno="5295">
 <summary>
 Write the video4linux devices.
 </summary>
@@ -58898,7 +58908,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_rw_vfio_dev" lineno="5295">
+<interface name="dev_rw_vfio_dev" lineno="5313">
 <summary>
 Read and write vfio devices.
 </summary>
@@ -58908,7 +58918,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_relabelfrom_vfio_dev" lineno="5313">
+<interface name="dev_relabelfrom_vfio_dev" lineno="5331">
 <summary>
 Relabel vfio devices.
 </summary>
@@ -58918,7 +58928,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_rw_vhost" lineno="5331">
+<interface name="dev_rw_vhost" lineno="5349">
 <summary>
 Allow read/write the vhost devices
 </summary>
@@ -58928,7 +58938,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_rw_vmware" lineno="5349">
+<interface name="dev_rw_vmware" lineno="5367">
 <summary>
 Read and write VMWare devices.
 </summary>
@@ -58938,7 +58948,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_rwx_vmware" lineno="5367">
+<interface name="dev_rwx_vmware" lineno="5385">
 <summary>
 Read, write, and mmap VMWare devices.
 </summary>
@@ -58948,7 +58958,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_read_watchdog" lineno="5386">
+<interface name="dev_read_watchdog" lineno="5404">
 <summary>
 Read from watchdog devices.
 </summary>
@@ -58958,7 +58968,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_write_watchdog" lineno="5404">
+<interface name="dev_write_watchdog" lineno="5422">
 <summary>
 Write to watchdog devices.
 </summary>
@@ -58968,7 +58978,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_read_wireless" lineno="5422">
+<interface name="dev_read_wireless" lineno="5440">
 <summary>
 Read the wireless device.
 </summary>
@@ -58978,7 +58988,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_rw_wireless" lineno="5440">
+<interface name="dev_rw_wireless" lineno="5458">
 <summary>
 Read and write the the wireless device.
 </summary>
@@ -58988,7 +58998,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_manage_wireless" lineno="5458">
+<interface name="dev_manage_wireless" lineno="5476">
 <summary>
 manage the wireless device.
 </summary>
@@ -58998,7 +59008,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_rw_xen" lineno="5476">
+<interface name="dev_rw_xen" lineno="5494">
 <summary>
 Read and write Xen devices.
 </summary>
@@ -59008,7 +59018,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_manage_xen" lineno="5495">
+<interface name="dev_manage_xen" lineno="5513">
 <summary>
 Create, read, write, and delete Xen devices.
 </summary>
@@ -59018,7 +59028,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_filetrans_xen" lineno="5519">
+<interface name="dev_filetrans_xen" lineno="5537">
 <summary>
 Automatic type transition to the type
 for xen device nodes when created in /dev.
@@ -59034,7 +59044,7 @@ The name of the object being created.
 </summary>
 </param>
 </interface>
-<interface name="dev_getattr_xserver_misc_dev" lineno="5537">
+<interface name="dev_getattr_xserver_misc_dev" lineno="5555">
 <summary>
 Get the attributes of X server miscellaneous devices.
 </summary>
@@ -59044,7 +59054,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_setattr_xserver_misc_dev" lineno="5555">
+<interface name="dev_setattr_xserver_misc_dev" lineno="5573">
 <summary>
 Set the attributes of X server miscellaneous devices.
 </summary>
@@ -59054,7 +59064,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_rw_xserver_misc" lineno="5573">
+<interface name="dev_rw_xserver_misc" lineno="5591">
 <summary>
 Read and write X server miscellaneous devices.
 </summary>
@@ -59064,7 +59074,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_map_xserver_misc" lineno="5591">
+<interface name="dev_map_xserver_misc" lineno="5609">
 <summary>
 Map X server miscellaneous devices.
 </summary>
@@ -59074,7 +59084,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_rw_zero" lineno="5609">
+<interface name="dev_rw_zero" lineno="5627">
 <summary>
 Read and write to the zero device (/dev/zero).
 </summary>
@@ -59084,7 +59094,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_rwx_zero" lineno="5627">
+<interface name="dev_rwx_zero" lineno="5645">
 <summary>
 Read, write, and execute the zero device (/dev/zero).
 </summary>
@@ -59094,7 +59104,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_execmod_zero" lineno="5646">
+<interface name="dev_execmod_zero" lineno="5664">
 <summary>
 Execmod the zero device (/dev/zero).
 </summary>
@@ -59104,7 +59114,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_create_zero_dev" lineno="5665">
+<interface name="dev_create_zero_dev" lineno="5683">
 <summary>
 Create the zero device (/dev/zero).
 </summary>
@@ -59114,7 +59124,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_read_cpu_online" lineno="5688">
+<interface name="dev_read_cpu_online" lineno="5706">
 <summary>
 Read cpu online hardware state information
 </summary>
@@ -59129,7 +59139,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_rw_gpiochip" lineno="5708">
+<interface name="dev_rw_gpiochip" lineno="5726">
 <summary>
 Read and write to the gpiochip device, /dev/gpiochip[0-9]
 </summary>
@@ -59139,7 +59149,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_unconfined" lineno="5726">
+<interface name="dev_unconfined" lineno="5744">
 <summary>
 Unconfined access to devices.
 </summary>
@@ -59149,7 +59159,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_relabel_cpu_online" lineno="5746">
+<interface name="dev_relabel_cpu_online" lineno="5764">
 <summary>
 Relabel cpu online hardware state information.
 </summary>
@@ -59159,7 +59169,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="dev_dontaudit_read_usbmon_dev" lineno="5765">
+<interface name="dev_dontaudit_read_usbmon_dev" lineno="5783">
 <summary>
 Dont audit attempts to read usbmon devices
 </summary>
@@ -63491,7 +63501,17 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_search_var" lineno="5763">
+<interface name="files_mounton_kernel_symbol_table" lineno="5763">
+<summary>
+Mount on a system.map in the /boot directory (for bind mounts).
+</summary>
+<param name="domain">
+<summary>
+Domain allowed access.
+</summary>
+</param>
+</interface>
+<interface name="files_search_var" lineno="5782">
 <summary>
 Search the contents of /var.
 </summary>
@@ -63501,7 +63521,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_dontaudit_write_var_dirs" lineno="5781">
+<interface name="files_dontaudit_write_var_dirs" lineno="5800">
 <summary>
 Do not audit attempts to write to /var.
 </summary>
@@ -63511,7 +63531,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="files_write_var_dirs" lineno="5799">
+<interface name="files_write_var_dirs" lineno="5818">
 <summary>
 Allow attempts to write to /var.dirs
 </summary>
@@ -63521,7 +63541,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_dontaudit_search_var" lineno="5818">
+<interface name="files_dontaudit_search_var" lineno="5837">
 <summary>
 Do not audit attempts to search
 the contents of /var.
@@ -63532,7 +63552,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="files_list_var" lineno="5836">
+<interface name="files_list_var" lineno="5855">
 <summary>
 List the contents of /var.
 </summary>
@@ -63542,7 +63562,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_dontaudit_list_var" lineno="5855">
+<interface name="files_dontaudit_list_var" lineno="5874">
 <summary>
 Do not audit attempts to list
 the contents of /var.
@@ -63553,7 +63573,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="files_manage_var_dirs" lineno="5874">
+<interface name="files_manage_var_dirs" lineno="5893">
 <summary>
 Create, read, write, and delete directories
 in the /var directory.
@@ -63564,7 +63584,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_relabel_var_dirs" lineno="5892">
+<interface name="files_relabel_var_dirs" lineno="5911">
 <summary>
 relabelto/from var directories
 </summary>
@@ -63574,7 +63594,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_read_var_files" lineno="5910">
+<interface name="files_read_var_files" lineno="5929">
 <summary>
 Read files in the /var directory.
 </summary>
@@ -63584,7 +63604,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_append_var_files" lineno="5928">
+<interface name="files_append_var_files" lineno="5947">
 <summary>
 Append files in the /var directory.
 </summary>
@@ -63594,7 +63614,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_rw_var_files" lineno="5946">
+<interface name="files_rw_var_files" lineno="5965">
 <summary>
 Read and write files in the /var directory.
 </summary>
@@ -63604,7 +63624,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_dontaudit_rw_var_files" lineno="5965">
+<interface name="files_dontaudit_rw_var_files" lineno="5984">
 <summary>
 Do not audit attempts to read and write
 files in the /var directory.
@@ -63615,7 +63635,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="files_manage_var_files" lineno="5983">
+<interface name="files_manage_var_files" lineno="6002">
 <summary>
 Create, read, write, and delete files in the /var directory.
 </summary>
@@ -63625,7 +63645,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_read_var_symlinks" lineno="6001">
+<interface name="files_read_var_symlinks" lineno="6020">
 <summary>
 Read symbolic links in the /var directory.
 </summary>
@@ -63635,7 +63655,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_manage_var_symlinks" lineno="6020">
+<interface name="files_manage_var_symlinks" lineno="6039">
 <summary>
 Create, read, write, and delete symbolic
 links in the /var directory.
@@ -63646,7 +63666,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_var_filetrans" lineno="6053">
+<interface name="files_var_filetrans" lineno="6072">
 <summary>
 Create objects in the /var directory
 </summary>
@@ -63671,7 +63691,7 @@ The name of the object being created.
 </summary>
 </param>
 </interface>
-<interface name="files_getattr_var_lib_dirs" lineno="6071">
+<interface name="files_getattr_var_lib_dirs" lineno="6090">
 <summary>
 Get the attributes of the /var/lib directory.
 </summary>
@@ -63681,7 +63701,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_search_var_lib" lineno="6103">
+<interface name="files_search_var_lib" lineno="6122">
 <summary>
 Search the /var/lib directory.
 </summary>
@@ -63705,7 +63725,7 @@ Domain allowed access.
 </param>
 <infoflow type="read" weight="5"/>
 </interface>
-<interface name="files_dontaudit_search_var_lib" lineno="6123">
+<interface name="files_dontaudit_search_var_lib" lineno="6142">
 <summary>
 Do not audit attempts to search the
 contents of /var/lib.
@@ -63717,7 +63737,7 @@ Domain to not audit.
 </param>
 <infoflow type="read" weight="5"/>
 </interface>
-<interface name="files_list_var_lib" lineno="6141">
+<interface name="files_list_var_lib" lineno="6160">
 <summary>
 List the contents of the /var/lib directory.
 </summary>
@@ -63727,7 +63747,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_rw_var_lib_dirs" lineno="6159">
+<interface name="files_rw_var_lib_dirs" lineno="6178">
 <summary>
 Read-write /var/lib directories
 </summary>
@@ -63737,7 +63757,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_manage_var_lib_dirs" lineno="6177">
+<interface name="files_manage_var_lib_dirs" lineno="6196">
 <summary>
 manage var_lib_t dirs
 </summary>
@@ -63747,7 +63767,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_relabel_var_lib_dirs" lineno="6196">
+<interface name="files_relabel_var_lib_dirs" lineno="6215">
 <summary>
 relabel var_lib_t dirs
 </summary>
@@ -63757,7 +63777,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_var_lib_filetrans" lineno="6230">
+<interface name="files_var_lib_filetrans" lineno="6249">
 <summary>
 Create objects in the /var/lib directory
 </summary>
@@ -63782,7 +63802,7 @@ The name of the object being created.
 </summary>
 </param>
 </interface>
-<interface name="files_read_var_lib_files" lineno="6249">
+<interface name="files_read_var_lib_files" lineno="6268">
 <summary>
 Read generic files in /var/lib.
 </summary>
@@ -63792,7 +63812,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_read_var_lib_symlinks" lineno="6268">
+<interface name="files_read_var_lib_symlinks" lineno="6287">
 <summary>
 Read generic symbolic links in /var/lib
 </summary>
@@ -63802,7 +63822,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_manage_urandom_seed" lineno="6290">
+<interface name="files_manage_urandom_seed" lineno="6309">
 <summary>
 Create, read, write, and delete the
 pseudorandom number generator seed.
@@ -63813,7 +63833,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_manage_mounttab" lineno="6309">
+<interface name="files_manage_mounttab" lineno="6328">
 <summary>
 Allow domain to manage mount tables
 necessary for rpcd, nfsd, etc.
@@ -63824,7 +63844,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_setattr_lock_dirs" lineno="6328">
+<interface name="files_setattr_lock_dirs" lineno="6347">
 <summary>
 Set the attributes of the generic lock directories.
 </summary>
@@ -63834,7 +63854,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_search_locks" lineno="6346">
+<interface name="files_search_locks" lineno="6365">
 <summary>
 Search the locks directory (/var/lock).
 </summary>
@@ -63844,7 +63864,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_dontaudit_search_locks" lineno="6366">
+<interface name="files_dontaudit_search_locks" lineno="6385">
 <summary>
 Do not audit attempts to search the
 locks directory (/var/lock).
@@ -63855,7 +63875,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="files_list_locks" lineno="6385">
+<interface name="files_list_locks" lineno="6404">
 <summary>
 List generic lock directories.
 </summary>
@@ -63865,7 +63885,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_check_write_lock_dirs" lineno="6404">
+<interface name="files_check_write_lock_dirs" lineno="6423">
 <summary>
 Test write access on lock directories.
 </summary>
@@ -63875,7 +63895,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_add_entry_lock_dirs" lineno="6423">
+<interface name="files_add_entry_lock_dirs" lineno="6442">
 <summary>
 Add entries in the /var/lock directories.
 </summary>
@@ -63885,7 +63905,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_rw_lock_dirs" lineno="6443">
+<interface name="files_rw_lock_dirs" lineno="6462">
 <summary>
 Add and remove entries in the /var/lock
 directories.
@@ -63896,7 +63916,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_create_lock_dirs" lineno="6462">
+<interface name="files_create_lock_dirs" lineno="6481">
 <summary>
 Create lock directories
 </summary>
@@ -63906,7 +63926,7 @@ Domain allowed access
 </summary>
 </param>
 </interface>
-<interface name="files_relabel_all_lock_dirs" lineno="6483">
+<interface name="files_relabel_all_lock_dirs" lineno="6502">
 <summary>
 Relabel to and from all lock directory types.
 </summary>
@@ -63917,7 +63937,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="files_getattr_generic_locks" lineno="6504">
+<interface name="files_getattr_generic_locks" lineno="6523">
 <summary>
 Get the attributes of generic lock files.
 </summary>
@@ -63927,7 +63947,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_delete_generic_locks" lineno="6525">
+<interface name="files_delete_generic_locks" lineno="6544">
 <summary>
 Delete generic lock files.
 </summary>
@@ -63937,7 +63957,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_manage_generic_locks" lineno="6546">
+<interface name="files_manage_generic_locks" lineno="6565">
 <summary>
 Create, read, write, and delete generic
 lock files.
@@ -63948,7 +63968,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_delete_all_locks" lineno="6568">
+<interface name="files_delete_all_locks" lineno="6587">
 <summary>
 Delete all lock files.
 </summary>
@@ -63959,7 +63979,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="files_read_all_locks" lineno="6589">
+<interface name="files_read_all_locks" lineno="6608">
 <summary>
 Read all lock files.
 </summary>
@@ -63969,7 +63989,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_manage_all_locks" lineno="6612">
+<interface name="files_manage_all_locks" lineno="6631">
 <summary>
 manage all lock files.
 </summary>
@@ -63979,7 +63999,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_relabel_all_locks" lineno="6635">
+<interface name="files_relabel_all_locks" lineno="6654">
 <summary>
 Relabel from/to all lock files.
 </summary>
@@ -63989,7 +64009,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_lock_filetrans" lineno="6674">
+<interface name="files_lock_filetrans" lineno="6693">
 <summary>
 Create an object in the locks directory, with a private
 type using a type transition.
@@ -64015,7 +64035,7 @@ The name of the object being created.
 </summary>
 </param>
 </interface>
-<interface name="files_dontaudit_getattr_runtime_dirs" lineno="6695">
+<interface name="files_dontaudit_getattr_runtime_dirs" lineno="6714">
 <summary>
 Do not audit attempts to get the attributes
 of the /var/run directory.
@@ -64026,7 +64046,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="files_mounton_runtime_dirs" lineno="6714">
+<interface name="files_mounton_runtime_dirs" lineno="6733">
 <summary>
 mounton a /var/run directory.
 </summary>
@@ -64036,7 +64056,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_setattr_runtime_dirs" lineno="6732">
+<interface name="files_setattr_runtime_dirs" lineno="6751">
 <summary>
 Set the attributes of the /var/run directory.
 </summary>
@@ -64046,7 +64066,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_search_runtime" lineno="6752">
+<interface name="files_search_runtime" lineno="6771">
 <summary>
 Search the contents of runtime process
 ID directories (/var/run).
@@ -64057,7 +64077,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_dontaudit_search_runtime" lineno="6772">
+<interface name="files_dontaudit_search_runtime" lineno="6791">
 <summary>
 Do not audit attempts to search
 the /var/run directory.
@@ -64068,7 +64088,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="files_list_runtime" lineno="6792">
+<interface name="files_list_runtime" lineno="6811">
 <summary>
 List the contents of the runtime process
 ID directories (/var/run).
@@ -64079,7 +64099,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_check_write_runtime_dirs" lineno="6811">
+<interface name="files_check_write_runtime_dirs" lineno="6830">
 <summary>
 Check write access on /var/run directories.
 </summary>
@@ -64089,7 +64109,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_create_runtime_dirs" lineno="6829">
+<interface name="files_create_runtime_dirs" lineno="6848">
 <summary>
 Create a /var/run directory.
 </summary>
@@ -64099,7 +64119,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_rw_runtime_dirs" lineno="6847">
+<interface name="files_rw_runtime_dirs" lineno="6866">
 <summary>
 Read and write a /var/run directory.
 </summary>
@@ -64109,7 +64129,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_watch_runtime_dirs" lineno="6865">
+<interface name="files_watch_runtime_dirs" lineno="6884">
 <summary>
 Watch /var/run directories.
 </summary>
@@ -64119,7 +64139,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_read_runtime_files" lineno="6883">
+<interface name="files_read_runtime_files" lineno="6902">
 <summary>
 Read generic runtime files.
 </summary>
@@ -64129,7 +64149,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_exec_runtime" lineno="6903">
+<interface name="files_exec_runtime" lineno="6922">
 <summary>
 Execute generic programs in /var/run in the caller domain.
 </summary>
@@ -64139,7 +64159,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_rw_runtime_files" lineno="6921">
+<interface name="files_rw_runtime_files" lineno="6940">
 <summary>
 Read and write generic runtime files.
 </summary>
@@ -64149,7 +64169,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_delete_runtime_symlinks" lineno="6941">
+<interface name="files_delete_runtime_symlinks" lineno="6960">
 <summary>
 Delete generic runtime symlinks.
 </summary>
@@ -64159,7 +64179,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_write_runtime_pipes" lineno="6959">
+<interface name="files_write_runtime_pipes" lineno="6978">
 <summary>
 Write named generic runtime pipes.
 </summary>
@@ -64169,7 +64189,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_delete_all_runtime_dirs" lineno="6979">
+<interface name="files_delete_all_runtime_dirs" lineno="6998">
 <summary>
 Delete all runtime dirs.
 </summary>
@@ -64180,7 +64200,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="files_manage_all_runtime_dirs" lineno="6997">
+<interface name="files_manage_all_runtime_dirs" lineno="7016">
 <summary>
 Create, read, write, and delete all runtime directories.
 </summary>
@@ -64190,7 +64210,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_relabel_all_runtime_dirs" lineno="7015">
+<interface name="files_relabel_all_runtime_dirs" lineno="7034">
 <summary>
 Relabel all runtime directories.
 </summary>
@@ -64200,7 +64220,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_dontaudit_getattr_all_runtime_files" lineno="7034">
+<interface name="files_dontaudit_getattr_all_runtime_files" lineno="7053">
 <summary>
 Do not audit attempts to get the attributes of
 all runtime data files.
@@ -64211,7 +64231,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="files_read_all_runtime_files" lineno="7055">
+<interface name="files_read_all_runtime_files" lineno="7074">
 <summary>
 Read all runtime files.
 </summary>
@@ -64222,7 +64242,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="files_dontaudit_ioctl_all_runtime_files" lineno="7076">
+<interface name="files_dontaudit_ioctl_all_runtime_files" lineno="7095">
 <summary>
 Do not audit attempts to ioctl all runtime files.
 </summary>
@@ -64232,7 +64252,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="files_dontaudit_write_all_runtime_files" lineno="7096">
+<interface name="files_dontaudit_write_all_runtime_files" lineno="7115">
 <summary>
 Do not audit attempts to write to all runtime files.
 </summary>
@@ -64242,7 +64262,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="files_delete_all_runtime_files" lineno="7117">
+<interface name="files_delete_all_runtime_files" lineno="7136">
 <summary>
 Delete all runtime files.
 </summary>
@@ -64253,7 +64273,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="files_manage_all_runtime_files" lineno="7136">
+<interface name="files_manage_all_runtime_files" lineno="7155">
 <summary>
 Create, read, write and delete all
 var_run (pid) files
@@ -64264,7 +64284,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_relabel_all_runtime_files" lineno="7154">
+<interface name="files_relabel_all_runtime_files" lineno="7173">
 <summary>
 Relabel all runtime files.
 </summary>
@@ -64274,7 +64294,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_delete_all_runtime_symlinks" lineno="7173">
+<interface name="files_delete_all_runtime_symlinks" lineno="7192">
 <summary>
 Delete all runtime symlinks.
 </summary>
@@ -64285,7 +64305,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="files_manage_all_runtime_symlinks" lineno="7192">
+<interface name="files_manage_all_runtime_symlinks" lineno="7211">
 <summary>
 Create, read, write and delete all
 var_run (pid) symbolic links.
@@ -64296,7 +64316,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_relabel_all_runtime_symlinks" lineno="7210">
+<interface name="files_relabel_all_runtime_symlinks" lineno="7229">
 <summary>
 Relabel all runtime symbolic links.
 </summary>
@@ -64306,7 +64326,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_create_all_runtime_pipes" lineno="7228">
+<interface name="files_create_all_runtime_pipes" lineno="7247">
 <summary>
 Create all runtime named pipes
 </summary>
@@ -64316,7 +64336,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_delete_all_runtime_pipes" lineno="7247">
+<interface name="files_delete_all_runtime_pipes" lineno="7266">
 <summary>
 Delete all runtime named pipes
 </summary>
@@ -64326,7 +64346,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_create_all_runtime_sockets" lineno="7266">
+<interface name="files_create_all_runtime_sockets" lineno="7285">
 <summary>
 Create all runtime sockets.
 </summary>
@@ -64336,7 +64356,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_delete_all_runtime_sockets" lineno="7284">
+<interface name="files_delete_all_runtime_sockets" lineno="7303">
 <summary>
 Delete all runtime sockets.
 </summary>
@@ -64346,7 +64366,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_relabel_all_runtime_sockets" lineno="7302">
+<interface name="files_relabel_all_runtime_sockets" lineno="7321">
 <summary>
 Relabel all runtime named sockets.
 </summary>
@@ -64356,7 +64376,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_runtime_filetrans" lineno="7362">
+<interface name="files_runtime_filetrans" lineno="7381">
 <summary>
 Create an object in the /run directory, with a private type.
 </summary>
@@ -64408,7 +64428,7 @@ The name of the object being created.
 </param>
 <infoflow type="write" weight="10"/>
 </interface>
-<interface name="files_runtime_filetrans_lock_dir" lineno="7387">
+<interface name="files_runtime_filetrans_lock_dir" lineno="7406">
 <summary>
 Create a generic lock directory within the run directories.
 </summary>
@@ -64423,7 +64443,7 @@ The name of the object being created.
 </summary>
 </param>
 </interface>
-<interface name="files_create_all_spool_sockets" lineno="7405">
+<interface name="files_create_all_spool_sockets" lineno="7424">
 <summary>
 Create all spool sockets
 </summary>
@@ -64433,7 +64453,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_delete_all_spool_sockets" lineno="7423">
+<interface name="files_delete_all_spool_sockets" lineno="7442">
 <summary>
 Delete all spool sockets
 </summary>
@@ -64443,7 +64463,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_mounton_all_poly_members" lineno="7442">
+<interface name="files_mounton_all_poly_members" lineno="7461">
 <summary>
 Mount filesystems on all polyinstantiation
 member directories.
@@ -64454,7 +64474,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_search_spool" lineno="7461">
+<interface name="files_search_spool" lineno="7480">
 <summary>
 Search the contents of generic spool
 directories (/var/spool).
@@ -64465,7 +64485,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_dontaudit_search_spool" lineno="7480">
+<interface name="files_dontaudit_search_spool" lineno="7499">
 <summary>
 Do not audit attempts to search generic
 spool directories.
@@ -64476,7 +64496,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="files_list_spool" lineno="7499">
+<interface name="files_list_spool" lineno="7518">
 <summary>
 List the contents of generic spool
 (/var/spool) directories.
@@ -64487,7 +64507,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_manage_generic_spool_dirs" lineno="7518">
+<interface name="files_manage_generic_spool_dirs" lineno="7537">
 <summary>
 Create, read, write, and delete generic
 spool directories (/var/spool).
@@ -64498,7 +64518,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_read_generic_spool" lineno="7537">
+<interface name="files_read_generic_spool" lineno="7556">
 <summary>
 Read generic spool files.
 </summary>
@@ -64508,7 +64528,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_manage_generic_spool" lineno="7557">
+<interface name="files_manage_generic_spool" lineno="7576">
 <summary>
 Create, read, write, and delete generic
 spool files.
@@ -64519,7 +64539,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_spool_filetrans" lineno="7593">
+<interface name="files_spool_filetrans" lineno="7612">
 <summary>
 Create objects in the spool directory
 with a private type with a type transition.
@@ -64546,7 +64566,7 @@ The name of the object being created.
 </summary>
 </param>
 </interface>
-<interface name="files_polyinstantiate_all" lineno="7613">
+<interface name="files_polyinstantiate_all" lineno="7632">
 <summary>
 Allow access to manage all polyinstantiated
 directories on the system.
@@ -64557,7 +64577,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_unconfined" lineno="7667">
+<interface name="files_unconfined" lineno="7686">
 <summary>
 Unconfined access to files.
 </summary>
@@ -64567,7 +64587,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_manage_etc_runtime_lnk_files" lineno="7689">
+<interface name="files_manage_etc_runtime_lnk_files" lineno="7708">
 <summary>
 Create, read, write, and delete symbolic links in
 /etc that are dynamically created on boot.
@@ -64579,7 +64599,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="files_dontaudit_read_etc_runtime" lineno="7707">
+<interface name="files_dontaudit_read_etc_runtime" lineno="7726">
 <summary>
 Do not audit attempts to read etc_runtime resources
 </summary>
@@ -64589,7 +64609,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="files_list_src" lineno="7725">
+<interface name="files_list_src" lineno="7744">
 <summary>
 List usr/src files
 </summary>
@@ -64599,7 +64619,7 @@ Domain allowed access
 </summary>
 </param>
 </interface>
-<interface name="files_read_src_files" lineno="7743">
+<interface name="files_read_src_files" lineno="7762">
 <summary>
 Read usr/src files
 </summary>
@@ -64609,7 +64629,7 @@ Domain allowed access
 </summary>
 </param>
 </interface>
-<interface name="files_manage_src_files" lineno="7761">
+<interface name="files_manage_src_files" lineno="7780">
 <summary>
 Manage /usr/src files
 </summary>
@@ -64619,7 +64639,7 @@ Domain allowed access
 </summary>
 </param>
 </interface>
-<interface name="files_lib_filetrans_kernel_modules" lineno="7792">
+<interface name="files_lib_filetrans_kernel_modules" lineno="7811">
 <summary>
 Create a resource in the generic lib location
 with an automatic type transition towards the kernel modules
@@ -64641,7 +64661,7 @@ Optional name of the resource
 </summary>
 </param>
 </interface>
-<interface name="files_read_etc_runtime" lineno="7810">
+<interface name="files_read_etc_runtime" lineno="7829">
 <summary>
 Read etc runtime resources
 </summary>
@@ -64651,7 +64671,7 @@ Domain allowed access
 </summary>
 </param>
 </interface>
-<interface name="files_relabel_all_non_security_file_types" lineno="7832">
+<interface name="files_relabel_all_non_security_file_types" lineno="7851">
 <summary>
 Allow relabel from and to non-security types
 </summary>
@@ -64662,7 +64682,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="files_manage_all_non_security_file_types" lineno="7862">
+<interface name="files_manage_all_non_security_file_types" lineno="7881">
 <summary>
 Manage non-security-sensitive resource types
 </summary>
@@ -64673,7 +64693,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="files_relabel_all_pidfiles" lineno="7884">
+<interface name="files_relabel_all_pidfiles" lineno="7903">
 <summary>
 Allow relabeling from and to any pidfile associated type
 </summary>
@@ -71602,7 +71622,17 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="selinux_getattr_fs" lineno="170">
+<interface name="selinux_mounton_fs" lineno="170">
+<summary>
+Mount on the selinuxfs filesystem.
+</summary>
+<param name="domain">
+<summary>
+Domain allowed access.
+</summary>
+</param>
+</interface>
+<interface name="selinux_getattr_fs" lineno="188">
 <summary>
 Get the attributes of the selinuxfs filesystem
 </summary>
@@ -71612,7 +71642,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="selinux_dontaudit_getattr_fs" lineno="192">
+<interface name="selinux_dontaudit_getattr_fs" lineno="210">
 <summary>
 Do not audit attempts to get the
 attributes of the selinuxfs filesystem
@@ -71623,7 +71653,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="selinux_getattr_dirs" lineno="214">
+<interface name="selinux_getattr_dirs" lineno="232">
 <summary>
 Get the attributes of the selinuxfs
 directory.
@@ -71634,7 +71664,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="selinux_dontaudit_getattr_dir" lineno="233">
+<interface name="selinux_dontaudit_getattr_dir" lineno="251">
 <summary>
 Do not audit attempts to get the
 attributes of the selinuxfs directory.
@@ -71645,7 +71675,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="selinux_search_fs" lineno="251">
+<interface name="selinux_search_fs" lineno="269">
 <summary>
 Search selinuxfs.
 </summary>
@@ -71655,7 +71685,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="selinux_dontaudit_search_fs" lineno="270">
+<interface name="selinux_dontaudit_search_fs" lineno="288">
 <summary>
 Do not audit attempts to search selinuxfs.
 </summary>
@@ -71665,7 +71695,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="selinux_dontaudit_read_fs" lineno="289">
+<interface name="selinux_dontaudit_read_fs" lineno="307">
 <summary>
 Do not audit attempts to read
 generic selinuxfs entries
@@ -71676,7 +71706,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="selinux_mounton_dirs" lineno="308">
+<interface name="selinux_mounton_dirs" lineno="326">
 <summary>
 Mount on the selinuxfs directory.
 </summary>
@@ -71686,7 +71716,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="selinux_get_enforce_mode" lineno="328">
+<interface name="selinux_get_enforce_mode" lineno="346">
 <summary>
 Allows the caller to get the mode of policy enforcement
 (enforcing or permissive mode).
@@ -71698,7 +71728,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="selinux_set_enforce_mode" lineno="360">
+<interface name="selinux_set_enforce_mode" lineno="378">
 <summary>
 Allow caller to set the mode of policy enforcement
 (enforcing or permissive mode).
@@ -71720,7 +71750,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="selinux_load_policy" lineno="378">
+<interface name="selinux_load_policy" lineno="396">
 <summary>
 Allow caller to load the policy into the kernel.
 </summary>
@@ -71730,7 +71760,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="selinux_read_policy" lineno="396">
+<interface name="selinux_read_policy" lineno="414">
 <summary>
 Allow caller to read the policy from the kernel.
 </summary>
@@ -71740,7 +71770,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="selinux_set_generic_booleans" lineno="429">
+<interface name="selinux_set_generic_booleans" lineno="447">
 <summary>
 Allow caller to set the state of generic Booleans to
 enable or disable conditional portions of the policy.
@@ -71762,7 +71792,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="selinux_set_all_booleans" lineno="471">
+<interface name="selinux_set_all_booleans" lineno="489">
 <summary>
 Allow caller to set the state of all Booleans to
 enable or disable conditional portions of the policy.
@@ -71784,7 +71814,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="selinux_get_all_booleans" lineno="513">
+<interface name="selinux_get_all_booleans" lineno="531">
 <summary>
 Allow caller to get the state of all Booleans to
 view conditional portions of the policy.
@@ -71796,7 +71826,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="selinux_set_parameters" lineno="547">
+<interface name="selinux_set_parameters" lineno="565">
 <summary>
 Allow caller to set SELinux access vector cache parameters.
 </summary>
@@ -71818,7 +71848,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="selinux_validate_context" lineno="566">
+<interface name="selinux_validate_context" lineno="584">
 <summary>
 Allows caller to validate security contexts.
 </summary>
@@ -71829,7 +71859,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="selinux_dontaudit_validate_context" lineno="588">
+<interface name="selinux_dontaudit_validate_context" lineno="606">
 <summary>
 Do not audit attempts to validate security contexts.
 </summary>
@@ -71840,7 +71870,7 @@ Domain to not audit.
 </param>
 <rolecap/>
 </interface>
-<interface name="selinux_compute_access_vector" lineno="609">
+<interface name="selinux_compute_access_vector" lineno="627">
 <summary>
 Allows caller to compute an access vector.
 </summary>
@@ -71851,7 +71881,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="selinux_compute_create_context" lineno="632">
+<interface name="selinux_compute_create_context" lineno="650">
 <summary>
 Calculate the default type for object creation.
 </summary>
@@ -71862,7 +71892,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="selinux_compute_member" lineno="654">
+<interface name="selinux_compute_member" lineno="672">
 <summary>
 Allows caller to compute polyinstatntiated
 directory members.
@@ -71873,7 +71903,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="selinux_compute_relabel_context" lineno="684">
+<interface name="selinux_compute_relabel_context" lineno="702">
 <summary>
 Calculate the context for relabeling objects.
 </summary>
@@ -71892,7 +71922,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="selinux_compute_user_contexts" lineno="705">
+<interface name="selinux_compute_user_contexts" lineno="723">
 <summary>
 Allows caller to compute possible contexts for a user.
 </summary>
@@ -71902,7 +71932,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="selinux_use_status_page" lineno="727">
+<interface name="selinux_use_status_page" lineno="745">
 <summary>
 Allows the caller to use the SELinux status page.
 </summary>
@@ -71913,7 +71943,7 @@ Domain allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="selinux_unconfined" lineno="747">
+<interface name="selinux_unconfined" lineno="765">
 <summary>
 Unconfined access to the SELinux kernel security server.
 </summary>
@@ -106810,7 +106840,7 @@ The user domain for the role.
 </summary>
 </param>
 </template>
-<template name="systemd_user_daemon_domain" lineno="225">
+<template name="systemd_user_daemon_domain" lineno="223">
 <summary>
 Allow the specified domain to be started as a daemon by the
 specified systemd user instance.
@@ -106831,7 +106861,7 @@ Domain to allow the systemd user domain to run.
 </summary>
 </param>
 </template>
-<interface name="systemd_user_activated_sock_file" lineno="246">
+<interface name="systemd_user_activated_sock_file" lineno="244">
 <summary>
 Associate the specified file type to be a type whose sock files
 can be managed by systemd user instances for socket activation.
@@ -106842,7 +106872,7 @@ File type to be associated.
 </summary>
 </param>
 </interface>
-<interface name="systemd_user_unix_stream_activated_socket" lineno="271">
+<interface name="systemd_user_unix_stream_activated_socket" lineno="269">
 <summary>
 Associate the specified domain to be a domain whose unix stream
 sockets and sock files can be managed by systemd user instances
@@ -106859,7 +106889,7 @@ File type of the domain's sock files to be associated.
 </summary>
 </param>
 </interface>
-<interface name="systemd_write_notify_socket" lineno="291">
+<interface name="systemd_write_notify_socket" lineno="289">
 <summary>
 Allow the specified domain to write to
 systemd-notify socket
@@ -106870,7 +106900,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<template name="systemd_user_send_systemd_notify" lineno="318">
+<template name="systemd_user_send_systemd_notify" lineno="316">
 <summary>
 Allow the target domain the permissions necessary
 to use systemd notify when started by the specified
@@ -106887,7 +106917,7 @@ Domain to be allowed systemd notify permissions.
 </summary>
 </param>
 </template>
-<template name="systemd_user_app_status" lineno="346">
+<template name="systemd_user_app_status" lineno="344">
 <summary>
 Allow the target domain to be monitored and have its output
 captured by the specified systemd user instance domain.
@@ -106903,7 +106933,7 @@ Domain to allow the systemd user instance to monitor.
 </summary>
 </param>
 </template>
-<template name="systemd_read_user_manager_state" lineno="386">
+<template name="systemd_read_user_manager_state" lineno="384">
 <summary>
 Read the process state (/proc/pid) of
 the specified systemd user instance.
@@ -106919,7 +106949,7 @@ Domain allowed access.
 </summary>
 </param>
 </template>
-<template name="systemd_user_manager_system_start" lineno="410">
+<template name="systemd_user_manager_system_start" lineno="408">
 <summary>
 Send a start request to the specified
 systemd user instance system object.
@@ -106935,7 +106965,7 @@ Domain allowed access.
 </summary>
 </param>
 </template>
-<template name="systemd_user_manager_system_stop" lineno="434">
+<template name="systemd_user_manager_system_stop" lineno="432">
 <summary>
 Send a stop request to the specified
 systemd user instance system object.
@@ -106951,7 +106981,7 @@ Domain allowed access.
 </summary>
 </param>
 </template>
-<template name="systemd_user_manager_system_status" lineno="458">
+<template name="systemd_user_manager_system_status" lineno="456">
 <summary>
 Get the status of the specified
 systemd user instance system object.
@@ -106967,7 +106997,7 @@ Domain allowed access.
 </summary>
 </param>
 </template>
-<template name="systemd_user_manager_dbus_chat" lineno="482">
+<template name="systemd_user_manager_dbus_chat" lineno="480">
 <summary>
 Send and receive messages from the
 specified systemd user instance over dbus.
@@ -106983,7 +107013,7 @@ Domain allowed access.
 </summary>
 </param>
 </template>
-<interface name="systemd_search_conf_home_content" lineno="503">
+<interface name="systemd_search_conf_home_content" lineno="501">
 <summary>
 Allow the specified domain to search systemd config home
 content.
@@ -106994,7 +107024,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_manage_conf_home_content" lineno="522">
+<interface name="systemd_manage_conf_home_content" lineno="520">
 <summary>
 Allow the specified domain to manage systemd config home
 content.
@@ -107005,7 +107035,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_relabel_conf_home_content" lineno="543">
+<interface name="systemd_relabel_conf_home_content" lineno="541">
 <summary>
 Allow the specified domain to relabel systemd config home
 content.
@@ -107016,7 +107046,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_search_data_home_content" lineno="564">
+<interface name="systemd_search_data_home_content" lineno="562">
 <summary>
 Allow the specified domain to search systemd data home
 content.
@@ -107027,7 +107057,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_manage_data_home_content" lineno="583">
+<interface name="systemd_manage_data_home_content" lineno="581">
 <summary>
 Allow the specified domain to manage systemd data home
 content.
@@ -107038,7 +107068,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_relabel_data_home_content" lineno="604">
+<interface name="systemd_relabel_data_home_content" lineno="602">
 <summary>
 Allow the specified domain to relabel systemd data home
 content.
@@ -107049,7 +107079,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_search_user_runtime" lineno="625">
+<interface name="systemd_search_user_runtime" lineno="623">
 <summary>
 Allow the specified domain to search systemd user runtime
 content.
@@ -107060,7 +107090,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_user_runtime_files" lineno="643">
+<interface name="systemd_read_user_runtime_files" lineno="641">
 <summary>
 Allow the specified domain to read systemd user runtime files.
 </summary>
@@ -107070,7 +107100,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_user_runtime_lnk_files" lineno="661">
+<interface name="systemd_read_user_runtime_lnk_files" lineno="659">
 <summary>
 Allow the specified domain to read systemd user runtime lnk files.
 </summary>
@@ -107080,7 +107110,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_write_user_runtime_socket" lineno="680">
+<interface name="systemd_write_user_runtime_socket" lineno="678">
 <summary>
 Allow the specified domain to write to
 the systemd user runtime named socket.
@@ -107091,7 +107121,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_user_unit_files" lineno="699">
+<interface name="systemd_read_user_unit_files" lineno="697">
 <summary>
 Allow the specified domain to read system-wide systemd
 user unit files.  (Deprecated)
@@ -107102,7 +107132,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_user_units_files" lineno="715">
+<interface name="systemd_read_user_units_files" lineno="713">
 <summary>
 Allow the specified domain to read system-wide systemd
 user unit files.
@@ -107113,7 +107143,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_user_runtime_units" lineno="735">
+<interface name="systemd_read_user_runtime_units" lineno="733">
 <summary>
 Allow the specified domain to read systemd user runtime unit files.  (Deprecated)
 </summary>
@@ -107123,7 +107153,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_user_runtime_units_files" lineno="750">
+<interface name="systemd_read_user_runtime_units_files" lineno="748">
 <summary>
 Allow the specified domain to read systemd user runtime unit files.
 </summary>
@@ -107133,7 +107163,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_search_user_runtime_unit_dirs" lineno="770">
+<interface name="systemd_search_user_runtime_unit_dirs" lineno="768">
 <summary>
 Allow the specified domain to search systemd user runtime unit
 directories.
@@ -107144,7 +107174,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_list_user_runtime_unit_dirs" lineno="789">
+<interface name="systemd_list_user_runtime_unit_dirs" lineno="787">
 <summary>
 Allow the specified domain to list the contents of systemd
 user runtime unit directories.
@@ -107155,7 +107185,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_status_user_runtime_units" lineno="807">
+<interface name="systemd_status_user_runtime_units" lineno="805">
 <summary>
 Allow the specified domain to get the status of systemd user runtime units.  (Deprecated)
 </summary>
@@ -107165,7 +107195,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_get_user_runtime_units_status" lineno="822">
+<interface name="systemd_get_user_runtime_units_status" lineno="820">
 <summary>
 Allow the specified domain to get the status of systemd user runtime units.
 </summary>
@@ -107175,7 +107205,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_start_user_runtime_units" lineno="841">
+<interface name="systemd_start_user_runtime_units" lineno="839">
 <summary>
 Allow the specified domain to start systemd user runtime units.
 </summary>
@@ -107185,7 +107215,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_stop_user_runtime_units" lineno="860">
+<interface name="systemd_stop_user_runtime_units" lineno="858">
 <summary>
 Allow the specified domain to stop systemd user runtime units.
 </summary>
@@ -107195,7 +107225,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_reload_user_runtime_units" lineno="879">
+<interface name="systemd_reload_user_runtime_units" lineno="877">
 <summary>
 Allow the specified domain to reload systemd user runtime units.
 </summary>
@@ -107205,7 +107235,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_user_transient_units_files" lineno="898">
+<interface name="systemd_read_user_transient_units_files" lineno="896">
 <summary>
 Allow the specified domain to read systemd user transient unit files.
 </summary>
@@ -107215,7 +107245,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_search_user_transient_unit_dirs" lineno="918">
+<interface name="systemd_search_user_transient_unit_dirs" lineno="916">
 <summary>
 Allow the specified domain to search systemd user transient unit
 directories.
@@ -107226,7 +107256,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_list_user_transient_unit_dirs" lineno="937">
+<interface name="systemd_list_user_transient_unit_dirs" lineno="935">
 <summary>
 Allow the specified domain to list the contents of systemd
 user transient unit directories.
@@ -107237,7 +107267,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_get_user_transient_units_status" lineno="955">
+<interface name="systemd_get_user_transient_units_status" lineno="953">
 <summary>
 Allow the specified domain to get the status of systemd user transient units.
 </summary>
@@ -107247,7 +107277,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_start_user_transient_units" lineno="974">
+<interface name="systemd_start_user_transient_units" lineno="972">
 <summary>
 Allow the specified domain to start systemd user transient units.
 </summary>
@@ -107257,7 +107287,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_stop_user_transient_units" lineno="993">
+<interface name="systemd_stop_user_transient_units" lineno="991">
 <summary>
 Allow the specified domain to stop systemd user transient units.
 </summary>
@@ -107267,7 +107297,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_reload_user_transient_units" lineno="1012">
+<interface name="systemd_reload_user_transient_units" lineno="1010">
 <summary>
 Allow the specified domain to reload systemd user transient units.
 </summary>
@@ -107277,7 +107307,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_log_parse_environment" lineno="1032">
+<interface name="systemd_log_parse_environment" lineno="1030">
 <summary>
 Make the specified type usable as an
 log parse environment type.
@@ -107288,7 +107318,7 @@ Type to be used as a log parse environment type.
 </summary>
 </param>
 </interface>
-<interface name="systemd_use_nss" lineno="1052">
+<interface name="systemd_use_nss" lineno="1050">
 <summary>
 Allow domain to use systemd's Name Service Switch (NSS) module.
 This module provides UNIX user and group name resolution for dynamic users
@@ -107300,7 +107330,7 @@ Domain allowed access
 </summary>
 </param>
 </interface>
-<interface name="systemd_PrivateDevices" lineno="1079">
+<interface name="systemd_PrivateDevices" lineno="1077">
 <summary>
 Allow domain to be used as a systemd service with a unit
 that uses PrivateDevices=yes in section [Service].
@@ -107311,7 +107341,7 @@ Domain allowed access
 </summary>
 </param>
 </interface>
-<interface name="systemd_rw_homework_semaphores" lineno="1096">
+<interface name="systemd_rw_homework_semaphores" lineno="1094">
 <summary>
 Read and write systemd-homework semaphores.
 </summary>
@@ -107321,7 +107351,7 @@ Domain allowed access
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_hwdb" lineno="1114">
+<interface name="systemd_read_hwdb" lineno="1112">
 <summary>
 Allow domain to read udev hwdb file
 </summary>
@@ -107331,7 +107361,7 @@ domain allowed access
 </summary>
 </param>
 </interface>
-<interface name="systemd_map_hwdb" lineno="1132">
+<interface name="systemd_map_hwdb" lineno="1130">
 <summary>
 Allow domain to map udev hwdb file
 </summary>
@@ -107341,7 +107371,7 @@ domain allowed access
 </summary>
 </param>
 </interface>
-<interface name="systemd_watch_logind_runtime_dirs" lineno="1150">
+<interface name="systemd_watch_logind_runtime_dirs" lineno="1148">
 <summary>
 Watch systemd-logind runtime dirs.
 </summary>
@@ -107351,7 +107381,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_logind_runtime_files" lineno="1169">
+<interface name="systemd_read_logind_runtime_files" lineno="1167">
 <summary>
 Read systemd-logind runtime files.
 </summary>
@@ -107361,7 +107391,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_manage_logind_runtime_pipes" lineno="1189">
+<interface name="systemd_manage_logind_runtime_pipes" lineno="1187">
 <summary>
 Manage systemd-logind runtime pipes.
 </summary>
@@ -107371,7 +107401,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_write_logind_runtime_pipes" lineno="1208">
+<interface name="systemd_write_logind_runtime_pipes" lineno="1206">
 <summary>
 Write systemd-logind runtime named pipe.
 </summary>
@@ -107381,7 +107411,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_use_logind_fds" lineno="1229">
+<interface name="systemd_use_logind_fds" lineno="1227">
 <summary>
 Use inherited systemd
 logind file descriptors.
@@ -107392,7 +107422,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_watch_logind_sessions_dirs" lineno="1247">
+<interface name="systemd_watch_logind_sessions_dirs" lineno="1245">
 <summary>
 Watch logind sessions dirs.
 </summary>
@@ -107402,7 +107432,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_logind_sessions_files" lineno="1266">
+<interface name="systemd_read_logind_sessions_files" lineno="1264">
 <summary>
 Read logind sessions files.
 </summary>
@@ -107412,7 +107442,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_write_inherited_logind_sessions_pipes" lineno="1287">
+<interface name="systemd_write_inherited_logind_sessions_pipes" lineno="1285">
 <summary>
 Write inherited logind sessions pipes.
 </summary>
@@ -107422,7 +107452,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_write_inherited_logind_inhibit_pipes" lineno="1307">
+<interface name="systemd_write_inherited_logind_inhibit_pipes" lineno="1305">
 <summary>
 Write inherited logind inhibit pipes.
 </summary>
@@ -107432,7 +107462,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_dbus_chat_logind" lineno="1328">
+<interface name="systemd_dbus_chat_logind" lineno="1326">
 <summary>
 Send and receive messages from
 systemd logind over dbus.
@@ -107443,7 +107473,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_status_logind" lineno="1348">
+<interface name="systemd_status_logind" lineno="1346">
 <summary>
 Get the system status information from systemd_login
 </summary>
@@ -107453,7 +107483,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_signull_logind" lineno="1367">
+<interface name="systemd_signull_logind" lineno="1365">
 <summary>
 Send systemd_login a null signal.
 </summary>
@@ -107463,7 +107493,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_list_userdb_runtime_dirs" lineno="1385">
+<interface name="systemd_list_userdb_runtime_dirs" lineno="1383">
 <summary>
 List the contents of systemd userdb runtime directories.
 </summary>
@@ -107473,7 +107503,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_manage_userdb_runtime_dirs" lineno="1403">
+<interface name="systemd_manage_userdb_runtime_dirs" lineno="1401">
 <summary>
 Manage systemd userdb runtime directories.
 </summary>
@@ -107483,7 +107513,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_userdb_runtime_files" lineno="1421">
+<interface name="systemd_read_userdb_runtime_files" lineno="1419">
 <summary>
 Read systemd userdb runtime files.
 </summary>
@@ -107493,7 +107523,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_manage_userdb_runtime_symlinks" lineno="1439">
+<interface name="systemd_manage_userdb_runtime_symlinks" lineno="1437">
 <summary>
 Manage symbolic links under /run/systemd/userdb.
 </summary>
@@ -107503,7 +107533,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_manage_userdb_runtime_sock_files" lineno="1457">
+<interface name="systemd_manage_userdb_runtime_sock_files" lineno="1455">
 <summary>
 Manage socket files under /run/systemd/userdb .
 </summary>
@@ -107513,7 +107543,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_stream_connect_userdb" lineno="1475">
+<interface name="systemd_stream_connect_userdb" lineno="1473">
 <summary>
 Connect to /run/systemd/userdb/io.systemd.DynamicUser .
 </summary>
@@ -107523,7 +107553,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_machines" lineno="1497">
+<interface name="systemd_read_machines" lineno="1495">
 <summary>
 Allow reading /run/systemd/machines
 </summary>
@@ -107533,7 +107563,7 @@ Domain that can access the machines files
 </summary>
 </param>
 </interface>
-<interface name="systemd_watch_machines_dirs" lineno="1516">
+<interface name="systemd_watch_machines_dirs" lineno="1514">
 <summary>
 Allow watching /run/systemd/machines
 </summary>
@@ -107543,7 +107573,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_connect_machined" lineno="1534">
+<interface name="systemd_connect_machined" lineno="1532">
 <summary>
 Allow connecting to /run/systemd/userdb/io.systemd.Machine socket
 </summary>
@@ -107553,7 +107583,7 @@ Domain that can access the socket
 </summary>
 </param>
 </interface>
-<interface name="systemd_dontaudit_connect_machined" lineno="1552">
+<interface name="systemd_dontaudit_connect_machined" lineno="1550">
 <summary>
 dontaudit connecting to /run/systemd/userdb/io.systemd.Machine socket
 </summary>
@@ -107563,7 +107593,7 @@ Domain that can access the socket
 </summary>
 </param>
 </interface>
-<interface name="systemd_dbus_chat_machined" lineno="1571">
+<interface name="systemd_dbus_chat_machined" lineno="1569">
 <summary>
 Send and receive messages from
 systemd machined over dbus.
@@ -107574,7 +107604,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_dbus_chat_hostnamed" lineno="1592">
+<interface name="systemd_dbus_chat_hostnamed" lineno="1590">
 <summary>
 Send and receive messages from
 systemd hostnamed over dbus.
@@ -107585,7 +107615,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_use_passwd_agent_fds" lineno="1612">
+<interface name="systemd_use_passwd_agent_fds" lineno="1610">
 <summary>
 allow systemd_passwd_agent to inherit fds
 </summary>
@@ -107595,7 +107625,7 @@ Domain that owns the fds
 </summary>
 </param>
 </interface>
-<interface name="systemd_run_passwd_agent" lineno="1635">
+<interface name="systemd_run_passwd_agent" lineno="1633">
 <summary>
 allow systemd_passwd_agent to be run by admin
 </summary>
@@ -107610,7 +107640,7 @@ role that it runs in
 </summary>
 </param>
 </interface>
-<interface name="systemd_use_passwd_agent" lineno="1656">
+<interface name="systemd_use_passwd_agent" lineno="1654">
 <summary>
 Allow a systemd_passwd_agent_t process to interact with a daemon
 that needs a password from the sysadmin.
@@ -107621,7 +107651,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_filetrans_passwd_runtime_dirs" lineno="1680">
+<interface name="systemd_filetrans_passwd_runtime_dirs" lineno="1678">
 <summary>
 Transition to systemd_passwd_runtime_t when creating dirs
 </summary>
@@ -107631,7 +107661,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_filetrans_userdb_runtime_dirs" lineno="1701">
+<interface name="systemd_filetrans_userdb_runtime_dirs" lineno="1699">
 <summary>
 Transition to systemd_userdbd_runtime_t when
 creating the userdb directory inside an init runtime
@@ -107643,7 +107673,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_manage_passwd_runtime_symlinks" lineno="1719">
+<interface name="systemd_manage_passwd_runtime_symlinks" lineno="1717">
 <summary>
 Allow to domain to create systemd-passwd symlink
 </summary>
@@ -107653,7 +107683,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_watch_passwd_runtime_dirs" lineno="1737">
+<interface name="systemd_watch_passwd_runtime_dirs" lineno="1735">
 <summary>
 Allow a domain to watch systemd-passwd runtime dirs.
 </summary>
@@ -107663,7 +107693,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_list_journal_dirs" lineno="1755">
+<interface name="systemd_list_journal_dirs" lineno="1753">
 <summary>
 Allow domain to list the contents of systemd_journal_t dirs
 </summary>
@@ -107673,7 +107703,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_journal_files" lineno="1773">
+<interface name="systemd_read_journal_files" lineno="1771">
 <summary>
 Allow domain to read systemd_journal_t files
 </summary>
@@ -107683,7 +107713,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_manage_journal_files" lineno="1792">
+<interface name="systemd_manage_journal_files" lineno="1790">
 <summary>
 Allow domain to create/manage systemd_journal_t files
 </summary>
@@ -107693,7 +107723,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_watch_journal_dirs" lineno="1812">
+<interface name="systemd_watch_journal_dirs" lineno="1810">
 <summary>
 Allow domain to add a watch on systemd_journal_t directories
 </summary>
@@ -107703,7 +107733,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_relabelfrom_journal_files" lineno="1830">
+<interface name="systemd_relabelfrom_journal_files" lineno="1828">
 <summary>
 Relabel from systemd-journald file type.
 </summary>
@@ -107713,7 +107743,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_relabelto_journal_dirs" lineno="1848">
+<interface name="systemd_relabelto_journal_dirs" lineno="1846">
 <summary>
 Relabel to systemd-journald directory type.
 </summary>
@@ -107723,7 +107753,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_relabelto_journal_files" lineno="1867">
+<interface name="systemd_relabelto_journal_files" lineno="1865">
 <summary>
 Relabel to systemd-journald file type.
 </summary>
@@ -107733,7 +107763,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_networkd_units" lineno="1887">
+<interface name="systemd_read_networkd_units" lineno="1885">
 <summary>
 Allow domain to read systemd_networkd_t unit files
 </summary>
@@ -107743,7 +107773,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_manage_networkd_units" lineno="1907">
+<interface name="systemd_manage_networkd_units" lineno="1905">
 <summary>
 Allow domain to create/manage systemd_networkd_t unit files
 </summary>
@@ -107753,7 +107783,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_enabledisable_networkd" lineno="1927">
+<interface name="systemd_enabledisable_networkd" lineno="1925">
 <summary>
 Allow specified domain to enable systemd-networkd units
 </summary>
@@ -107763,7 +107793,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_startstop_networkd" lineno="1946">
+<interface name="systemd_startstop_networkd" lineno="1944">
 <summary>
 Allow specified domain to start systemd-networkd units
 </summary>
@@ -107773,7 +107803,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_dbus_chat_networkd" lineno="1966">
+<interface name="systemd_dbus_chat_networkd" lineno="1964">
 <summary>
 Send and receive messages from
 systemd networkd over dbus.
@@ -107784,7 +107814,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_status_networkd" lineno="1986">
+<interface name="systemd_status_networkd" lineno="1984">
 <summary>
 Allow specified domain to get status of systemd-networkd
 </summary>
@@ -107794,7 +107824,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_relabelfrom_networkd_tun_sockets" lineno="2005">
+<interface name="systemd_relabelfrom_networkd_tun_sockets" lineno="2003">
 <summary>
 Relabel systemd_networkd tun socket.
 </summary>
@@ -107804,7 +107834,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_rw_networkd_netlink_route_sockets" lineno="2023">
+<interface name="systemd_rw_networkd_netlink_route_sockets" lineno="2021">
 <summary>
 Read/Write from systemd_networkd netlink route socket.
 </summary>
@@ -107814,7 +107844,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_list_networkd_runtime" lineno="2041">
+<interface name="systemd_list_networkd_runtime" lineno="2039">
 <summary>
 Allow domain to list dirs under /run/systemd/netif
 </summary>
@@ -107824,7 +107854,7 @@ domain permitted the access
 </summary>
 </param>
 </interface>
-<interface name="systemd_watch_networkd_runtime_dirs" lineno="2060">
+<interface name="systemd_watch_networkd_runtime_dirs" lineno="2058">
 <summary>
 Watch directories under /run/systemd/netif
 </summary>
@@ -107834,7 +107864,7 @@ Domain permitted the access
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_networkd_runtime" lineno="2079">
+<interface name="systemd_read_networkd_runtime" lineno="2077">
 <summary>
 Allow domain to read files generated by systemd_networkd
 </summary>
@@ -107844,7 +107874,7 @@ domain allowed access
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_logind_state" lineno="2098">
+<interface name="systemd_read_logind_state" lineno="2096">
 <summary>
 Allow systemd_logind_t to read process state for cgroup file
 </summary>
@@ -107854,7 +107884,7 @@ Domain systemd_logind_t may access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_create_logind_linger_dir" lineno="2119">
+<interface name="systemd_create_logind_linger_dir" lineno="2117">
 <summary>
 Allow the specified domain to create
 the systemd-logind linger directory with
@@ -107866,7 +107896,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_start_user_manager_units" lineno="2139">
+<interface name="systemd_start_user_manager_units" lineno="2137">
 <summary>
 Allow the specified domain to start systemd
 user manager units (systemd --user).
@@ -107877,7 +107907,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_stop_user_manager_units" lineno="2159">
+<interface name="systemd_stop_user_manager_units" lineno="2157">
 <summary>
 Allow the specified domain to stop systemd
 user manager units (systemd --user).
@@ -107888,7 +107918,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_reload_user_manager_units" lineno="2179">
+<interface name="systemd_reload_user_manager_units" lineno="2177">
 <summary>
 Allow the specified domain to reload systemd
 user manager units (systemd --user).
@@ -107899,7 +107929,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_get_user_manager_units_status" lineno="2199">
+<interface name="systemd_get_user_manager_units_status" lineno="2197">
 <summary>
 Get the status of systemd user manager
 units (systemd --user).
@@ -107910,7 +107940,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_start_power_units" lineno="2218">
+<interface name="systemd_start_power_units" lineno="2216">
 <summary>
 Allow specified domain to start power units
 </summary>
@@ -107920,7 +107950,7 @@ Domain to not audit.
 </summary>
 </param>
 </interface>
-<interface name="systemd_status_power_units" lineno="2237">
+<interface name="systemd_status_power_units" lineno="2235">
 <summary>
 Get the system status information about power units
 </summary>
@@ -107930,7 +107960,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_stream_connect_socket_proxyd" lineno="2256">
+<interface name="systemd_stream_connect_socket_proxyd" lineno="2254">
 <summary>
 Allows connections to the systemd-socket-proxyd's socket.
 </summary>
@@ -107940,7 +107970,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_tmpfiles_conf_file" lineno="2275">
+<interface name="systemd_tmpfiles_conf_file" lineno="2273">
 <summary>
 Make the specified type usable for
 systemd tmpfiles config files.
@@ -107951,7 +107981,7 @@ Type to be used for systemd tmpfiles config files.
 </summary>
 </param>
 </interface>
-<interface name="systemd_tmpfiles_creator" lineno="2296">
+<interface name="systemd_tmpfiles_creator" lineno="2294">
 <summary>
 Allow the specified domain to create
 the tmpfiles config directory with
@@ -107963,7 +107993,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_tmpfiles_conf_filetrans" lineno="2332">
+<interface name="systemd_tmpfiles_conf_filetrans" lineno="2330">
 <summary>
 Create an object in the systemd tmpfiles config
 directory, with a private type
@@ -107990,7 +108020,7 @@ The name of the object being created.
 </summary>
 </param>
 </interface>
-<interface name="systemd_list_tmpfiles_conf" lineno="2351">
+<interface name="systemd_list_tmpfiles_conf" lineno="2349">
 <summary>
 Allow domain to list systemd tmpfiles config directory
 </summary>
@@ -108000,7 +108030,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_relabelto_tmpfiles_conf_dirs" lineno="2369">
+<interface name="systemd_relabelto_tmpfiles_conf_dirs" lineno="2367">
 <summary>
 Allow domain to relabel to systemd tmpfiles config directory
 </summary>
@@ -108010,7 +108040,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_relabelto_tmpfiles_conf_files" lineno="2387">
+<interface name="systemd_relabelto_tmpfiles_conf_files" lineno="2385">
 <summary>
 Allow domain to relabel to systemd tmpfiles config files
 </summary>
@@ -108020,7 +108050,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_tmpfilesd_managed" lineno="2405">
+<interface name="systemd_tmpfilesd_managed" lineno="2403">
 <summary>
 Allow systemd_tmpfiles_t to manage filesystem objects
 </summary>
@@ -108030,7 +108060,7 @@ Type of object to manage
 </summary>
 </param>
 </interface>
-<interface name="systemd_stream_connect_resolved" lineno="2432">
+<interface name="systemd_stream_connect_resolved" lineno="2430">
 <summary>
 Connect to systemd resolved over
 /run/systemd/resolve/io.systemd.Resolve .
@@ -108041,7 +108071,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_dbus_chat_resolved" lineno="2453">
+<interface name="systemd_dbus_chat_resolved" lineno="2451">
 <summary>
 Send and receive messages from
 systemd resolved over dbus.
@@ -108052,7 +108082,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_read_resolved_runtime" lineno="2473">
+<interface name="systemd_read_resolved_runtime" lineno="2471">
 <summary>
 Allow domain to read resolv.conf file generated by systemd_resolved
 </summary>
@@ -108062,7 +108092,7 @@ domain allowed access
 </summary>
 </param>
 </interface>
-<interface name="systemd_exec_systemctl" lineno="2495">
+<interface name="systemd_exec_systemctl" lineno="2493">
 <summary>
 Execute the systemctl program.
 </summary>
@@ -108072,7 +108102,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_getattr_updated_runtime" lineno="2526">
+<interface name="systemd_getattr_updated_runtime" lineno="2524">
 <summary>
 Allow domain to getattr on .updated file (generated by systemd-update-done
 </summary>
@@ -108082,7 +108112,7 @@ domain allowed access
 </summary>
 </param>
 </interface>
-<interface name="systemd_search_all_user_keys" lineno="2544">
+<interface name="systemd_search_all_user_keys" lineno="2542">
 <summary>
 Search keys for the all systemd --user domains.
 </summary>
@@ -108092,7 +108122,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_create_all_user_keys" lineno="2562">
+<interface name="systemd_create_all_user_keys" lineno="2560">
 <summary>
 Create keys for the all systemd --user domains.
 </summary>
@@ -108102,7 +108132,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_write_all_user_keys" lineno="2580">
+<interface name="systemd_write_all_user_keys" lineno="2578">
 <summary>
 Write keys for the all systemd --user domains.
 </summary>
@@ -108112,7 +108142,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_domtrans_sysusers" lineno="2599">
+<interface name="systemd_domtrans_sysusers" lineno="2597">
 <summary>
 Execute systemd-sysusers in the
 systemd sysusers domain.
@@ -108123,7 +108153,7 @@ Domain allowed access.
 </summary>
 </param>
 </interface>
-<interface name="systemd_run_sysusers" lineno="2624">
+<interface name="systemd_run_sysusers" lineno="2622">
 <summary>
 Run systemd-sysusers with a domain transition.
 </summary>
@@ -108139,7 +108169,7 @@ Role allowed access.
 </param>
 <rolecap/>
 </interface>
-<interface name="systemd_use_inherited_machined_ptys" lineno="2644">
+<interface name="systemd_use_inherited_machined_ptys" lineno="2642">
 <summary>
 receive and use a systemd_machined_devpts_t file handle
 </summary>
