@@ -1,0 +1,35 @@
+--- .github/workflows/tests.yml
++++ .github/workflows/tests.yml
+@@ -173,21 +194,25 @@ jobs:
+         echo "APPS_OFF=${{matrix.build-opts.apps-off}}" >> $GITHUB_ENV
+         echo "DIRECT_INITRC=${{matrix.build-opts.direct_initrc}}" >> $GITHUB_ENV
+         echo "WERROR=y" >> $GITHUB_ENV
++        echo "CFLAGS=\"-O2\"" >> $GITHUB_ENV
+ 
+     - name: Build toolchain
+       run: |
+-        # Download current SELinux userspace tools and libraries
+-        git clone https://github.com/SELinuxProject/selinux.git ${TEST_TOOLCHAIN_SRC} -b ${SELINUX_USERSPACE_VERSION}
+         # Drop secilc to break xmlto dependence (secilc isn't used here anyway)
+-        sed -i -e 's/secilc//' ${TEST_TOOLCHAIN_SRC}/Makefile
++        sed -i -e 's/secilc//' ${USERSPACE_SRC}/Makefile
+         # Drop sepolicy to break setools dependence (sepolicy isn't used anyway)
+-        sed -i -e 's/sepolicy//' ${TEST_TOOLCHAIN_SRC}/policycoreutils/Makefile
++        sed -i -e 's/sepolicy//' ${USERSPACE_SRC}/policycoreutils/Makefile
+         # Drop restorecond to break glib dependence
+-        sed -i -e 's/ restorecond//' ${TEST_TOOLCHAIN_SRC}/policycoreutils/Makefile
++        sed -i -e 's/ restorecond//' ${USERSPACE_SRC}/policycoreutils/Makefile
+         # Drop sandbox to break libcap-ng dependence
+-        sed -i -e 's/ sandbox//' ${TEST_TOOLCHAIN_SRC}/policycoreutils/Makefile
++        sed -i -e 's/ sandbox//' ${USERSPACE_SRC}/policycoreutils/Makefile
+         # Compile and install SELinux toolchain
+-        make OPT_SUBDIRS=semodule-utils DESTDIR=${TEST_TOOLCHAIN} -C ${TEST_TOOLCHAIN_SRC} install
++        make OPT_SUBDIRS=semodule-utils DESTDIR=${TEST_TOOLCHAIN} -C ${USERSPACE_SRC} install
++
++    - name: Build setools
++      run: |
++        cd ${SETOOLS_SRC}
++        pip install .
+ 
+     - name: Build refpolicy
+       run: |
