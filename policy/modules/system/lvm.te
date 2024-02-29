@@ -280,7 +280,6 @@ optional_policy(`
 
 optional_policy(`
 	xen_append_log(lvm_t)
-	xen_dontaudit_rw_unix_stream_sockets(lvm_t)
 ')
 
 ifdef(`distro_gentoo',`
