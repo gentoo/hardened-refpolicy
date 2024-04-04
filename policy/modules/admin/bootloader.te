@@ -259,8 +259,3 @@ optional_policy(`
 optional_policy(`
 	rpm_rw_pipes(bootloader_t)
 ')
-
-ifdef(`distro_gentoo',`
-	# Fix bug #537652 - grub2-mkconfig has search rights needed on current dir (usually user home dir)
-	userdom_search_user_home_dirs(bootloader_t)
-')
