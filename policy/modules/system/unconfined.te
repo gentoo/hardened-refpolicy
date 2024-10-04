@@ -8,6 +8,9 @@ policy_module(unconfined)
 # usage in this module of types created by these
 # calls is not correct, however we dont currently
 # have another method to add access to these types
+
+role unconfined_r;
+
 userdom_base_user_template(unconfined)
 userdom_manage_home_role(unconfined_r, unconfined_t)
 userdom_manage_tmp_role(unconfined_r, unconfined_t)
@@ -260,4 +263,15 @@ ifdef(`distro_gentoo',`
 	optional_policy(`
 		rtorrent_role(unconfined_r, unconfined_t)
 	')
+')
+
+########################################
+#
+# Unconfined seuser
+#
+
+ifdef(`direct_sysadm_daemon',`
+        gen_user(unconfined_u, unconfined, unconfined_r system_r, s0, s0 - mls_systemhigh, mcs_allcats)
+',`
+        gen_user(unconfined_u, unconfined, unconfined_r, s0, s0 - mls_systemhigh, mcs_allcats)
 ')
