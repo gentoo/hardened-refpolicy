@@ -1323,6 +1323,8 @@ fs_getattr_all_fs(systemd_networkd_t)
 fs_search_cgroup_dirs(systemd_networkd_t)
 fs_read_nsfs_files(systemd_networkd_t)
 fs_watch_memory_pressure(systemd_networkd_t)
+fs_list_tmpfs(systemd_networkd_t)
+fs_rw_cgroup_files(systemd_networkd_t)
 
 auth_use_nsswitch(systemd_networkd_t)
 
