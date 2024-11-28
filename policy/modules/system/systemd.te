@@ -460,6 +460,7 @@ fs_check_write_binfmt_misc_dirs(systemd_binfmt_t)
 
 fs_getattr_cgroup(systemd_binfmt_t)
 fs_search_cgroup_dirs(systemd_binfmt_t)
+fs_getattr_nsfs_files(systemd_binfmt_t)
 
 ######################################
 #
@@ -575,6 +576,7 @@ files_dontaudit_read_etc_runtime_files(systemd_generator_t)
 
 fs_list_efivars(systemd_generator_t)
 fs_getattr_all_fs(systemd_generator_t)
+fs_getattr_nsfs_files(systemd_generator_t)
 
 init_create_runtime_files(systemd_generator_t)
 init_manage_runtime_dirs(systemd_generator_t)
@@ -878,6 +880,7 @@ manage_files_pattern(systemd_journal_init_t, systemd_journal_t, systemd_journal_
 
 fs_getattr_all_fs(systemd_journal_init_t)
 fs_search_cgroup_dirs(systemd_journal_init_t)
+fs_getattr_nsfs_files(systemd_journal_init_t)
 
 kernel_getattr_proc(systemd_journal_init_t)
 kernel_read_kernel_sysctls(systemd_journal_init_t)
@@ -1023,6 +1026,7 @@ fs_relabelfrom_tmpfs_dirs(systemd_logind_t)
 fs_unmount_tmpfs(systemd_logind_t)
 fs_getattr_xattr_fs(systemd_logind_t)
 fs_watch_memory_pressure(systemd_logind_t)
+fs_getattr_nsfs_files(systemd_logind_t)
 
 logging_send_audit_msgs(systemd_logind_t)
 
@@ -1265,6 +1269,7 @@ init_read_state(systemd_machine_id_setup_t)
 
 fs_getattr_cgroup(systemd_modules_load_t)
 fs_getattr_xattr_fs(systemd_modules_load_t)
+fs_getattr_nsfs_files(systemd_modules_load_t)
 
 kernel_load_module(systemd_modules_load_t)
 kernel_read_kernel_sysctls(systemd_modules_load_t)
@@ -1826,6 +1831,7 @@ fs_getattr_all_fs(systemd_sessions_t)
 fs_search_cgroup_dirs(systemd_sessions_t)
 fs_search_tmpfs(systemd_sessions_t)
 fs_search_ramfs(systemd_sessions_t)
+fs_getattr_nsfs_files(systemd_sessions_t)
 
 kernel_read_kernel_sysctls(systemd_sessions_t)
 kernel_dontaudit_getattr_proc(systemd_sessions_t)
@@ -1860,6 +1866,7 @@ fs_getattr_all_fs(systemd_sysctl_t)
 fs_search_cgroup_dirs(systemd_sysctl_t)
 fs_search_ramfs(systemd_sysctl_t)
 fs_search_tmpfs(systemd_sysctl_t)
+fs_getattr_nsfs_files(systemd_sysctl_t)
 
 systemd_log_parse_environment(systemd_sysctl_t)
 
@@ -1974,6 +1981,7 @@ fs_list_tmpfs(systemd_tmpfiles_t)
 fs_relabelfrom_tmpfs_dirs(systemd_tmpfiles_t)
 fs_getattr_all_fs(systemd_tmpfiles_t)
 fs_search_cgroup_dirs(systemd_tmpfiles_t)
+fs_getattr_nsfs_files(systemd_tmpfiles_t)
 
 selinux_get_fs_mount(systemd_tmpfiles_t)
 selinux_use_status_page(systemd_tmpfiles_t)
@@ -2224,6 +2232,7 @@ fs_read_cgroup_files(systemd_user_runtime_dir_t)
 fs_getattr_cgroup(systemd_user_runtime_dir_t)
 fs_search_cgroup_dirs(systemd_user_runtime_dir_t)
 fs_getattr_xattr_fs(systemd_user_runtime_dir_t)
+fs_getattr_nsfs_files(systemd_user_runtime_dir_t)
 
 kernel_read_kernel_sysctls(systemd_user_runtime_dir_t)
 kernel_dontaudit_getattr_proc(systemd_user_runtime_dir_t)
