@@ -135,6 +135,13 @@ userdom_use_user_terminals(zfs_t)
 
 zfs_rw_zpool_cache(zfs_t)
 
+# for reading compatibility file in /usr/share/zfs/compatibility.d/
+files_read_usr_files(zfs_t)
+files_mmap_read_usr_files(zfs_t)
+
+# auto-snapshots through systemd-timer not working without this
+can_exec(zfs_t, zfs_exec_t)
+
 optional_policy(`
 	fstools_manage_runtime_files(zfs_t)
 	fstools_runtime_filetrans(zfs_t, dir, "blkid")
