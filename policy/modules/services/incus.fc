@@ -1,0 +1,13 @@
+/usr/bin/incus	--	gen_context(system_u:object_r:incusc_exec_t,s0)
+/usr/bin/incusd	--	gen_context(system_u:object_r:incusd_exec_t,s0)
+/usr/bin/incus-.* 		gen_context(system_u:object_r:container_engine_exec_t,s0)
+/usr/libexec/incus(/.*)? 	gen_context(system_u:object_r:container_engine_exec_t,s0)
+/usr/lib/systemd/system/incus.* gen_context(system_u:object_r:container_engine_unit_t,s0)
+/var/cache/incus(/.*)? 		gen_context(system_u:object_r:container_var_lib_t,s0)
+/var/lib/incus(/.*)? 		gen_context(system_u:object_r:container_var_lib_t,s0)
+/var/lib/lxc(/.*)? 		gen_context(system_u:object_r:container_var_lib_t,s0)
+/var/log/incus(/.*)? 		gen_context(system_u:object_r:container_log_t,s0)
+/run/incus(/.*)? 		gen_context(system_u:object_r:container_runtime_t,s0)
+
+# custom for init scripts:
+/etc/rc\.d/init\.d/incus 	gen_context(system_u:object_r:initrc_exec_t,s0)
