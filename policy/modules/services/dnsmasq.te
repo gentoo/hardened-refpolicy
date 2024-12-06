@@ -103,6 +103,7 @@ optional_policy(`
 ')
 
 optional_policy(`
+	incusd_stream_connect(dnsmasq_t)
 	container_manage_var_lib_files(dnsmasq_t)
 	container_manage_log_files(dnsmasq_t)
 	container_search_var_lib(dnsmasq_t)

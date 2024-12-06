@@ -235,3 +235,21 @@ interface(`incus_admin',`
 		rootlesskit_run($1, $2)
 	')
 ')
+
+########################################
+## <summary>
+##	Connect to the incus daemon
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <rolecap/>
+interface(`incusd_stream_connect',`
+        gen_require(`
+                type incusd_t;
+        ')
+
+	allow $1 incusd_t:unix_stream_socket { rw_socket_perms connectto };
+')
