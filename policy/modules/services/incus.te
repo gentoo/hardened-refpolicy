@@ -19,6 +19,8 @@ type incusc_exec_t;
 container_engine_executable_file(incusc_exec_t)
 application_domain(incusc_t, incusc_exec_t)
 
+dev_rw_vhost(incusd_t)
+
 # other engines like docker have this, what will it do?
 #container_engine_domain_template(incusd_user)
 
