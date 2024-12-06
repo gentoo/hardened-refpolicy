@@ -47,6 +47,32 @@ tunable_policy(`qemu_full_network',`
 	corenet_tcp_connect_all_ports(qemu_t)
 ')
 
+#tunable_policy(`qemu_managed_by_incus',`
+optional_policy(`
+	# make this a tunable?
+
+	files_create_generic_tmp_sockets(qemu_t)
+
+	kernel_read_kernel_sysctls(qemu_t)
+
+	# incus VMs wont start otherwise
+	allow qemu_t self:capability { dac_override dac_read_search setuid setgid };
+	allow qemu_t qemu_tmpfs_t:file map;
+
+	# this is due to incus lack of selinux support for VMs
+	kernel_rw_unlabeled_files(qemu_t)
+	kernel_rw_unlabeled_dirs(qemu_t)
+	kernel_manage_unlabeled_symlinks(qemu_t)
+
+	storage_raw_read_fixed_disk(qemu_t)
+	storage_raw_write_fixed_disk(qemu_t)
+
+	container_manage_engine_tmp_files(qemu_t)
+	container_manage_log_files(qemu_t)
+	container_manage_runtime_files(qemu_t)
+	container_manage_runtime_sock_files(qemu_t)
+')
+
 optional_policy(`
 	fs_manage_xenfs_files(qemu_t)
 
