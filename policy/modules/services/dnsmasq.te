@@ -103,6 +103,12 @@ optional_policy(`
 ')
 
 optional_policy(`
+	container_manage_var_lib_files(dnsmasq_t)
+	container_manage_log_files(dnsmasq_t)
+	container_search_var_lib(dnsmasq_t)
+')
+
+optional_policy(`
 	dbus_connect_system_bus(dnsmasq_t)
 	dbus_system_bus_client(dnsmasq_t)
 ')
