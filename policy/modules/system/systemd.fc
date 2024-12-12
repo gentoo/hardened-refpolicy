@@ -3,6 +3,8 @@
 /etc/systemd/dont-synthesize-nobody	--	gen_context(system_u:object_r:systemd_conf_t,s0)
 /etc/udev/hwdb\.bin			--	gen_context(system_u:object_r:systemd_hwdb_t,s0)
 
+/run/log/systemd(/.*)?				gen_context(system_u:object_r:systemd_log_t,s0)
+
 /usr/bin/journalctl				--	gen_context(system_u:object_r:systemd_journalctl_exec_t,s0)
 /usr/bin/systemd-analyze		--	gen_context(system_u:object_r:systemd_analyze_exec_t,s0)
 /usr/bin/systemd-cgtop			--	gen_context(system_u:object_r:systemd_cgtop_exec_t,s0)
