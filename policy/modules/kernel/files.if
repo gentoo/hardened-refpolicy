@@ -762,6 +762,24 @@ interface(`files_mmap_read_all_files',`
 
 ########################################
 ## <summary>
+##	Read and memory map usr_t files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`files_mmap_read_usr_files',`
+        gen_require(`
+                type usr_t;
+        ')
+
+	mmap_read_files_pattern($1, usr_t, usr_t)
+')
+
+########################################
+## <summary>
 ##	Allow shared library text relocations in all files.
 ## </summary>
 ## <desc>
@@ -7459,6 +7477,24 @@ interface(`files_create_all_runtime_sockets',`
 	')
 
 	allow $1 pidfile:sock_file create_sock_file_perms;
+')
+
+########################################
+## <summary>
+##     Create tmp_t sockets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`files_create_generic_tmp_sockets',`
+        gen_require(`
+                type tmp_t;
+        ')
+
+	allow $1 tmp_t:sock_file create_sock_file_perms;
 ')
 
 ########################################
