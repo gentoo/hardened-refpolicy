@@ -1023,7 +1023,7 @@ interface(`sysnet_use_portmap',`
 ########################################
 ## <summary>
 ##	Make the specified program domain
-##	accessable from the DHCP hooks/scripts.
+##	accessible from the DHCP hooks/scripts.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
