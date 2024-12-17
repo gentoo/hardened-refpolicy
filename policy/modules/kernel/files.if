@@ -454,6 +454,25 @@ interface(`files_dontaudit_getattr_all_tmpfs_files',`
 
 ########################################
 ## <summary>
+##	Do not audit attempt to unlin
+##	socket in tmp_t directory
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to not audit.
+##	</summary>
+## </param>
+#
+interface(`files_dontaudit_unlink_generic_tmp_sockets',`
+        gen_require(`
+                type tmp_t;
+        ')
+
+	dontaudit $1 tmp_t:sock_file unlink;
+')
+
+########################################
+## <summary>
 ##	Get the attributes of all directories.
 ## </summary>
 ## <param name="domain">
@@ -758,6 +777,24 @@ interface(`files_mmap_read_all_files',`
 		auth_read_shadow($1)
 		auth_map_shadow($1)
 	')
+')
+
+########################################
+## <summary>
+##	Read and memory map usr_t files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`files_mmap_read_usr_files',`
+        gen_require(`
+                type usr_t;
+        ')
+
+	mmap_read_files_pattern($1, usr_t, usr_t)
 ')
 
 ########################################
@@ -7459,6 +7496,24 @@ interface(`files_create_all_runtime_sockets',`
 	')
 
 	allow $1 pidfile:sock_file create_sock_file_perms;
+')
+
+########################################
+## <summary>
+##     Create tmp_t sockets.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`files_create_generic_tmp_sockets',`
+        gen_require(`
+                type tmp_t;
+        ')
+
+	allow $1 tmp_t:sock_file create_sock_file_perms;
 ')
 
 ########################################
