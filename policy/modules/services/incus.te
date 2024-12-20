@@ -118,9 +118,6 @@ kernel_mounton_kernel_sysctl_files(incusd_t)
 # read /etc/machine-id
 files_read_etc_runtime_files(incusd_t)
 
-# watch /dev/hugepages
-files_watch_all_dirs(incusd_t)
-
 # incus apparmor support wants to handle /sys/kernel/tracing
 fs_dontaudit_getattr_tracefs(incusd_t)
 fs_dontaudit_getattr_tracefs_dirs(incusd_t)
