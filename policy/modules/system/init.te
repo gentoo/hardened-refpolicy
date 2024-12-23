@@ -544,6 +544,7 @@ ifdef(`init_systemd',`
 	sysnet_read_config(init_t)
 
 	systemd_getattr_updated_runtime(init_t)
+	systemd_write_inherited_logind_sessions_pipes(init_t)
 	systemd_manage_passwd_runtime_symlinks(init_t)
 	systemd_use_passwd_agent(init_t)
 	systemd_list_tmpfiles_conf(init_t)
