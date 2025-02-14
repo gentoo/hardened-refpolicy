@@ -5298,6 +5298,24 @@ interface(`fs_setattr_ramfs_dirs',`
 
 ########################################
 ## <summary>
+##	Read directories on a ramfs.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`fs_read_ramfs_dirs',`
+	gen_require(`
+		type ramfs_t;
+	')
+
+	allow $1 ramfs_t:dir read;
+')
+
+########################################
+## <summary>
 ##	Create, read, write, and delete
 ##	directories on a ramfs.
 ## </summary>
@@ -6156,6 +6174,25 @@ interface(`fs_read_tmpfs_files',`
 	')
 
 	read_files_pattern($1, tmpfs_t, tmpfs_t)
+')
+
+########################################
+## <summary>
+##      Read and map generic tmpfs files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`fs_mmap_read_tmpfs_files',`
+        gen_require(`
+                type tmpfs_t;
+        ')
+
+	read_files_pattern($1, tmpfs_t, tmpfs_t)
+	allow $1 tmpfs_t:file map;
 ')
 
 ########################################
