@@ -4,11 +4,18 @@ policy_module(incus)
 # Declarations
 #
 
+# common attribute for all container domains
+# that may be used with incus
+attribute incus_container_domain;
+
 container_engine_domain_template(incusd)
 container_system_engine(incusd_t)
 type incusd_exec_t;
+
 container_engine_executable_file(incusd_exec_t)
+
 init_daemon_domain(incusd_t, incusd_exec_t)
+
 ifdef(`enable_mls',`
 	init_ranged_daemon_domain(incusd_t, incusd_exec_t, s0 - mls_systemhigh)
 ')
@@ -19,8 +26,6 @@ type incusc_exec_t;
 container_engine_executable_file(incusc_exec_t)
 application_domain(incusc_t, incusc_exec_t)
 
-dev_rw_vhost(incusd_t)
-
 # other engines like docker have this, what will it do?
 #container_engine_domain_template(incusd_user)
 
@@ -28,7 +33,6 @@ dev_rw_vhost(incusd_t)
 #container_user_engine(incusd_user_t)
 #application_domain(incusd_user_t, incusd_exec_t)
 
-# other engines like docker have this, what will it do?
 #mls_trusted_object(incusd_user_t)
 
 type incusc_user_t;
@@ -39,6 +43,11 @@ application_domain(incusc_user_t, incusc_exec_t)
 # incus daemon local policy
 
 allow incusd_t self:process getattr;
+allow incusd_t self:anon_inode { create map read write };
+allow incusd_t self:io_uring sqpoll;
+allow incusd_t self:netlink_kobject_uevent_socket create_socket_perms;
+allow incusd_t self:vsock_socket create_stream_socket_perms;
+dontaudit incusd_t self:capability sys_module;
 
 # incusd wants to load netdev-phys*
 kernel_request_load_module(incusd_t)
@@ -50,9 +59,11 @@ ifdef(`init_systemd',`
 	init_stop_generic_units(incusd_t)
 ')
 
+# losetup required for instance creation
+dev_rw_loop_control(incusd_t)
+dev_rw_vhost(incusd_t)
+
 # comm="incusd" path="/run/systemd/resolve/stub-resolv.conf"
-# allow incusd_t container_tmpfs_t:file { open read };
-# allow incusd_t container_tmpfs_t:dir search;
 container_read_tmpfs_files(incusd_t)
 
 fs_getattr_binfmt_misc_fs(incusd_t)
@@ -72,23 +83,13 @@ dpkg_dontaudit_manage_db(incusd_t)
 
 files_exec_usr_files(incusd_t)
 
-# no error, but this AVC:
-#  scontext="system_u:system_r:incusd_t:s0" #  tcontext="system_u:system_r:iptables_t:s0" #  class="process"
-#  perms="sigkill" #  comm="incusd" exe="" path=""
-# candidate for dontaudit instead?
-iptables_admin(incusd_t,system_r)
+iptables_domtrans(incusd_t)
+iptables_kill(incusd_t)
 
-# Error: Failed to run: /usr/bin/incusd forkstart first /var/lib/incus/containers /run/incus/first/lxc.conf: exit status 1
 mount_exec(incusd_t)
 
-# Error: Daemon still not running after 10s timeout...
 rsync_exec(incusd_t)
 
-# Error: Daemon still not running after 10s timeout...
-allow incusd_t self:anon_inode { create map read write };
-allow incusd_t self:io_uring sqpoll;
-allow incusd_t self:netlink_kobject_uevent_socket { read create setopt bind getattr write };
-allow incusd_t self:vsock_socket { connect read write accept bind create getattr getopt listen };
 
 # Error: Failed pre-start check for device "eth0": Network "incusbr0" unavailable on this server
 allow incusd_t self:rawip_socket { read write ioctl create getopt setopt };
@@ -172,7 +173,6 @@ fs_dontaudit_remount_debugfs(incusd_t)
 # incus idmap support: checks whether the kernel supports VFS v3 fscaps
 container_execute_engine_tmp_files(incusd_t)
 
-dontaudit incusd_t self:capability sys_module;
 
 # required for QEMU feature check, won't start otherwise
 files_rw_generic_tmp_sockets(incusd_t)
@@ -193,3 +193,17 @@ kernel_manage_unlabeled_files(incusd_t)
 kernel_manage_unlabeled_symlinks(incusd_t)
 kernel_mounton_unlabeled_dirs(incusd_t)
 files_search_default(incusd_t)
+
+# name="stub-resolv.conf"
+fs_read_tmpfs_files(incusd_t)
+
+########################################
+#
+# incus lxc container local policy
+
+allow incus_container_domain self:cap_userns { chown dac_override dac_read_search fowner fsetid kill net_admin net_bind_service net_raw setgid setpcap setuid sys_admin sys_boot sys_chroot sys_ptrace };
+
+container_manage_engine_tmpfs_dirs(incus_container_domain)
+container_manage_engine_tmpfs_files(incus_container_domain)
+container_manage_engine_tmpfs_lnk_files(incus_container_domain)
+
