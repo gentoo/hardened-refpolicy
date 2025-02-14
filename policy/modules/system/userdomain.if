@@ -109,7 +109,7 @@ template(`userdom_base_user_template',`
 	files_read_world_readable_symlinks($1_t)
 	files_read_world_readable_pipes($1_t)
 	files_read_world_readable_sockets($1_t)
-	# old broswer_domain():
+	# old browser_domain():
 	files_dontaudit_list_non_security($1_t)
 	files_dontaudit_getattr_non_security_files($1_t)
 	files_dontaudit_getattr_non_security_symlinks($1_t)
@@ -2146,6 +2146,68 @@ interface(`userdom_manage_user_home_content_dirs',`
 
 ########################################
 ## <summary>
+##	Create all user home content directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`userdom_create_all_user_home_dirs',`
+	gen_require(`
+		attribute user_home_content_type;
+		type user_home_dir_t;
+	')
+
+	userdom_search_user_home_dirs($1)
+	create_dirs_pattern($1, { user_home_dir_t user_home_content_type }, user_home_content_type)
+	setattr_dirs_pattern($1, { user_home_dir_t user_home_content_type }, user_home_content_type)
+')
+
+########################################
+## <summary>
+##	Create all user home content files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`userdom_create_all_user_home_files',`
+	gen_require(`
+		attribute user_home_content_type;
+		type user_home_dir_t;
+	')
+
+	userdom_search_user_home_dirs($1)
+	create_files_pattern($1, { user_home_dir_t user_home_content_type }, user_home_content_type)
+	setattr_files_pattern($1, { user_home_dir_t user_home_content_type }, user_home_content_type)
+')
+
+########################################
+## <summary>
+##	Write all user home content files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`userdom_write_all_user_home_files',`
+	gen_require(`
+		attribute user_home_content_type;
+		type user_home_dir_t;
+	')
+
+	userdom_search_user_home_dirs($1)
+	write_files_pattern($1, { user_home_dir_t user_home_content_type }, user_home_content_type)
+')
+
+########################################
+## <summary>
 ##	Delete all user home content directories.
 ## </summary>
 ## <param name="domain">
@@ -2566,7 +2628,7 @@ interface(`userdom_manage_user_home_content_files',`
 		type user_home_dir_t, user_home_t;
 	')
 
-	manage_files_pattern($1, user_home_t, user_home_t)
+	mmap_manage_files_pattern($1, user_home_t, user_home_t)
 	allow $1 user_home_dir_t:dir search_dir_perms;
 	files_search_home($1)
 ')
@@ -4488,7 +4550,7 @@ interface(`userdom_xsession_spec_domtrans_unpriv_users',`
 
 #######################################
 ## <summary>
-##	Read and write unpriviledged user SysV sempaphores.
+##	Read and write unprivileged user SysV semaphores.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -4506,7 +4568,7 @@ interface(`userdom_rw_unpriv_user_semaphores',`
 
 ########################################
 ## <summary>
-##	Manage unpriviledged user SysV sempaphores.
+##	Manage unprivileged user SysV semaphores.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -4524,7 +4586,7 @@ interface(`userdom_manage_unpriv_user_semaphores',`
 
 #######################################
 ## <summary>
-##	Read and write unpriviledged user SysV shared
+##	Read and write unprivileged user SysV shared
 ##	memory segments.
 ## </summary>
 ## <param name="domain">
@@ -4543,7 +4605,7 @@ interface(`userdom_rw_unpriv_user_shared_mem',`
 
 ########################################
 ## <summary>
-##	Manage unpriviledged user SysV shared
+##	Manage unprivileged user SysV shared
 ##	memory segments.
 ## </summary>
 ## <param name="domain">

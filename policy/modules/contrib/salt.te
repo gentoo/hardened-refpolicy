@@ -7,14 +7,14 @@ policy_module(salt, 1.0)
 
 ## <desc>
 ##	<p>
-##	Determine wether the salt master can read NFS files
+##	Determine whether the salt master can read NFS files
 ##	</p>
 ## </desc>
 gen_tunable(salt_master_read_nfs, false)
 
 ## <desc>
 ##	<p>
-##	Determine wether the salt minion can manage NFS files
+##	Determine whether the salt minion can manage NFS files
 ##	</p>
 ## </desc>
 gen_tunable(salt_minion_manage_nfs, false)

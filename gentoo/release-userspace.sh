@@ -90,7 +90,7 @@ updateLiveEbuilds() {
         sed -i "s@Copyright 1999-20.. Gentoo .*@Copyright 1999-$(date '+%Y') Gentoo Authors@" "${PN}-9999.ebuild"
 
         # Update PYTHON_COMPAT
-        sed -i '/^PYTHON_COMPAT/s/PYTHON_COMPAT=.*$/PYTHON_COMPAT=( python3_{8..10} )/' "${PN}-9999.ebuild" || die
+        sed -i '/^PYTHON_COMPAT/s/PYTHON_COMPAT=.*$/PYTHON_COMPAT=( python3_{10..12} )/' "${PN}-9999.ebuild" || die
 
         # no changes, skip
         [[ -z "$(git status --porcelain -- .)" ]] && continue

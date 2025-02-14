@@ -86,7 +86,7 @@ genfscon sysfs /devices/system/cpu/online gen_context(system_u:object_r:cpu_onli
 type crash_device_t;
 dev_node(crash_device_t)
 
-# for the IBM zSeries z90crypt hardware ssl accelorator
+# for the IBM zSeries z90crypt hardware ssl accelerator
 type crypt_device_t;
 dev_node(crypt_device_t)
 
@@ -101,6 +101,12 @@ dev_node(dax_device_t)
 #
 type dlm_control_device_t;
 dev_node(dlm_control_device_t)
+
+#
+# Type for /dev/dma_heap/* devices
+#
+type dma_device_t;
+dev_node(dma_device_t)
 
 type dri_device_t;
 dev_node(dri_device_t)
@@ -378,6 +384,12 @@ optional_policy(`
 #
 type usbmon_device_t;
 dev_node(usbmon_device_t)
+
+#
+# Type for /dev/userfaultfd
+#
+type userfaultfd_device_t;
+dev_node(userfaultfd_device_t)
 
 #
 # userio_device_t is the type for /dev/uio[0-9]+

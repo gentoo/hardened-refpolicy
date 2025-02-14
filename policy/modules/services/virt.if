@@ -29,6 +29,10 @@ template(`virt_domain_template',`
 	mcs_constrained($1_t)
 	role virt_domain_roles types $1_t;
 
+	optional_policy(`
+		qemu_entry_type($1_t)
+	')
+
 	type $1_devpts_t, virt_ptynode;
 	term_pty($1_devpts_t)
 
@@ -46,12 +50,6 @@ template(`virt_domain_template',`
 	files_type($1_image_t)
 	dev_node($1_image_t)
 	dev_associate_sysfs($1_image_t)
-
-	ifdef(`distro_gentoo',`
-		optional_policy(`
-			qemu_entry_type($1_t)
-		')
-	')
 
 	########################################
 	#
@@ -1085,7 +1083,7 @@ interface(`virt_lxc_sigchld',`
 
 ########################################
 ## <summary>
-##	Read and write virtd lxc unamed pipes.
+##	Read and write virtd lxc unnamed pipes.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -1197,7 +1195,7 @@ interface(`virt_virsh_sigchld',`
 
 ########################################
 ## <summary>
-##	Read and write virsh unamed pipes.
+##	Read and write virsh unnamed pipes.
 ## </summary>
 ## <param name="domain">
 ##	<summary>

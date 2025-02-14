@@ -653,7 +653,7 @@ interface(`corenet_sctp_sendrecv_generic_node',`
 		type node_t;
 	')
 
-	allow $1 node_t:node { sendto recvfrom };
+	allow $1 node_t:node { recvfrom sendto };
 ')
 
 ########################################
@@ -732,7 +732,7 @@ interface(`corenet_tcp_sendrecv_generic_node',`
 		type node_t;
 	')
 
-	allow $1 node_t:node { sendto recvfrom };
+	allow $1 node_t:node { recvfrom sendto };
 ')
 
 ########################################
@@ -1053,7 +1053,7 @@ interface(`corenet_tcp_sendrecv_all_nodes',`
 		attribute node_type;
 	')
 
-	allow $1 node_type:node { sendto recvfrom };
+	allow $1 node_type:node { recvfrom sendto };
 ')
 
 ########################################
@@ -1108,7 +1108,7 @@ interface(`corenet_sctp_sendrecv_all_nodes',`
 		attribute node_type;
 	')
 
-	allow $1 node_type:node { sendto recvfrom };
+	allow $1 node_type:node { recvfrom sendto };
 ')
 
 ########################################
@@ -1616,7 +1616,7 @@ interface(`corenet_tcp_bind_all_ports',`
 
 ########################################
 ## <summary>
-##	Do not audit attepts to bind TCP sockets to any ports.
+##	Do not audit attempts to bind TCP sockets to any ports.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -1671,7 +1671,7 @@ interface(`corenet_sctp_connect_generic_port',`
 
 ########################################
 ## <summary>
-##	Do not audit attepts to bind UDP sockets to any ports.
+##	Do not audit attempts to bind UDP sockets to any ports.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -2497,7 +2497,7 @@ interface(`corenet_tcp_recvfrom_netlabel',`
 
 ########################################
 ## <summary>
-##	Receive TCP packets from an unlabled connection.
+##	Receive TCP packets from an unlabeled connection.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -3348,7 +3348,7 @@ interface(`corenet_relabelto_all_server_packets',`
 
 ########################################
 ## <summary>
-##	Receive SCTP packets from an unlabled connection.
+##	Receive SCTP packets from an unlabeled connection.
 ## </summary>
 ## <param name="domain">
 ##	<summary>

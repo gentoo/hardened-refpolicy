@@ -323,7 +323,7 @@ interface(`systemd_write_notify_socket',`
 	')
 
 	init_list_runtime($1)
-	init_unix_stream_socket_sendto($1)
+	init_unix_dgram_socket_sendto($1)
 	allow $1 systemd_runtime_notify_t:sock_file write_sock_file_perms;
 ')
 
@@ -1136,6 +1136,26 @@ interface(`systemd_dbus_chat_homed',`
 	allow systemd_homed_t $1:dbus send_msg;
 ')
 
+########################################
+## <summary>
+##   Connect to /run/systemd/userdb/io.systemd.Home to
+##   query user account information.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`systemd_stream_connect_homed',`
+	gen_require(`
+		type systemd_homed_t;
+		type systemd_userdbd_runtime_t;
+	')
+
+	stream_connect_pattern($1, systemd_userdbd_runtime_t, systemd_userdbd_runtime_t, systemd_homed_t)
+')
+
 ######################################
 ## <summary>
 ##   Read and write systemd-homework semaphores.
@@ -1519,6 +1539,27 @@ interface(`systemd_signull_logind',`
 	')
 
 	allow $1 systemd_logind_t:process signull;
+')
+
+########################################
+## <summary>
+##   Send and receive messages from
+##   systemd locale over dbus.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`systemd_dbus_chat_locale',`
+	gen_require(`
+		type systemd_locale_t;
+		class dbus send_msg;
+	')
+
+	allow $1 systemd_locale_t:dbus send_msg;
+	allow systemd_locale_t $1:dbus send_msg;
 ')
 
 ########################################

@@ -56,7 +56,7 @@ dev_write_sound(googletalk_plugin_t)
 dev_write_video_dev(googletalk_plugin_t)
 
 # It runs find in /etc to find any release file for knowing the distribution it
-# runs on. Yes, great isnt it...
+# runs on. Yes, great isn't it...
 files_dontaudit_getattr_all_dirs(googletalk_plugin_t)
 files_read_etc_files(googletalk_plugin_t)
 files_read_usr_files(googletalk_plugin_t)
