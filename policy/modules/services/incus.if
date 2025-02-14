@@ -2,6 +2,27 @@
 
 ########################################
 ## <summary>
+##      Associated the specified domain to
+##      be a domain which is capable of
+##      operating as a container domain
+##      which can be controlled by incus.
+## </summary>
+## <param name="domain">
+##      <summary>
+##      Domain allowed access.
+##      </summary>
+## </param>
+#
+interface(`incus_container',`
+        gen_require(`
+                attribute incus_container_domain;
+        ')
+
+        typeattribute $1 incus_container_domain;
+')
+
+########################################
+## <summary>
 ##	Execute incus CLI in the incus CLI domain.
 ## </summary>
 ## <param name="domain">
