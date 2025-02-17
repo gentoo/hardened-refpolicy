@@ -604,44 +604,6 @@ interface(`fs_manage_autofs_symlinks',`
 
 ########################################
 ## <summary>
-##	Do not audit attempt to getattr a debugfs
-##	filesystem.
-## </summary>
-## <param name="domain">
-##	<summary>
-##	Domain to not audit.
-##	</summary>
-## </param>
-#
-interface(`fs_dontaudit_getattr_debugfs',`
-        gen_require(`
-                type debugfs_t;
-        ')
-
-        dontaudit $1 debugfs_t:filesystem getattr;
-')
-
-########################################
-## <summary>
-##	Do not audit attempt to remount a debugfs
-##	filesystem.
-## </summary>
-## <param name="domain">
-##	<summary>
-##	Domain to not audit.
-##	</summary>
-## </param>
-#
-interface(`fs_dontaudit_remount_debugfs',`
-        gen_require(`
-                type debugfs_t;
-        ')
-
-        dontaudit $1 debugfs_t:filesystem remount;
-')
-
-########################################
-## <summary>
 ##	Get the attributes of binfmt_misc filesystems.
 ## </summary>
 ## <param name="domain">
