@@ -110,7 +110,7 @@ kernel_read_vm_overcommit_sysctl(incusd_t)
 dev_create_sysfs_files(incusd_t)
 dev_write_sysfs(incusd_t)
 
-# incusd wont start without access to /dev/urandom
+# incusd won't start without access to /dev/urandom
 dev_read_urand(incusd_t)
 
 # mounton access to /proc/sys/kernel/random/boot_id
