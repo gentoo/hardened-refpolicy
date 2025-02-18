@@ -77,14 +77,14 @@ interface(`incus_run_cli',`
 ##	</summary>
 ## </param>
 #
-interface(`incus_domtrans_user_daemon',`
-	gen_require(`
-		type incusd_user_t, incusd_exec_t;
-	')
-
-	corecmd_search_bin($1)
-	domtrans_pattern($1, incusd_exec_t, incusd_user_t)
-')
+#interface(`incus_domtrans_user_daemon',`
+#	gen_require(`
+#		type incusd_user_t, incusd_exec_t;
+#	')
+#
+#	corecmd_search_bin($1)
+#	domtrans_pattern($1, incusd_exec_t, incusd_user_t)
+#')
 
 ########################################
 ## <summary>
@@ -103,15 +103,15 @@ interface(`incus_domtrans_user_daemon',`
 ##	</summary>
 ## </param>
 #
-interface(`incus_run_user_daemon',`
-	gen_require(`
-		type incusd_user_t;
-	')
-
-	role $2 types incusd_user_t;
-
-	incus_domtrans_user_daemon($1)
-')
+#interface(`incus_run_user_daemon',`
+#	gen_require(`
+#		type incusd_user_t;
+#	')
+#
+#	role $2 types incusd_user_t;
+#
+#	incus_domtrans_user_daemon($1)
+#')
 
 ########################################
 ## <summary>
@@ -188,30 +188,30 @@ interface(`incus_run_user_cli',`
 ## </param>
 ## <rolecap/>
 #
-template(`incus_user_role',`
-	gen_require(`
-		type incusd_user_t;
-		type incusd_exec_t;
-	')
-
-	role $4 types incusd_user_t;
-
-	incus_run_user_daemon($3, $4)
-	incus_run_user_cli($3, $4)
-
-	ifdef(`init_systemd',`
-		systemd_user_daemon_domain($1, incusd_exec_t, incusd_user_t)
-		systemd_user_send_systemd_notify($1, incusd_user_t)
-	')
-
-	optional_policy(`
-		dbus_spec_session_bus_client($1, incusd_user_t)
-	')
-
-	optional_policy(`
-		rootlesskit_role($1, $2, $3, $4)
-	')
-')
+#template(`incus_user_role',`
+#	gen_require(`
+#		type incusd_user_t;
+#		type incusd_exec_t;
+#	')
+#
+#	role $4 types incusd_user_t;
+#
+#	incus_run_user_daemon($3, $4)
+#	incus_run_user_cli($3, $4)
+#
+#	ifdef(`init_systemd',`
+#		systemd_user_daemon_domain($1, incusd_exec_t, incusd_user_t)
+#		systemd_user_send_systemd_notify($1, incusd_user_t)
+#	')
+#
+#	optional_policy(`
+#		dbus_spec_session_bus_client($1, incusd_user_t)
+#	')
+#
+#	optional_policy(`
+#		rootlesskit_role($1, $2, $3, $4)
+#	')
+#')
 
 ########################################
 ## <summary>
@@ -223,13 +223,13 @@ template(`incus_user_role',`
 ##	</summary>
 ## </param>
 #
-interface(`incus_signal_user_daemon',`
-	gen_require(`
-		type incusd_user_t;
-	')
-
-	allow $1 incusd_user_t:process signal;
-')
+#interface(`incus_signal_user_daemon',`
+#	gen_require(`
+#		type incusd_user_t;
+#	')
+#
+#	allow $1 incusd_user_t:process signal;
+#')
 
 ########################################
 ## <summary>
