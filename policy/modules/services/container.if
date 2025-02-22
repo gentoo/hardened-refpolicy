@@ -1168,6 +1168,25 @@ interface(`container_create_tmpfs_chr_files',`
 
 ########################################
 ## <summary>
+##	Allow the specified domain to delete
+##	container chr files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`container_delete_tmpfs_chr_files',`
+	gen_require(`
+		type container_tmpfs_t;
+	')
+
+	allow $1 container_tmpfs_t:chr_file delete_chr_file_perms;
+')
+
+########################################
+## <summary>
 ##	Mount on all container devices.
 ## </summary>
 ## <param name="domain">
