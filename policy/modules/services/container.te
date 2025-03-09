@@ -649,6 +649,8 @@ dev_write_sysfs(container_init_t)
 
 files_read_kernel_modules(container_init_t)
 
+fs_manage_cgroup_dirs(container_init_t)
+fs_manage_cgroup_files(container_init_t)
 fs_create_tracefs_dirs(container_init_t)
 fs_dontaudit_remount_configfs(container_init_t)
 fs_dontaudit_remount_efivarfs(container_init_t)
