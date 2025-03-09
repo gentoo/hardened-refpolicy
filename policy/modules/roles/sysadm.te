@@ -506,6 +506,10 @@ optional_policy(`
 ')
 
 optional_policy(`
+	incusd_stream_connect(sysadm_t)
+')
+
+optional_policy(`
 	inn_admin(sysadm_t, sysadm_r)
 ')
 
