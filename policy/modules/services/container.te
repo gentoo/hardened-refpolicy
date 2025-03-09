@@ -617,6 +617,7 @@ allow container_init_t self:process { getcap setrlimit };
 allow container_init_t self:bpf prog_load;
 allow container_init_t self:netlink_netfilter_socket create_socket_perms;
 allow container_init_t self:netlink_generic_socket create_socket_perms;
+allow container_init_t self:unix_dgram_socket lock;
 
 allow container_init_t container_devpts_t:chr_file { setattr watch watch_reads };
 allow container_init_t container_engine_tmpfs_t:dir { mounton write };
