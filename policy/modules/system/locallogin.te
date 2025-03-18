@@ -313,3 +313,7 @@ ifdef(`distro_gentoo',`
 		cgmanager_stream_connect(local_login_t)
 	')
 ')
+
+optional_policy(`
+	unconfined_domtrans(sulogin_t)
+')
