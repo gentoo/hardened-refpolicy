@@ -301,6 +301,10 @@ optional_policy(`
 	nscd_use(sulogin_t)
 ')
 
+optional_policy(`
+	unconfined_domtrans(sulogin_t)
+')
+
 ifdef(`distro_gentoo',`
 
 	# Enable polyinstantiation of directories
