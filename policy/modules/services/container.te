@@ -622,6 +622,7 @@ allow container_init_t self:unix_dgram_socket lock;
 allow container_init_t container_devpts_t:chr_file { setattr watch watch_reads };
 allow container_init_t container_engine_tmpfs_t:dir { mounton write };
 allow container_init_t container_file_t:dir mounton;
+allow container_init_t container_file_t:file mounton;
 allow container_init_t container_file_t:filesystem unmount;
 allow container_init_t container_tmpfs_t:dir mounton;
 allow container_init_t container_tmpfs_t:file mounton;
