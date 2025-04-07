@@ -4,3 +4,10 @@
 
 /var/lib/matrix-synapse(/.*)?		gen_context(system_u:object_r:matrixd_var_t,s0)
 /var/log/matrix-synapse(/.*)?		gen_context(system_u:object_r:matrixd_log_t,s0)
+
+ifdef(`distro_gentoo',`
+/etc/synapse(/.*)?			gen_context(system_u:object_r:matrixd_conf_t,s0)
+
+/var/lib/synapse(/.*)?			gen_context(system_u:object_r:matrixd_var_t,s0)
+/var/log/synapse(/.*)?			gen_context(system_u:object_r:matrixd_log_t,s0)
+')
