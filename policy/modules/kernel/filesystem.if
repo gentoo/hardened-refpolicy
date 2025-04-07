@@ -604,7 +604,7 @@ interface(`fs_manage_autofs_symlinks',`
 
 ########################################
 ## <summary>
-##	Atempt to mount binfmt_misc_fs.
+##	Attempt to mount binfmt_misc_fs.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
