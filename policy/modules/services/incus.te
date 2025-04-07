@@ -67,6 +67,7 @@ dev_rw_vhost(incusd_t)
 container_read_tmpfs_files(incusd_t)
 
 fs_getattr_binfmt_misc_fs(incusd_t)
+fs_mount_binfmt_misc_fs(incusd_t)
 fs_getattr_binfmt_misc_dirs(incusd_t)
 fs_dontaudit_manage_fusefs_files(incusd_t)
 
