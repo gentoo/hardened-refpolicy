@@ -630,6 +630,7 @@ allow container_init_t container_tmpfs_t:file mounton;
 container_create_tmpfs_chr_files(container_init_t)
 container_delete_tmpfs_chr_files(container_init_t)
 container_getattr_fs(container_init_t)
+container_lock_container_ptys(container_init_t)
 container_remount_fs(container_init_t)
 container_watch_tmpfs_dirs(container_init_t)
 container_watch_tmpfs_files(container_init_t)

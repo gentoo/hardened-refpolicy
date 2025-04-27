@@ -1205,6 +1205,24 @@ interface(`container_mounton_all_devices',`
 
 ########################################
 ## <summary>
+##	Lock container ptys.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`container_lock_container_ptys',`
+	gen_require(`
+		type container_devpts_t;
+	')
+
+	allow $1 container_devpts_t:chr_file lock;
+')
+
+########################################
+## <summary>
 ##	Set the attributes of container ptys.
 ## </summary>
 ## <param name="domain">
@@ -1236,7 +1254,7 @@ interface(`container_use_container_ptys',`
 		type container_devpts_t;
 	')
 
-	allow $1 container_devpts_t:chr_file rw_chr_file_perms;
+	allow $1 container_devpts_t:chr_file rw_term_perms;
 ')
 
 ########################################
