@@ -149,7 +149,7 @@ optional_policy(`
 
 optional_policy(`
 	# required when incusd is using zfs as storage backend
-	incusd_stream_connect(zfs_t)
+	incus_stream_connect_daemon(zfs_t)
 ')
 
 optional_policy(`

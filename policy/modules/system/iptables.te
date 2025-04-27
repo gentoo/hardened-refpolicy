@@ -129,7 +129,7 @@ optional_policy(`
 ')
 
 optional_policy(`
-	incusd_stream_connect(iptables_t)
+	incus_stream_connect_daemon(iptables_t)
 ')
 
 optional_policy(`

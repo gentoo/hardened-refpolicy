@@ -163,6 +163,24 @@ interface(`incus_run_user_cli',`
 
 ########################################
 ## <summary>
+##	Connect to the incus daemon
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <rolecap/>
+interface(`incus_stream_connect_daemon',`
+	gen_require(`
+		type incusd_t;
+	')
+
+	allow $1 incusd_t:unix_stream_socket { connectto rw_socket_perms };
+')
+
+########################################
+## <summary>
 ##	Role access for rootless incus.
 ## </summary>
 ## <param name="role_prefix">
@@ -255,22 +273,4 @@ interface(`incus_admin',`
 	optional_policy(`
 		rootlesskit_run($1, $2)
 	')
-')
-
-########################################
-## <summary>
-##	Connect to the incus daemon
-## </summary>
-## <param name="domain">
-##	<summary>
-##	Domain allowed access.
-##	</summary>
-## </param>
-## <rolecap/>
-interface(`incusd_stream_connect',`
-        gen_require(`
-                type incusd_t;
-        ')
-
-	allow $1 incusd_t:unix_stream_socket { connectto rw_socket_perms };
 ')

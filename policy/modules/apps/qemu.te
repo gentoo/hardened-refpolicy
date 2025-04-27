@@ -57,7 +57,7 @@ tunable_policy(`qemu_full_network',`
 
 optional_policy(`
 	tunable_policy(`qemu_incus_managed',`
-		incusd_stream_connect(qemu_t)
+		incus_stream_connect_daemon(qemu_t)
 
 		files_create_generic_tmp_sockets(qemu_t)
 
