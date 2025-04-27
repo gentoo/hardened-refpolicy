@@ -612,6 +612,8 @@ optional_policy(`
 #
 # Init container local policy
 #
+# Containers with additional permissions
+# required to run an init system
 
 allow container_init_t self:process { getcap setrlimit };
 allow container_init_t self:bpf prog_load;
