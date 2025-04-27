@@ -14,11 +14,11 @@
 ## </param>
 #
 interface(`incus_container',`
-        gen_require(`
-                attribute incus_container_domain;
-        ')
+	gen_require(`
+		attribute incus_container_domain;
+	')
 
-        typeattribute $1 incus_container_domain;
+	typeattribute $1 incus_container_domain;
 ')
 
 ########################################

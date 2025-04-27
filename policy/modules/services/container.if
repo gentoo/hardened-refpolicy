@@ -472,9 +472,9 @@ interface(`container_runtime_named_socket_activation',`
 ## </param>
 #
 interface(`container_manage_engine_tmpfs_dirs',`
-        gen_require(`
-                type container_engine_tmpfs_t;
-        ')
+	gen_require(`
+		type container_engine_tmpfs_t;
+	')
 
 	manage_dirs_pattern($1, container_engine_tmpfs_t, container_engine_tmpfs_t)
 ')
@@ -491,9 +491,9 @@ interface(`container_manage_engine_tmpfs_dirs',`
 ## </param>
 #
 interface(`container_manage_engine_tmpfs_files',`
-        gen_require(`
-                type container_engine_tmpfs_t;
-        ')
+	gen_require(`
+		type container_engine_tmpfs_t;
+	')
 
 	manage_files_pattern($1, container_engine_tmpfs_t, container_engine_tmpfs_t)
 ')
@@ -569,9 +569,9 @@ interface(`container_read_engine_tmp_files',`
 ## </param>
 #
 interface(`container_execute_engine_tmp_files',`
-        gen_require(`
-                type container_engine_tmp_t;
-        ')
+	gen_require(`
+		type container_engine_tmp_t;
+	')
 
         allow $1 container_engine_tmp_t:file execute;
 ')
@@ -1103,11 +1103,11 @@ interface(`container_read_device_blk_files',`
 ## </param>
 #
 interface(`container_watch_tmpfs_dirs',`
-        gen_require(`
-                type container_tmpfs_t;
-        ')
+	gen_require(`
+		type container_tmpfs_t;
+	')
 
-        allow $1 container_tmpfs_t:dir watch;
+	allow $1 container_tmpfs_t:dir watch;
 ')
 
 ########################################
@@ -1121,12 +1121,12 @@ interface(`container_watch_tmpfs_dirs',`
 ## </param>
 #
 interface(`container_read_tmpfs_files',`
-        gen_require(`
-                type container_tmpfs_t;
-        ')
+	gen_require(`
+		type container_tmpfs_t;
+	')
 
-        allow $1 container_tmpfs_t:dir search;
-        allow $1 container_tmpfs_t:file read_file_perms;
+	allow $1 container_tmpfs_t:dir search;
+	allow $1 container_tmpfs_t:file read_file_perms;
 ')
 
 ########################################
@@ -1140,11 +1140,11 @@ interface(`container_read_tmpfs_files',`
 ## </param>
 #
 interface(`container_watch_tmpfs_files',`
-        gen_require(`
-                type container_tmpfs_t;
-        ')
+	gen_require(`
+		type container_tmpfs_t;
+	')
 
-        allow $1 container_tmpfs_t:file watch;
+	allow $1 container_tmpfs_t:file watch;
 ')
 
 ########################################

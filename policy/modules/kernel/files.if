@@ -464,9 +464,9 @@ interface(`files_dontaudit_getattr_all_tmpfs_files',`
 ## </param>
 #
 interface(`files_dontaudit_unlink_generic_tmp_sockets',`
-        gen_require(`
-                type tmp_t;
-        ')
+	gen_require(`
+		type tmp_t;
+	')
 
 	dontaudit $1 tmp_t:sock_file unlink;
 ')
@@ -790,9 +790,9 @@ interface(`files_mmap_read_all_files',`
 ## </param>
 #
 interface(`files_mmap_read_usr_files',`
-        gen_require(`
-                type usr_t;
-        ')
+	gen_require(`
+		type usr_t;
+	')
 
 	mmap_read_files_pattern($1, usr_t, usr_t)
 ')
@@ -7509,9 +7509,9 @@ interface(`files_create_all_runtime_sockets',`
 ## </param>
 #
 interface(`files_create_generic_tmp_sockets',`
-        gen_require(`
-                type tmp_t;
-        ')
+	gen_require(`
+		type tmp_t;
+	')
 
 	allow $1 tmp_t:sock_file create_sock_file_perms;
 ')
@@ -7648,11 +7648,11 @@ interface(`files_runtime_filetrans_lock_dir',`
 ## </param>
 #
 interface(`files_create_all_spool_sockets',`
-        gen_require(`
-                attribute spoolfile;
-        ')
+	gen_require(`
+		attribute spoolfile;
+	')
 
-        allow $1 spoolfile:sock_file create_sock_file_perms;
+	allow $1 spoolfile:sock_file create_sock_file_perms;
 ')
 
 ########################################
@@ -7666,11 +7666,11 @@ interface(`files_create_all_spool_sockets',`
 ## </param>
 #
 interface(`files_delete_all_spool_sockets',`
-        gen_require(`
-                attribute spoolfile;
-        ')
+	gen_require(`
+	 attribute spoolfile;
+	')
 
-        allow $1 spoolfile:sock_file delete_sock_file_perms;
+	allow $1 spoolfile:sock_file delete_sock_file_perms;
 ')
 
 ########################################
