@@ -640,7 +640,7 @@ interface(`fs_getattr_binfmt_misc_fs',`
 
 ########################################
 ## <summary>
-##	Do not audit attempt to getattr a
+##	Do not audit attempts to getattr a
 ##	binfmt_misc_fs
 ##	filesystem.
 ## </summary>
@@ -2256,7 +2256,7 @@ interface(`fs_cifs_domtrans',`
 
 ########################################
 ## <summary>
-##	Do not audit attempt to getattr a configfs
+##	Do not audit attempts to getattr a configfs
 ##	filesystem.
 ## </summary>
 ## <param name="domain">
@@ -2313,7 +2313,7 @@ interface(`fs_manage_configfs_files',`
 
 ########################################
 ## <summary>
-##	Do not audit attempt to remount a configfs
+##	Do not audit attempts to remount a configfs
 ##	filesystem.
 ## </summary>
 ## <param name="domain">
@@ -2654,7 +2654,7 @@ interface(`fs_getattr_efivarfs',`
 
 ########################################
 ## <summary>
-##	Do not audit attempt to getattr a efivarfs
+##	Do not audit attempts to getattr an efivarfs
 ##	filesystem.
 ## </summary>
 ## <param name="domain">
@@ -2751,7 +2751,7 @@ interface(`fs_setattr_efivarfs_files',`
 ########################################
 ## <summary>
 ##	Create, read, write, and delete files
-##	on a efivarfs filesystem.
+##	on an efivarfs filesystem.
 ##      - contains Linux Kernel configuration options for UEFI systems
 ## </summary>
 ## <param name="domain">
@@ -4979,8 +4979,8 @@ interface(`fs_getattr_pstorefs',`
 
 ########################################
 ## <summary>
-##	Do not audit attempt to get
-##	attributes of dirs on pstorefs filesystem.
+##	Do not audit attempts to get
+##	attributes of dirs on a pstorefs filesystem.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -6494,7 +6494,7 @@ interface(`fs_getattr_tracefs',`
 
 ########################################
 ## <summary>
-##	Do not audit attempt to get the
+##	Do not audit attempts to get the
 ##	attributes of a trace filesystem.
 ## </summary>
 ## <param name="domain">
@@ -6531,7 +6531,7 @@ interface(`fs_getattr_tracefs_dirs',`
 
 ########################################
 ## <summary>
-##	Do not audit attempt to get
+##	Do not audit attempts to get
 ##	attributes of dirs on tracefs filesystem.
 ## </summary>
 ## <param name="domain">
@@ -6624,7 +6624,7 @@ interface(`fs_create_tracefs_dirs',`
 
 ########################################
 ## <summary>
-##	Do not audit attempt to remount a tracefs
+##	Do not audit attempts to remount a tracefs
 ##	filesystem.
 ## </summary>
 ## <param name="domain">

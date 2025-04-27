@@ -454,8 +454,8 @@ interface(`files_dontaudit_getattr_all_tmpfs_files',`
 
 ########################################
 ## <summary>
-##	Do not audit attempt to unlin
-##	socket in tmp_t directory
+##	Do not audit attempts to unlink
+##	sockets in tmp_t directories
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -7119,7 +7119,7 @@ interface(`files_exec_runtime',`
 
 ########################################
 ## <summary>
-##	Dontaudit attempt to execute generic programs in /var/run in the caller domain.
+##	Dontaudit attempts to execute generic programs in /var/run in the caller domain.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
