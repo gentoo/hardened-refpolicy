@@ -1125,8 +1125,7 @@ interface(`container_read_tmpfs_files',`
 		type container_tmpfs_t;
 	')
 
-	allow $1 container_tmpfs_t:dir search;
-	allow $1 container_tmpfs_t:file read_file_perms;
+	read_files_pattern($1, container_tmpfs_t, container_tmpfs_t)
 ')
 
 ########################################
