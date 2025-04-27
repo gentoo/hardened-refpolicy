@@ -93,7 +93,9 @@ dnsmasq_kill(incusd_t)
 dnsmasq_signull(incusd_t)
 
 kernel_setsched(incusd_t)
-dpkg_dontaudit_manage_db(incusd_t)
+optional_policy(`
+	dpkg_dontaudit_manage_db(incusd_t)
+')
 
 files_exec_usr_files(incusd_t)
 
