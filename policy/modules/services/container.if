@@ -501,7 +501,7 @@ interface(`container_manage_engine_tmpfs_files',`
 ########################################
 ## <summary>
 ##	Allow the specified domain to manage
-##	container engine tmpfs lnk_files.
+##	container engine tmpfs symlinks.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -509,10 +509,10 @@ interface(`container_manage_engine_tmpfs_files',`
 ##	</summary>
 ## </param>
 #
-interface(`container_manage_engine_tmpfs_lnk_files',`
-        gen_require(`
-                type container_engine_tmpfs_t;
-        ')
+interface(`container_manage_engine_tmpfs_symlinks',`
+	gen_require(`
+		type container_engine_tmpfs_t;
+	')
 
 	manage_lnk_files_pattern($1, container_engine_tmpfs_t, container_engine_tmpfs_t)
 ')
