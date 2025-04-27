@@ -2672,21 +2672,20 @@ interface(`fs_dontaudit_getattr_efivarfs',`
 
 ########################################
 ## <summary>
-##	Do not audit attempt to remount a efivarfs
-##	filesystem.
+##	Remount an efivarfs filesystem.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
-##	Domain to not audit.
+##	Domain allowd access.
 ##	</summary>
 ## </param>
 #
-interface(`fs_dontaudit_remount_efivarfs',`
-        gen_require(`
-                type efivarfs_t;
-        ')
+interface(`fs_remount_efivarfs',`
+	gen_require(`
+		type efivarfs_t;
+	')
 
-        dontaudit $1 efivarfs_t:filesystem remount;
+	allow $1 efivarfs_t:filesystem remount;
 ')
 
 ########################################
@@ -5112,7 +5111,25 @@ interface(`fs_delete_pstore_files',`
 
 ########################################
 ## <summary>
-##	Do not audit attempt to remount a pstorefs
+##	Remount a pstorefs filesystem.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain sllowd access.
+##	</summary>
+## </param>
+#
+interface(`fs_remount_pstorefs',`
+	gen_require(`
+		type pstore_t;
+	')
+
+	allow $1 pstore_t:filesystem remount;
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to remount a pstorefs
 ##	filesystem.
 ## </summary>
 ## <param name="domain">

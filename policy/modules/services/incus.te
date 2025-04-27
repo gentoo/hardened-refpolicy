@@ -1,4 +1,13 @@
 policy_module(incus)
+## <desc>
+##	<p>
+##	Allow incusd to mount filesystems inside
+##	lxc containers that might be required
+##	by some legacy init systems.
+##	</p>
+## </desc>
+gen_tunable(incus_lxc_legacy_mounts, false)
+
 ########################################
 #
 # Declarations
@@ -138,27 +147,20 @@ dev_watch_dev_fs(incusd_t)
 # Error: stat /proc/628420: permission denied
 qemu_read_state(incusd_t)
 
-# TODO: would it be good to have some "legacy_mounts" bool and let it allow to do
-# with this mounts what incus/lxc wants it to do?
-#
-# from doc/container-environment.md:
-#
-# If they are present on the host, the following paths will also automatically be mounted:
-#
-# - `/proc/sys/fs/binfmt_misc`
-# - `/sys/firmware/efi/efivars`
-# - `/sys/fs/fuse/connections`
-# - `/sys/fs/pstore`
-# - `/sys/kernel/debug`
-# - `/sys/kernel/security`
-#
-# The reason for passing all of those paths is that legacy init systems require
-# them to be mounted, or be mountable, inside the container.
-#
-# The majority of those paths will not be writable (or even readable) from
-# inside an unprivileged container. In privileged containers, they will be
-# blocked by the AppArmor policy.
-#
+tunable_policy(`incus_lxc_legacy_mounts',`
+	fs_getattr_binfmt_misc_fs(incusd_t)
+
+	kernel_getattr_debugfs(incusd_t)
+	kernel_search_debugfs(incusd_t)
+	kernel_remount_debugfs(incusd_t)
+
+	fs_getattr_efivarfs(incusd_t)
+	fs_remount_efivarfs(incusd_t)
+
+	fs_getattr_pstorefs(incusd_t)
+	fs_remount_pstorefs(incusd_t)
+')
+
 fs_dontaudit_getattr_binfmt_misc_fs(incusd_t)
 
 fs_dontaudit_getattr_efivarfs(incusd_t)
