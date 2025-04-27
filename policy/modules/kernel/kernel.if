@@ -748,24 +748,6 @@ interface(`kernel_mount_debugfs',`
 
 ########################################
 ## <summary>
-##	Remount a kernel debugging filesystem.
-## </summary>
-## <param name="domain">
-##	<summary>
-##	Domain allowed access.
-##	</summary>
-## </param>
-#
-interface(`kernel_remount_debugfs',`
-	gen_require(`
-		type debugfs_t;
-	')
-
-	allow $1 debugfs_t:filesystem remount;
-')
-
-########################################
-## <summary>
 ##	Unmount a kernel debugging filesystem.
 ## </summary>
 ## <param name="domain">
