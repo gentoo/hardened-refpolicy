@@ -58,6 +58,10 @@ allow incusd_t self:netlink_kobject_uevent_socket create_socket_perms;
 allow incusd_t self:vsock_socket create_stream_socket_perms;
 dontaudit incusd_t self:capability sys_module;
 
+# incusd needs to manage the host network
+allow incusd_t self:rawip_socket { create getopt ioctl read setopt write };
+allow incusd_t self:tun_socket { create relabelfrom relabelto };
+
 # incusd wants to load netdev-phys*
 kernel_request_load_module(incusd_t)
 
@@ -99,16 +103,6 @@ iptables_kill(incusd_t)
 mount_exec(incusd_t)
 
 rsync_exec(incusd_t)
-
-
-# Error: Failed pre-start check for device "eth0": Network "incusbr0" unavailable on this server
-allow incusd_t self:rawip_socket { create getopt ioctl read setopt write };
-
-# Error: Failed instance creation: Failed to start device "eth0":
-#  Failed to create the tap interfaces "tape73a8425":
-#  Failed to run: ip tuntap add name tape73a8425 mode tap multi_queue:
-#  exit status 1 (ioctl(TUNSETIFF): Permission denied)
-allow incusd_t self:tun_socket { create relabelfrom relabelto };
 
 # avc:  denied  { read } for  pid=20404 comm="qemu-system-x86"
 # name="overcommit_memory" dev="proc" ino=16557
