@@ -66,7 +66,7 @@ optional_policy(`
 
 		# incus VMs do not start otherwise
 		allow qemu_t self:capability { dac_override dac_read_search setuid setgid };
-		allow qemu_t qemu_tmpfs_t:file map;
+		allow qemu_t qemu_tmpfs_t:file mmap_read_file_perms;
 
 		# this is due to incus lack of selinux support for VMs
 		kernel_rw_unlabeled_files(qemu_t)
