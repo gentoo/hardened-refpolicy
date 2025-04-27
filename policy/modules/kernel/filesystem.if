@@ -2676,7 +2676,7 @@ interface(`fs_dontaudit_getattr_efivarfs',`
 ## </summary>
 ## <param name="domain">
 ##	<summary>
-##	Domain allowd access.
+##	Domain allowed access.
 ##	</summary>
 ## </param>
 #
