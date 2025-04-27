@@ -2690,6 +2690,25 @@ interface(`fs_remount_efivarfs',`
 
 ########################################
 ## <summary>
+##	Do not audit attempts to remount an efivarfs
+##	filesystem.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to not audit.
+##	</summary>
+## </param>
+#
+interface(`fs_dontaudit_remount_efivarfs',`
+	gen_require(`
+		type efivarfs_t;
+	')
+
+	dontaudit $1 efivarfs_t:filesystem remount;
+')
+
+########################################
+## <summary>
 ##	List dirs in efivarfs filesystem.
 ## </summary>
 ## <param name="domain">
