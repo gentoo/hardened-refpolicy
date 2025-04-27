@@ -2533,8 +2533,7 @@ interface(`fs_mmap_read_dos_files',`
 		type dosfs_t;
 	')
 
-	read_files_pattern($1, dosfs_t, dosfs_t)
-	allow $1 dosfs_t:file map;
+	mmap_read_files_pattern($1, dosfs_t, dosfs_t)
 ')
 
 ########################################
@@ -6171,8 +6170,7 @@ interface(`fs_mmap_read_tmpfs_files',`
 		type tmpfs_t;
 	')
 
-	read_files_pattern($1, tmpfs_t, tmpfs_t)
-	allow $1 tmpfs_t:file map;
+	mmap_read_files_pattern($1, tmpfs_t, tmpfs_t)
 ')
 
 ########################################
