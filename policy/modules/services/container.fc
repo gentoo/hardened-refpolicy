@@ -131,5 +131,6 @@ HOME_DIR/\.docker(/.*)?		gen_context(system_u:object_r:container_conf_home_t,s0)
 /var/lib/incus(/.*)? 		gen_context(system_u:object_r:container_var_lib_t,s0)
 /var/lib/incus/storage-pools/[^/]+/containers(/.*)?	gen_context(system_u:object_r:container_file_t,s0)
 /var/lib/incus/storage-pools/[^/]+/containers/.*/rootfs(/.*)? 	<<none>>
+/var/lib/incus/storage-pools/[^/]+/virtual-machines/.* 	<<none>>
 /var/lib/lxc(/.*)? 		gen_context(system_u:object_r:container_var_lib_t,s0)
 /var/log/incus(/.*)? 		gen_context(system_u:object_r:container_log_t,s0)
