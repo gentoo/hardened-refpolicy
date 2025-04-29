@@ -155,19 +155,19 @@ tunable_policy(`incus_lxc_legacy_mounts',`
 
 	fs_getattr_pstorefs(incusd_t)
 	fs_remount_pstorefs(incusd_t)
+',`
+	fs_dontaudit_getattr_binfmt_misc_fs(incusd_t)
+
+	fs_dontaudit_getattr_efivarfs(incusd_t)
+	fs_dontaudit_remount_efivarfs(incusd_t)
+
+	fs_dontaudit_getattr_pstorefs(incusd_t)
+	fs_dontaudit_remount_pstorefs(incusd_t)
+
+	kernel_dontaudit_getattr_debugfs(incusd_t)
+	kernel_dontaudit_search_debugfs(incusd_t)
+	kernel_dontaudit_remount_debugfs(incusd_t)
 ')
-
-fs_dontaudit_getattr_binfmt_misc_fs(incusd_t)
-
-fs_dontaudit_getattr_efivarfs(incusd_t)
-fs_dontaudit_remount_efivarfs(incusd_t)
-
-fs_dontaudit_getattr_pstorefs(incusd_t)
-fs_dontaudit_remount_pstorefs(incusd_t)
-
-kernel_dontaudit_getattr_debugfs(incusd_t)
-kernel_dontaudit_search_debugfs(incusd_t)
-kernel_dontaudit_remount_debugfs(incusd_t)
 
 # incus idmap support: checks whether the kernel supports VFS v3 fscaps
 container_execute_engine_tmp_files(incusd_t)
