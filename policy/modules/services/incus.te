@@ -204,4 +204,3 @@ allow incus_container_domain self:cap_userns { chown dac_override dac_read_searc
 container_manage_engine_tmpfs_dirs(incus_container_domain)
 container_manage_engine_tmpfs_files(incus_container_domain)
 container_manage_engine_tmpfs_symlinks(incus_container_domain)
-
