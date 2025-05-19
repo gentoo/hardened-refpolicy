@@ -197,7 +197,7 @@ fs_read_tmpfs_files(incusd_t)
 #
 # incus lxc container local policy
 
-allow incus_container_domain self:cap_userns { chown dac_override dac_read_search fowner fsetid kill net_admin net_bind_service net_raw setgid setpcap setuid sys_admin sys_boot sys_chroot sys_ptrace };
+allow incus_container_domain self:cap_userns { chown dac_read_search fowner fsetid kill net_admin net_bind_service net_raw setgid setpcap setuid sys_admin sys_boot sys_chroot sys_ptrace };
 
 container_manage_engine_tmpfs_dirs(incus_container_domain)
 container_manage_engine_tmpfs_files(incus_container_domain)
