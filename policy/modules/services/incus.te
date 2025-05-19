@@ -97,8 +97,6 @@ optional_policy(`
 	dpkg_dontaudit_manage_db(incusd_t)
 ')
 
-files_exec_usr_files(incusd_t)
-
 iptables_domtrans(incusd_t)
 iptables_kill(incusd_t)
 
