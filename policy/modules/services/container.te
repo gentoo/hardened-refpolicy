@@ -628,6 +628,7 @@ allow container_init_t container_file_t:file mounton;
 allow container_init_t container_file_t:filesystem unmount;
 allow container_init_t container_tmpfs_t:dir mounton;
 allow container_init_t container_tmpfs_t:file mounton;
+allow container_init_t container_tmpfs_t:sock_file watch;
 
 container_create_tmpfs_chr_files(container_init_t)
 container_delete_tmpfs_chr_files(container_init_t)
