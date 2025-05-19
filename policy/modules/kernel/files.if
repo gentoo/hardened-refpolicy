@@ -7666,7 +7666,7 @@ interface(`files_create_all_spool_sockets',`
 #
 interface(`files_delete_all_spool_sockets',`
 	gen_require(`
-	 attribute spoolfile;
+		attribute spoolfile;
 	')
 
 	allow $1 spoolfile:sock_file delete_sock_file_perms;

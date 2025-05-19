@@ -1271,7 +1271,7 @@ interface(`container_watch_container_ptys',`
 		type container_devpts_t;
 	')
 
-	allow $1 container_devpts_t:chr_file { watch };
+	allow $1 container_devpts_t:chr_file watch;
 ')
 
 ########################################
