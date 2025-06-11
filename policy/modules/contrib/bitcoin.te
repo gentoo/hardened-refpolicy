@@ -22,20 +22,23 @@ init_script_file(bitcoin_initrc_exec_t)
 
 type bitcoin_etc_t;
 files_config_file(bitcoin_etc_t)
-init_script_readable_type(bitcoin_etc_t)
 
 type bitcoin_log_t;
 logging_log_file(bitcoin_log_t)
 
 type bitcoin_var_lib_t;
 files_type(bitcoin_var_lib_t)
-init_script_readable_type(bitcoin_var_lib_t)
 
 type bitcoin_runtime_t alias bitcoin_var_run_t;
 files_runtime_file(bitcoin_runtime_t)
 
 type bitcoin_tmp_t;
 files_tmp_file(bitcoin_tmp_t)
+
+ifdef(`distro_gentoo',`
+	init_script_readable_type(bitcoin_etc_t)
+	init_script_readable_type(bitcoin_var_lib_t)
+')
 
 #########################################
 #
