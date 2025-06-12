@@ -991,6 +991,8 @@ ifdef(`distro_gentoo',`
 	files_manage_generic_locks(initrc_t)
 	files_manage_var_symlinks(initrc_t)
 	files_runtime_filetrans(initrc_t, initrc_state_t, dir, "openrc")
+	# TODO: Give seenrng its own domain. It's provided by openrc, but other things can use it, and regardless it'd be good to confine it, even in early boot.
+	files_var_lib_filetrans(initrc_t, init_random_seed_t, dir, "seedrng")
 
 	# openrc uses tmpfs for its state data
 	fs_tmpfs_filetrans(initrc_t, initrc_state_t, { dir file fifo_file lnk_file })
