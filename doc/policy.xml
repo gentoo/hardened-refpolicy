@@ -9300,31 +9300,6 @@ Grant the dropbox domains manage rights on all user content
 </desc>
 </tunable>
 </module>
-<module name="flash" filename="policy/modules/contrib/flash.if">
-<summary>
-Flash player
-</summary>
-<interface name="flash_manage_home" lineno="15">
-<summary>
-Manage the Flash player home files
-</summary>
-<param name="domain">
-<summary>
-Domain allowed access
-</summary>
-</param>
-</interface>
-<interface name="flash_relabel_home" lineno="33">
-<summary>
-Relabel the flash home resources
-</summary>
-<param name="domain">
-<summary>
-Domain allowed access
-</summary>
-</param>
-</interface>
-</module>
 <module name="googletalk" filename="policy/modules/contrib/googletalk.if">
 <summary>
 Google Talk

@@ -450,14 +450,6 @@ interface(`userdom_manage_home_role',`
 		fs_dontaudit_manage_cifs_files($2)
 	')
 
-	ifdef(`distro_gentoo',`
-
-		optional_policy(`
-			flash_manage_home($2)
-			flash_relabel_home($2)
-		')
-	')
-
 	optional_policy(`
 		xdg_data_filetrans($2, user_bin_t, dir, "bin")
 	')
