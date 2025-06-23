@@ -9197,24 +9197,6 @@ Grant the dropbox domains manage rights on all user content
 </desc>
 </tunable>
 </module>
-<module name="gorg" filename="policy/modules/contrib/gorg.if">
-<summary>Policy for gorg</summary>
-<interface name="gorg_role" lineno="18">
-<summary>
-Role access for gorg
-</summary>
-<param name="role">
-<summary>
-Role allowed access
-</summary>
-</param>
-<param name="domain">
-<summary>
-User domain for the role
-</summary>
-</param>
-</interface>
-</module>
 <module name="kdeconnect" filename="policy/modules/contrib/kdeconnect.if">
 <summary>policy for kdeconnect</summary>
 <interface name="kdeconnect_domtrans" lineno="13">
