@@ -9967,33 +9967,6 @@ Determine whether the salt minion can manage NFS files
 </desc>
 </tunable>
 </module>
-<module name="skype" filename="policy/modules/contrib/skype.if">
-<summary>Skype softphone.</summary>
-<interface name="skype_role" lineno="18">
-<summary>
-Role access for the skype module.
-</summary>
-<param name="role">
-<summary>
-The role associated with the user domain.
-</summary>
-</param>
-<param name="user_domain">
-<summary>
-The type of the user domain.
-</summary>
-</param>
-</interface>
-<tunable name="skype_manage_user_content" dftval="false">
-<desc>
-<p>
-Be able to manage user files (needed to support sending and receiving files).
-Without this boolean set, only files marked as skype_home_t can be used for
-sending and receiving.
-</p>
-</desc>
-</tunable>
-</module>
 <module name="subsonic" filename="policy/modules/contrib/subsonic.if">
 <summary>Subsonic Music Streaming Server</summary>
 </module>
