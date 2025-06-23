@@ -780,14 +780,6 @@ gen_tunable(mozilla_plugin_connect_all_unreserved, false)
 		corenet_dontaudit_tcp_connect_all_unreserved_ports(mozilla_plugin_t)	
 	')
 
-	optional_policy(`
-		googletalk_domtrans_plugin(mozilla_plugin_t)
-		googletalk_generic_xdg_config_home_filetrans_plugin_xdg_config(mozilla_plugin_t, dir, "google-googletalkplugin")
-		googletalk_manage_plugin_xdg_config(mozilla_plugin_t)
-		googletalk_use_plugin_fds(mozilla_plugin_t)
-		googletalk_rw_inherited_plugin_unix_stream_sockets(mozilla_plugin_t)
-	')
-
 	ifdef(`use_alsa',`
 		optional_policy(`
 			alsa_domain(mozilla_plugin_t, mozilla_plugin_tmpfs_t)

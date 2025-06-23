@@ -223,10 +223,6 @@ ifdef(`distro_gentoo',`
 	')
 
 	optional_policy(`
-		googletalk_run_plugin(user_t, user_r)
-	')
-
-	optional_policy(`
 		gorg_role(user_r, user_t)
 	')
 
