@@ -223,10 +223,6 @@ ifdef(`distro_gentoo',`
 	')
 
 	optional_policy(`
-		gorg_role(user_r, user_t)
-	')
-
-	optional_policy(`
 		kdeconnect_role(user_r, user_t)
 		kdeconnect_dbus_chat(user_t)
 	')
