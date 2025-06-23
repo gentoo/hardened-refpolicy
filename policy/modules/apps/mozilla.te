@@ -781,10 +781,6 @@ gen_tunable(mozilla_plugin_connect_all_unreserved, false)
 	')
 
 	optional_policy(`
-		flash_manage_home(mozilla_plugin_t)
-	')
-
-	optional_policy(`
 		googletalk_domtrans_plugin(mozilla_plugin_t)
 		googletalk_generic_xdg_config_home_filetrans_plugin_xdg_config(mozilla_plugin_t, dir, "google-googletalkplugin")
 		googletalk_manage_plugin_xdg_config(mozilla_plugin_t)
