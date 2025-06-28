@@ -84,8 +84,6 @@ selinux_get_enforce_mode(tmpfiles_t)
 
 auth_use_nsswitch(tmpfiles_t)
 
-init_exec_rc(tmpfiles_t)
-
 miscfiles_read_localization(tmpfiles_t)
 
 seutil_exec_setfiles(tmpfiles_t)
@@ -99,6 +97,7 @@ ifdef(`distro_gentoo',`
 	dev_create_generic_chr_files(tmpfiles_t)
 	dev_create_generic_blk_files(tmpfiles_t)
 
+	init_exec_rc(tmpfiles_t)
 	init_relabelto_script_state(tmpfiles_t)
 ')
 
