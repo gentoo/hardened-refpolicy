@@ -1,1 +1,1 @@
-/etc/cron\.daily/makewhatis	--	gen_context(system_u:object_r:makewhatis_exec_t,s0)
+/etc/cron\.daily/mandoc	--	gen_context(system_u:object_r:makewhatis_exec_t,s0)
