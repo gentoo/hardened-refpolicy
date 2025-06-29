@@ -3627,6 +3627,25 @@ interface(`fs_remount_hugetlbfs',`
 
 ########################################
 ## <summary>
+##	Do not audit attempts to get the
+##	attributes of directories on a hugetlbfs.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`fs_dontaudit_getattr_hugetlbfs_dirs',`
+	gen_require(`
+		type hugetlbfs_t;
+	')
+
+	dontaudit $1 hugetlbfs_t:dir getattr_dir_perms;
+')
+
+########################################
+## <summary>
 ##	List hugetlbfs.
 ## </summary>
 ## <param name="domain">

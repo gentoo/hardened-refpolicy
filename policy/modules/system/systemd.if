@@ -3026,6 +3026,26 @@ interface(`systemd_run_sysusers', `
 
 ########################################
 ## <summary>
+##  Execute systemd-sysusers in the
+##  caller domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`systemd_exec_sysusers', `
+	gen_require(`
+		type systemd_sysusers_exec_t;
+	')
+
+	corecmd_search_bin($1)
+	can_exec($1, systemd_sysusers_exec_t)
+')
+
+########################################
+## <summary>
 ##  receive and use a systemd_machined_devpts_t file handle
 ## </summary>
 ## <param name="domain">
