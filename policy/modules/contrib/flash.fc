@@ -1,2 +1,0 @@
-HOME_DIR/\.adobe/Flash_Player(/.*)?	gen_context(system_u:object_r:flash_home_t,s0)
-HOME_DIR/\.macromedia(/.*)?		gen_context(system_u:object_r:flash_home_t,s0)

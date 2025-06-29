@@ -1358,10 +1358,6 @@ ifdef(`distro_gentoo',`
 	')
 
 	optional_policy(`
-		gorg_role(sysadm_r, sysadm_t)
-	')
-
-	optional_policy(`
 		logsentry_admin(sysadm_t, sysadm_r)
 	')
 

@@ -236,14 +236,6 @@ ifdef(`distro_gentoo',`
 	')
 
 	optional_policy(`
-		googletalk_run_plugin(staff_t, staff_r)
-	')
-
-	optional_policy(`
-		gorg_role(staff_r, staff_t)
-	')
-
-	optional_policy(`
 		hadoop_role(staff, staff_t, staff_application_exec_domain, staff_r)
 	')
 
@@ -266,10 +258,6 @@ ifdef(`distro_gentoo',`
 
 	optional_policy(`
 		rtorrent_role(staff_r, staff_t)
-	')
-
-	optional_policy(`
-		skype_role(staff_r, staff_t)
 	')
 
 	optional_policy(`
