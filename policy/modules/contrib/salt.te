@@ -308,7 +308,6 @@ fstools_domtrans(salt_minion_t)
 getty_use_fds(salt_minion_t)
 
 init_exec(salt_minion_t)
-init_exec_rc(salt_minion_t)
 
 miscfiles_read_localization(salt_minion_t)
 
@@ -319,6 +318,10 @@ sysnet_read_config(salt_minion_t)
 
 userdom_dontaudit_list_user_home_dirs(salt_minion_t)
 userdom_use_user_terminals(salt_minion_t)
+
+ifdef(`distro_gentoo',`
+	init_exec_rc(salt_minion_t)
+')
 
 optional_policy(`
 	auth_read_shadow(salt_minion_t)
