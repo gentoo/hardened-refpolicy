@@ -40,6 +40,7 @@ files_tmp_filetrans(installkernel_t, installkernel_tmp_t, { dir file })
 # update /var/lib/misc/installkernel
 files_search_var_lib(installkernel_t)
 allow installkernel_t installkernel_var_lib_t:file manage_file_perms;
+files_var_lib_filetrans(installkernel_t, installkernel_var_lib_t, file)
 
 allow installkernel_t installkernel_log_t:file { create_file_perms append_file_perms };
 logging_log_filetrans(installkernel_t, installkernel_log_t, file)
