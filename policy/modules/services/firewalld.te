@@ -38,9 +38,7 @@ allow firewalld_t self:fifo_file rw_fifo_file_perms;
 allow firewalld_t self:unix_stream_socket { accept listen };
 allow firewalld_t self:netlink_netfilter_socket create_socket_perms;
 allow firewalld_t self:udp_socket create_socket_perms;
-allow firewalld_t self:netlink_netfilter_socket create_socket_perms;
 
-allow firewalld_t firewalld_etc_rw_t:dir watch;
 manage_dirs_pattern(firewalld_t, firewalld_etc_rw_t, firewalld_etc_rw_t)
 manage_files_pattern(firewalld_t, firewalld_etc_rw_t, firewalld_etc_rw_t)
 relabel_files_pattern(firewalld_t, firewalld_etc_rw_t, firewalld_etc_rw_t)
@@ -62,7 +60,7 @@ files_runtime_filetrans(firewalld_t, firewalld_runtime_t, { dir file })
 
 manage_dirs_pattern(firewalld_t, firewalld_tmpfs_t, firewalld_tmpfs_t)
 manage_files_pattern(firewalld_t, firewalld_tmpfs_t, firewalld_tmpfs_t)
-mmap_read_files_pattern(firewalld_t, firewalld_tmpfs_t, firewalld_tmpfs_t)
+mmap_exec_files_pattern(firewalld_t, firewalld_tmpfs_t, firewalld_tmpfs_t)
 fs_tmpfs_filetrans(firewalld_t, firewalld_tmpfs_t, { dir file })
 
 kernel_read_network_state(firewalld_t)

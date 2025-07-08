@@ -37,6 +37,13 @@ gen_tunable(init_daemons_use_tty, false)
 ## </desc>
 gen_tunable(init_mounton_non_security, false)
 
+## <desc>
+## <p>
+## Enable systemd to mount on the SELinux config directories.
+## </p>
+## </desc>
+gen_tunable(init_mounton_selinux_config, false)
+
 attribute init_domain_type;
 attribute init_mountpoint_type;
 attribute init_path_unit_loc_type;
@@ -183,6 +190,7 @@ allow init_t init_linkable_keyring_type:key link;
 # For /var/run/shutdown.pid.
 allow init_t init_runtime_t:file manage_file_perms;
 files_runtime_filetrans(init_t, init_runtime_t, file)
+files_runtime_filetrans_machine_id(init_t)
 
 # for /run/initctl
 allow init_t init_runtime_t:fifo_file manage_fifo_file_perms;
@@ -208,6 +216,7 @@ corecmd_exec_chroot(init_t)
 corecmd_exec_bin(init_t)
 
 dev_read_sysfs(init_t)
+dev_read_cpuid(init_t)
 # Early devtmpfs
 dev_rw_generic_chr_files(init_t)
 
@@ -535,6 +544,7 @@ ifdef(`init_systemd',`
 	sysnet_read_config(init_t)
 
 	systemd_getattr_updated_runtime(init_t)
+	systemd_write_inherited_logind_sessions_pipes(init_t)
 	systemd_manage_passwd_runtime_symlinks(init_t)
 	systemd_use_passwd_agent(init_t)
 	systemd_list_tmpfiles_conf(init_t)
@@ -586,6 +596,10 @@ ifdef(`init_systemd',`
 		files_mounton_non_security(init_t)
 	')
 
+	tunable_policy(`init_mounton_selinux_config',`
+		seutil_mounton_config_dirs(init_t)
+	')
+
 	optional_policy(`
 		# to run systemd-boot-update
 		bootloader_domtrans(init_t)
@@ -621,6 +635,10 @@ ifdef(`init_systemd',`
 
 	optional_policy(`
 		locallogin_use_pidfds(init_t)
+	')
+
+	optional_policy(`
+		podman_use_pidfds(init_t)
 	')
 
 	optional_policy(`

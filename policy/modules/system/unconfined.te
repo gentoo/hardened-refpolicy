@@ -107,11 +107,19 @@ optional_policy(`
 ')
 
 optional_policy(`
+	firewalld_dbus_chat(unconfined_t)
+')
+
+optional_policy(`
 	firstboot_run(unconfined_t, unconfined_r)
 ')
 
 optional_policy(`
 	ftp_run_ftpdctl(unconfined_t, unconfined_r)
+')
+
+optional_policy(`
+	fwupd_run(unconfined_t, unconfined_r)
 ')
 
 optional_policy(`
@@ -152,6 +160,10 @@ optional_policy(`
 
 optional_policy(`
 	mta_role(unconfined, unconfined_t, unconfined_application_exec_domain, unconfined_r)
+')
+
+optional_policy(`
+	needrestart_run(unconfined_t, unconfined_r)
 ')
 
 optional_policy(`

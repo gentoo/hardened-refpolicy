@@ -225,6 +225,10 @@ ifneq ($(OUTPUT_POLICY),)
 	override CHECKPOLICY += -c $(OUTPUT_POLICY)
 endif
 
+ifneq ($(OUTPUT_MODULE),)
+	override CHECKMODULE += -c $(OUTPUT_MODULE)
+endif
+
 ifneq "$(CUSTOM_BUILDOPT)" ""
 	M4PARAM += $(foreach opt,$(CUSTOM_BUILDOPT),-D $(opt)=true)
 endif
@@ -364,8 +368,8 @@ ifneq "$(filter xserver.te,$(base_mods) $(mod_mods))" ""
 endif
 
 # filesystems to be used in labeling targets
-filesystems = $(shell mount | grep -v "context=" | $(GREP) -v '\((|.*,)bind(,.*|)\)' | $(AWK) '/(ext[234]|btrfs| xfs| jfs).*rw/{print $$3}';)
-fs_names := "btrfs ext2 ext3 ext4 xfs jfs"
+filesystems = $(shell mount | grep -v "context=" | $(GREP) -v '\((|.*,)bind(,.*|)\)' | $(AWK) '/(ext[234]|bcachefs|btrfs| xfs| jfs).*rw/{print $$3}';)
+fs_names := "bcachefs btrfs ext2 ext3 ext4 xfs jfs"
 
 ########################################
 #

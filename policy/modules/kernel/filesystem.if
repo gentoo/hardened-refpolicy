@@ -637,7 +637,24 @@ interface(`fs_getattr_binfmt_misc_dirs',`
 	')
 
 	allow $1 binfmt_misc_fs_t:dir getattr;
+')
 
+########################################
+## <summary>
+##	Read/write directories on binfmt_misc filesystems.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`fs_rw_binfmt_misc_dirs',`
+	gen_require(`
+		type binfmt_misc_fs_t;
+	')
+
+	allow $1 binfmt_misc_fs_t:dir rw_dir_perms;
 ')
 
 ########################################
@@ -698,6 +715,24 @@ interface(`fs_register_binary_executable_type',`
 
 ########################################
 ## <summary>
+##	Get the attributes of a bpf filesystem.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`fs_getattr_bpf',`
+	gen_require(`
+		type bpf_t;
+	')
+
+	allow $1 bpf_t:filesystem getattr;
+')
+
+########################################
+## <summary>
 ##	Mount a bpf filesystem.
 ## </summary>
 ## <param name="domain">
@@ -712,6 +747,24 @@ interface(`fs_mount_bpf',`
 	')
 
 	allow $1 bpf_t:filesystem mount;
+')
+
+########################################
+## <summary>
+##	Remount a bpf filesystem.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`fs_remount_bpf',`
+	gen_require(`
+		type bpf_t;
+	')
+
+	allow $1 bpf_t:filesystem remount;
 ')
 
 ########################################
@@ -3406,6 +3459,43 @@ interface(`fs_getattr_hugetlbfs',`
 
 ########################################
 ## <summary>
+##	Remount a hugetlbfs filesystem.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`fs_remount_hugetlbfs',`
+	gen_require(`
+		type hugetlbfs_t;
+	')
+
+	allow $1 hugetlbfs_t:filesystem remount;
+')
+
+########################################
+## <summary>
+##	Do not audit attempts to get the
+##	attributes of directories on a hugetlbfs.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`fs_dontaudit_getattr_hugetlbfs_dirs',`
+	gen_require(`
+		type hugetlbfs_t;
+	')
+
+	dontaudit $1 hugetlbfs_t:dir getattr_dir_perms;
+')
+
+########################################
+## <summary>
 ##	List hugetlbfs.
 ## </summary>
 ## <param name="domain">
@@ -3424,6 +3514,42 @@ interface(`fs_list_hugetlbfs',`
 
 ########################################
 ## <summary>
+##	Create hugetlbfs directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`fs_create_hugetlbfs_dirs',`
+	gen_require(`
+		type hugetlbfs_t;
+	')
+
+	create_dirs_pattern($1, hugetlbfs_t, hugetlbfs_t)
+')
+
+########################################
+## <summary>
+##	Set the attributes on hugetlbfs dirs.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`fs_setattr_hugetlbfs_dirs',`
+	gen_require(`
+		type hugetlbfs_t;
+	')
+
+	setattr_dirs_pattern($1, hugetlbfs_t, hugetlbfs_t)
+')
+
+########################################
+## <summary>
 ##	Manage hugetlbfs dirs.
 ## </summary>
 ## <param name="domain">
@@ -3438,6 +3564,43 @@ interface(`fs_manage_hugetlbfs_dirs',`
 	')
 
 	manage_dirs_pattern($1, hugetlbfs_t, hugetlbfs_t)
+')
+
+########################################
+## <summary>
+##	Allow changing of the label of a
+##	directory with the hugetlbfs type.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`fs_relabelfrom_hugetlbfs_dirs',`
+	gen_require(`
+		type hugetlbfs_t;
+	')
+
+	relabelfrom_dirs_pattern($1, hugetlbfs_t, hugetlbfs_t)
+')
+
+########################################
+## <summary>
+##	Mount on hugetlbfs directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`fs_mounton_hugetlbfs_dirs',`
+	gen_require(`
+		type hugetlbfs_t;
+	')
+
+	allow $1 hugetlbfs_t:dir mounton;
 ')
 
 ########################################
@@ -6972,4 +7135,22 @@ interface(`fs_unconfined',`
 	')
 
 	typeattribute $1 filesystem_unconfined_type;
+')
+
+########################################
+## <summary>
+##	Search bpf dirs
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`fs_search_bpf',`
+	gen_require(`
+		type bpf_t;
+	')
+
+	allow $1 bpf_t:dir search;
 ')

@@ -59,7 +59,8 @@ gen_tunable(allow_write_xshm, false)
 ## <desc>
 ## <p>
 ## Allows clients to write to the X server tmpfs
-## files.
+## files (needed for example by the Qt library
+## version 5).
 ## </p>
 ## </desc>
 gen_tunable(xserver_client_writes_xserver_tmpfs, false)
@@ -584,6 +585,8 @@ optional_policy(`
 	')
 
 	optional_policy(`
+		auth_use_pam_systemd(xdm_t)
+		systemd_dbus_chat_hostnamed(xdm_t)
 		systemd_read_logind_runtime_files(xdm_t)
 	')
 ')
@@ -643,6 +646,10 @@ optional_policy(`
 
 optional_policy(`
 	usermanage_read_crack_db(xdm_t)
+')
+
+optional_policy(`
+	udev_run_domain(xdm_t, xdm_exec_t)
 ')
 
 optional_policy(`

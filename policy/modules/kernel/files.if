@@ -1526,6 +1526,25 @@ interface(`files_list_non_auth_dirs',`
 
 ########################################
 ## <summary>
+##	Watch all non-authentication related
+##	directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`files_watch_non_auth_dirs',`
+	gen_require(`
+		attribute non_auth_file_type;
+	')
+
+	allow $1 non_auth_file_type:dir watch;
+')
+
+########################################
+## <summary>
 ##	Read all non-authentication related
 ##	files.
 ## </summary>
@@ -2707,6 +2726,24 @@ interface(`files_relabelfrom_boot_files',`
 	relabelfrom_files_pattern($1, boot_t, boot_t)
 ')
 
+########################################
+## <summary>
+##	Relabel to files in the /boot directory.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`files_relabelto_boot_files',`
+	gen_require(`
+		type boot_t;
+	')
+
+	relabelto_files_pattern($1, boot_t, boot_t)
+')
+
 ######################################
 ## <summary>
 ##	Read symbolic links in the /boot directory.
@@ -3466,6 +3503,24 @@ interface(`files_delete_etc_files',`
 
 ########################################
 ## <summary>
+##	Set the attributes of etc_t files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`files_setattr_etc_files',`
+	gen_require(`
+		type etc_t;
+	')
+
+	allow $1 etc_t:file setattr;
+')
+
+########################################
+## <summary>
 ##	Execute generic files in /etc.
 ## </summary>
 ## <param name="domain">
@@ -3500,6 +3555,24 @@ interface(`files_watch_etc_files', `
 	')
 
 	allow $1 etc_t:file watch;
+')
+
+########################################
+## <summary>
+##	Relabel files to etc_t.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`files_relabelto_etc_files',`
+	gen_require(`
+		type etc_t;
+	')
+
+	allow $1 etc_t:file relabelto;
 ')
 
 ########################################
@@ -3798,6 +3871,25 @@ interface(`files_dontaudit_setattr_etc_runtime_files',`
 
 ########################################
 ## <summary>
+##	Create a machine-id file in
+##	the runtime directory
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`files_runtime_filetrans_machine_id',`
+	gen_require(`
+		type etc_runtime_t;
+	')
+
+	files_runtime_filetrans($1, etc_runtime_t, file, "machine-id")
+')
+
+########################################
+## <summary>
 ##	Read files in /etc that are dynamically
 ##	created on boot, such as mtab.
 ## </summary>
@@ -3832,8 +3924,8 @@ interface(`files_read_etc_runtime_files',`
 	')
 
 	allow $1 etc_t:dir list_dir_perms;
-	read_files_pattern($1, etc_t, etc_runtime_t)
-	read_lnk_files_pattern($1, etc_t, etc_runtime_t)
+	read_files_pattern($1, etc_runtime_t, etc_runtime_t)
+	read_lnk_files_pattern($1, etc_runtime_t, etc_runtime_t)
 ')
 
 ########################################
@@ -3954,6 +4046,24 @@ interface(`files_rw_etc_runtime_files',`
 
 ########################################
 ## <summary>
+##	Delete etc_runtime_t files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`files_delete_etc_runtime_files',`
+	gen_require(`
+		type etc_runtime_t;
+	')
+
+	allow $1 etc_runtime_t:file delete_file_perms;
+')
+
+########################################
+## <summary>
 ##	Create, read, write, and delete files in
 ##	/etc that are dynamically created on boot,
 ##	such as mtab.
@@ -3975,6 +4085,24 @@ interface(`files_manage_etc_runtime_files',`
 
 ########################################
 ## <summary>
+##	Set the attributes on etc_runtime_t files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`files_setattr_etc_runtime_files',`
+	gen_require(`
+		type etc_runtime_t;
+	')
+
+	allow $1 etc_runtime_t:file setattr;
+')
+
+########################################
+## <summary>
 ##	Relabel to etc_runtime_t files.
 ## </summary>
 ## <param name="domain">
@@ -3989,6 +4117,24 @@ interface(`files_relabelto_etc_runtime_files',`
 	')
 
 	allow $1 etc_runtime_t:file relabelto;
+')
+
+########################################
+## <summary>
+##	Relabel from etc_runtime_t files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`files_relabelfrom_etc_runtime_files',`
+	gen_require(`
+		type etc_runtime_t;
+	')
+
+	allow $1 etc_runtime_t:file relabelfrom;
 ')
 
 ########################################
@@ -4191,6 +4337,24 @@ interface(`files_watch_home',`
 	')
 
 	allow $1 home_root_t:dir watch;
+')
+
+########################################
+## <summary>
+##	Manage user home root symlinks.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`files_manage_home_symlinks',`
+	gen_require(`
+		type home_root_t;
+	')
+
+	allow $1 home_root_t:lnk_file manage_lnk_file_perms;
 ')
 
 ########################################
@@ -4622,6 +4786,24 @@ interface(`files_delete_kernel_modules',`
 
 ########################################
 ## <summary>
+##	Set the attributes on kernel module files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`files_setattr_kernel_modules',`
+	gen_require(`
+		type modules_object_t;
+	')
+
+	allow $1 modules_object_t:file setattr;
+')
+
+########################################
+## <summary>
 ##	Create, read, write, and delete
 ##	kernel module files.
 ## </summary>
@@ -4711,6 +4893,24 @@ interface(`files_kernel_modules_filetrans',`
 	')
 
 	filetrans_pattern($1, modules_object_t, $2, $3, $4)
+')
+
+########################################
+## <summary>
+##	Relabel files to the kernel module type.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`files_relabelto_kernel_modules_files',`
+	gen_require(`
+		type modules_object_t;
+	')
+
+	allow $1 modules_object_t:file relabelto;
 ')
 
 ########################################
@@ -5532,6 +5732,24 @@ interface(`files_getattr_usr_files',`
 
 ########################################
 ## <summary>
+##	Set the attributes of files in the /usr directory.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`files_setattr_usr_files',`
+	gen_require(`
+		type usr_t;
+	')
+
+	allow $1 usr_t:file setattr;
+')
+
+########################################
+## <summary>
 ##	Map generic files in /usr.
 ## </summary>
 ## <param name="domain">
@@ -5804,6 +6022,27 @@ interface(`files_read_usr_src_files',`
 
 	allow $1 usr_t:dir search_dir_perms;
 	read_files_pattern($1, { usr_t src_t }, src_t)
+	read_lnk_files_pattern($1, { usr_t src_t }, src_t)
+	allow $1 src_t:dir list_dir_perms;
+')
+
+########################################
+## <summary>
+##	Memory map and read files in /usr/src.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`files_mmap_read_usr_src_files',`
+	gen_require(`
+		type usr_t, src_t;
+	')
+
+	allow $1 usr_t:dir search_dir_perms;
+	mmap_read_files_pattern($1, { usr_t src_t }, src_t)
 	read_lnk_files_pattern($1, { usr_t src_t }, src_t)
 	allow $1 src_t:dir list_dir_perms;
 ')
@@ -6181,6 +6420,25 @@ interface(`files_manage_var_symlinks',`
 
 ########################################
 ## <summary>
+##	Delete character device nodes in
+##	the var directory.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`files_delete_var_chr_files',`
+	gen_require(`
+		type var_t;
+	')
+
+	delete_chr_files_pattern($1, var_t, var_t)
+')
+
+########################################
+## <summary>
 ##	Create objects in the /var directory
 ## </summary>
 ## <param name="domain">
@@ -6407,6 +6665,24 @@ interface(`files_read_var_lib_files',`
 
 	allow $1 var_lib_t:dir list_dir_perms;
 	read_files_pattern($1, { var_t var_lib_t }, var_lib_t)
+')
+
+########################################
+## <summary>
+##	map generic files in /var/lib.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`files_map_var_lib_files',`
+	gen_require(`
+		type var_lib_t;
+	')
+
+	allow $1 var_lib_t:file map;
 ')
 
 ########################################

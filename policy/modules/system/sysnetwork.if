@@ -495,6 +495,25 @@ interface(`sysnet_create_config',`
 
 #######################################
 ## <summary>
+##	Delete network config files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`sysnet_delete_config',`
+	gen_require(`
+		type net_conf_t;
+	')
+
+	files_search_etc($1)
+	allow $1 net_conf_t:file delete_file_perms;
+')
+
+#######################################
+## <summary>
 ##	Relabel network config files.
 ## </summary>
 ## <param name="domain">
@@ -510,6 +529,25 @@ interface(`sysnet_relabel_config',`
 
 	files_search_etc($1)
 	allow $1 net_conf_t:file relabel_file_perms;
+')
+
+#######################################
+## <summary>
+##	Relabelto network config files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`sysnet_relabelto_config',`
+	gen_require(`
+		type net_conf_t;
+	')
+
+	files_search_etc($1)
+	allow $1 net_conf_t:file relabelto;
 ')
 
 #######################################
@@ -864,6 +902,42 @@ interface(`sysnet_netns_filetrans',`
 
 	allow $1 ifconfig_runtime_t:dir create_dir_perms;
 	filetrans_pattern($1, ifconfig_runtime_t, $2, $3, $4)
+')
+
+########################################
+## <summary>
+##	List files in the /run/netns directory.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`sysnet_list_netns_dirs',`
+	gen_require(`
+		type ifconfig_runtime_t;
+	')
+
+	list_dirs_pattern($1, ifconfig_runtime_t, ifconfig_runtime_t)
+')
+
+########################################
+## <summary>
+##	Read files in the /run/netns directory.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`sysnet_read_netns_files',`
+	gen_require(`
+		type ifconfig_runtime_t;
+	')
+
+	read_files_pattern($1, ifconfig_runtime_t, ifconfig_runtime_t)
 ')
 
 ########################################

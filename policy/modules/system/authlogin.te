@@ -14,6 +14,13 @@ gen_tunable(authlogin_pam, true)
 
 ## <desc>
 ## <p>
+## Allow users to resolve user passwd entries directly from kanidm.
+## </p>
+## </desc>
+gen_tunable(authlogin_nsswitch_use_kanidm, false)
+
+## <desc>
+## <p>
 ## Allow users to resolve user passwd entries directly from ldap rather then using a sssd server
 ## </p>
 ## </desc>
@@ -120,6 +127,7 @@ files_list_etc(chkpwd_t)
 kernel_dontaudit_search_kernel_sysctl(chkpwd_t)
 kernel_dontaudit_read_kernel_sysctl(chkpwd_t)
 kernel_dontaudit_getattr_proc(chkpwd_t)
+kernel_getattr_proc(chkpwd_t)
 
 domain_dontaudit_use_interactive_fds(chkpwd_t)
 
@@ -390,6 +398,7 @@ allow updpwd_t self:fifo_file rw_fifo_file_perms;
 allow updpwd_t self:unix_stream_socket create_stream_socket_perms;
 allow updpwd_t self:unix_dgram_socket create_socket_perms;
 
+files_etc_filetrans(updpwd_t, shadow_t, file, "nshadow")
 files_etc_filetrans(updpwd_t, shadow_history_t, file)
 allow updpwd_t shadow_history_t:file manage_file_perms;
 
@@ -424,12 +433,15 @@ ifdef(`distro_ubuntu',`
 
 allow utempter_t self:capability setgid;
 allow utempter_t self:unix_stream_socket create_stream_socket_perms;
+allow utempter_t self:unix_dgram_socket create;
 
 allow utempter_t wtmp_t:file rw_file_perms;
 
 dev_read_urand(utempter_t)
 
 files_read_etc_files(utempter_t)
+
+miscfiles_getattr_localization(utempter_t)
 
 term_getattr_all_ttys(utempter_t)
 term_getattr_all_ptys(utempter_t)
@@ -442,6 +454,8 @@ init_rw_utmp(utempter_t)
 domain_use_interactive_fds(utempter_t)
 
 logging_search_logs(utempter_t)
+
+term_use_ptmx(utempter_t)
 
 userdom_use_user_terminals(utempter_t)
 # Allow utemper to write to /tmp/.xses-*
@@ -481,6 +495,13 @@ ifdef(`init_systemd', `
 	systemd_stream_connect_userdb(nsswitch_domain)
 	systemd_stream_connect_homed(nsswitch_domain)
 	systemd_stream_connect_nsresourced(nsswitch_domain)
+')
+
+optional_policy(`
+	tunable_policy(`authlogin_nsswitch_use_kanidm',`
+		kanidm_read_config(nsswitch_domain)
+		kanidm_unixd_stream_connect(nsswitch_domain)
+	')
 ')
 
 tunable_policy(`authlogin_nsswitch_use_ldap',`

@@ -131,8 +131,9 @@ auth_domtrans_pam_console(local_login_t)
 auth_read_pam_motd_dynamic(local_login_t)
 auth_read_shadow_history(local_login_t)
 
-# if local_login_t can not inherit fd from init it takes ages to login
+# if local_login_t can not inherit fd from init then login fails
 init_use_fds(local_login_t)
+init_use_script_fds(local_login_t)
 
 miscfiles_read_localization(local_login_t)
 
@@ -148,7 +149,6 @@ ifdef(`init_systemd',`
 	auth_manage_faillog(local_login_t)
 
 	init_dbus_chat(local_login_t)
-	init_use_fds(local_login_t)
 
 	systemd_connect_machined(local_login_t)
 	systemd_dbus_chat_logind(local_login_t)
@@ -189,6 +189,11 @@ tunable_policy(`use_samba_home_dirs',`
 
 optional_policy(`
 	alsa_domtrans(local_login_t)
+')
+
+optional_policy(`
+	# for motd
+	apt_read_db(local_login_t)
 ')
 
 optional_policy(`
@@ -236,6 +241,7 @@ optional_policy(`
 
 allow sulogin_t self:capability { dac_read_search sys_admin sys_tty_config };
 dontaudit sulogin_t self:capability dac_override;
+dontaudit sulogin_t self:capability2 checkpoint_restore;
 allow sulogin_t self:process setexec;
 allow sulogin_t self:fd use;
 allow sulogin_t self:fifo_file rw_fifo_file_perms;
@@ -277,7 +283,7 @@ seutil_read_default_contexts(sulogin_t)
 userdom_use_unpriv_users_fds(sulogin_t)
 
 userdom_search_user_home_dirs(sulogin_t)
-userdom_use_user_ptys(sulogin_t)
+userdom_use_user_terminals(sulogin_t)
 
 sysadm_shell_domtrans(sulogin_t)
 
@@ -311,4 +317,8 @@ ifdef(`distro_gentoo',`
 	optional_policy(`
 		cgmanager_stream_connect(local_login_t)
 	')
+')
+
+optional_policy(`
+	unconfined_domtrans(sulogin_t)
 ')

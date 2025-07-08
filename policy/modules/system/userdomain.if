@@ -191,28 +191,28 @@ template(`userdom_user_content_access_template',`
 	##	Grant the $1 domains read access to generic user content
 	##	</p>
 	## </desc>
-	gen_tunable(`$1_read_generic_user_content', true)
+	gen_tunable($1_read_generic_user_content, true)
 
 	## <desc>
 	##	<p>
 	##	Grant the $1 domains read access to all user content
 	##	</p>
 	## </desc>
-	gen_tunable(`$1_read_all_user_content', false)
+	gen_tunable($1_read_all_user_content, false)
 
 	## <desc>
 	##	<p>
 	##	Grant the $1 domains manage rights on generic user content
 	##	</p>
 	## </desc>
-	gen_tunable(`$1_manage_generic_user_content', false)
+	gen_tunable($1_manage_generic_user_content, false)
 
 	## <desc>
 	##	<p>
 	##	Grant the $1 domains manage rights on all user content
 	##	</p>
 	## </desc>
-	gen_tunable(`$1_manage_all_user_content', false)
+	gen_tunable($1_manage_all_user_content, false)
 
 	tunable_policy(`$1_read_generic_user_content',`
 		userdom_list_user_tmp($2)
@@ -641,6 +641,7 @@ template(`userdom_change_password_template',`
 template(`userdom_common_user_template',`
 	gen_require(`
 		attribute unpriv_userdomain;
+		type user_runtime_t;
 	')
 
 	userdom_basic_networking_template($1)
@@ -824,6 +825,7 @@ template(`userdom_common_user_template',`
 
 		optional_policy(`
 			systemd_role_template($1, $1_r, $1_t)
+			systemd_user_app_socket_create($1, $1_t, user_runtime_t)
 		')
 	')
 
@@ -935,6 +937,7 @@ template(`userdom_common_user_template',`
 	')
 
 	optional_policy(`
+		systemd_dbus_chat_locale($1_t)
 		systemd_stream_connect_userdb($1_t)
 	')
 
@@ -1850,6 +1853,24 @@ interface(`userdom_dontaudit_getattr_user_home_dirs',`
 	')
 
 	dontaudit $1 user_home_dir_t:dir getattr_dir_perms;
+')
+
+########################################
+## <summary>
+##	Set the attributes of user home directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`userdom_setattr_user_home_dirs',`
+	gen_require(`
+		type user_home_dir_t;
+	')
+
+	allow $1 user_home_dir_t:dir setattr_dir_perms;
 ')
 
 ########################################
@@ -3764,6 +3785,26 @@ interface(`userdom_watch_user_runtime_dirs',`
 
 ########################################
 ## <summary>
+##	Manage user runtime files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`userdom_mmap_manage_user_runtime_files',`
+	gen_require(`
+		type user_runtime_t;
+	')
+
+	allow $1 user_runtime_t:dir rw_dir_perms;
+	allow $1 user_runtime_t:file mmap_manage_file_perms;
+	userdom_search_user_runtime_root($1)
+')
+
+########################################
+## <summary>
 ##	Mount a filesystem on user runtime dir
 ##	directories.
 ## </summary>
@@ -5011,6 +5052,24 @@ interface(`userdom_sigchld_all_users',`
 
 ########################################
 ## <summary>
+##	Search keys for all user domains.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`userdom_search_all_users_keys',`
+	gen_require(`
+		attribute userdomain;
+	')
+
+	allow $1 userdomain:key search;
+')
+
+########################################
+## <summary>
 ##	Read keys for all user domains.
 ## </summary>
 ## <param name="domain">
@@ -5166,8 +5225,26 @@ interface(`userdom_relabel_user_certs',`
 
 ########################################
 ## <summary>
+##     Allow connecting to userdomain stream.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain to allow
+##	</summary>
+## </param>
+#
+interface(`userdom_connectto_all_users_stream_sockets',`
+	gen_require(`
+		attribute userdomain;
+	')
+
+	allow $1 userdomain:unix_stream_socket connectto;
+')
+
+########################################
+## <summary>
 ##     Do not audit attempts to read and write
-##     unserdomain stream.
+##     userdomain stream.
 ## </summary>
 ## <param name="domain">
 ##	<summary>

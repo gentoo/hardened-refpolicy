@@ -74,7 +74,6 @@ can_exec(udev_t, udev_helper_exec_t)
 
 # read udev config
 allow udev_t udev_etc_t:file read_file_perms;
-allow udev_t udev_runtime_t:dir watch;
 
 list_dirs_pattern(udev_t, udev_rules_t, udev_rules_t)
 manage_files_pattern(udev_t, udev_rules_t, udev_rules_t)
@@ -109,6 +108,7 @@ kernel_read_fs_sysctls(udev_t)
 #https://bugzilla.redhat.com/bugzilla/show_bug.cgi?id=235182
 kernel_rw_net_sysctls(udev_t)
 kernel_read_network_state(udev_t)
+kernel_read_psi(udev_t)
 kernel_read_software_raid_state(udev_t)
 kernel_dontaudit_search_unlabeled(udev_t)
 
@@ -131,6 +131,7 @@ domain_dontaudit_ptrace_all_domains(udev_t) #pidof triggers these
 files_read_usr_files(udev_t)
 files_read_etc_runtime_files(udev_t)
 files_read_etc_files(udev_t)
+files_read_var_lib_symlinks(udev_t)
 files_mmap_read_kernel_modules(udev_t)
 files_exec_etc_files(udev_t)
 files_getattr_generic_locks(udev_t)
@@ -144,8 +145,13 @@ fs_getattr_all_fs(udev_t)
 fs_list_inotifyfs(udev_t)
 fs_read_cgroup_files(udev_t)
 fs_rw_anon_inodefs_files(udev_t)
+fs_list_tmpfs(udev_t)
 fs_search_tracefs(udev_t)
 fs_manage_efivarfs_files(udev_t)
+# for systemd-udevd to add /sys/fs/cgroup/system.slice/systemd-udevd.service/udev/cgroup.procs
+fs_manage_cgroup_dirs(udev_t)
+fs_manage_cgroup_files(udev_t)
+
 fs_watch_memory_pressure(udev_t)
 
 mls_file_read_all_levels(udev_t)
@@ -332,6 +338,7 @@ optional_policy(`
 
 optional_policy(`
 	fstools_domtrans(udev_t)
+	fstools_getattr_swap_files(udev_t)
 ')
 
 optional_policy(`
