@@ -398,4 +398,5 @@ optional_policy(`
 ifdef(`distro_gentoo',`
 	# Moved out of files_relabel_non_auth_files as it cannot be used in tunable_policy otherwise
 	seutil_relabelto_bin_policy(dpkg_t)
+	seutil_relabelto_bin_policy(dpkg_script_t)
 ')
