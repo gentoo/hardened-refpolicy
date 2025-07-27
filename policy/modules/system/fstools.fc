@@ -118,5 +118,6 @@ ifdef(`distro_gentoo',`
 /run/fsck(/.*)?		gen_context(system_u:object_r:fsadm_run_t,s0)
 
 ifdef(`distro_gentoo',`
+/usr/bin/mkfs\.f2fs	--	gen_context(system_u:object_r:fsadm_exec_t,s0)
 /usr/sbin/mkfs\.f2fs	--	gen_context(system_u:object_r:fsadm_exec_t,s0)
 ')
