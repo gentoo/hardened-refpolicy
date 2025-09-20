@@ -1016,6 +1016,8 @@ ifdef(`distro_gentoo',`
 	files_manage_generic_locks(initrc_t)
 	files_manage_var_symlinks(initrc_t)
 	files_runtime_filetrans(initrc_t, initrc_state_t, dir, "openrc")
+	# seedrng
+	files_var_lib_filetrans(init_t, init_random_seed_t, dir, "seedrng")
 
 	# openrc uses tmpfs for its state data
 	fs_tmpfs_filetrans(initrc_t, initrc_state_t, { dir file fifo_file lnk_file })
@@ -1046,7 +1048,7 @@ ifdef(`distro_gentoo',`
 
 	optional_policy(`
 		dhcpd_setattr_state_files(initrc_t)
-	')
+	')	
 ')
 
 ifdef(`distro_redhat',`
