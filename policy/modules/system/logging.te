@@ -502,6 +502,7 @@ auth_use_nsswitch(syslogd_t)
 
 init_use_fds(syslogd_t)
 
+miscfiles_read_generic_certs(syslogd_t)
 miscfiles_read_localization(syslogd_t)
 
 seutil_read_config(syslogd_t)
@@ -609,6 +610,7 @@ tunable_policy(`logging_syslog_can_network',`
 	corenet_tcp_connect_rsh_port(syslogd_t)
 	# Allow users to define additional syslog ports to connect to
 	corenet_tcp_bind_syslogd_port(syslogd_t)
+	corenet_tcp_connect_syslog_tls_port(syslogd_t)
 	corenet_tcp_connect_syslogd_port(syslogd_t)
 	corenet_tcp_connect_postgresql_port(syslogd_t)
 	corenet_tcp_connect_mysqld_port(syslogd_t)

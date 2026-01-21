@@ -618,6 +618,9 @@ ifdef(`init_systemd',`
 
 	optional_policy(`
 		container_remount_fs(init_t)
+		container_run_system_engine_bpf(init_t)
+
+		fs_manage_bpf_files(init_t)
 	')
 
 	optional_policy(`
@@ -1322,6 +1325,10 @@ optional_policy(`
 	dbus_manage_lib_files(initrc_t)
 
 	init_dbus_chat(initrc_t)
+
+	optional_policy(`
+		firewalld_dbus_chat(initrc_t)
+	')
 
 	optional_policy(`
 		networkmanager_dbus_chat(initrc_t)

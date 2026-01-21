@@ -829,6 +829,81 @@ interface(`logging_read_syslog_config',`
 
 ########################################
 ## <summary>
+##	Delete syslog configuration files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <rolecap/>
+#
+interface(`logging_delete_syslog_config_files',`
+	gen_require(`
+		type syslog_conf_t;
+	')
+
+	allow $1 syslog_conf_t:file delete_file_perms;
+')
+
+########################################
+## <summary>
+##	Set the attributes on syslog configuration files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <rolecap/>
+#
+interface(`logging_setattr_syslog_config_files',`
+	gen_require(`
+		type syslog_conf_t;
+	')
+
+	allow $1 syslog_conf_t:file setattr;
+')
+
+########################################
+## <summary>
+##	Relabelto syslog configuration files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <rolecap/>
+#
+interface(`logging_relabelto_syslog_config_files',`
+	gen_require(`
+		type syslog_conf_t;
+	')
+
+	allow $1 syslog_conf_t:file relabelto;
+')
+
+########################################
+## <summary>
+##	Watch syslog runtime dirs.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`logging_dontaudit_search_runtime_dirs',`
+	gen_require(`
+		type syslogd_runtime_t;
+	')
+
+	dontaudit $1 syslogd_runtime_t:dir search_dir_perms;
+')
+
+########################################
+## <summary>
 ##	Watch syslog runtime dirs.
 ## </summary>
 ## <param name="domain">
