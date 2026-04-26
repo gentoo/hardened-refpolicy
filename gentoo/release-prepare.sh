@@ -89,11 +89,13 @@ createEbuilds() {
   for PKG in selinux-*
   do
     [[ -f "${PKG}/${PKG}-9999.ebuild" ]] || continue
-    cp ${PKG}/${PKG}-9999.ebuild ${PKG}/${PKG}-${NEWVERSION}.ebuild || die "Failed to copy ebuild"
+    # For EAPI >= 8, BASEPOL's format has changed:
+    # https://codeberg.org/gentoo/gentoo/commit/d92368f0ac51ffd6f6440a5730904d929423e2db
+    cp "${PKG}/${PKG}-9999.ebuild" "${PKG}/${PKG}-${NEWVERSION/-r/_p}.ebuild" || die "Failed to copy ebuild"
 
     # Update copyright year
     sed -i "s/Copyright 1999-20.. Gentoo .*/Copyright 1999-$(date '+%Y') Gentoo Authors/" \
-        ${PKG}/${PKG}-${NEWVERSION}.ebuild || die "Failed to update header"
+        "${PKG}/${PKG}-${NEWVERSION/-r/_p}.ebuild" || die "Failed to update header"
   done
   printf "done\n"
 }
