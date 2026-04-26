@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Copyright 2013,2014 Sven Vermeulen <swift@gentoo.org>
 # Copyright 2014-2021 Jason Zaman <perfinion@gentoo.org>
