@@ -44,4 +44,3 @@ for upstream_module in "${UPSTREAM_MODULES[@]}" ; do
 		printf "upstream module ${upstream_module@Q} missing\n"
 	fi
 done
-
