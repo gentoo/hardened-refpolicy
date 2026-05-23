@@ -8,6 +8,8 @@ declare -A excluded_map=(
 	# Not happening, way too RHEL-specific
 	[setroubleshoot]=1
 	[rhsmcertd]=1
+	# Support was removed from glibc
+	[prelink]=1
 )
 
 # Don't warn on things in selinux-base{,-policy}
