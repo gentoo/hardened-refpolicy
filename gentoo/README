@@ -50,9 +50,9 @@ test all config combinations and flag any deprecations.
 
 Finally, make sure the STATE file is updated:
 
-    $ git -C "${REFPOLGIT}" rev-parse origin/HEAD > gentoo/STATE
-    $ git -C "${REFPOLGIT}" add gentoo/STATE
-    $ git -C "${REFPOLGIT}" commit -m "Merge upstream" -s
+    $ git -C "${REFPOLGIT}" rev-parse origin/HEAD > "${HARDENEDREFPOL}"/gentoo/STATE
+    $ git -C "${HARDENEDREFPOL}" add "${HARDENEDREFPOL}"/gentoo/STATE
+    $ git -C "${HARDENEDREFPOL}" commit -m "Merge upstream" -s
 
 gentoo/release-prepare.sh
 -------------------------
