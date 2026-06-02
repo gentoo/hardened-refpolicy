@@ -30,17 +30,17 @@ Merging upstream
 To merge changes from upstream, first have both repos checked out and up to date.
 Format patches from upstream repo:
 
-    refpolicy $ git fetch origin
-    refpolicy $ rm -f ./0*.patch # cleanup any previous patches
-    refpolicy $ git format-patch $(cat ${HARDENEDREFPOL}/gentoo/STATE)..origin/HEAD
+    refpolicy $ git -C "${REFPOLGIT}" fetch origin
+    refpolicy $ cd "${REFPOLGIT}" && rm -f ./0*.patch # cleanup any previous patches
+    refpolicy $ git -C "${REFPOLGIT}" format-patch $(cat ${HARDENEDREFPOL}/gentoo/STATE)..origin/HEAD
 
 Apply all the patches to our repo:
 
-    hardened-refpolicy $ git am ${REFPOLGIT}/0*.patch --signoff
+    hardened-refpolicy $ git -C "${HARDENEDREFPOL}" am ${REFPOLGIT}/0*.patch --signoff
 
 If there are merge conflicts, patch fuzzy-apply is usually somewhat successful:
 
-    $ patch -p1 -F99 -l --no-backup-if-mismatch < <(git am --show-current-patch=diff)
+    $ patch -d "${HARDENEDREFPOL}" -p1 -F99 -l --no-backup-if-mismatch < <(git -C "${HARDENEDREFPOL}" am --show-current-patch=diff)
 
 Or resolve conflicts manually. Then, as always, make sure everything is sane,
 then continue until all patches are applied: $ git am --continue
@@ -50,9 +50,9 @@ test all config combinations and flag any deprecations.
 
 Finally, make sure the STATE file is updated:
 
-    $ git -C ${REFPOLGIT} rev-parse origin/HEAD > gentoo/STATE
-    $ git add gentoo/STATE
-    $ git commit -m "Merge upstream" -s
+    $ git -C "${REFPOLGIT}" rev-parse origin/HEAD > gentoo/STATE
+    $ git -C "${REFPOLGIT}" add gentoo/STATE
+    $ git -C "${REFPOLGIT}" commit -m "Merge upstream" -s
 
 gentoo/release-prepare.sh
 -------------------------
