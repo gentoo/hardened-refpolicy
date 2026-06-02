@@ -123,7 +123,7 @@ userdom_use_user_terminals(kmod_t)
 userdom_dontaudit_search_user_home_dirs(kmod_t)
 
 ifdef(`init_systemd',`
-	# kmod needs to create /run/tmpdiles.d
+	# kmod needs to create /run/tmpfiles.d
 	systemd_tmpfiles_creator(kmod_t)
 
 	init_rw_stream_sockets(kmod_t)
