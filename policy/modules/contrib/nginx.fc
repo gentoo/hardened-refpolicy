@@ -54,7 +54,7 @@
 #
 # /usr
 #
-/usr/sbin/nginx				--	gen_context(system_u:object_r:nginx_exec_t,s0)
+/usr/bin/nginx				--	gen_context(system_u:object_r:nginx_exec_t,s0)
 
 #
 # /var
